@@ -5,7 +5,7 @@ Vérification commune à chaque tâche : `uv run pytest` vert, et aucun dossier 
 
 ## Phase 1 : J1, socle, vraie décision, analyse
 
-- [ ] **T1. Socle : l'API répond et sert la grille** · S · dépend de : rien
+- [x] **T1. Socle : l'API répond et sert la grille** · S · dépend de : rien
   - Faire : `pyproject.toml` racine (stack du spec ; `[tool.pytest.ini_options] pythonpath = ["."]`) ; dans `service.py`, `lire` / `ecrire` / `lister`, le contrôle des ids et `Erreur` ; dans `api.py`, `/sante`, `/grille`, le CORS et les gestionnaires d'erreurs (`Erreur` → son statut, `RequestValidationError` → 400, tout au format `erreur`) ; dans `.gitignore`, `data/cas/`, `data/documents/` et `.DS_Store` (le dataset en contient).
   - Accepté si :
     - `GET /sante` renvoie `{"ok": true}` et `GET /grille` renvoie le contenu de `contracts/grille.json`.
@@ -25,7 +25,7 @@ Vérification commune à chaque tâche : `uv run pytest` vert, et aucun dossier 
   - Fichiers : `back/extraction.py`, `back/ingerer.py`, `back/tests/test_extraction.py`, `data/decisions/`, `data/fiches/`
 
 - [ ] **T3. Analyser un cas, simulation comprise** · M · dépend de : T1
-  - Faire : `service.analyser(cas_id, facteurs=None)`, selon le spec (construction, validation avant et après, faux calculateur si `calculateur` est absent) ; `GET /cas/{id}` et `POST /cas/{id}/analyse` ; un `conftest.py` qui charge le cas et les décisions de `dossier_entree.json` dans un `DISTINGUO_DATA` temporaire.
+  - Faire : `service.analyser(cas_id, facteurs=None)`, selon le spec (construction, validation avant et après, appel direct du vrai `completer`, `ErreurDossier.problemes` → 422) ; le gestionnaire `RequestValidationError` → 400, reporté de T1 parce qu'il n'est testable qu'avec un premier corps de requête ; `GET /cas/{id}` et `POST /cas/{id}/analyse` ; un `conftest.py` qui charge le cas et les décisions de `dossier_entree.json` dans un `DISTINGUO_DATA` temporaire.
   - Accepté si :
     - Le dossier passé à `completer()` est accepté par `erreurs_dossier`, et une décision `validee: false` n'y entre pas.
     - Avec `{"facteurs": {...}}`, `meta.simulation` vaut `true` et le fichier du cas reste inchangé.
@@ -75,7 +75,7 @@ Vérification commune à chaque tâche : `uv run pytest` vert, et aucun dossier 
   - Fichiers : `back/extraction.py`, `back/service.py`, `back/api.py`, `back/tests/test_api.py`
 
 ### Checkpoint : parcours du front
-- [ ] Toutes les routes du §7 répondent avec le faux calculateur.
+- [ ] Toutes les routes du §7 répondent.
 - [ ] Parcours à la main : dépôt → cas → correction → analyse → simulation.
 - [ ] Commit et push ; prévenir le front.
 
@@ -105,8 +105,8 @@ Vérification commune à chaque tâche : `uv run pytest` vert, et aucun dossier 
 
 ## Phase 4 : J2/J3, vrai calculateur, vrai corpus, démo
 
-- [ ] **T10. Brancher le vrai calculateur** · S · dépend de : T3 · **passe devant dès que Mathis livre**
-  - Faire : ajouter les dépendances du calculateur au `pyproject.toml`, `uv sync`, et vérifier que l'avertissement « faux calculateur » a disparu.
+- [ ] **T10. Vrai calculateur : performance sur le corpus réel** · XS · dépend de : T3, T11
+  - Faire : le calculateur est déjà livré et appelé dès T3 ; il reste à mesurer `/analyse` sur le corpus réel.
   - Accepté si :
     - `/analyse` renvoie un dossier complété par le vrai `completer()`, accepté par `valider.py`.
     - La réponse arrive en moins d'1 s avec ~20 décisions.

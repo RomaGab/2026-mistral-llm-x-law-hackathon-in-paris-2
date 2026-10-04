@@ -42,6 +42,10 @@ venv/
 .mypy_cache/
 .ruff_cache/
 
+# Back : données client (cas et documents déposés), jamais versionnées
+data/cas/
+data/documents/
+
 # Operating system and editor temporary files
 .DS_Store
 Thumbs.db

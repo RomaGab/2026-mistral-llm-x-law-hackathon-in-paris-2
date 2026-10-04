@@ -52,7 +52,7 @@ uv run python -m back.ingerer dataset-legora/sources_jurisprudence_plateformes/s
 uv run python -m back.ingerer dataset-legora/sources_jurisprudence_plateformes/sources_brutes --limite 1  # une seule, pour tester
 uv run pytest                                        # tests (sans réseau)
 uv run python contracts/valider.py dossier.json      # valide un dossier sauvegardé
-uvx ruff check back/ && uvx ruff format back/        # lint + format, sans dépendance ajoutée
+uvx ruff check back/                                 # lint, sans dépendance ajoutée (pas de ruff format : le calculateur ne suit pas ses 88 colonnes)
 npx @modelcontextprotocol/inspector                  # tester le MCP à la main
 cloudflared tunnel --url http://localhost:8001       # URL publique pour Le Chat, pendant la démo uniquement
 ```
@@ -109,7 +109,7 @@ data/
 - validation **avant** `completer()` et **après** ; au moindre problème, 422 avec la liste, en précisant s'il vient de l'entrée ou de la sortie ;
 - aucun appel à Mistral dans ce chemin (objectif : < 1 s).
 
-**Calculateur.** `from calculateur import completer`. Si le package `calculateur` est absent (`ModuleNotFoundError` dont `name == "calculateur"`), on utilise un faux calculateur qui renvoie `contracts/exemples/dossier_complet.json`, et on affiche un avertissement au démarrage. Toute autre erreur d'import doit planter : elle ne doit pas être masquée.
+**Calculateur.** `from calculateur import completer, ErreurDossier`, appelé directement (livré par Mathis, v0.1.0). `ErreurDossier.problemes` donne la liste renvoyée en 422. Le faux calculateur prévu au départ n'a plus lieu d'être.
 
 **Erreurs.** Une seule forme : `{"erreur": {"code", "message"}}`. Les erreurs de validation de requête de FastAPI (422 par défaut) sont **converties en 400** : dans le contrat, 422 est réservé au validateur. Une erreur ou un timeout Mistral donne 502.
 
@@ -196,7 +196,7 @@ def normaliser_faits(brut: dict, texte: str, grille: list[dict]) -> tuple[dict, 
 
 | Jalon | Vérifiable par |
 |---|---|
-| **J1** | Les routes du §7 répondent, avec le faux calculateur. `ingerer --limite 1` transforme une vraie décision Legora en fiche ; une fois passée à `validee: true`, elle produit un dossier que `valider.py` accepte. `uv run pytest` passe. |
+| **J1** | Les routes du §7 répondent. `ingerer --limite 1` transforme une vraie décision Legora en fiche ; une fois passée à `validee: true`, elle produit un dossier que `valider.py` accepte. `uv run pytest` passe. |
 | **J2** | `POST /cas/{id}/analyse` renvoie un dossier complété par le **vrai** `completer()`, validé, en < 1 s avec ~20 décisions. |
 | **MCP** | Dans Le Chat, avec le prompt « Agent Stratégique Pivot » : la description du cas de livreurs déclenche `pivot_structurer_cas` et `pivot_etat_du_droit` ; `pivot_arbitrer` renvoie `definitif: false` avec la sanction dans `faits_manquants`, et l'agent pose la question ; la réponse de l'avocat (« shadow-banning ») déclenche `pivot_arbitrer` avec `sanction_deconnexion: true` et la bascule. Tous les chiffres de la restitution sont ceux de l'outil. |
 | **J3** | Le front est branché. Scénario de démo de bout en bout sur de vraies décisions validées : dépôt → faits à confirmer (dont la sanction) → analyse → case cochée → bascule. |
