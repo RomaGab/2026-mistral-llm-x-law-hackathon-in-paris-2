@@ -56,9 +56,11 @@
 .factsHeading { margin-bottom: 14px; }
 .factsSection > .panel { overflow: clip; }
 .matrixScroll { overflow: visible; }
-.matrix { --fact-column: 256px; --case-column: 156px; --case-column-border: #b8b5ac; display: block; width: 100%; border-collapse: separate; border-spacing: 0; font-size: 14px; }
-.matrix thead, .matrix tbody { display: block; overflow-x: auto; scrollbar-width: thin; scrollbar-color: #d9d7cf transparent; }
-.matrix tr { display: grid; grid-template-columns: var(--fact-column) var(--case-column) repeat(var(--precedent-count), minmax(148px, 1fr)); min-width: calc(var(--fact-column) + var(--case-column) + var(--precedent-count) * 148px); }
+.matrix { --fact-column: 256px; --case-column-border: #b8b5ac; display: block; width: 100%; border-collapse: separate; border-spacing: 0; font-size: 14px; }
+.matrix thead, .matrix tbody { display: block; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-left: var(--fact-column); scrollbar-width: thin; scrollbar-color: #d9d7cf transparent; }
+/* Every column but the sticky first one has the same width, sized in JS so the view ends on a column edge. */
+.matrix tr { display: grid; grid-template-columns: var(--fact-column) repeat(var(--column-count), var(--column-width)); width: max-content; min-width: 100%; }
+.matrix tr > :not(:first-child) { scroll-snap-align: start; }
 .matrix th, .matrix td { border-top: 1px solid var(--color-border); border-right: 1px solid #0000000a; transition: background-color 150ms ease, color 150ms ease; }
 .matrix th:last-child, .matrix td:last-child { border-right: 0; }
 .matrix thead { position: sticky; top: var(--app-header-height); z-index: 5; scrollbar-width: none; background: var(--color-control); box-shadow: 0 2px 0 #201f1c26; }
