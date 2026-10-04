@@ -1,0 +1,203 @@
+[
+  {
+    "juridiction_pays": "France - Cour de cassation (Chambre sociale)",
+    "date": "2018-11-28",
+    "reference": "Pourvoi n° 17-20.079 (Take Eat Easy)",
+    "statut_juge": "Salariat (cassation ; renvoi)",
+    "faits_determinants_salariat": [
+      "Application dotée d'un système de géolocalisation permettant le suivi en temps réel par la société de la position du coursier et la comptabilisation du nombre total de kilomètres parcourus",
+      "Système de pouvoir de sanction : pénalités ('strikes') en cas de manquement du coursier à ses obligations (désinscription tardive, connexion partielle au 'shift', absence de réponse au téléphone, incapacité de réparer une crevaison, refus de livraison)",
+      "Cumul de quatre 'strikes' entraînant la désactivation du compte et la désinscription des 'shifts' réservés"
+    ],
+    "faits_determinants_independance": [
+      "Liberté totale de choisir ses plages horaires de travail ou de ne pas travailler",
+      "Absence de clause d'exclusivité ou de non-concurrence",
+      "Travailleur disposant de son propre matériel (vélo, kit de réparation)"
+    ],
+    "fait_pivot_censure": "La cour d'appel avait écarté la subordination malgré la constatation conjointe de la géolocalisation en temps réel ET du pouvoir de sanction (strikes/désactivation) ; la Cour de cassation a jugé que ces deux éléments cumulés caractérisaient nécessairement un pouvoir de direction et de contrôle, cassant l'arrêt pour n'en avoir pas tiré les conséquences légales",
+    "fichier_source_brute": "01_France/2018-11-28_Cass_Soc_17-20.079_TakeEatEasy.txt"
+  },
+  {
+    "juridiction_pays": "France - Cour de cassation (Chambre sociale)",
+    "date": "2020-03-04",
+    "reference": "Pourvoi n° 19-13.316 (Uber, arrêt de principe)",
+    "statut_juge": "Salariat (rejet du pourvoi d'Uber)",
+    "faits_determinants_salariat": [
+      "Chauffeur intégré à un service de prestation de transport créé et entièrement organisé par Uber BV, sans clientèle propre, sans fixation libre des tarifs ni des conditions d'exercice",
+      "Tarifs fixés par algorithme de la plateforme avec pouvoir d'ajustement unilatéral par Uber (ex. en cas d'itinéraire jugé 'inefficace')",
+      "Contrôle de l'acceptation des courses : message automatique après trois refus successifs, incitation à la déconnexion",
+      "Système de géolocalisation en temps réel du chauffeur analysé et suivi par Uber pendant la connexion",
+      "Pouvoir de sanction : taux d'annulation de commandes variable par ville pouvant entraîner la perte d'accès au compte ; perte définitive d'accès en cas de signalement de 'comportements problématiques' par les utilisateurs",
+      "Directives comportementales (itinéraire GPS recommandé, attente minimale de 10 minutes, interdiction de contacter les passagers après la course)"
+    ],
+    "faits_determinants_independance": [
+      "Liberté de choisir ses jours et heures de connexion",
+      "Absence de clause d'exclusivité, possibilité théorique d'utiliser des applications concurrentes"
+    ],
+    "fait_pivot_censure": "La Cour de cassation retient que le statut de travailleur indépendant était fictif dès lors qu'Uber adressait des directives, en contrôlait l'exécution (géolocalisation, acceptation des courses) et exerçait un pouvoir de sanction (désactivation liée au taux d'annulation et aux signalements clients), la liberté de connexion étant jugée insuffisante pour écarter la subordination",
+    "fichier_source_brute": "01_France/2020-03-04_Cass_Soc_19-13.316_Uber_arret_de_principe.txt"
+  },
+  {
+    "juridiction_pays": "France - Cour de cassation (Chambre sociale)",
+    "date": "2022-04-13",
+    "reference": "Pourvoi n° 20-14.870 (Voxtur / Le Cab)",
+    "statut_juge": "Indépendant (cassation en faveur de la plateforme ; renvoi)",
+    "faits_determinants_salariat": [
+      "Absence de libre choix du véhicule (modèle imposé par la plateforme)",
+      "Géolocalisation en temps réel de chaque véhicule connecté",
+      "Système de notation pouvant entraîner la résiliation du contrat en cas de notation insuffisante",
+      "Fixation et modification unilatérale par la plateforme du prix des courses selon les horaires"
+    ],
+    "faits_determinants_independance": [
+      "Liberté de choisir ses horaires de travail et de ne pas travailler",
+      "Absence de clause d'exclusivité, possibilité de travailler pour son propre compte ou pour un tiers",
+      "Chauffeur libre d'organiser l'itinéraire de ses courses"
+    ],
+    "fait_pivot_censure": "La Cour de cassation a jugé les motifs de la cour d'appel insuffisants car elle n'avait pas caractérisé que la plateforme adressait des directives sur les modalités d'exécution du travail ni qu'elle disposait du pouvoir d'en contrôler le respect et d'en sanctionner l'inobservation : la géolocalisation et la notation seules, sans preuve d'un contrôle effectif de directives précises, ne suffisent pas à retenir la subordination",
+    "fichier_source_brute": "01_France/2022-04-13_Cass_Soc_20-14.870_Voxtur_LeCab.txt"
+  },
+  {
+    "juridiction_pays": "France - Cour de cassation (Chambre sociale)",
+    "date": "2023-01-25",
+    "reference": "Pourvoi n° 21-11.273 (Uber)",
+    "statut_juge": "Salariat (cassation en faveur du chauffeur)",
+    "faits_determinants_salariat": [
+      "Tarif utilisateur fixé par les algorithmes de la plateforme avec possibilité d'ajustement unilatéral si le chauffeur a choisi un 'itinéraire inefficace'",
+      "Pouvoir de sanction : mise hors ligne après trois refus de courses successifs ; désactivation temporaire ou définitive du compte en cas de taux élevé d'annulation",
+      "Clause contractuelle (art. 2.4) réservant à Uber le droit de désactiver ou restreindre l'accès à l'application 'pour toute autre raison', à sa seule discrétion"
+    ],
+    "faits_determinants_independance": [
+      "Absence d'obligation de connexion et liberté de choisir les horaires de travail",
+      "Absence de clause d'exclusivité"
+    ],
+    "fait_pivot_censure": "La cour d'appel avait estimé que la désactivation du compte pour taux d'annulation élevé s'assimilait à la simple rupture d'un partenariat commercial et non à l'exercice d'un pouvoir disciplinaire ; la Cour de cassation a censuré ce raisonnement en jugeant que l'ensemble des éléments (pouvoir de direction via les algorithmes de tarification, contrôle de l'exécution, pouvoir de sanction via la désactivation) caractérisait nécessairement un lien de subordination",
+    "fichier_source_brute": "01_France/2023-01-25_Cass_Soc_21-11.273_Uber.txt"
+  },
+  {
+    "juridiction_pays": "France - Cour de cassation (Chambre sociale)",
+    "date": "2023-09-13",
+    "reference": "Pourvoi n° 22-10.950 (Voxtur / Le Cab)",
+    "statut_juge": "Salariat (rejet du pourvoi de la plateforme)",
+    "faits_determinants_salariat": [
+      "Rémunération calculée et facturée par le système informatisé de la plateforme au nom et pour le compte du chauffeur",
+      "Système de notation prévu contractuellement pouvant entraîner la résiliation du contrat en cas de notation insuffisante",
+      "Déconnexion du chauffeur pendant vingt minutes en cas de refus de course",
+      "Instructions ponctuelles de la plateforme lors de certains événements (grève de taxis, Fashion Week) avec indication des sanctions en cas de désaffection",
+      "Système de fidélisation par points et réduction de loyer conditionné à un taux de maintien d'acceptation des courses de 95%"
+    ],
+    "faits_determinants_independance": [
+      "Liberté de choisir ses horaires de travail ou de ne pas travailler",
+      "Absence d'exclusivité formelle"
+    ],
+    "fait_pivot_censure": "La Cour de cassation confirme que la combinaison de la détermination unilatérale de la rémunération, du système de notation conditionnant la poursuite du contrat et du pouvoir de déconnexion temporaire en cas de refus de course caractérise un pouvoir de direction, de contrôle et de sanction suffisant, la liberté de connexion ne se confondant pas, selon la Cour, avec l'indépendance d'un travailleur disposant d'une clientèle propre",
+    "fichier_source_brute": "01_France/2023-09-13_Cass_Soc_22-10.950_Voxtur_LeCab.txt"
+  },
+  {
+    "juridiction_pays": "France - Cour de cassation (Chambre commerciale, financière et économique)",
+    "date": "2025-06-25",
+    "reference": "Pourvoi n° 23-22.430 (Transopco / Viacab - action en concurrence déloyale)",
+    "statut_juge": "Salariat (constat incident, dans le cadre d'une action en concurrence déloyale, retenant un lien de subordination des chauffeurs VTC vis-à-vis de la plateforme)",
+    "faits_determinants_salariat": [
+      "Fixation unilatérale du tarif par la plateforme et pratique d'offres promotionnelles s'imposant aux chauffeurs",
+      "Procédure stricte et détaillée imposée par le contrat de partenariat, directives via géolocalisation ('se rendre immédiatement, sans détour, et par le plus court chemin possible')",
+      "Géolocalisation utilisée pour contrôler le respect des directives données, avec pénalités possibles en cas de retard",
+      "Charte qualité imposant des standards de service (bouteille d'eau, ouverture des portes) dont le non-respect, mesuré par une notation client moyenne inférieure à 4/5 sur deux mois, autorise la résiliation anticipée du contrat par la plateforme",
+      "Interdiction de démarcher ou détourner la clientèle obtenue via l'application, sanctionnée par la résiliation anticipée"
+    ],
+    "faits_determinants_independance": [
+      "Absence d'obligation de connexion ; liberté de se connecter aux heures choisies",
+      "Taux d'acceptation des courses d'environ 50% en pratique, connexion moyenne de 8,5 heures par semaine",
+      "Liberté de choisir l'itinéraire 'de son choix' selon le contrat"
+    ],
+    "fait_pivot_censure": "La Cour de cassation a jugé que la faculté de résiliation anticipée fondée sur une notation client moyenne insuffisante, combinée à la géolocalisation utilisée pour contrôler le respect de directives précises (itinéraire imposé 'sans détour') et à l'interdiction de développer une clientèle personnelle, caractérisait un pouvoir de direction, de contrôle ET de sanction suffisant pour renverser la présomption d'indépendance, en dépit de l'absence d'obligation de connexion",
+    "fichier_source_brute": "01_France/2025-06-25_Cass_Com_23-22.430_Transopco_Viacab.txt"
+  },
+  {
+    "juridiction_pays": "Royaume-Uni - UK Supreme Court",
+    "date": "2021-02-19",
+    "reference": "[2021] UKSC 5 - Uber BV and others v Aslam and others",
+    "statut_juge": "Tiers-statut type 'Worker' (UK) - requalification en 'worker' au sens du droit du travail britannique (non 'employee')",
+    "faits_determinants_salariat": [
+      "Rémunération des chauffeurs entièrement fixée par Uber via l'application, sans possibilité pour le chauffeur de négocier ou de fixer son propre tarif",
+      "Conditions contractuelles dictées unilatéralement par Uber, sans possibilité de négociation individuelle",
+      "Contrôle de l'acceptation des courses : système de pénalité (déconnexion automatique de dix minutes) en cas de taux d'acceptation trop faible ou de taux d'annulation trop élevé, qualifié en interne de 'penalty' par Uber elle-même",
+      "Système de notation ('rating') par les passagers utilisé en interne par Uber comme outil de gestion de la performance et fondement de décisions de résiliation",
+      "Géolocalisation et guidage d'itinéraire imposé par l'application, avec risque financier à la charge du chauffeur en cas de déviation non approuvée par le passager",
+      "Restriction des communications entre chauffeur et passager au strict nécessaire, empêchant la constitution d'une clientèle personnelle"
+    ],
+    "faits_determinants_independance": [
+      "Liberté de choisir quand, combien et où (dans la zone de licence) travailler",
+      "Fourniture de son propre véhicule par le chauffeur"
+    ],
+    "fait_pivot_censure": "La Cour suprême a jugé que les clauses contractuelles qualifiant la relation de commerciale ne pouvaient constituer le point de départ de l'analyse (rejet de la 'primacy of contract'), la vulnérabilité et la subordination des chauffeurs devant s'apprécier aux conditions réelles d'exécution ; le contrôle exercé via le système de notation ('a classic form of subordination') et le mécanisme de pénalité de déconnexion ont été jugés déterminants pour écarter la qualification de prestataire indépendant",
+    "fichier_source_brute": "02_UK/2021-02-19_UKSC5_Uber_BV_v_Aslam_extrait_pages24-32.txt"
+  },
+  {
+    "juridiction_pays": "Royaume-Uni - UK Supreme Court",
+    "date": "2023-11-21",
+    "reference": "[2023] UKSC 43 - Independent Workers' Union of Great Britain v Central Arbitration Committee (Deliveroo)",
+    "statut_juge": "Indépendant (confirmation du statut de non-'worker' des livreurs Deliveroo ; pas de droit à la négociation collective sous l'article 11 CEDH)",
+    "faits_determinants_salariat": [
+      "Service de livraison entièrement défini et organisé par Deliveroo via l'application ('supplier agreements')",
+      "Rémunération fixée à la course par Deliveroo, facturation préparée par la plateforme"
+    ],
+    "faits_determinants_independance": [
+      "Clause de substitution large et effectivement utilisable : le livreur peut se faire remplacer par toute personne de son choix sans validation préalable de Deliveroo, y compris en utilisant les identifiants de l'application",
+      "Absence d'obligation de travailler et absence d'obligation pour Deliveroo de fournir du travail ('aucune obligation mutuelle')",
+      "Liberté totale de travailler simultanément pour des concurrents, y compris pendant l'exécution du contrat avec Deliveroo",
+      "Liberté totale de se connecter où et quand, dans les zones et horaires d'ouverture du service",
+      "Liberté d'accepter ou de refuser toute commande sans pénalité, usage du statut 'indisponible'",
+      "Fourniture par le livreur de son propre équipement (vélo, scooter, téléphone)",
+      "Absence d'obligation de port d'un uniforme ou de vêtements siglés Deliveroo dans le nouveau contrat"
+    ],
+    "fait_pivot_censure": "Le droit quasi illimité de substitution, effectivement utilisé et non soumis à l'approbation de Deliveroo, a été jugé incompatible avec l'obligation de prestation personnelle requise par la notion de 'worker' en droit britannique, faisant obstacle à toute discussion sur le pouvoir de direction ou de sanction : ce seul critère a suffi à exclure la qualification de worker et, par voie de conséquence, le droit à la négociation collective",
+    "fichier_source_brute": "02_UK/2023-11-21_UKSC43_IWGB_v_CAC_Deliveroo_extrait_pages1-10.txt"
+  },
+  {
+    "juridiction_pays": "Espagne - Tribunal Supremo (Sala de lo Social) - décision de référence citée dans la Ley Rider",
+    "date": "2020-09-25",
+    "reference": "STS 805/2020 (arrêt 'Glovo', Pleno de la Sala de lo Social, ECLI:ES:TS:2020:3015)",
+    "statut_juge": "Salariat (relation de travail reconnue entre la plateforme et le rider), à l'origine du 'Ley Rider' (Real Decreto-ley 9/2021 puis Ley 12/2021)",
+    "faits_determinants_salariat": [
+      "Reconnaissance jurisprudentielle d'une relation de travail entre les plateformes numériques et leurs livreurs ('riders'), fondée sur le contrôle algorithmique et la géolocalisation (gestion algorithmique du service ou des conditions de travail)",
+      "Les facultés patronales de direction, organisation et contrôle peuvent se traduire de formes différentes des formes classiques lorsque l'employeur assume les risques de l'opération et bénéficie des fruits, exerce une coordination, organisation ou contrôle de la prestation, ou détient un pouvoir de sanction, même de façon indirecte ou implicite via la gestion algorithmique",
+      "Cette doctrine a directement motivé l'adoption du Real Decreto-ley 9/2021 (Ley Rider) établissant une présomption légale de salariat pour les livreurs de plateformes numériques"
+    ],
+    "faits_determinants_independance": [
+      "Non documenté dans l'extrait disponible (le texte intégral de l'arrêt n'a pas pu être récupéré dans le corpus consulté ; seul l'extrait du FJ 7º cité par le législateur dans la Ley 12/2021 a pu être vérifié)"
+    ],
+    "fait_pivot_censure": "Selon l'extrait cité par le législateur, l'arrêt retient que la dépendance n'implique pas une subordination absolue mais seulement l'insertion dans le cercle directeur, organisationnel et disciplinaire de l'entreprise, et que les notions de dépendance et d'extranéité doivent être adaptées à la réalité sociale actuelle, notamment via les systèmes de contrôle numérisés de la prestation de service",
+    "fichier_source_brute": "03_Espagne/Ley_12-2021_BOE_texte_integral_citant_STS_805-2020.txt"
+  },
+  {
+    "juridiction_pays": "Espagne - Tribunal Constitucional (Pleno)",
+    "date": "2023-11-06",
+    "reference": "Sentencia 147/2023 (constitutionnalité du Real Decreto-ley 9/2021, 'Ley Rider')",
+    "statut_juge": "Validation de la présomption légale de salariat pour les riders de plateformes (rejet du recours contre le décret-loi)",
+    "faits_determinants_salariat": [
+      "Le décret-loi incorpore au droit positif la jurisprudence favorable à la reconnaissance de la relation de travail entre plateformes digitales et riders, arrivée à maturité avec la STS 805/2020",
+      "Justification du Gouvernement fondée sur la nécessité de sécurité juridique face à une forte litigiosité et une pratique de 'faux indépendants' identifiée comme un problème structurel du secteur"
+    ],
+    "faits_determinants_independance": [
+      "Non applicable : la décision porte sur la validité constitutionnelle de la procédure d'adoption du décret-loi (urgence de l'art. 86.1 de la Constitution), non sur la qualification factuelle d'un cas individuel"
+    ],
+    "fait_pivot_censure": "Le Tribunal Constitucional valide le recours au décret-loi en se fondant sur l'urgence créée par la forte litigiosité et la généralisation du phénomène des 'falsos autónomos' parmi les livreurs de plateformes, confirmant indirectement la portée de la doctrine jurisprudentielle du Tribunal Supremo sur le contrôle algorithmique comme fondement de la requalification",
+    "fichier_source_brute": "non inclus dans le zip (texte intégral non relu lors de cette session ; référence : Sentencia 147/2023, Pleno del Tribunal Constitucional, 6 noviembre 2023)"
+  },
+  {
+    "juridiction_pays": "États-Unis - California Supreme Court",
+    "date": "2018-04-30",
+    "reference": "4 Cal.5th 903 - Dynamex Operations West, Inc. v. Superior Court (No. S222732)",
+    "statut_juge": "Salariat (adoption du test 'ABC', présomption de salariat pour les livreurs à moins que l'entreprise ne prouve les trois conditions cumulatives)",
+    "faits_determinants_salariat": [
+      "L'activité des livreurs (delivery drivers) s'inscrit dans le cours normal de l'activité de l'entreprise, dont le métier même est la livraison ('Dynamex's entire business is that of a delivery service')",
+      "Absence de preuve que les chauffeurs exerçaient une activité indépendante établie, disposaient de leur propre clientèle, de cartes de visite professionnelles, faisaient leur publicité ou maintenaient un lieu d'activité séparé",
+      "Adoption du test 'ABC' : présomption de salariat sauf si l'entreprise prouve cumulativement (A) l'absence de contrôle et de direction sur le travailleur, (B) que le travail est en dehors du cours normal de l'activité de l'entreprise, et (C) que le travailleur exerce de manière habituelle un commerce, une occupation ou une entreprise indépendante établie de même nature"
+    ],
+    "faits_determinants_independance": [
+      "Non retenus dans cette affaire : la Cour a jugé que le critère B (activité hors du cours normal de l'entreprise) n'était manifestement pas rempli puisque la livraison constitue le cœur même de métier de Dynamex"
+    ],
+    "fait_pivot_censure": "La Cour suprême de Californie a rejeté le test multifactoriel antérieur ('Borello standard') au profit du test 'ABC', plus protecteur, pour les besoins des 'wage orders' : le critère B, à savoir que l'activité du travailleur doit être en dehors du cours normal de l'activité de l'entreprise, a été jugé manifestement non rempli pour une entreprise de livraison employant des livreurs, entraînant la présomption de salariat ; cette jurisprudence a ensuite été codifiée par l'Assembly Bill 5 (2019) avant d'être partiellement contournée pour les plateformes de VTC/livraison par la Proposition 22 (2020)",
+    "fichier_source_brute": "04_USA_Californie/2018-04-30_CalSupCt_S222732_Dynamex_v_Superior_Court.txt"
+  }
+]

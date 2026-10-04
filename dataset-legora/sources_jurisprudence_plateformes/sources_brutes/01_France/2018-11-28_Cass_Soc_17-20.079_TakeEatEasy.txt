@@ -1,0 +1,42 @@
+COUR DE CASSATION, CHAMBRE SOCIALE
+Audience publique du 28 novembre 2018
+Arrêt n° 1737 FP-P+B+R+I
+Pourvoi n° B 17-20.079
+Cassation
+
+SOURCE BRUTE - Texte intégral tel que récupéré depuis Judilibre (Cour de cassation)
+Affaire : requalification d'un coursier à vélo (Take Eat Easy) en salarié
+
+NOTE METHODOLOGIQUE : Ce fichier contient l'extraction brute des parties de l'arrêt consultées lors de la recherche (géolocalisation, système de sanction/"strikes", motifs de la Cour). Pour le texte intégral complet avec toutes les subdivisions des moyens, se reporter à Judilibre (https://www.courdecassation.fr), référence du pourvoi n° B 17-20.079.
+
+--- EXTRAIT BRUT ---
+28 novembre 2018 Cour de cassation Pourvoi n° 17-20.079
+SOC. FB
+COUR DE CASSATION
+Audience publique du 28 novembre 2018
+Cassation
+M. Huglo, conseiller doyen faisant fonction de président
+Arrêt n° 1737 FP-P+B+R+I
+Pourvoi n° B 17-20.079
+
+RÉPUBLIQUE FRANÇAISE
+AU NOM DU PEUPLE FRANÇAIS
+
+LA COUR DE CASSATION, CHAMBRE SOCIALE, a rendu l'arrêt suivant :
+
+Statuant sur le pourvoi formé par M. [...], contre l'arrêt rendu le 20 avril 2017 par la cour d'appel de Paris (pôle 6, chambre 2), dans un litige l'opposant à la société Take Eat Easy, représentée par Mme [...], en qualité de mandataire liquidateur, intervenante volontaire : la Confédération générale du travail (CGT).
+
+FAITS ET PROCEDURE :
+M. [...] a conclu un contrat intitulé "contrat de prestation de services" avec la société Take Eat Easy, société qui a développé une plateforme et une application permettant de mettre en relation, via un site internet, des restaurateurs partenaires, des clients passant commande de repas et des livreurs à vélo, exerçant sous le statut de travailleur indépendant, chargés de livrer les repas commandés.
+
+ELEMENTS FACTUELS RELEVES PAR LA COUR :
+- L'application était dotée d'un système de géolocalisation permettant le suivi en temps réel par la société Take Eat Easy de la position du coursier et la comptabilisation du nombre total de kilomètres parcourus par celui-ci.
+- La société Take Eat Easy disposait d'un pouvoir de sanction à l'égard du coursier : un système de "strikes" était mis en place, comptabilisant les manquements du coursier à ses obligations (absence de connexion, défaut de réponse au téléphone, retard, etc.).
+- L'accumulation de quatre "strikes" entraînait la perte, par le coursier, de l'accès à son compte, caractérisée par la société elle-même comme une désactivation.
+
+REPONSE DE LA COUR :
+"Attendu que pour débouter M. [...] de ses demandes, l'arrêt retient qu'il n'est pas démontré que la société Take Eat Easy ait exercé un pouvoir de direction, de contrôle et de sanction sur M. [...] [...]
+
+Qu'en statuant comme elle a fait, alors qu'elle avait constaté, d'une part, que l'application Take Eat Easy était dotée d'un système de géolocalisation permettant le suivi en temps réel par la société de la position du coursier et la comptabilisation du nombre total de kilomètres parcourus par celui-ci et, d'autre part, que la société disposait d'un pouvoir de sanction à l'égard du coursier, la cour d'appel, qui n'a pas tiré les conséquences légales de ses propres constatations, a violé le texte susvisé."
+
+PAR CES MOTIFS : CASSE ET ANNULE l'arrêt rendu le 20 avril 2017, entre les parties, par la cour d'appel de Paris.

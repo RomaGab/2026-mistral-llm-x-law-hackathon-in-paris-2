@@ -1,0 +1,36 @@
+BOLETÍN OFICIAL DEL ESTADO (BOE) - LEGISLACIÓN CONSOLIDADA
+Ley 12/2021, de 28 de septiembre, por la que se modifica el texto refundido de la Ley del Estatuto de los Trabajadores, aprobado por el Real Decreto Legislativo 2/2015, de 23 de octubre, para garantizar los derechos laborales de las personas dedicadas al reparto en el ámbito de plataformas digitales.
+("LEY RIDER")
+BOE núm. 233, de 29 de septiembre de 2021 - Referencia: BOE-A-2021-15767
+Source: Agencia Estatal Boletín Oficial del Estado
+
+NOTE: Ce texte légal cite littéralement un extrait du fondement juridique (FJ 7º) de la STS 805/2020, de 25 de septiembre (Sala de lo Social, Pleno), premier arrêt rendu en "unificación de doctrina" ayant reconnu la relation de travail salarié entre une plateforme de livraison (Glovo) et ses "riders". Le texte intégral de cet arrêt n'étant pas disponible dans le corpus de recherche interrogé, cet extrait cité par le législateur constitue la source brute la plus proche à laquelle nous avons eu accès.
+================================================================================
+
+PREÁMBULO (extraits)
+
+[...] La labor esencial realizada por la Inspección de Trabajo y Seguridad Social se encuentra en el origen de buena parte de las sentencias que han resuelto a favor o en contra de la laboralidad de las prestaciones de servicios en plataformas digitales de reparto y que han culminado con la STS 805/2020, de 25 de septiembre.
+
+La nueva disposición adicional incorpora los criterios y parámetros establecidos por el Tribunal Supremo en dicha sentencia, primera dictada en unificación de doctrina, valiéndose para ello de la prevalencia del principio de realidad en el sentido señalado por sentencias precedentes, como la STS 263/1986, de 26 de febrero de 1986, o STS de 20 de enero de 2015, recurso 587/2014, y en la que se destaca, asimismo, la necesidad de adaptar los requisitos de dependencia y ajenidad al contexto actual. En dicha sentencia se fundamenta lo siguiente:
+
+« CITATION LITTÉRALE DE LA STS 805/2020, FJ 7º :
+"Desde la creación del derecho del trabajo hasta el momento actual hemos asistido a una evolución del requisito de dependencia-subordinación. La sentencia del TS de 11 de mayo de 1979 ya matizó dicha exigencia, explicando que 'la dependencia no implica una subordinación absoluta, sino solo la inserción en el círculo rector, organizativo y disciplinario de la empresa'. En la sociedad postindustrial la nota de dependencia se ha flexibilizado. Las innovaciones tecnológicas han propiciado la instauración de sistemas de control digitalizados de la prestación de servicios. La existencia de una nueva realidad productiva obliga a adaptar las notas de dependencia y ajenidad a la realidad social del tiempo en que deben aplicarse las normas (artículo 3.1 del Código Civil) (FJ 7.º)." »
+
+Partiendo de esta máxima, el Alto Tribunal analizó la relación entre la plataforma de reparto demandada [Glovo] y el trabajador concernido por el recurso, reiterando, como ya lo había establecido en numerosas ocasiones con anterioridad (por todas, SSTS de 22 de abril de 1996, recurso 2613/1995; y de 3 de mayo de 2005, recurso 2606/2004), que las facultades empresariales de dirección, organización o control de la actividad y, en tal sentido, las notas de dependencia y ajenidad, pueden traducirse a la realidad de formas diferentes a las clásicas cuando la empleadora asume los riesgos de la operación y es beneficiaria de sus frutos, realizando una labor de coordinación, organización o control de la prestación u ostentando la potestad sancionadora, y ello aunque sus prerrogativas se manifiesten de forma indirecta o implícita, a través de la gestión algorítmica, de las condiciones de trabajo o del servicio prestado.
+
+A través de una nueva disposición adicional vigesimotercera, y por acuerdo adoptado en la mesa del diálogo social, se traslada a la ley la jurisprudencia sobre esta materia [...]
+
+TEXTE DE LA DISPOSITION ADICIONAL VIGESIMOTERCERA (nouvel article introduit dans l'Estatuto de los Trabajadores) :
+
+"Disposición adicional vigesimotercera. Presunción de laboralidad en el ámbito de las plataformas digitales de reparto.
+
+Por aplicación de lo establecido en el artículo 8.1, se presume incluida en el ámbito de esta ley la actividad de las personas que presten servicios retribuidos consistentes en el reparto o distribución de cualquier producto de consumo o mercancía, por parte de empleadoras que ejercen las facultades empresariales de organización, dirección y control de forma directa, indirecta o implícita, mediante la gestión algorítmica del servicio o de las condiciones de trabajo, a través de una plataforma digital.
+
+Esta presunción no afecta a lo previsto en el artículo 1.3 de la presente norma."
+
+NOUVEL ARTICLE 64.4.d) (droit d'information du comité d'entreprise) :
+
+"d) Ser informado por la empresa de los parámetros, reglas e instrucciones en los que se basan los algoritmos o sistemas de inteligencia artificial que afectan a la toma de decisiones que pueden incidir en las condiciones de trabajo, el acceso y mantenimiento del empleo, incluida la elaboración de perfiles."
+
+---
+AVERTISSEMENT METHODOLOGIQUE : le texte intégral et complet de la STS 805/2020 (Tribunal Supremo, Sala de lo Social, 25 septembre 2020) n'a pas pu être récupéré depuis le corpus de recherche juridique interrogé, qui ne contient pas de collection dédiée à la jurisprudence sociale du Tribunal Supremo espagnol. Pour une analyse exhaustive du faisceau d'indices retenu par cet arrêt (geolocalización, algoritmo, sanciones específicas), il est recommandé de consulter directement le texte intégral via le Centro de Documentación Judicial (CENDOJ) du Consejo General del Poder Judicial, référence ECLI:ES:TS:2020:3015, Roj: STS 2924/2020.

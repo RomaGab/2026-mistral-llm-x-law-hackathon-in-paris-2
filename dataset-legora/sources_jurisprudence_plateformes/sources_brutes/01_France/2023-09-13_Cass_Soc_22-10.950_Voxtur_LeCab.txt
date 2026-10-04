@@ -1,0 +1,37 @@
+COUR DE CASSATION, CHAMBRE SOCIALE - Arrêt du 13 septembre 2023 - Pourvoi n° 22-10.950 (Voxtur/Le Cab) - REJET
+Source: Judilibre
+================================================================================
+
+ARRÊT DE LA COUR DE CASSATION, CHAMBRE SOCIALE, DU 13 SEPTEMBRE 2023
+Arrêt n° 866 F-D
+
+La société [I] Yang-Ting, société d'exercice libéral à responsabilité limitée, prise en la personne de Mme [P] [I], agissant en qualité de liquidateur judiciaire de la société Voxtur, a formé le pourvoi n° H 22-10.950 contre l'arrêt rendu le 27 octobre 2021 par la cour d'appel de Paris (pôle 6, chambre 9), dans le litige l'opposant à M. [K] [X] et à l'association AGS CGEA d'Ile-de-France Ouest.
+
+FAITS ET PROCEDURE
+1. Selon l'arrêt attaqué (Paris, 27 octobre 2021), M. [X] a signé le 30 mars 2015 avec la société Voxtur un contrat de location longue durée d'un véhicule, ainsi qu'un contrat d'adhésion au système informatisé développé par cette société sous le nom de « Le Cab ».
+2. La société a rompu les relations contractuelles le 15 juin 2016.
+3. M. [X] a saisi la juridiction prud'homale.
+4. La société Voxtur a été placée en liquidation judiciaire le 9 juin 2020, et la société [I] Yang-Ting désignée en qualité de liquidateur judiciaire.
+
+ENONCE DU MOYEN (premier moyen)
+Le liquidateur fait grief à l'arrêt de requalifier le contrat de prestation liant M. [X] à la société Voxtur en contrat de travail à durée indéterminée, en invoquant notamment :
+- que le lien de subordination est caractérisé par l'exécution d'un travail sous l'autorité d'un employeur qui a le pouvoir de donner des ordres et des directives, d'en contrôler l'exécution et de sanctionner les manquements de son subordonné ;
+- que les éléments retenus (rémunération calculée par le système informatisé de la plateforme, véhicules devant correspondre "au standard Le Cab", géolocalisation en temps réel, notes du type "quand travailler pour gagner plus d'argent", système de notation pouvant entraîner la résiliation du contrat, interdépendance des contrats de location et d'adhésion, avantages subordonnés à certaines prescriptions, déconnexion en cas de refus de course, système de fidélisation par rabais/bonus) seraient insuffisants pour caractériser un service organisé unilatéralement, dès lors que les chauffeurs étaient libres de choisir leurs horaires de travail, de travailler ou non ;
+- que la plate-forme organisait une répartition des courses en fonction de la localisation des chauffeurs, délivrait des conseils aux chauffeurs lors de certains événements (grève de taxis, Cop 21, fashion week), organisait des tirages au sort pour l'octroi de cadeaux conditionnés à un maintien d'acceptation des courses de 95 %, et avait mis en place un système de fidélisation par octroi de points et de réduction sur le loyer du véhicule — éléments jugés impropres à caractériser un pouvoir de direction.
+
+REPONSE DE LA COUR
+7. Selon l'article L. 8221-6 du code du travail, les personnes physiques, dans l'exécution de l'activité donnant lieu à immatriculation sur les registres ou répertoires que ce texte énumère, sont présumées ne pas être liées avec le donneur d'ordre par un contrat de travail. L'existence d'un contrat de travail peut toutefois être établie lorsque ces personnes fournissent des prestations dans des conditions qui les placent dans un lien de subordination juridique permanente à l'égard du donneur d'ordre.
+
+8. Selon la jurisprudence constante de la Cour de cassation (Soc., 13 nov. 1996, n° 94-13187, Bull. V n° 386, Société générale), le lien de subordination est caractérisé par l'exécution d'un travail sous l'autorité d'un employeur qui a le pouvoir de donner des ordres et des directives, d'en contrôler l'exécution et de sanctionner les manquements de son subordonné.
+
+9. Selon cette même jurisprudence, peut constituer un indice de subordination le travail au sein d'un service organisé lorsque l'employeur en détermine unilatéralement les conditions d'exécution.
+
+10. A cet égard, la cour d'appel a constaté que la société déterminait le montant des courses qu'elle facturait au nom et pour le compte du chauffeur, la rémunération étant calculée à la course et transférée sur le compte bancaire du chauffeur ou donnant lieu à un prélèvement sur son compte en cas de solde négatif entre le montant des courses et le prix de la location, qu'elle adressait aux chauffeurs des instructions lors de certaines occasions les invitant par exemple à réaliser des courses durant la Fashion Week et leur indiquant les sanctions prévues en cas de désaffection ou retard de course.
+
+11. Elle a aussi retenu que la société avait mis en place un système de notation prévu à l'article 3 de son contrat d'adhésion selon lequel une notation insuffisante selon les critères définis en annexe 3 pouvait entraîner, à l'initiative de la société, la résiliation du contrat dès lors que la qualité des prestations du chauffeur ne serait pas conforme aux prescriptions figurant à cette annexe, qu'elle procédait à des déconnexions du chauffeur durant vingt minutes en cas de refus de course, et que le chauffeur était contraint de travailler exclusivement pour la société Voxtur dans la mesure où même s'il pouvait librement réaliser des courses, pour son propre compte et s'il était libre de choisir ses horaires de travail ou choisir de ne pas travailler, cette liberté ne se confondait pas avec la liberté du travailleur indépendant dans les modalités d'exécution de ses prestations, au profit d'une clientèle qui lui était propre tout en assumant les risques de son entreprise.
+
+12. La cour d'appel a ainsi pu déduire de ses constatations que le chauffeur réalisait des prestations dans le cadre d'un service organisé et dans un lien de subordination à l'égard de la société Voxtur.
+
+13. Le moyen n'est donc pas fondé.
+
+PAR CES MOTIFS, la Cour : REJETTE le pourvoi.
