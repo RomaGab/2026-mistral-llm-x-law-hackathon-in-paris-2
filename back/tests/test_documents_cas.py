@@ -1,4 +1,7 @@
 """T5 (lecture TXT / PDF / DOCX) et T7 (dépôt de documents, création d'un cas). Mistral est simulé."""
+import io
+import zipfile
+
 import pytest
 from fastapi.testclient import TestClient
 
@@ -12,7 +15,7 @@ DESCRIPTION = "Les livreurs choisissent leurs créneaux. L'application les géol
 PIECE = "Contrat : le prix de chaque course est fixé par la plateforme."
 
 
-def reponse_cas(_messages):
+def reponse_cas(_messages, *_):
     """Ce que Mistral pourrait renvoyer pour un cas, avec une citation inventée à éliminer."""
     return {"faits": {
         "liberte_horaires": {"valeur": True, "extrait": "Les livreurs choisissent leurs créneaux", "confiance": 1},
@@ -46,9 +49,57 @@ def test_documents_refuses(nom, octets, code):
     assert (e.value.statut, e.value.code) == (400, code)
 
 
-@pytest.mark.parametrize("nom, mime", [("arret.pdf", "application/pdf"), ("contrat.docx", "wordprocessingml")])
-def test_pdf_et_docx_passent_par_l_ocr(mistral_simule, nom, mime):
-    assert mime in extraction.lire_document(nom, b"texte")
+def pdf_texte(texte: str) -> bytes:
+    """Un PDF « texte » minimal (une page, Helvetica), sans dépendance."""
+    flux = f"BT /F1 12 Tf 72 720 Td ({texte}) Tj ET".encode("latin-1")
+    objets = [b"<< /Type /Catalog /Pages 2 0 R >>", b"<< /Type /Pages /Kids [3 0 R] /Count 1 >>",
+              b"<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>",
+              b"<< /Length %d >>\nstream\n" % len(flux) + flux + b"\nendstream",
+              b"<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>"]
+    sortie, positions = b"%PDF-1.4\n", []
+    for i, objet in enumerate(objets, 1):
+        positions.append(len(sortie))
+        sortie += b"%d 0 obj\n" % i + objet + b"\nendobj\n"
+    xref = len(sortie)
+    sortie += b"xref\n0 %d\n0000000000 65535 f \n" % (len(objets) + 1) + b"".join(b"%010d 00000 n \n" % x for x in positions)
+    return sortie + b"trailer\n<< /Size %d /Root 1 0 R >>\nstartxref\n%d\n%%%%EOF\n" % (len(objets) + 1, xref)
+
+
+def docx(*paragraphes: str) -> bytes:
+    corps = "".join(f"<w:p><w:r><w:t>{p}</w:t></w:r></w:p>" for p in paragraphes)
+    xml = ('<?xml version="1.0" encoding="UTF-8"?><w:document xmlns:w="http://schemas.openxmlformats.org/'
+           f'wordprocessingml/2006/main"><w:body>{corps}</w:body></w:document>')
+    tampon = io.BytesIO()
+    with zipfile.ZipFile(tampon, "w") as archive:
+        archive.writestr("word/document.xml", xml)
+    return tampon.getvalue()
+
+
+def test_pdf_texte_lu_localement_sans_ocr(monkeypatch):
+    def interdit(*_):
+        raise AssertionError("l'OCR ne doit pas être appelé pour un PDF texte")
+    monkeypatch.setattr(extraction, "ocr", interdit)
+    phrase = "Le prix de chaque course est fixe par la plateforme. " * 5
+
+    assert "Le prix de chaque course" in extraction.lire_document("contrat.pdf", pdf_texte(phrase))
+
+
+def test_pdf_sans_texte_passe_par_l_ocr(mistral_simule):
+    assert "application/pdf" in extraction.lire_document("scan.pdf", b"pas un vrai pdf")
+
+
+def test_docx_lu_localement(monkeypatch):
+    monkeypatch.setattr(extraction, "ocr", lambda *_: pytest.fail("pas d'OCR pour un DOCX"))
+
+    texte = extraction.lire_document("cgu.docx", docx("Article 4.2", "Le coursier peut travailler pour des concurrents."))
+
+    assert texte == "Article 4.2\nLe coursier peut travailler pour des concurrents."
+
+
+def test_docx_illisible_donne_400():
+    with pytest.raises(Erreur) as e:
+        extraction.lire_document("cgu.docx", b"pas un zip")
+    assert (e.value.statut, e.value.code) == (400, "docx_illisible")
 
 
 # ---------------------------------------------------------------- T7
@@ -112,7 +163,7 @@ def test_description_vide_donne_400(data_vide, mistral_simule):
 
 
 def test_panne_de_mistral_donne_502(data_vide, monkeypatch):
-    def panne(_):
+    def panne(*_):
         raise Erreur(502, "mistral", "quota dépassé")
     monkeypatch.setattr(extraction, "appeler_mistral", panne)
 

@@ -284,7 +284,7 @@ class FauxClient:
 
 def test_appeler_mistral_demande_du_json_deterministe(monkeypatch):
     client = FauxClient(contenu='{"ok": true}')
-    monkeypatch.setattr(extraction, "_client", lambda: client)
+    monkeypatch.setattr(extraction, "_client", lambda *_: client)
 
     assert extraction.appeler_mistral([{"role": "user", "content": "x"}]) == {"ok": True}
     assert client.appels[0]["temperature"] == 0
@@ -294,7 +294,7 @@ def test_appeler_mistral_demande_du_json_deterministe(monkeypatch):
 
 @pytest.mark.parametrize("client", [FauxClient(exception=RuntimeError("timeout")), FauxClient(contenu="pas du json")])
 def test_echec_de_mistral_donne_502(monkeypatch, client):
-    monkeypatch.setattr(extraction, "_client", lambda: client)
+    monkeypatch.setattr(extraction, "_client", lambda *_: client)
 
     with pytest.raises(Erreur) as e:
         extraction.appeler_mistral([{"role": "user", "content": "x"}])
@@ -399,3 +399,12 @@ def test_ingerer_avec_etrangeres_garde_le_pays(dataset):
 def test_pays_par_defaut_france():
     assert extraction.normaliser_decision(decision_brute(), TEXTE, GRILLE, "dec-1")["pays"] == "France"
     assert extraction.normaliser_decision(decision_brute(pays="Espagne"), TEXTE, GRILLE, "dec-1")["pays"] == "Espagne"
+
+
+def test_limite_de_debit_donne_un_message_clair(monkeypatch):
+    monkeypatch.setattr(extraction, "_client", lambda *_: FauxClient(exception=RuntimeError("API error occurred: Status 429")))
+
+    with pytest.raises(Erreur) as e:
+        extraction.appeler_mistral([{"role": "user", "content": "x"}], extraction.ATTENTE_INTERACTIVE_MS)
+
+    assert e.value.statut == 502 and "limite de débit" in e.value.message

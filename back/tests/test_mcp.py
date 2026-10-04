@@ -62,7 +62,7 @@ def test_etat_du_droit(donnees_exemple):
 
 
 def test_structurer_cas(data_vide, monkeypatch):
-    monkeypatch.setattr(extraction, "appeler_mistral", lambda _: {"faits": {
+    monkeypatch.setattr(extraction, "appeler_mistral", lambda *_: {"faits": {
         "geolocalisation_suivi": {"valeur": True, "extrait": "géolocalisés en continu", "confiance": 1}}})
 
     r = serveur_mcp.pivot_structurer_cas("Les livreurs sont géolocalisés en continu.", ["Pièce 1 : contrat."], "CA Paris")

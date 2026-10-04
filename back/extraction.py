@@ -1,15 +1,20 @@
 """Mistral : texte → faits. Seul module qui parle au réseau. On ne croit jamais la sortie du LLM :
 tout passe par normaliser_faits / normaliser_decision avant d'être stocké (cf. SPEC-back.md)."""
 import base64
+import io
 import json
 import math
 import os
 import re
+import zipfile
 from datetime import date
 from pathlib import Path
+from xml.etree import ElementTree
 
 from mistralai.client import Mistral
 from mistralai.client.utils import BackoffStrategy, RetryConfig
+from pypdf import PdfReader
+from pypdf.errors import PyPdfError
 
 from back import service
 from back.service import Erreur
@@ -25,19 +30,29 @@ ELLIPSE = re.compile(r"\[\s*\.\.\.\s*\]|\.\.\.")
 PUCE = re.compile(r"(?m)^\s*[-•*]\s+")  # une citation peut enjamber deux lignes à puces
 
 
-def _client() -> Mistral:
+# Notre abonnement a une limite de débit serrée : le SDK réessaie sur 429 et 5xx (2 s, 4 s, 8 s…).
+ATTENTE_LOT_MS = 120_000        # ingestion en lot : on peut attendre 2 min
+ATTENTE_INTERACTIVE_MS = 25_000  # un utilisateur attend devant l'écran : on abandonne vite, avec un message clair
+
+
+def _client(attente_max_ms: int = ATTENTE_LOT_MS) -> Mistral:
     cle = os.environ.get("MISTRAL_API_KEY")
     if not cle:
         raise Erreur(502, "mistral", "MISTRAL_API_KEY absente (lancer avec uv run --env-file .env)")
-    # Notre abonnement a une limite de débit serrée : le SDK réessaie sur 429 et 5xx (2 s, 4 s, 8 s… pendant 2 min au plus).
-    reessai = RetryConfig("backoff", BackoffStrategy(2_000, 30_000, 2.0, 120_000), retry_connection_errors=True)
+    reessai = RetryConfig("backoff", BackoffStrategy(2_000, 30_000, 2.0, attente_max_ms), retry_connection_errors=True)
     return Mistral(api_key=cle, timeout_ms=120_000, retry_config=reessai)
 
 
-def appeler_mistral(messages: list[dict]) -> dict:
+def _message_panne(quoi: str, e: Exception) -> str:
+    if "429" in str(e):
+        return f"{quoi} : limite de débit Mistral atteinte (429). Réessayez dans une minute, ou déposez un fichier .txt."
+    return f"{quoi} : {e}"
+
+
+def appeler_mistral(messages: list[dict], attente_max_ms: int = ATTENTE_LOT_MS) -> dict:
     """Un appel en JSON mode, température 0. Toute panne (réseau, quota, JSON illisible) donne un 502."""
     try:
-        reponse = _client().chat.complete(
+        reponse = _client(attente_max_ms).chat.complete(
             model=os.environ.get("MISTRAL_MODELE", "ministral-14b-latest"),
             messages=messages,
             temperature=0,
@@ -48,7 +63,7 @@ def appeler_mistral(messages: list[dict]) -> dict:
     except Erreur:
         raise
     except Exception as e:  # frontière réseau : on ne laisse rien remonter d'autre
-        raise Erreur(502, "mistral", f"Échec de l'appel à Mistral : {e}") from e
+        raise Erreur(502, "mistral", _message_panne("Échec de l'appel à Mistral", e)) from e
 
 
 TYPES_MIME = {
@@ -62,17 +77,51 @@ def ocr(octets: bytes, mime: str) -> str:
     """PDF ou DOCX → texte (markdown) via Mistral OCR. Toute panne donne un 502."""
     url = f"data:{mime};base64,{base64.b64encode(octets).decode()}"
     try:
-        r = _client().ocr.process(model=os.environ.get("MISTRAL_OCR", "mistral-ocr-latest"),
+        r = _client(ATTENTE_INTERACTIVE_MS).ocr.process(model=os.environ.get("MISTRAL_OCR", "mistral-ocr-latest"),
                                   document={"type": "document_url", "document_url": url})
         return "\n\n".join(page.markdown for page in r.pages)
     except Erreur:
         raise
     except Exception as e:  # frontière réseau
-        raise Erreur(502, "mistral", f"Échec de l'OCR Mistral : {e}") from e
+        raise Erreur(502, "mistral", _message_panne("Échec de l'OCR Mistral", e)) from e
+
+
+SEUIL_TEXTE_PDF = 200  # caractères : en dessous, le PDF est probablement scanné (images) → OCR
+W = "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}"
+
+
+def lire_pdf(octets: bytes) -> str:
+    """Texte d'un PDF « texte », lu localement (sans réseau ni quota). Chaîne vide si illisible."""
+    try:
+        return "\n\n".join(page.extract_text() or "" for page in PdfReader(io.BytesIO(octets)).pages)
+    except (PyPdfError, ValueError, KeyError, OSError):  # PDF corrompu ou chiffré : l'OCR essaiera
+        return ""
+
+
+def lire_docx(octets: bytes) -> str:
+    """Texte d'un DOCX (du XML zippé), paragraphe par paragraphe, sans dépendance ni réseau."""
+    try:
+        with zipfile.ZipFile(io.BytesIO(octets)) as archive:
+            racine = ElementTree.fromstring(archive.read("word/document.xml"))
+    except (zipfile.BadZipFile, KeyError, ElementTree.ParseError):
+        raise Erreur(400, "docx_illisible", "Ce fichier DOCX est illisible") from None
+    paragraphes = []
+    for p in racine.iter(f"{W}p"):
+        morceaux = []
+        for e in p.iter():
+            if e.tag == f"{W}t":
+                morceaux.append(e.text or "")
+            elif e.tag == f"{W}tab":
+                morceaux.append("\t")
+            elif e.tag in (f"{W}br", f"{W}cr"):
+                morceaux.append("\n")
+        paragraphes.append("".join(morceaux))
+    return "\n".join(paragraphes)
 
 
 def lire_document(nom: str, octets: bytes) -> str:
-    """TXT lu en UTF-8 ; PDF et DOCX passés à l'OCR ; toute autre extension refusée (400)."""
+    """TXT en UTF-8 et DOCX lus localement ; PDF lu localement, et passé à l'OCR Mistral
+    seulement s'il ne contient presque pas de texte (PDF scanné). Autre extension : 400."""
     extension = Path(nom).suffix.lower()
     if extension not in EXTENSIONS_DOCUMENT:
         raise Erreur(400, "format_refuse", f"Format non pris en charge : {nom!r} (TXT, PDF ou DOCX)")
@@ -81,8 +130,12 @@ def lire_document(nom: str, octets: bytes) -> str:
             texte = octets.decode("utf-8")
         except UnicodeDecodeError:
             raise Erreur(400, "encodage", f"{nom!r} n'est pas un texte UTF-8") from None
+    elif extension == ".docx":
+        texte = lire_docx(octets)
     else:
-        texte = ocr(octets, TYPES_MIME[extension])
+        texte = lire_pdf(octets)
+        if len(texte.strip()) < SEUIL_TEXTE_PDF:
+            texte = ocr(octets, TYPES_MIME[extension])
     if not texte.strip():
         raise Erreur(400, "document_vide", f"Aucun texte lisible dans {nom!r}")
     return texte
@@ -272,6 +325,6 @@ def extraire_cas(description: str, textes: list[str]) -> tuple[dict, dict]:
     """Description de l'avocat + textes des pièces → facteurs et preuves vérifiées contre ce même texte."""
     g = service.grille()
     source = "\n\n".join([description, *textes])
-    brut = appeler_mistral(_messages_cas(source, g))
+    brut = appeler_mistral(_messages_cas(source, g), ATTENTE_INTERACTIVE_MS)
     faits = brut.get("faits", brut) if isinstance(brut, dict) else {}
     return normaliser_faits(faits, source, g["facteurs"])
