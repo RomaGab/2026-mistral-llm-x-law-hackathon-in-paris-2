@@ -47,7 +47,7 @@ Toutes les commandes se lancent **depuis la racine du dépôt**, pour que `back`
 ```bash
 uv sync                                              # installe les dépendances (pyproject.toml racine)
 uv run uvicorn back.api:app --reload --port 8000     # API pour le front
-uv run python -m back.serveur_mcp                    # serveur MCP → http://localhost:8001/mcp
+uv run --env-file .env python -m back.serveur_mcp    # serveur MCP → http://localhost:8001/mcp
 uv run python -m back.ingerer dataset-legora/sources_jurisprudence_plateformes/sources_brutes             # → data/fiches/ (validee: false)
 uv run python -m back.ingerer dataset-legora/sources_jurisprudence_plateformes/sources_brutes --limite 1  # une seule, pour tester
 uv run pytest                                        # tests (sans réseau)
@@ -98,6 +98,8 @@ data/
 
 **Identifiants.** Format `^[a-z0-9_-]{1,64}$`, vérifié **avant tout accès disque** (pas de traversée de chemin). Un cas s'appelle `cas_<8 hex>`, un document `doc_<8 hex>`. Une décision déposée s'appelle `dec_<8 hex>` ; une décision ingérée reprend le nom de son fichier en slug, ce qui rend l'ingestion idempotente : une fiche qui existe déjà est sautée.
 
+**`POST /documents`.** Formulaire multipart : champ `file` (PDF, TXT ou DOCX, 20 Mo au plus) et champ `type` (`cas` ou `decision`).
+
 **`PATCH /cas/{id}`.** Les identifiants doivent être dans la grille et les valeurs valoir `true`, `false` ou `null` ; sinon 400. Chaque fait modifié reçoit une preuve `source: "utilisateur"`, `confiance: 1.0`, en gardant l'extrait existant.
 
 **`PATCH /decisions/{id}`.** Fusionne les champs reçus, puis vérifie la fiche avec `valider.py` (on l'insère dans un dossier minimal). Si la fiche devient invalide, on refuse avec un 400 qui liste les problèmes, et rien n'est écrit.
@@ -118,6 +120,8 @@ data/
 **CORS** ouvert à toutes les origines (démo locale).
 
 ### Outils MCP
+
+*Implémenté dans `back/serveur_mcp.py` (SDK `mcp` 2.x : `MCPServer`, transport streamable HTTP, port 8001). Chaque fait renvoyé porte aussi son `id`, pour que l'agent puisse rappeler `pivot_arbitrer` ; l'`intervalle` de `position_majeure` est celui de l'issue majeure. Une erreur métier est levée en `ToolError` : l'agent lit le message (ex. la liste des ids valides), alors que `mcp` 2.x masque toute autre exception.*
 
 Le client est un **agent Mistral** (Le Chat, connecteur MCP distant), qui suit le prompt « Agent Stratégique Pivot ». Les noms et le découpage des outils suivent ce prompt. Les trois outils appellent `service.py`. Ils renvoient un **résumé** avec les libellés de la grille, et non le dossier complet de ~35 Ko, pour ne pas saturer le contexte de l'agent. Les règles que le prompt aurait laissées au LLM (score définitif ou non, leviers) sont **calculées ici** : le LLM extrait, le code décide.
 
@@ -163,10 +167,13 @@ def normaliser_faits(brut: dict, texte: str, grille: list[dict]) -> tuple[dict, 
 
 - **`pytest`, dans `back/tests/`, sans réseau.** Mistral est remplacé par `monkeypatch` sur la fonction d'appel de `extraction.py`, et `DISTINGUO_DATA` pointe vers `tmp_path`.
 - **Juge de paix : `contracts.valider.erreurs_dossier`.** Tout dossier produit par un test doit lui renvoyer `[]`.
-- Trois fichiers, rien de plus :
+- Fichiers :
   - `test_extraction.py` : normalisation (`"oui"` → `null`, facteur manquant → `null`, clé hors grille ignorée, extrait introuvable → `null` + confiance ≤ 0,5, déterminant `null` retiré, `validee` forcé à `false`) ;
   - `test_service.py` : avec le cas et les décisions de `dossier_entree.json`, le dossier construit est valide ; une simulation met `meta.simulation = true` et laisse le cas inchangé sur le disque ; une décision non validée n'entre pas dans le dossier ; un id `../x` est refusé ;
-  - `test_api.py` : chaque route du §7 au moins une fois ; un corps mal formé donne 400 au format `erreur` ; un id inconnu donne 404 ; Mistral en échec donne 502.
+  - `test_api.py` : `/sante`, `/grille`, 404 et CORS ;
+  - `test_analyse.py` : analyse et simulation (T3), correction des faits (T4), relecture des décisions (T6), sur les données de `back.exemple` ;
+  - `test_documents_cas.py` : lecture TXT / PDF / DOCX (T5), dépôt de documents et création de cas (T7), Mistral simulé, 502 si Mistral tombe ;
+  - `test_mcp.py` : les trois outils `pivot_*` (T8), règle de blocage, hypothèse sans écriture, erreur qui liste les ids valides.
 - **Vérifs manuelles (clé réelle)** : `ingerer --limite 1` sur une vraie décision Legora ; le scénario de démo complet par l'API ; les trois outils `pivot_*` via l'Inspector.
 - Pas d'objectif de couverture chiffré : on est en hackathon. Le critère est « chaque route et chaque règle de normalisation a son test ».
 

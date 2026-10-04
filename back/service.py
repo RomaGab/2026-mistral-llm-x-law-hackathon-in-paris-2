@@ -3,6 +3,7 @@ import copy
 import json
 import os
 import re
+import secrets
 from datetime import datetime
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -47,6 +48,17 @@ def ecrire_texte(genre: str, id_: str, texte: str) -> None:
     chemin = _chemin(genre, id_, "txt")
     chemin.parent.mkdir(parents=True, exist_ok=True)
     chemin.write_text(texte, encoding="utf-8")
+
+
+def lire_texte(genre: str, id_: str) -> str:
+    chemin = _chemin(genre, id_, "txt")
+    if not chemin.exists():
+        raise Erreur(404, "introuvable", f"{genre}/{id_} introuvable")
+    return chemin.read_text(encoding="utf-8")
+
+
+def nouvel_id(prefixe: str) -> str:
+    return f"{prefixe}_{secrets.token_hex(4)}"
 
 
 def lire(genre: str, id_: str) -> dict:
@@ -95,6 +107,56 @@ def ecrire_cas(cas: dict) -> dict:
     cas["a_confirmer"] = calculer_a_confirmer(cas)
     ecrire("cas", cas["id"], cas)
     return cas
+
+
+TYPES_DOCUMENT = ("cas", "decision")
+TAILLE_MAX = 20 * 1024 * 1024  # même garde que le front (20 Mo)
+
+
+def deposer_document(nom: str, octets: bytes, type_: str) -> dict:
+    """Pièce du client → data/documents/ ; décision → extraction, puis fiche validee: false (à relire)."""
+    from back import extraction  # import local : extraction importe déjà service
+
+    if type_ not in TYPES_DOCUMENT:
+        raise Erreur(400, "type_invalide", f"type doit valoir 'cas' ou 'decision', pas {type_!r}")
+    if len(octets) > TAILLE_MAX:
+        raise Erreur(400, "trop_volumineux", f"{nom!r} dépasse 20 Mo")
+    texte = extraction.lire_document(nom, octets)
+    if type_ == "cas":
+        id_ = nouvel_id("doc")
+        ecrire_texte("documents", id_, texte)
+        return {"document_id": id_, "type": "cas", "decision_id": None}
+    id_ = nouvel_id("dec")
+    fiche = extraction.extraire_decision(texte, id_)
+    ecrire_texte("decisions", id_, texte)
+    ecrire("fiches", id_, fiche)
+    return {"document_id": id_, "type": "decision", "decision_id": id_}
+
+
+def creer_cas(description: str, ressort: str | None = None, document_ids: list[str] | None = None,
+              question: str | None = None, pieces: list[str] | None = None) -> dict:
+    """Description + pièces → faits extraits par Mistral, preuves vérifiées, a_confirmer.
+
+    `pieces` (textes bruts, utilisé par le MCP) sont d'abord enregistrées comme documents du cas.
+    """
+    from back import extraction
+
+    if not (description or "").strip():
+        raise Erreur(400, "description_vide", "La description du cas est obligatoire")
+    document_ids = list(document_ids or [])
+    textes = [lire_texte("documents", d) for d in document_ids]  # 404 si un document est inconnu
+    for piece in pieces or []:
+        if piece.strip():
+            id_ = nouvel_id("doc")
+            ecrire_texte("documents", id_, piece)
+            document_ids.append(id_)
+            textes.append(piece)
+    facteurs, preuves = extraction.extraire_cas(description, textes)
+    cas = {"id": nouvel_id("cas"), "description": description, "ressort": ressort or None,
+           "documents": document_ids, "facteurs": facteurs, "preuves": preuves}
+    if question:
+        cas["question"] = question
+    return ecrire_cas(cas)
 
 
 def modifier_cas(cas_id: str, facteurs: dict) -> dict:

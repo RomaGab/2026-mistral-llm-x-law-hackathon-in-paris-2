@@ -12,7 +12,15 @@ import math
 from contracts.valider import erreurs_dossier
 
 from .modeles import creer_modele
-from .precedents import Grille, a_fortiori, alignement, detail_poids, exclusion, poids, proximite
+from .precedents import (
+    Grille,
+    a_fortiori,
+    alignement,
+    detail_poids,
+    exclusion,
+    poids,
+    proximite,
+)
 
 VERSION = "0.1.0"
 EPS = 1e-9  # tolérance flottante sur les seuils, comparés sur valeurs arrondies

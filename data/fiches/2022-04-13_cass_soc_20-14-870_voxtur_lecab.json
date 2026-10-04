@@ -1,0 +1,127 @@
+{
+  "id": "2022-04-13_cass_soc_20-14-870_voxtur_lecab",
+  "intitule": "Cass. soc., 13 avril 2022, n° 20-14.870 (Voxtur / Le Cab)",
+  "juridiction": "Cour de cassation, chambre sociale",
+  "formation": "cass",
+  "ressort": null,
+  "date": "2022-04-13",
+  "numero": "20-14.870",
+  "publication": "B",
+  "dispositif": "cassation",
+  "issue": false,
+  "textes": [
+    "L. 1221-1 du code du travail",
+    "L. 7341-1 du code du travail",
+    "L. 8221-6 du code du travail",
+    "L. 3120-3 du code des transports"
+  ],
+  "remise_en_cause": null,
+  "url": null,
+  "validee": false,
+  "facteurs": {
+    "service_organise": true,
+    "geolocalisation_suivi": true,
+    "sanction_deconnexion": true,
+    "penalites_bonus": true,
+    "tarif_impose": true,
+    "clientele_attribuee": false,
+    "execution_dirigee": false,
+    "multi_plateformes": true,
+    "remplacement_possible": true,
+    "info_masquee": false,
+    "evaluation_performance": true,
+    "equipement_marque": true,
+    "liberte_horaires": true,
+    "moyens_propres": false,
+    "immatriculation": true,
+    "charte_sociale": null,
+    "qualification_contractuelle": false,
+    "dependance_economique": null
+  },
+  "determinants": [
+    "tarif_impose",
+    "evaluation_performance"
+  ],
+  "preuves": {
+    "service_organise": {
+      "extrait": "le chauffeur réalisait des prestations dans le cadre d'un service organisé",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "geolocalisation_suivi": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "sanction_deconnexion": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "penalites_bonus": {
+      "extrait": "le pourcentage de cette commission pourra être amené à diminuer selon le nombre de points de courses obtenus",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "tarif_impose": {
+      "extrait": "la société fixait le montant des courses qu'elle facturait au nom et pour le compte du chauffeur, et qu'elle modifiait unilatéralement le prix des courses",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "clientele_attribuee": {
+      "extrait": "le prestataire adhérent [...] peut librement réaliser des courses, pour son compte et/ou pour le compte de toute personne physique ou morale",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "execution_dirigee": {
+      "extrait": "l'organisation de la course (itinéraire) est laissée au libre choix du prestataire adhérent",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "multi_plateformes": {
+      "extrait": "un prestataire adhérent, entre deux connexions, peut librement réaliser des courses [...] pour le compte de toute personne physique ou morale",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "remplacement_possible": {
+      "extrait": "le chauffeur pourra sous-traiter les courses affectées par l'application sous réserve d'en informer la société Voxtur",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "info_masquee": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "evaluation_performance": {
+      "extrait": "une notation insuffisante [...] pourra entraîner [...] la résiliation du contrat",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "equipement_marque": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "liberte_horaires": {
+      "extrait": "le prestataire adhérent est libre de décider de ses jours et heures d'activité et de ses jours de repos",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "moyens_propres": {
+      "extrait": "la location du véhicule auprès de la société Voxtur était une simple faculté pour le chauffeur qui avait la possibilité d'être propriétaire de son véhicule ou de le louer auprès d'une autre société",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "immatriculation": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "qualification_contractuelle": {
+      "extrait": "le prestataire adhérent est libre de décider de ses jours et heures d'activité",
+      "confiance": 1.0,
+      "source": "extraction"
+    }
+  }
+}

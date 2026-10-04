@@ -110,5 +110,5 @@ def test_evaluation(dossier):
 
 @pytest.mark.parametrize("module", ["calculateur", "calculateur.evaluation"])
 def test_lignes_de_commande(module):
-    r = subprocess.run([sys.executable, "-m", module, str(ENTREE)], cwd=RACINE, capture_output=True, text=True)
+    r = subprocess.run([sys.executable, "-m", module, str(ENTREE)], cwd=RACINE, capture_output=True, text=True, check=False)
     assert r.returncode == 0, r.stderr

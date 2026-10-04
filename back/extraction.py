@@ -1,10 +1,12 @@
 """Mistral : texte → faits. Seul module qui parle au réseau. On ne croit jamais la sortie du LLM :
 tout passe par normaliser_faits / normaliser_decision avant d'être stocké (cf. SPEC-back.md)."""
+import base64
 import json
 import math
 import os
 import re
 from datetime import date
+from pathlib import Path
 
 from mistralai.client import Mistral
 from mistralai.client.utils import BackoffStrategy, RetryConfig
@@ -46,6 +48,43 @@ def appeler_mistral(messages: list[dict]) -> dict:
         raise
     except Exception as e:  # frontière réseau : on ne laisse rien remonter d'autre
         raise Erreur(502, "mistral", f"Échec de l'appel à Mistral : {e}") from e
+
+
+TYPES_MIME = {
+    ".pdf": "application/pdf",
+    ".docx": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+}
+EXTENSIONS_DOCUMENT = {".txt", *TYPES_MIME}
+
+
+def ocr(octets: bytes, mime: str) -> str:
+    """PDF ou DOCX → texte (markdown) via Mistral OCR. Toute panne donne un 502."""
+    url = f"data:{mime};base64,{base64.b64encode(octets).decode()}"
+    try:
+        r = _client().ocr.process(model=os.environ.get("MISTRAL_OCR", "mistral-ocr-latest"),
+                                  document={"type": "document_url", "document_url": url})
+        return "\n\n".join(page.markdown for page in r.pages)
+    except Erreur:
+        raise
+    except Exception as e:  # frontière réseau
+        raise Erreur(502, "mistral", f"Échec de l'OCR Mistral : {e}") from e
+
+
+def lire_document(nom: str, octets: bytes) -> str:
+    """TXT lu en UTF-8 ; PDF et DOCX passés à l'OCR ; toute autre extension refusée (400)."""
+    extension = Path(nom).suffix.lower()
+    if extension not in EXTENSIONS_DOCUMENT:
+        raise Erreur(400, "format_refuse", f"Format non pris en charge : {nom!r} (TXT, PDF ou DOCX)")
+    if extension == ".txt":
+        try:
+            texte = octets.decode("utf-8")
+        except UnicodeDecodeError:
+            raise Erreur(400, "encodage", f"{nom!r} n'est pas un texte UTF-8") from None
+    else:
+        texte = ocr(octets, TYPES_MIME[extension])
+    if not texte.strip():
+        raise Erreur(400, "document_vide", f"Aucun texte lisible dans {nom!r}")
+    return texte
 
 
 def _comparable(s: str) -> str:
@@ -193,3 +232,32 @@ Identifiants et questions :
 def extraire_decision(texte: str, id_: str, notes: dict | None = None) -> dict:
     g = service.grille()
     return normaliser_decision(appeler_mistral(_messages_decision(texte, g, notes)), texte, g["facteurs"], id_)
+
+
+def _messages_cas(texte: str, grille: dict) -> list[dict]:
+    questions = "\n".join(f'- "{f["id"]}" : {f["question"]}' for f in grille["facteurs"])
+    consignes = f"""Qualifie les faits de ce dossier client pour la question de droit : « {grille["question"]} ».
+
+Réponds uniquement par un objet JSON {{"faits": {{...}}}} avec, pour CHAQUE identifiant ci-dessous,
+{{"valeur": true | false | null, "extrait": "..." | null, "confiance": 0 à 1}}.
+- "valeur" : true ou false SEULEMENT si le dossier l'établit expressément. Sinon null : un dossier muet n'est pas un « non ».
+  Ne déduis jamais un fait d'un autre. La valeur répond à la question TELLE QU'ELLE EST POSÉE.
+- "extrait" : UN SEUL passage continu, copié exactement dans le dossier, sans guillemets autour, sans « [...] »,
+  sans commentaire (300 caractères au plus). null si aucun passage ne le justifie.
+- "confiance" : 1 si le passage le dit en toutes lettres, moins sinon.
+
+Identifiants et questions :
+{questions}"""
+    return [
+        {"role": "system", "content": "Tu es un juriste qui qualifie les faits d'un dossier client. Tu réponds uniquement en JSON."},
+        {"role": "user", "content": f"{consignes}\n\n<dossier>\n{texte}\n</dossier>"},
+    ]
+
+
+def extraire_cas(description: str, textes: list[str]) -> tuple[dict, dict]:
+    """Description de l'avocat + textes des pièces → facteurs et preuves vérifiées contre ce même texte."""
+    g = service.grille()
+    source = "\n\n".join([description, *textes])
+    brut = appeler_mistral(_messages_cas(source, g))
+    faits = brut.get("faits", brut) if isinstance(brut, dict) else {}
+    return normaliser_faits(faits, source, g["facteurs"])

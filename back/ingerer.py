@@ -12,7 +12,7 @@ from pathlib import Path
 from back import extraction, service
 from back.service import Erreur
 
-EXTENSIONS = {".txt"}  # PDF et DOCX : T5
+EXTENSIONS = extraction.EXTENSIONS_DOCUMENT  # TXT, PDF et DOCX (OCR)
 TABLEAU = "00_Tableau_synthese_structure.json"
 
 
@@ -50,9 +50,9 @@ def ingerer(racine, limite: int | None = None) -> list[str]:
         else:
             appels += 1
             try:
-                texte = chemin.read_text(encoding="utf-8")
+                texte = extraction.lire_document(chemin.name, chemin.read_bytes())
                 fiche = extraction.extraire_decision(texte, id_, notes)
-            except (Erreur, UnicodeDecodeError) as e:
+            except Erreur as e:
                 rapport.append(f"échec       {rel} : {getattr(e, 'message', e)}")
                 continue
             service.ecrire_texte("decisions", id_, texte)

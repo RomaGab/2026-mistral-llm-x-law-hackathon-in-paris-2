@@ -13,6 +13,8 @@ dependencies = [
     "fastapi>=0.142.2",
     "uvicorn>=0.54.0",
     "mistralai>=3.0.0",
+    "python-multipart>=0.0.32",
+    "mcp>=2.3.0",
 ]
 
 [dependency-groups]

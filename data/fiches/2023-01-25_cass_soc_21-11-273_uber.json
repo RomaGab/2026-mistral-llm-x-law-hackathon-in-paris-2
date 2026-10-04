@@ -1,0 +1,128 @@
+{
+  "id": "2023-01-25_cass_soc_21-11-273_uber",
+  "intitule": "Cass. soc., 25 janv. 2023, n° 21-11.273 (Uber)",
+  "juridiction": "Cour de cassation, chambre sociale",
+  "formation": "cass",
+  "ressort": null,
+  "date": "2023-01-25",
+  "numero": "21-11.273",
+  "publication": "inedit",
+  "dispositif": "cassation",
+  "issue": true,
+  "textes": [
+    "L. 1221-1 du code du travail",
+    "L. 1411-1 du code du travail",
+    "L. 8221-6 II du code du travail"
+  ],
+  "remise_en_cause": null,
+  "url": null,
+  "validee": false,
+  "facteurs": {
+    "service_organise": true,
+    "geolocalisation_suivi": true,
+    "sanction_deconnexion": true,
+    "penalites_bonus": true,
+    "tarif_impose": true,
+    "clientele_attribuee": true,
+    "execution_dirigee": true,
+    "multi_plateformes": false,
+    "remplacement_possible": false,
+    "info_masquee": true,
+    "evaluation_performance": true,
+    "equipement_marque": true,
+    "liberte_horaires": true,
+    "moyens_propres": true,
+    "immatriculation": true,
+    "charte_sociale": true,
+    "qualification_contractuelle": false,
+    "dependance_economique": null
+  },
+  "determinants": [],
+  "preuves": {
+    "service_organise": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "geolocalisation_suivi": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "sanction_deconnexion": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "penalites_bonus": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "tarif_impose": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "clientele_attribuee": {
+      "extrait": "il ne constitue aucune clientèle propre",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "execution_dirigee": {
+      "extrait": "la mise en place d'un itinéraire défini par le logiciel, [...] obligation pour les chauffeurs de prendre 6 heures de pause lorsqu'ils ont accumulé 10 heures de conduite",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "multi_plateformes": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "remplacement_possible": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "info_masquee": {
+      "extrait": "le chauffeur [...] obtiendra la destination de l'utilisateur [...] depuis l'Application Chauffeur si l'utilisateur choisit de saisir la destination par l'intermédiaire de l'Application mobile d'Uber",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "evaluation_performance": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "equipement_marque": {
+      "extrait": "l'engagement du chauffeur de s'abstenir d'afficher des noms ou logos sur son véhicule ou de s'abstenir de porter un uniforme ou autre tenue vestimentaire à l'effigie ou aux couleurs d'Uber",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "liberte_horaires": {
+      "extrait": "les chauffeurs ont le choix à tout moment de décider ou non de se connecter",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "moyens_propres": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "immatriculation": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "charte_sociale": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "qualification_contractuelle": {
+      "extrait": "contrat de partenariat",
+      "confiance": 1.0,
+      "source": "extraction"
+    }
+  }
+}

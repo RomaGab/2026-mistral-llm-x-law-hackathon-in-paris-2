@@ -348,7 +348,7 @@ def test_ingerer_extrait_les_decisions_francaises_et_saute_le_reste(dataset):
 
 
 def test_ingerer_saute_les_fiches_existantes_et_respecte_la_limite(dataset):
-    racine, data, appels = dataset
+    racine, _data, appels = dataset
 
     ingerer.ingerer(racine, limite=1)
     assert len(appels) == 1

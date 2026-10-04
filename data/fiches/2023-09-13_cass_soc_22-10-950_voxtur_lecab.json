@@ -1,0 +1,131 @@
+{
+  "id": "2023-09-13_cass_soc_22-10-950_voxtur_lecab",
+  "intitule": "Cass. soc., 13 sept. 2023, n° 22-10.950",
+  "juridiction": "Cour de cassation, chambre sociale",
+  "formation": "cass",
+  "ressort": null,
+  "date": "2023-09-13",
+  "numero": "22-10.950",
+  "publication": "inedit",
+  "dispositif": "rejet",
+  "issue": true,
+  "textes": [
+    "L. 8221-6 du code du travail",
+    "Art. L. 8221-6 du code du travail (présomption d'indépendance)",
+    "Jurisprudence constante sur le lien de subordination (Cass. soc., 13 nov. 1996, n° 94-13187)"
+  ],
+  "remise_en_cause": null,
+  "url": null,
+  "validee": false,
+  "facteurs": {
+    "service_organise": true,
+    "geolocalisation_suivi": true,
+    "sanction_deconnexion": true,
+    "penalites_bonus": true,
+    "tarif_impose": true,
+    "clientele_attribuee": false,
+    "execution_dirigee": true,
+    "multi_plateformes": false,
+    "remplacement_possible": false,
+    "info_masquee": false,
+    "evaluation_performance": true,
+    "equipement_marque": true,
+    "liberte_horaires": true,
+    "moyens_propres": true,
+    "immatriculation": true,
+    "charte_sociale": null,
+    "qualification_contractuelle": false,
+    "dependance_economique": true
+  },
+  "determinants": [
+    "service_organise",
+    "sanction_deconnexion"
+  ],
+  "preuves": {
+    "service_organise": {
+      "extrait": "la société déterminait le montant des courses qu'elle facturait au nom et pour le compte du chauffeur, [...] qu'elle adressait aux chauffeurs des instructions lors de certaines occasions les invitant par exemple à réaliser des courses durant la Fashion Week",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "geolocalisation_suivi": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "sanction_deconnexion": {
+      "extrait": "qu'elle procédait à des déconnexions du chauffeur durant vingt minutes en cas de refus de course",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "penalites_bonus": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "tarif_impose": {
+      "extrait": "la société déterminait le montant des courses qu'elle facturait au nom et pour le compte du chauffeur",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "clientele_attribuee": {
+      "extrait": "le chauffeur était contraint de travailler exclusivement pour la société Voxtur",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "execution_dirigee": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "multi_plateformes": {
+      "extrait": "le chauffeur était contraint de travailler exclusivement pour la société Voxtur",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "remplacement_possible": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "info_masquee": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "evaluation_performance": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "equipement_marque": {
+      "extrait": "véhicules devant correspondre 'au standard Le Cab'",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "liberte_horaires": {
+      "extrait": "les chauffeurs étaient libres de choisir leurs horaires de travail, de travailler ou non",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "moyens_propres": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "immatriculation": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "qualification_contractuelle": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "dependance_economique": {
+      "extrait": "le chauffeur était contraint de travailler exclusivement pour la société Voxtur",
+      "confiance": 1.0,
+      "source": "extraction"
+    }
+  }
+}

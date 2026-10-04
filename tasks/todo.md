@@ -14,7 +14,7 @@ Vérification commune à chaque tâche : `uv run pytest` vert, et aucun dossier 
   - Vérif : `uv run pytest back/tests/test_api.py` ; `uv run uvicorn back.api:app --port 8000` puis `curl localhost:8000/grille`.
   - Fichiers : `pyproject.toml`, `.gitignore`, `back/__init__.py`, `back/service.py`, `back/api.py`, `back/tests/test_api.py`
 
-- [ ] **T2. Une vraie décision devient une fiche** · M · dépend de : T1 · **risque n°1**
+- [x] **T2. Une vraie décision devient une fiche** · M · dépend de : T1 · **risque n°1**
   - Faire : dans `extraction.py`, `appeler_mistral` (seul point réseau, JSON mode, `temperature=0`), le prompt de décision (18 questions de la grille + métadonnées du schéma `decision`), `normaliser_faits` et `normaliser_decision` ; dans `ingerer.py`, pour chaque `.txt` du dossier (sous-dossiers compris) : l'entrée du tableau de synthèse est passée en notes, les entrées hors France sont sautées, le texte va dans `data/decisions/`, la fiche `validee: false` dans `data/fiches/`, les fiches existantes sont sautées, option `--limite N`.
   - Accepté si :
     - Chaque règle de normalisation du spec a son test, sans réseau.
@@ -41,6 +41,8 @@ Vérification commune à chaque tâche : `uv run pytest` vert, et aucun dossier 
   - Vérif : `uv run pytest back/tests/test_api.py`.
   - Fichiers : `back/service.py`, `back/api.py`, `back/tests/test_api.py`
 
+> **État à 16h (reprise par Mathis) :** T1 à T8 faits, 114 tests verts. 6 décisions françaises extraites dans `data/fiches/` (5 salariat, 1 indépendance), **toutes en `validee: false`** : relecture du juriste à faire (T11). T9 (Le Chat) et T12 (répétition) sont manuels.
+
 ### Checkpoint J1
 - [ ] `uv run pytest` est vert.
 - [ ] Une vraie décision extraite, puis validée, donne un dossier valide.
@@ -49,7 +51,7 @@ Vérification commune à chaque tâche : `uv run pytest` vert, et aucun dossier 
 
 ## Phase 2 : parcours du front
 
-- [ ] **T5. Lire les PDF et les DOCX** · S · dépend de : T2
+- [x] **T5. Lire les PDF et les DOCX** · S · dépend de : T2
   - Faire : `lire_document(nom, octets)`. Un TXT est lu en UTF-8, un PDF ou un DOCX passe par `mistral-ocr-latest` (data URL base64), toute autre extension donne un 400. `ingerer.py` accepte aussi les `.pdf` et les `.docx`.
   - Accepté si :
     - Un vrai PDF de décision donne un texte exploitable par T2.
@@ -65,7 +67,7 @@ Vérification commune à chaque tâche : `uv run pytest` vert, et aucun dossier 
   - Vérif : `uv run pytest back/tests/test_api.py`.
   - Fichiers : `back/service.py`, `back/api.py`, `back/tests/test_api.py`
 
-- [ ] **T7. Créer un cas depuis une description et des documents** · M · dépend de : T2, T4
+- [x] **T7. Créer un cas depuis une description et des documents** · M · dépend de : T2, T4
   - Faire : `POST /documents` (`type=cas` : le texte va dans `data/documents/` ; `type=decision` : extraction, puis fiche `validee: false`) ; `extraire_cas` dans `extraction.py` ; `POST /cas` (description + textes des documents → faits, preuves, `a_confirmer`).
   - Accepté si :
     - Mistral simulé : le cas créé contient tous les facteurs, et ses preuves passent la normalisation.
@@ -81,7 +83,7 @@ Vérification commune à chaque tâche : `uv run pytest` vert, et aucun dossier 
 
 ## Phase 3 : MCP (obligatoire en démo)
 
-- [ ] **T8. Serveur MCP local** · S · dépend de : T3, T7
+- [x] **T8. Serveur MCP local** · S · dépend de : T3, T7
   - Faire : `serveur_mcp.py` (serveur `pivot`) avec `pivot_structurer_cas`, `pivot_etat_du_droit` et `pivot_arbitrer`, qui appellent `service.py`. Le résumé de `pivot_arbitrer` est décrit dans le spec (`definitif`, `faits_manquants`, `leviers`, `indice_liceite`…). Transport streamable HTTP sur le port 8001.
   - Accepté si :
     - Dans l'Inspector, `pivot_structurer_cas` sur la description du cas exemple renvoie `cas_id`, les faits et la sanction dans `a_confirmer`.

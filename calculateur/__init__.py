@@ -6,4 +6,4 @@
 from .moteur import VERSION as __version__
 from .moteur import ErreurDossier, completer
 
-__all__ = ["completer", "ErreurDossier", "__version__"]
+__all__ = ["ErreurDossier", "__version__", "completer"]

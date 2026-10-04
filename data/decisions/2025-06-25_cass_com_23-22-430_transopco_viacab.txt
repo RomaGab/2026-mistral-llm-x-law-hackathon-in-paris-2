@@ -1,0 +1,40 @@
+COUR DE CASSATION, CHAMBRE COMMERCIALE, FINANCIERE ET ECONOMIQUE - Arrêt du 25 juin 2025 - Pourvoi n° 23-22.430 (Transopco / Viacab) - REJET
+(Action en concurrence déloyale — incluant un examen incident du lien de subordination des chauffeurs VTC Transopco)
+Source: Judilibre
+================================================================================
+
+ARRÊT DE LA COUR DE CASSATION, CHAMBRE COMMERCIALE, FINANCIÈRE ET ÉCONOMIQUE, DU 25 JUIN 2025
+Arrêt n° 353 FS-B
+
+La société Transopco a formé le pourvoi n° F 23-22.430 contre l'arrêt rendu le 28 septembre 2023 par la cour d'appel de Paris (pôle 5, chambre 5), dans le litige l'opposant à la société Viacab.
+
+FAITS ET PROCEDURE
+1. La société Viacab, gestionnaire d'une centrale de réservation de taxis en région parisienne, a aussi, de juin 2011 à juin 2017, exploité une activité de voitures de transport avec chauffeur (VTC), proposée via sites internet puis (à compter du 5 mars 2012) via une application smartphone.
+2. La société Transopco France, venant aux droits de la société Transcovo, exploite une plate-forme de mise en relation d'exploitants de VTC avec des clients au moyen d'une application pour smartphone.
+3. Soutenant que la société Transopco, en ne respectant pas diverses lois et réglementations en matière de droit des transports et de droit du travail, commettait des actes constitutifs de concurrence déloyale à son égard, la société Viacab l'a assignée aux fins de cessation de ces pratiques et d'indemnisation de son préjudice.
+
+ENONCE DU MOYEN (premier moyen, 2e à 9e branches)
+La société Transopco faisait notamment valoir que :
+- les chauffeurs ne s'acquittent d'aucun frais d'inscription ni redevance les contraignant à se connecter ; ils sont libres de se connecter aux heures de leur choix, de se connecter sur d'autres plateformes, d'effectuer des courses pour une clientèle personnelle, de refuser les courses même connectés et de suivre l'itinéraire de leur choix ;
+- en pratique, le taux d'acceptation des courses proposées était d'environ 50 % et les chauffeurs VTC se connectaient en moyenne 8,5 heures par semaine ;
+- l'article 6-1 du contrat de partenariat prévoit que le chauffeur est libre de se connecter ou non et d'accepter ou non la course, avec un itinéraire conseillé qu'il est libre d'organiser comme il le souhaite ;
+- l'article 3.1.3 du contrat reconnaissait au chauffeur la possibilité de réaliser des prestations de transport pour une société concurrente et/ou à son propre compte, la clientèle personnelle demeurant sa propriété.
+
+REPONSE DE LA COUR
+13. Il résulte de l'article L. 8221-6 du code du travail que les personnes physiques, dans l'exécution de l'activité donnant lieu à immatriculation aux registres que ce texte énumère, sont présumées ne pas être liées avec le donneur d'ordre par un contrat de travail. L'existence d'un contrat de travail peut toutefois être établie lorsque ces personnes fournissent des prestations dans des conditions qui les placent dans un lien de subordination juridique permanente à l'égard du donneur d'ordre.
+
+14. Le lien de subordination est caractérisé par l'exécution d'un travail sous l'autorité d'un employeur qui a le pouvoir de donner des ordres et des directives, d'en contrôler l'exécution et de sanctionner les manquements de son subordonné. Peut constituer un indice de subordination le travail au sein d'un service organisé lorsque l'employeur en détermine unilatéralement les conditions d'exécution.
+
+15. Ayant analysé le contrat de partenariat proposé par la société Transopco aux chauffeurs souhaitant recourir à son application, l'arrêt retient que si les chauffeurs n'ont pas d'obligation de connexion, l'application développée par cette société prévoit un système de bonus conditionné à un nombre de courses réalisées selon des créneaux horaires, fixe unilatéralement le tarif de la prestation de transport, pratique des offres promotionnelles qui s'imposent aux chauffeurs et facture le prix de la course.
+
+16. Il ajoute qu'une fois connectés, les chauffeurs doivent être immédiatement disponibles et respecter une procédure stricte et détaillée, composée de directives depuis la connexion jusqu'à la fin de la prestation. Il relève que la géolocalisation permet à l'application de leur adresser un ordre de course, leur indiquant de « se rendre immédiatement, sans détour, et par le plus court chemin possible de son choix vers le lieu de prise en charge mentionné », de sorte que le chauffeur ne peut décider librement des conditions de réalisation de la prestation, la société Transopco contrôlant, notamment par la géolocalisation, le respect des directives données et pouvant appliquer des pénalités en cas de retard.
+
+17. L'arrêt estime que la faculté de résiliation anticipée unilatérale prévue au contrat au bénéfice de la société Transopco, en ce qu'elle lui permet de sanctionner le non-respect des modalités d'exécution du travail définies par la charte qualité annexée au contrat ainsi que l'absence de conformité à l'image de marque de la société Transopco, ayant conduit à une appréciation moyenne par le client inférieure à quatre sur cinq sur les deux derniers mois, caractérise le pouvoir de sanction de la plate-forme sur le chauffeur.
+
+18. Il retient enfin, par une interprétation souveraine du contrat de partenariat et de ses différentes clauses, exclusive de toute dénaturation, que l'interdiction d'entrer en relation, démarcher, solliciter, détourner ou tenter de détourner, ou même de servir à des fins personnelles ou au profit de tiers les clients obtenus par l'intermédiaire de l'application et de la possibilité pour la société Transopco de résilier le contrat de manière anticipée en cas de « tentative de démarchage active ou passive des clients obtenus par le biais de l'application » caractérise l'interdiction faite aux chauffeurs de développer une clientèle personnelle.
+
+19. En l'état de ces constatations et appréciations, faisant ressortir les contraintes collectives imposées à la communauté de chauffeurs, la cour d'appel, qui n'était pas tenue de suivre la société Transopco dans le détail de son argumentation ni de s'expliquer sur les éléments de preuve qu'elle décidait d'écarter, a pu déduire des termes du contrat de partenariat et des conditions effectives dans lesquelles les chauffeurs exercent leur activité via l'application, l'existence d'un pouvoir de direction, de contrôle et de sanction de la société Transopco à l'égard des chauffeurs travaillant pour elle caractérisant l'existence d'un lien de subordination, de nature à renverser la présomption d'indépendance édictée à l'article L. 8226-1 du code du travail.
+
+20. Le moyen n'est donc pas fondé.
+
+PAR CES MOTIFS, la Cour : REJETTE le pourvoi.

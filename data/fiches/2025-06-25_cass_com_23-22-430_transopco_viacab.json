@@ -1,0 +1,116 @@
+{
+  "id": "2025-06-25_cass_com_23-22-430_transopco_viacab",
+  "intitule": "Cass. com., 25 juin 2025, n° 23-22.430",
+  "juridiction": "Cour de cassation, chambre commerciale, financière et économique",
+  "formation": "cass",
+  "ressort": null,
+  "date": "2025-06-25",
+  "numero": "23-22.430",
+  "publication": "inedit",
+  "dispositif": "rejet",
+  "issue": true,
+  "textes": [
+    "L. 8221-6 du code du travail",
+    "L. 8226-1 du code du travail"
+  ],
+  "remise_en_cause": null,
+  "url": null,
+  "validee": false,
+  "facteurs": {
+    "service_organise": true,
+    "geolocalisation_suivi": true,
+    "sanction_deconnexion": true,
+    "penalites_bonus": true,
+    "tarif_impose": true,
+    "clientele_attribuee": true,
+    "execution_dirigee": true,
+    "multi_plateformes": false,
+    "remplacement_possible": null,
+    "info_masquee": true,
+    "evaluation_performance": true,
+    "equipement_marque": true,
+    "liberte_horaires": false,
+    "moyens_propres": null,
+    "immatriculation": null,
+    "charte_sociale": true,
+    "qualification_contractuelle": false,
+    "dependance_economique": null
+  },
+  "determinants": [
+    "service_organise",
+    "geolocalisation_suivi",
+    "sanction_deconnexion"
+  ],
+  "preuves": {
+    "service_organise": {
+      "extrait": "l'application développée par cette société prévoit un système de bonus conditionné à un nombre de courses réalisées selon des créneaux horaires, fixe unilatéralement le tarif de la prestation de transport, pratique des offres promotionnelles qui s'imposent aux chauffeurs et facture le prix de la course.",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "geolocalisation_suivi": {
+      "extrait": "la géolocalisation permet à l'application de leur adresser un ordre de course, leur indiquant de « se rendre immédiatement, sans détour, et par le plus court chemin possible de son choix vers le lieu de prise en charge mentionné »",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "sanction_deconnexion": {
+      "extrait": "la faculté de résiliation anticipée unilatérale prévue au contrat au bénéfice de la société Transopco, en ce qu'elle lui permet de sanctionner le non-respect des modalités d'exécution du travail définies par la charte qualité",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "penalites_bonus": {
+      "extrait": "l'application développée [...] prévoit un système de bonus conditionné à un nombre de courses réalisées selon des créneaux horaires [...] pouvant appliquer des pénalités en cas de retard",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "tarif_impose": {
+      "extrait": "fixe unilatéralement le tarif de la prestation de transport",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "clientele_attribuee": {
+      "extrait": "l'interdiction d'entrer en relation, démarcher, solliciter, détourner ou tenter de détourner [...] les clients obtenus par l'intermédiaire de l'application",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "execution_dirigee": {
+      "extrait": "les chauffeurs doivent être immédiatement disponibles et respecter une procédure stricte et détaillée, composée de directives depuis la connexion jusqu'à la fin de la prestation",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "multi_plateformes": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "info_masquee": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "evaluation_performance": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "equipement_marque": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "liberte_horaires": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "charte_sociale": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "qualification_contractuelle": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    }
+  }
+}

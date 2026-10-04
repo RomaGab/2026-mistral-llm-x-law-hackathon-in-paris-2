@@ -1,7 +1,7 @@
 """API REST pour le front (§7 du contrat). Lancer : uv run uvicorn back.api:app --reload --port 8000"""
-from typing import Any
+from typing import Annotated, Any
 
-from fastapi import FastAPI
+from fastapi import FastAPI, File, Form, UploadFile
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
@@ -15,6 +15,13 @@ from back.service import Erreur
 class CorpsFacteurs(BaseModel):
     # StrictBool : "oui", 1 ou "true" sont refusés (400), seuls true / false / null passent.
     facteurs: dict[str, StrictBool | None]
+
+
+class CorpsCas(BaseModel):
+    description: str
+    question: str | None = None
+    ressort: str | None = None
+    document_ids: list[str] = []
 
 app = FastAPI(title="Pivot")
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])  # démo locale
@@ -49,6 +56,18 @@ def sante():
 @app.get("/grille")
 def grille():
     return service.grille()
+
+
+@app.post("/documents")
+async def deposer_document(file: Annotated[UploadFile, File()], type: Annotated[str, Form()]):
+    """Fichier PDF, TXT ou DOCX ; type = "cas" (pièce du client) ou "decision" (fiche à relire)."""
+    return service.deposer_document(file.filename or "", await file.read(), type)
+
+
+@app.post("/cas")
+def creer_cas(corps: CorpsCas):
+    """Extraction Mistral des faits (10 à 30 s) : faits, preuves et faits à confirmer."""
+    return service.creer_cas(corps.description, corps.ressort, corps.document_ids, corps.question)
 
 
 @app.get("/cas/{cas_id}")
