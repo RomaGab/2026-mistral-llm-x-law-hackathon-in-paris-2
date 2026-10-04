@@ -147,6 +147,8 @@ La grille contient 18 facteurs (15 actifs, 3 neutralisés). Le juriste doit la v
 | `seuil_exception` | 0,15 par défaut. Probabilité minimale de l'issue minoritaire pour afficher une exception même sans pivot. |
 | `seuil_sensibilite` | 0,10 par défaut. Écart de P à partir duquel un facteur est « sensible ». |
 | `marge_pivot` | 0,15 par défaut. Pour être pivot, un fait inversé doit faire passer P de l'autre côté de 0,5 **et** à au moins cette distance de 0,5. |
+| `sigma_a_priori` | Facultatif, 0,5 par défaut (régression logistique). Confiance dans la grille du juriste : plus petit = le modèle suit davantage la grille. À choisir avec `python -m calculateur.evaluation`. |
+| `kappa` | Facultatif, 2,0 par défaut (vote pondéré). Force probante d'une décision. |
 
 ### Résultat (rempli par le calculateur)
 **Convention : toutes les probabilités désignent P(issue = `true`), sauf `majeure.probabilite` et `exception.probabilite`.**
@@ -198,7 +200,7 @@ Avec un petit corpus et un faisceau d'indices, il est rare qu'une décision s'ap
 | `niveau` | `pivot` · `sensible` (fait bouger P d'au moins `seuil_sensibilite`) · `faible` · `neutralise` (importance 0) | Couleur de la ligne |
 | `type` | `a_documenter` si le fait du cas est inconnu ; `levier` s'il est connu | « À demander au client » / « Si le client changeait ce point… » |
 | `probabilite_si_vrai` / `_si_faux` | P(issue vraie) si ce fait valait vrai / faux. Pour un fait connu, la valeur actuelle redonne P. | Au survol : « avec : 72 % · sans : 24 % » |
-| `contribution` | Poids actuel du fait dans le score (> 0 : vers la requalification). 0 si inconnu ou neutralisé. | Barre d'explication |
+| `contribution` | Ce que le fait apporte au score par rapport à « inconnu » : logit(P) − logit(P si le fait était inconnu). > 0 : vers la requalification. 0 si inconnu ou neutralisé. | Barre d'explication |
 | `ecartees_si_vrai` / `_si_faux` | **Liste complète** des décisions écartées si ce fait valait vrai / faux | Comparée à la liste actuelle : « si oui, CA Paris 2021 ne s'applique plus » |
 
 **Un fait connu ne se teste que dans un sens** (on l'inverse). Un fait inconnu se teste dans les deux. Un facteur est pivot si l'un des tests franchit 0,5 avec la marge.
@@ -259,7 +261,12 @@ uv run --with jsonschema python contracts/valider.py mon_dossier.json
 
 ### Interface
 - **Une fonction :** `completer(dossier) → dossier`. Elle renvoie une copie avec `resultat` rempli, sans modifier l'entrée. Si le dossier est invalide, elle lève une erreur qui liste tous les problèmes.
-- **Une commande** pour tester sans le back : `python -m calculateur entree.json > sortie.json`.
+- **En Python :** `from calculateur import completer, ErreurDossier`. `ErreurDossier.problemes` liste les erreurs du dossier d'entrée (à renvoyer en 422).
+- **En ligne de commande**, depuis la racine du dépôt :
+  - `uv run python -m calculateur entree.json -o sortie.json` complète un dossier ;
+  - `uv run python -m calculateur.evaluation dossier.json` retire chaque décision tour à tour et compare les modèles (justesse, cas nets, Brier) ;
+  - `uv run pytest` lance les tests du calculateur.
+- **Installation :** `uv sync` (le `pyproject.toml` racine est commun au back et au calculateur).
 - **Déterministe :** même dossier, même résultat. Pas d'horloge (`date_reference`), graine aléatoire fixe.
 - **Rapide :** moins d'une seconde pour une vingtaine de décisions, faits inversés compris.
 
@@ -309,9 +316,9 @@ Tout est déjà dans `contracts/` :
 | `exemples/dossier_entree.json` | Ce que le back envoie au calculateur (5 décisions **fictives**) |
 | `exemples/dossier_complet.json` | Ce que le calculateur renvoie : P = 0,47, indépendance, incertain, 5 pivots (dont la sanction), 1 décision écartée |
 | `exemples/dossier_apres_bascule.json` | La même chose avec « sanction » à oui : P = 0,72, bascule vers le salariat, 2 pivots (sanction, géolocalisation), une 2e décision écartée |
-| `generer_exemples.py` | Régénère les exemples avec un **modèle jouet**, puis les valide. Ce n'est pas le calculateur. |
+| `generer_exemples.py` | Régénère les exemples avec le **vrai calculateur**, puis les valide : `uv run python contracts/generer_exemples.py` |
 
-Les décisions sont **fictives** et les chiffres viennent d'un modèle jouet. Ils sont cohérents entre eux, mais n'ont aucune valeur juridique. Ils servent à développer, pas à la démo.
+Les décisions sont **fictives** : les chiffres sont ceux du vrai calculateur, mais sur des données inventées, donc sans valeur juridique. Ils servent à développer, pas à la démo.
 
 - **Front :** branché sur les fichiers d'exemple, sans back. Les deux fichiers complets suffisent pour coder la balance, la matrice et la bascule.
 - **Back :** un faux calculateur qui renvoie `dossier_complet.json`, remplacé par le vrai à l'intégration. Il valide chaque dossier qu'il construit.
@@ -355,7 +362,7 @@ Un point de 5 minutes à chaque jalon : ce qui marche, ce qui bloque, ce qui cha
 ## 12. Points à trancher maintenant
 
 - [ ] Qui joue le rôle de juriste (grille, choix du corpus, relecture des décisions) ?
-- [ ] Le back est-il en Python ? Si non, le calculateur devient un petit service HTTP qui prend et renvoie le même dossier.
+- [x] Le back est en Python (SPEC-back) : il importe `calculateur` directement. `pyproject.toml` racine créé avec les dépendances du calculateur ; le back y ajoute les siennes.
 - [ ] Fichiers JSON ou SQLite pour le stockage côté back ?
 - [ ] Le serveur MCP est-il dans la démo, ou seulement mentionné dans le pitch ?
 - [ ] Le juriste valide-t-il la grille telle quelle (facteurs, orientations, importances) ?

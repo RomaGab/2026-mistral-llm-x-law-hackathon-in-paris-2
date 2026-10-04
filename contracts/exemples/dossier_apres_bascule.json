@@ -650,7 +650,7 @@
   },
   "resultat": {
     "modele": "logistique_bayesienne",
-    "version_calculateur": "0.0.0-exemple-jouet",
+    "version_calculateur": "0.1.0",
     "prediction": {
       "probabilite": 0.72,
       "intervalle": [
@@ -719,7 +719,7 @@
         "type": "levier",
         "probabilite_si_vrai": 0.72,
         "probabilite_si_faux": 0.27,
-        "contribution": 0.97,
+        "contribution": 0.98,
         "ecartees_si_vrai": [
           "exemple-ca-paris-1",
           "exemple-ca-lyon-1"
@@ -735,7 +735,7 @@
         "type": "levier",
         "probabilite_si_vrai": 0.72,
         "probabilite_si_faux": 0.24,
-        "contribution": 1.01,
+        "contribution": 1.08,
         "ecartees_si_vrai": [
           "exemple-ca-paris-1",
           "exemple-ca-lyon-1"
@@ -1280,8 +1280,7 @@
       }
     ],
     "avertissements": [
-      "Exemple généré par un modèle jouet (contracts/generer_exemples.py) : chiffres cohérents mais sans valeur juridique.",
-      "Directive (UE) 2024/2831 : présomption légale de salariat — vérifier la transposition."
+      "Le dossier contient des décisions fictives ([FICTIF]) : à ne pas utiliser en démo."
     ]
   }
 }

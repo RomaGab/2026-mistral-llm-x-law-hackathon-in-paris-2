@@ -651,7 +651,7 @@
   },
   "resultat": {
     "modele": "logistique_bayesienne",
-    "version_calculateur": "0.0.0-exemple-jouet",
+    "version_calculateur": "0.1.0",
     "prediction": {
       "probabilite": 0.47,
       "intervalle": [
@@ -721,7 +721,7 @@
         "type": "levier",
         "probabilite_si_vrai": 0.47,
         "probabilite_si_faux": 0.11,
-        "contribution": 0.96,
+        "contribution": 0.97,
         "ecartees_si_vrai": [
           "exemple-ca-lyon-1"
         ],
@@ -1245,8 +1245,7 @@
       }
     ],
     "avertissements": [
-      "Exemple généré par un modèle jouet (contracts/generer_exemples.py) : chiffres cohérents mais sans valeur juridique.",
-      "Directive (UE) 2024/2831 : présomption légale de salariat — vérifier la transposition."
+      "Le dossier contient des décisions fictives ([FICTIF]) : à ne pas utiliser en démo."
     ]
   }
 }
