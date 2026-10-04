@@ -1,6 +1,6 @@
 # Spec : Back Distinguo
 
-*Brique « Back » de [distinguo-architecture-contrats.md](distinguo-architecture-contrats.md) (§1). Ce spec ne répète pas le contrat : il fixe ce que le contrat laisse ouvert.*
+*Brique « Back » de [architecture-contrats.md](architecture-contrats.md) (§1). Ce spec ne répète pas le contrat : il fixe ce que le contrat laisse ouvert.*
 *Le dossier `contracts/` fait foi en cas de désaccord avec ce document.*
 
 ## Objectif

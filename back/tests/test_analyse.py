@@ -1,4 +1,5 @@
 """T3 (analyse, simulation), T4 (correction des faits), T6 (relecture des décisions)."""
+
 import json
 import time
 
@@ -15,6 +16,7 @@ client = TestClient(app)
 
 
 # ---------------------------------------------------------------- T3 : analyse
+
 
 def test_analyse_renvoie_un_dossier_complete_et_valide(donnees_exemple):
     dossier = service.analyser(CAS)
@@ -70,11 +72,14 @@ def test_api_analyse_et_simulation(donnees_exemple):
     assert s.status_code == 200 and s.json()["meta"]["simulation"] is True
 
 
-@pytest.mark.parametrize("corps", [
-    {"facteurs": {"sanction_deconnexion": "oui"}},
-    {"facteurs": {"facteur_imaginaire": True}},
-    {"facteurs": {"sanction_deconnexion": 1}},
-])
+@pytest.mark.parametrize(
+    "corps",
+    [
+        {"facteurs": {"sanction_deconnexion": "oui"}},
+        {"facteurs": {"facteur_imaginaire": True}},
+        {"facteurs": {"sanction_deconnexion": 1}},
+    ],
+)
 def test_api_simulation_invalide_donne_400(donnees_exemple, corps):
     r = client.post(f"/cas/{CAS}/analyse", json=corps)
 
@@ -88,6 +93,7 @@ def test_api_cas_inconnu_donne_404(donnees_exemple):
 
 
 # ---------------------------------------------------------------- T4 : correction des faits
+
 
 def test_corriger_un_fait_l_enregistre_et_le_sort_de_a_confirmer(donnees_exemple):
     assert "sanction_deconnexion" in client.get(f"/cas/{CAS}").json()["a_confirmer"]
@@ -119,6 +125,7 @@ def test_correction_invalide_n_ecrit_rien(donnees_exemple):
 
 # ---------------------------------------------------------------- T6 : relecture des décisions
 
+
 def test_lister_et_lire_les_decisions(donnees_exemple):
     assert len(client.get("/decisions").json()) == 5
     assert client.get("/decisions/exemple-cass-1").json()["issue"] is True
@@ -134,12 +141,15 @@ def test_valider_une_fiche_la_fait_entrer_dans_l_analyse(donnees_exemple):
     assert "exemple-ca-paris-2" in [d["id"] for d in service.analyser(CAS)["decisions"]]
 
 
-@pytest.mark.parametrize("champs", [
-    {"facteurs": {"geolocalisation_suivi": None}},   # déterminant de exemple-cass-1 mis à null
-    {"facteurs": {"facteur_imaginaire": True}},
-    {"issue": "salariat"},
-    {"id": "autre-id"},
-])
+@pytest.mark.parametrize(
+    "champs",
+    [
+        {"facteurs": {"geolocalisation_suivi": None}},  # déterminant de exemple-cass-1 mis à null
+        {"facteurs": {"facteur_imaginaire": True}},
+        {"issue": "salariat"},
+        {"id": "autre-id"},
+    ],
+)
 def test_patch_qui_rendrait_la_fiche_invalide_donne_400_sans_ecrire(donnees_exemple, champs):
     avant = (donnees_exemple / "fiches" / "exemple-cass-1.json").read_text(encoding="utf-8")
 
@@ -151,7 +161,12 @@ def test_patch_qui_rendrait_la_fiche_invalide_donne_400_sans_ecrire(donnees_exem
 
 def test_exemple_refuse_d_ecrire_dans_le_vrai_corpus():
     from back import exemple
+
     with pytest.raises(SystemExit):
         exemple.charger(service.RACINE / "data")
-    assert not any("FICTIF" in json.dumps(f) for f in
-                   (json.loads(p.read_text(encoding="utf-8")) for p in (service.RACINE / "data" / "fiches").glob("*.json")))
+    assert not any(
+        "FICTIF" in json.dumps(f)
+        for f in (
+            json.loads(p.read_text(encoding="utf-8")) for p in (service.RACINE / "data" / "fiches").glob("*.json")
+        )
+    )

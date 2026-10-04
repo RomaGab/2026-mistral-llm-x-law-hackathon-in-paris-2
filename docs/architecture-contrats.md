@@ -349,7 +349,7 @@ Les décisions sont **fictives** : les chiffres sont ceux du vrai calculateur, m
 ├── data/
 │   ├── decisions/      ← textes bruts
 │   └── fiches/         ← décisions extraites puis validées
-└── distinguo-architecture-contrats.md
+└── docs/                ← architecture-contrats.md (ce document), spec-back.md, pitch.md
 ```
 - Une branche par personne, fusion sur `main` à chaque jalon.
 - Personne ne modifie le dossier d'un autre sans le prévenir.
@@ -375,7 +375,7 @@ Un point de 5 minutes à chaque jalon : ce qui marche, ce qui bloque, ce qui cha
 ## 12. Points à trancher maintenant
 
 - [ ] Qui joue le rôle de juriste (grille, choix du corpus, relecture des décisions) ?
-- [x] Le back est en Python (SPEC-back) : il importe `calculateur` directement. `pyproject.toml` racine créé avec les dépendances du calculateur ; le back y ajoute les siennes.
+- [x] Le back est en Python (docs/spec-back.md) : il importe `calculateur` directement. `pyproject.toml` racine créé avec les dépendances du calculateur ; le back y ajoute les siennes.
 - [ ] Fichiers JSON ou SQLite pour le stockage côté back ?
 - [ ] Le serveur MCP est-il dans la démo, ou seulement mentionné dans le pitch ?
 - [ ] Le juriste valide-t-il la grille telle quelle (facteurs, orientations, importances) ?

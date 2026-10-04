@@ -39,11 +39,14 @@ def test_deterministe_et_entree_intacte(dossier):
     assert dossier == avant
 
 
-@pytest.mark.parametrize("abimer", [
-    lambda d: d["cas"]["facteurs"].pop("tarif_impose"),
-    lambda d: d["cas"]["facteurs"].__setitem__("tarif_impose", "oui"),
-    lambda d: d["decisions"][0].__setitem__("validee", False),
-])
+@pytest.mark.parametrize(
+    "abimer",
+    [
+        lambda d: d["cas"]["facteurs"].pop("tarif_impose"),
+        lambda d: d["cas"]["facteurs"].__setitem__("tarif_impose", "oui"),
+        lambda d: d["decisions"][0].__setitem__("validee", False),
+    ],
+)
 def test_dossier_invalide(dossier, abimer):
     abimer(dossier)
     with pytest.raises(ErreurDossier) as e:
@@ -106,9 +109,17 @@ def _poids(sortie, decision_id):
     return next(l for l in sortie["resultat"]["decisions"] if l["id"] == decision_id)
 
 
-@pytest.mark.parametrize("pays_decision, coefficient", [
-    ("France", 1.0), ("Espagne", 0.35), ("CJUE", 0.6), ("Royaume-Uni", 0.08), ("USA", 0.08), ("Atlantide", 0.08),
-])
+@pytest.mark.parametrize(
+    "pays_decision, coefficient",
+    [
+        ("France", 1.0),
+        ("Espagne", 0.35),
+        ("CJUE", 0.6),
+        ("Royaume-Uni", 0.08),
+        ("USA", 0.08),
+        ("Atlantide", 0.08),
+    ],
+)
 def test_systeme_juridique_d_un_cas_francais(dossier, pays_decision, coefficient):
     dossier["decisions"][0]["pays"] = pays_decision
     ligne = _poids(completer(dossier), "exemple-cass-1")
@@ -147,5 +158,7 @@ def test_evaluation(dossier):
 
 @pytest.mark.parametrize("module", ["calculateur", "calculateur.evaluation"])
 def test_lignes_de_commande(module):
-    r = subprocess.run([sys.executable, "-m", module, str(ENTREE)], cwd=RACINE, capture_output=True, text=True, check=False)
+    r = subprocess.run(
+        [sys.executable, "-m", module, str(ENTREE)], cwd=RACINE, capture_output=True, text=True, check=False
+    )
     assert r.returncode == 0, r.stderr

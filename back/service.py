@@ -1,4 +1,5 @@
-"""Cas d'usage du back, partagés par l'API et le serveur MCP (cf. SPEC-back.md)."""
+"""Cas d'usage du back, partagés par l'API et le serveur MCP (cf. docs/spec-back.md)."""
+
 import copy
 import json
 import os
@@ -18,8 +19,14 @@ SEUIL_CONFIANCE = 0.6  # en dessous, un fait extrait est à confirmer par l'avoc
 # Valeurs par défaut du contrat (§5) ; date_reference est ajoutée à chaque analyse.
 # sigma_a_priori 0,3 : choisi par validation croisée ; avec cet a priori plus serré, une marge de pivot de 0,10
 # (au lieu de 0,15) garde les vraies bascules, comme la sanction dans le cas de démo.
-PARAMETRES = {"modele": "logistique_bayesienne", "niveau_intervalle": 0.95, "sigma_a_priori": 0.3,
-              "seuil_exception": 0.15, "seuil_sensibilite": 0.10, "marge_pivot": 0.10}
+PARAMETRES = {
+    "modele": "logistique_bayesienne",
+    "niveau_intervalle": 0.95,
+    "sigma_a_priori": 0.3,
+    "seuil_exception": 0.15,
+    "seuil_sensibilite": 0.10,
+    "marge_pivot": 0.10,
+}
 PARIS = ZoneInfo("Europe/Paris")
 
 
@@ -86,6 +93,7 @@ def grille() -> dict:
 
 # ---------------------------------------------------------------- cas
 
+
 def verifier_facteurs(facteurs: dict) -> None:
     """Identifiants de la grille et valeurs true / false / null uniquement, sinon 400."""
     ids = [f["id"] for f in grille()["facteurs"]]
@@ -100,9 +108,11 @@ def verifier_facteurs(facteurs: dict) -> None:
 def calculer_a_confirmer(cas: dict) -> list[str]:
     """Faits inconnus ou de confiance < 0,6, dans l'ordre de la grille."""
     preuves = cas.get("preuves", {})
-    return [f["id"] for f in grille()["facteurs"]
-            if cas["facteurs"].get(f["id"]) is None
-            or preuves.get(f["id"], {}).get("confiance", 1.0) < SEUIL_CONFIANCE]
+    return [
+        f["id"]
+        for f in grille()["facteurs"]
+        if cas["facteurs"].get(f["id"]) is None or preuves.get(f["id"], {}).get("confiance", 1.0) < SEUIL_CONFIANCE
+    ]
 
 
 def ecrire_cas(cas: dict) -> dict:
@@ -135,8 +145,14 @@ def deposer_document(nom: str, octets: bytes, type_: str) -> dict:
     return {"document_id": id_, "type": "decision", "decision_id": id_}
 
 
-def creer_cas(description: str, ressort: str | None = None, document_ids: list[str] | None = None,
-              question: str | None = None, pieces: list[str] | None = None, pays: str | None = None) -> dict:
+def creer_cas(
+    description: str,
+    ressort: str | None = None,
+    document_ids: list[str] | None = None,
+    question: str | None = None,
+    pieces: list[str] | None = None,
+    pays: str | None = None,
+) -> dict:
     """Description + pièces → faits extraits par Mistral, preuves vérifiées, a_confirmer.
 
     `pieces` (textes bruts, utilisé par le MCP) sont d'abord enregistrées comme documents du cas.
@@ -154,8 +170,14 @@ def creer_cas(description: str, ressort: str | None = None, document_ids: list[s
             document_ids.append(id_)
             textes.append(piece)
     facteurs, preuves = extraction.extraire_cas(description, textes)
-    cas = {"id": nouvel_id("cas"), "description": description, "ressort": ressort or None,
-           "documents": document_ids, "facteurs": facteurs, "preuves": preuves}
+    cas = {
+        "id": nouvel_id("cas"),
+        "description": description,
+        "ressort": ressort or None,
+        "documents": document_ids,
+        "facteurs": facteurs,
+        "preuves": preuves,
+    }
     if question:
         cas["question"] = question
     if pays:
@@ -176,10 +198,15 @@ def modifier_cas(cas_id: str, facteurs: dict) -> dict:
 
 # ---------------------------------------------------------------- analyse (calculateur)
 
+
 def construire_dossier(cas: dict, simulation: bool) -> dict:
     return {
-        "meta": {"version_format": VERSION_FORMAT, "dossier_id": cas["id"],
-                 "genere_le": datetime.now(PARIS).isoformat(timespec="seconds"), "simulation": simulation},
+        "meta": {
+            "version_format": VERSION_FORMAT,
+            "dossier_id": cas["id"],
+            "genere_le": datetime.now(PARIS).isoformat(timespec="seconds"),
+            "simulation": simulation,
+        },
         "grille": grille(),
         "cas": cas,
         "decisions": [f for f in lister("fiches") if f.get("validee") is True],  # triées par id
@@ -189,8 +216,11 @@ def construire_dossier(cas: dict, simulation: bool) -> dict:
 
 
 def _refus(origine: str, problemes: list[str]) -> Erreur:
-    return Erreur(422, f"dossier_invalide_{origine}",
-                  f"Dossier refusé par le validateur ({origine}) :\n- " + "\n- ".join(problemes))
+    return Erreur(
+        422,
+        f"dossier_invalide_{origine}",
+        f"Dossier refusé par le validateur ({origine}) :\n- " + "\n- ".join(problemes),
+    )
 
 
 def analyser(cas_id: str, facteurs: dict | None = None) -> dict:
@@ -224,8 +254,24 @@ def analyser(cas_id: str, facteurs: dict | None = None) -> dict:
 
 # ---------------------------------------------------------------- décisions (relecture du juriste)
 
-CHAMPS_DECISION = {"intitule", "juridiction", "formation", "ressort", "date", "numero", "publication", "dispositif",
-                   "issue", "textes", "remise_en_cause", "url", "validee", "facteurs", "determinants", "preuves"}
+CHAMPS_DECISION = {
+    "intitule",
+    "juridiction",
+    "formation",
+    "ressort",
+    "date",
+    "numero",
+    "publication",
+    "dispositif",
+    "issue",
+    "textes",
+    "remise_en_cause",
+    "url",
+    "validee",
+    "facteurs",
+    "determinants",
+    "preuves",
+}
 
 
 def modifier_decision(decision_id: str, champs: dict) -> dict:
@@ -241,8 +287,12 @@ def modifier_decision(decision_id: str, champs: dict) -> dict:
     essai = {
         "meta": {"version_format": VERSION_FORMAT, "dossier_id": "verification", "simulation": False},
         "grille": g,
-        "cas": {"id": "verification", "description": "", "ressort": None,
-                "facteurs": {f["id"]: None for f in g["facteurs"]}},
+        "cas": {
+            "id": "verification",
+            "description": "",
+            "ressort": None,
+            "facteurs": {f["id"]: None for f in g["facteurs"]},
+        },
         "decisions": [{**fiche, "validee": True}],
         "parametres": {**PARAMETRES, "date_reference": datetime.now(PARIS).date().isoformat()},
         "resultat": None,

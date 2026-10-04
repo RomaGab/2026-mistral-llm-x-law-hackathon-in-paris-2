@@ -55,6 +55,20 @@ export function outcomeLabel(value: boolean, labels: { si_vrai: string; si_faux:
   return ({ Salariat: "Employment", Indépendance: "Independence" } as Record<string, string>)[label] ?? label;
 }
 
+// French citations rendered in English: court, month and number sign. The case-law reference itself is unchanged.
+const courtCopy: [RegExp, string][] = [
+  [/^Cass\. soc\./, "Supreme Court"],
+  [/^Cass\. com\./, "Supreme Court (Commercial)"],
+  [/^CA ([A-ZÀ-Ý][\w-]+)/, "$1 Appeal"],
+];
+const monthCopy: Record<string, string> = {
+  "janv.": "Jan.", "févr.": "Feb.", "mars": "Mar.", "avr.": "Apr.", "avril": "Apr.", "mai": "May", "juin": "Jun.",
+  "juil.": "Jul.", "juillet": "Jul.", "août": "Aug.", "sept.": "Sep.", "oct.": "Oct.", "nov.": "Nov.", "déc.": "Dec.",
+};
+
 export function decisionLabel(title: string) {
-  return title.replace("[FICTIF] ", "").replace("Cass. soc.", "Supreme Court").replace("CA Paris", "Paris Appeal").replace("CA Lyon", "Lyon Appeal");
+  let label = title.replace("[FICTIF] ", "");
+  for (const [pattern, english] of courtCopy) label = label.replace(pattern, english);
+  label = label.replace(/(\d{1,2}) (janv\.|févr\.|mars|avr\.|avril|mai|juin|juil\.|juillet|août|sept\.|oct\.|nov\.|déc\.) (\d{4})/, (_, day, month, year) => `${day} ${monthCopy[month]} ${year}`);
+  return label.replace(/n° /g, "No. ");
 }

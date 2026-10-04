@@ -8,7 +8,7 @@ import type { DashboardDossier } from "@/types/dashboard";
 import { AppHeader } from "@/components/ui/app-header";
 import { DashboardWorkspace } from "@/components/dashboard/dashboard-workspace";
 import { analyseCase, ApiError, createCase, uploadDocument } from "@/lib/api/client";
-import { getPreparationPreviewSteps } from "@/mocks/case-preparation";
+import { preparationSteps } from "@/lib/intake/preparation-steps";
 
 import { CasePreparation } from "./case-preparation";
 import { DocumentDropzone } from "./document-dropzone";
@@ -276,7 +276,7 @@ export function IntakeWorkspace() {
                 if (event.target === event.currentTarget && phase === "returning") setPhase("dashboard");
               }}
             >
-              <CasePreparation steps={getPreparationPreviewSteps(draft.documents.length > 0)} currentStep={step} />
+              <CasePreparation steps={preparationSteps(draft.documents.length > 0)} currentStep={step} />
             </div>
           )}
         </div>

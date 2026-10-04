@@ -1,10 +1,9 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef } from "react";
 import { FiAlignLeft, FiClipboard, FiFileText, FiHelpCircle, FiMessageSquare, FiSearch } from "react-icons/fi";
 
 import { BrandMark } from "@/components/ui/brand-mark";
-import { getPreparationPreviewSteps, PREPARATION_PREVIEW_MS } from "@/mocks/case-preparation";
 import type { CasePreparationStep } from "@/types/case-intake";
 
 import styles from "./case-preparation.module.css";
@@ -72,20 +71,4 @@ export function CasePreparation({ steps, currentStep }: CasePreparationProps) {
       <p className={styles.srOnly} role="status" aria-atomic="true">{steps[currentStep]?.label}</p>
     </div>
   );
-}
-
-export function CasePreparationPreview({ hasDocuments }: { hasDocuments: boolean }) {
-  const steps = getPreparationPreviewSteps(hasDocuments);
-  const [currentStep, setCurrentStep] = useState(0);
-  const stepCount = steps.length;
-
-  useEffect(() => {
-    const timers = Array.from({ length: stepCount - 1 }, (_, index) => window.setTimeout(
-      () => setCurrentStep(index + 1),
-      (index + 1) * PREPARATION_PREVIEW_MS / stepCount,
-    ));
-    return () => timers.forEach((timer) => window.clearTimeout(timer));
-  }, [stepCount]);
-
-  return <CasePreparation steps={steps} currentStep={currentStep} />;
 }

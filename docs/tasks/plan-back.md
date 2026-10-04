@@ -1,6 +1,6 @@
 # Plan : Back Distinguo
 
-Spec validé : [SPEC-back.md](../SPEC-back.md). Tâches détaillées (critères, vérifs, fichiers) : [todo.md](todo.md).
+Spec validé : [spec-back.md](../spec-back.md). Tâches détaillées (critères, vérifs, fichiers) : [todo-back.md](todo-back.md).
 
 ## Vue d'ensemble
 

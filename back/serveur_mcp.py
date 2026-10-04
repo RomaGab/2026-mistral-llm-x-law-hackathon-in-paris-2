@@ -1,10 +1,11 @@
-"""Serveur MCP « pivot » pour l'agent Mistral (Le Chat). Cf. SPEC-back.md, « Outils MCP », et prompt_agent.md.
+"""Serveur MCP « pivot » pour l'agent Mistral (Le Chat). Cf. docs/spec-back.md, « Outils MCP », et prompt_agent.md.
 
     uv run --env-file .env python -m back.serveur_mcp          # → http://127.0.0.1:8001/mcp
 
 Les outils appellent service.py directement et renvoient un RÉSUMÉ (libellés, pourcentages entiers),
 pas le dossier complet : le LLM extrait, le code décide. Tout chiffre vient de `resultat`.
 """
+
 from mcp.server.mcpserver import MCPServer
 from mcp.server.mcpserver.exceptions import ToolError
 
@@ -48,9 +49,12 @@ def resumer(dossier: dict) -> dict:
     analyse = r["facteurs"]
 
     def fait(f: str) -> dict:
-        return {"id": f, "libelle": libelle[f],
-                "probabilite_salariat_si_oui": _pct(analyse[f]["probabilite_si_vrai"]),
-                "probabilite_salariat_si_non": _pct(analyse[f]["probabilite_si_faux"])}
+        return {
+            "id": f,
+            "libelle": libelle[f],
+            "probabilite_salariat_si_oui": _pct(analyse[f]["probabilite_si_vrai"]),
+            "probabilite_salariat_si_non": _pct(analyse[f]["probabilite_si_faux"]),
+        }
 
     manquants = [f for f in r["pivots"] if analyse[f]["type"] == "a_documenter"]
     leviers = []
@@ -79,32 +83,54 @@ def resumer(dossier: dict) -> dict:
             "nombre": sum(1 for x in r["decisions"] if x["retenue"]),
             "majeure": [intitule[i] for i in maj["decisions"]],
         },
-        "decisions_ecartees": [{"intitule": intitule[x["id"]], "motif": x["motif_exclusion"]}
-                               for x in r["decisions"] if not x["retenue"]],
+        "decisions_ecartees": [
+            {"intitule": intitule[x["id"]], "motif": x["motif_exclusion"]} for x in r["decisions"] if not x["retenue"]
+        ],
         "pivots": [fait(f) for f in r["pivots"]],
         "pivots_combines": [
-            {"faits": [{"id": f, "libelle": libelle[f], "valeur": _oui_non(v)} for f, v in zip(c["facteurs"], c["valeurs"])],
-             "probabilite_salariat": _pct(c["probabilite_si"])}
+            {
+                "faits": [
+                    {"id": f, "libelle": libelle[f], "valeur": _oui_non(v)} for f, v in zip(c["facteurs"], c["valeurs"])
+                ],
+                "probabilite_salariat": _pct(c["probabilite_si"]),
+            }
             for c in r["pivots_combines"]
         ],
-        "exception": None if exception is None else {
+        "exception": None
+        if exception is None
+        else {
             "libelle": issue_libelle[exception["issue"]],
             "probabilite": _pct(exception["probabilite"]),
-            "conditions": [{"id": c["facteur"], "libelle": libelle[c["facteur"]], "valeur": _oui_non(c["valeur"]),
-                            "probabilite_salariat": _pct(c["probabilite_si"])} for c in exception["conditions"]],
+            "conditions": [
+                {
+                    "id": c["facteur"],
+                    "libelle": libelle[c["facteur"]],
+                    "valeur": _oui_non(c["valeur"]),
+                    "probabilite_salariat": _pct(c["probabilite_si"]),
+                }
+                for c in exception["conditions"]
+            ],
             "decision_reference": intitule.get(exception["decision_reference"]),
         },
-        "leviers": [{"id": f, "libelle": libelle[f], "valeur_actuelle": _oui_non(cas[f]),
-                     "valeur_testee": _oui_non(not cas[f]),
-                     "probabilite_salariat": _pct(nouveau), "indice_liceite": _pct(1 - nouveau)}
-                    for _, f, nouveau in leviers[:3]],
+        "leviers": [
+            {
+                "id": f,
+                "libelle": libelle[f],
+                "valeur_actuelle": _oui_non(cas[f]),
+                "valeur_testee": _oui_non(not cas[f]),
+                "probabilite_salariat": _pct(nouveau),
+                "indice_liceite": _pct(1 - nouveau),
+            }
+            for _, f, nouveau in leviers[:3]
+        ],
         "avertissements": r["avertissements"],
     }
 
 
 @mcp.tool()
-def pivot_structurer_cas(description: str, pieces: list[str] | None = None, ressort: str | None = None,
-                         pays: str | None = None) -> dict:
+def pivot_structurer_cas(
+    description: str, pieces: list[str] | None = None, ressort: str | None = None, pays: str | None = None
+) -> dict:
     """Crée le cas : extrait les faits (Oui / Non / Inconnu, avec l'extrait qui les justifie) de la description
     et des pièces. `pieces` : un texte par pièce, passages recopiés MOT POUR MOT (le moteur ne voit pas les fichiers).
     `ressort` : cour d'appel du client, ex. « CA Paris ». `pays` : système juridique du client (« France » par défaut ;
@@ -114,10 +140,20 @@ def pivot_structurer_cas(description: str, pieces: list[str] | None = None, ress
     preuves = cas.get("preuves", {})
     return {
         "cas_id": cas["id"],
-        "faits": [{"id": f["id"], "libelle": f["libelle"], "valeur": _oui_non(cas["facteurs"][f["id"]]),
-                   "extrait": (preuves.get(f["id"]) or {}).get("extrait")} for f in g],
-        "a_confirmer": [{"id": f["id"], "libelle": f["libelle"], "question": f["question"]}
-                        for f in g if f["id"] in cas["a_confirmer"]],
+        "faits": [
+            {
+                "id": f["id"],
+                "libelle": f["libelle"],
+                "valeur": _oui_non(cas["facteurs"][f["id"]]),
+                "extrait": (preuves.get(f["id"]) or {}).get("extrait"),
+            }
+            for f in g
+        ],
+        "a_confirmer": [
+            {"id": f["id"], "libelle": f["libelle"], "question": f["question"]}
+            for f in g
+            if f["id"] in cas["a_confirmer"]
+        ],
     }
 
 
@@ -128,11 +164,25 @@ def pivot_etat_du_droit() -> dict:
     sens = {True: g["issue"]["si_vrai"], False: g["issue"]["si_faux"], None: "neutre"}
     return {
         "question": g["question"],
-        "grille": [{"id": f["id"], "libelle": f["libelle"], "question": f["question"],
-                    "sens": sens[f["oriente"]], "importance": f["importance"]} for f in g["facteurs"]],
-        "corpus": [{"intitule": d["intitule"], "formation": d["formation"],
-                    "issue": g["issue"]["si_vrai"] if d["issue"] else g["issue"]["si_faux"]}
-                   for d in service.lister("fiches") if d.get("validee") is True],
+        "grille": [
+            {
+                "id": f["id"],
+                "libelle": f["libelle"],
+                "question": f["question"],
+                "sens": sens[f["oriente"]],
+                "importance": f["importance"],
+            }
+            for f in g["facteurs"]
+        ],
+        "corpus": [
+            {
+                "intitule": d["intitule"],
+                "formation": d["formation"],
+                "issue": g["issue"]["si_vrai"] if d["issue"] else g["issue"]["si_faux"],
+            }
+            for d in service.lister("fiches")
+            if d.get("validee") is True
+        ],
     }
 
 

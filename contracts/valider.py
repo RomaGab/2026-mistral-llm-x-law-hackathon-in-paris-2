@@ -6,6 +6,7 @@ ou, depuis Python :
     from contracts.valider import erreurs_dossier
     problemes = erreurs_dossier(dossier)   # liste vide = dossier valide
 """
+
 import json
 import sys
 from pathlib import Path
@@ -15,7 +16,7 @@ from jsonschema.exceptions import best_match
 
 SCHEMA = json.loads((Path(__file__).parent / "dossier.schema.json").read_text(encoding="utf-8"))
 TOL = 0.011  # tolérance d'arrondi (probabilités à 2 décimales)
-EPS = 1e-9   # seuils (pivot, sensible) : comparés sur les valeurs arrondies
+EPS = 1e-9  # seuils (pivot, sensible) : comparés sur les valeurs arrondies
 
 
 def erreurs_dossier(d: dict) -> list[str]:
@@ -137,16 +138,22 @@ def erreurs_dossier(d: dict) -> list[str]:
         if v is not None:
             cote = "vrai" if v else "faux"
             if abs(a[f"probabilite_si_{cote}"] - p) > TOL:
-                errs.append(f"{w}.probabilite_si_{cote} : doit valoir prediction.probabilite (c'est la valeur actuelle)")
+                errs.append(
+                    f"{w}.probabilite_si_{cote} : doit valoir prediction.probabilite (c'est la valeur actuelle)"
+                )
             if sorted(a[f"ecartees_si_{cote}"]) != sorted(exclues):
                 errs.append(f"{w}.ecartees_si_{cote} : doit être la liste actuelle des décisions écartées")
         if imp.get(f) == 0:
             if a["niveau"] != "neutralise" or a["est_pivot"] or a["contribution"] != 0 or ecart[f] > TOL:
-                errs.append(f"{w} : facteur neutralisé (niveau neutralise, pas pivot, contribution 0, sans effet sur P)")
+                errs.append(
+                    f"{w} : facteur neutralisé (niveau neutralise, pas pivot, contribution 0, sans effet sur P)"
+                )
             continue
         attendu_pivot = franchit(pv) or franchit(pf)
         if a["est_pivot"] != attendu_pivot:
-            errs.append(f"{w}.est_pivot : pivot si une inversion fait passer P de l'autre côté de 0,5 avec une marge de {marge}")
+            errs.append(
+                f"{w}.est_pivot : pivot si une inversion fait passer P de l'autre côté de 0,5 avec une marge de {marge}"
+            )
         if a["niveau"] == "neutralise" or (a["niveau"] == "pivot") != a["est_pivot"]:
             errs.append(f"{w}.niveau : incohérent avec est_pivot / importance")
         elif a["niveau"] == "sensible" and ecart[f] < seuil_s - EPS:
@@ -209,8 +216,10 @@ def erreurs_dossier(d: dict) -> list[str]:
     seuil_exc = params.get("seuil_exception", 0.15)
     exception_attendue = bool(pivots or r["pivots_combines"] or (1 - maj["probabilite"]) >= seuil_exc - EPS)
     if (exc is not None) != exception_attendue:
-        errs.append("exception : présente si et seulement s'il y a des pivots, des pivots combinés, "
-                    f"ou si l'issue minoritaire atteint seuil_exception ({seuil_exc})")
+        errs.append(
+            "exception : présente si et seulement s'il y a des pivots, des pivots combinés, "
+            f"ou si l'issue minoritaire atteint seuil_exception ({seuil_exc})"
+        )
 
     if exc is not None:
         for c in exc["conditions"]:

@@ -1,9 +1,8 @@
 import type { CasePreparationStep } from "@/types/case-intake";
 
-// Illustrative progress until backend events drive the preparation screen.
-export const PREPARATION_PREVIEW_MS = 3000;
-
-export function getPreparationPreviewSteps(hasDocuments: boolean): CasePreparationStep[] {
+// Steps shown while a case is prepared; the intake advances them as each backend call completes
+// (documents uploaded → facts extracted → analysis returned).
+export function preparationSteps(hasDocuments: boolean): CasePreparationStep[] {
   return [
     { id: "question", kind: "question", label: "Reading your question…" },
     hasDocuments

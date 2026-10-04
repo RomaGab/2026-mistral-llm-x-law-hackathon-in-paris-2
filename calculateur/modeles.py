@@ -7,6 +7,7 @@
 Les exclusions sont recalculées pour chaque jeu de faits : changer un fait peut écarter
 ou réintégrer des décisions. Aucun aléa : même entrée, même sortie.
 """
+
 import math
 from collections import defaultdict
 
@@ -15,8 +16,10 @@ from scipy.stats import beta, norm
 
 from .precedents import Grille, detail_poids, exclusion, poids, proximite
 
-SIGMA_DEFAUT = 0.3   # écart-type de l'a priori : confiance dans la grille du juriste (choisi par validation croisée sur le corpus)
-KAPPA_DEFAUT = 2.0   # force probante d'une décision dans le vote pondéré
+SIGMA_DEFAUT = (
+    0.3  # écart-type de l'a priori : confiance dans la grille du juriste (choisi par validation croisée sur le corpus)
+)
+KAPPA_DEFAUT = 2.0  # force probante d'une décision dans le vote pondéré
 ECHELLE_A_PRIORI = 1.0
 PLAFOND_JURIDICTION = 1.5
 
@@ -54,11 +57,13 @@ class LogistiqueBayesienne(_Base):
     def __init__(self, dossier: dict, g: Grille):
         super().__init__(dossier, g)
         sigma = float(dossier["parametres"].get("sigma_a_priori", SIGMA_DEFAUT))
-        self.mu = np.array([0.0] + [(1.0 if g.oriente[f] else -1.0) * g.importance[f] * ECHELLE_A_PRIORI
-                                    for f in g.actifs])
+        self.mu = np.array(
+            [0.0] + [(1.0 if g.oriente[f] else -1.0) * g.importance[f] * ECHELLE_A_PRIORI for f in g.actifs]
+        )
         self.prec = np.full(len(self.mu), 1.0 / sigma**2)
-        self.X = np.array([[1.0] + [code(d["facteurs"][f]) for f in g.actifs] for d in self.decisions]
-                          ).reshape(-1, len(self.mu))
+        self.X = np.array([[1.0] + [code(d["facteurs"][f]) for f in g.actifs] for d in self.decisions]).reshape(
+            -1, len(self.mu)
+        )
         self.y = np.array([1.0 if d["issue"] else 0.0 for d in self.decisions])
         self.w = np.array(self.poids)
         self._ajustements: dict[tuple, tuple] = {}
@@ -104,8 +109,9 @@ class VotePondere(_Base):
 
     def _predire(self, faits: dict) -> dict:
         exclues = self.exclues(faits)
-        scores = [(d, proximite(faits, d, self.g) * w)
-                  for d, w in zip(self.decisions, self.poids) if d["id"] not in exclues]
+        scores = [
+            (d, proximite(faits, d, self.g) * w) for d, w in zip(self.decisions, self.poids) if d["id"] not in exclues
+        ]
         par_jur = defaultdict(float)
         for d, s in scores:
             par_jur[d["juridiction"]] += s

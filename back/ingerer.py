@@ -1,7 +1,8 @@
 """Ingestion en lot des décisions d'un dossier (format Legora) → data/fiches/, toujours validee: false.
 
-    uv run --env-file .env python -m back.ingerer dataset-legora/sources_jurisprudence_plateformes/sources_brutes [--limite N]
+uv run --env-file .env python -m back.ingerer dataset-legora/sources_jurisprudence_plateformes/sources_brutes [--limite N]
 """
+
 import argparse
 import json
 import re
@@ -48,7 +49,9 @@ def ingerer(racine, limite: int | None = None, etrangeres: bool = False) -> list
         if chemin.name.lower().startswith("readme"):
             rapport.append(f"ignoré      {rel} (README)")
         elif notes and not etrangeres and not str(notes.get("juridiction_pays", "")).startswith("France"):
-            rapport.append(f"sauté       {rel} : juridiction étrangère ({notes['juridiction_pays']}) — option --etrangeres")
+            rapport.append(
+                f"sauté       {rel} : juridiction étrangère ({notes['juridiction_pays']}) — option --etrangeres"
+            )
         elif service.existe("fiches", id_):
             rapport.append(f"déjà fait   {rel}")
         elif limite is not None and appels >= limite:
@@ -71,8 +74,11 @@ def main() -> int:
     parser = argparse.ArgumentParser(prog="python -m back.ingerer", description=__doc__.splitlines()[0])
     parser.add_argument("dossier", type=Path)
     parser.add_argument("--limite", type=int, help="nombre maximal d'appels à Mistral")
-    parser.add_argument("--etrangeres", action="store_true",
-                        help="extraire aussi les décisions étrangères (pondérées selon leur système juridique)")
+    parser.add_argument(
+        "--etrangeres",
+        action="store_true",
+        help="extraire aussi les décisions étrangères (pondérées selon leur système juridique)",
+    )
     args = parser.parse_args()
     rapport = ingerer(args.dossier, args.limite, args.etrangeres)
     print("\n".join(rapport))

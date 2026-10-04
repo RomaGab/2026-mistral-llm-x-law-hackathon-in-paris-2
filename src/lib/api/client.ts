@@ -1,6 +1,6 @@
 import type { DashboardDossier, FactValue } from "@/types/dashboard";
 
-// Backend REST API (see distinguo-architecture-contrats.md §7). Inlined at build time.
+// Backend REST API (see docs/architecture-contrats.md §7). Inlined at build time.
 export const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
 export class ApiError extends Error {

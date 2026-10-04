@@ -6,6 +6,7 @@ Pour chaque décision : on la retire du dossier, on prend ses faits comme cas, e
 son issue avec les autres décisions. Limite à garder en tête : les faits d'une décision
 viennent de sa propre motivation, ce qui avantage tous les modèles (fuite).
 """
+
 import argparse
 import copy
 import json
@@ -31,9 +32,13 @@ def _predictions(dossier: dict, params: dict) -> list[tuple[float, bool, bool]]:
     decisions = dossier["decisions"]
     for k, dec in enumerate(decisions):
         sous = copy.deepcopy(dossier)
-        sous["decisions"] = decisions[:k] + decisions[k + 1:]
-        sous["cas"] = {"id": f"loo_{dec['id']}", "description": "", "ressort": dec["ressort"],
-                       "facteurs": dict(dec["facteurs"])}
+        sous["decisions"] = decisions[:k] + decisions[k + 1 :]
+        sous["cas"] = {
+            "id": f"loo_{dec['id']}",
+            "description": "",
+            "ressort": dec["ressort"],
+            "facteurs": dict(dec["facteurs"]),
+        }
         sous["parametres"] = {**dossier["parametres"], **params}
         pr = creer_modele(sous, Grille(sous["grille"])).predire(sous["cas"]["facteurs"])
         p, lo, hi = r2(pr["p"]), r2(pr["lo"]), r2(pr["hi"])
@@ -45,7 +50,7 @@ def _majoritaire(dossier: dict) -> list[tuple[float, bool, bool]]:
     decisions = dossier["decisions"]
     sortie = []
     for k, dec in enumerate(decisions):
-        autres = decisions[:k] + decisions[k + 1:]
+        autres = decisions[:k] + decisions[k + 1 :]
         p = sum(a["issue"] for a in autres) / len(autres) if autres else 0.5
         sortie.append((r2(p), False, dec["issue"]))
     return sortie
@@ -75,15 +80,20 @@ def evaluer(dossier: dict) -> list[tuple[str, dict]]:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(prog="python -m calculateur.evaluation", description=__doc__,
-                                     formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser = argparse.ArgumentParser(
+        prog="python -m calculateur.evaluation",
+        description=__doc__,
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
     parser.add_argument("dossier", type=Path)
     args = parser.parse_args()
     lignes = evaluer(json.loads(args.dossier.read_text(encoding="utf-8")))
 
     print(f"{'modèle':22s} {'justes':>8s} {'nets':>6s} {'justes/nets':>12s} {'brier':>7s}")
     for nom, s in lignes:
-        print(f"{nom:22s} {s['justes']:>4d}/{s['n']:<3d} {s['nets']:>6d} {s['justes_nets']:>7d}/{s['nets']:<4d} {s['brier']:>7.3f}")
+        print(
+            f"{nom:22s} {s['justes']:>4d}/{s['n']:<3d} {s['nets']:>6d} {s['justes_nets']:>7d}/{s['nets']:<4d} {s['brier']:>7.3f}"
+        )
     logistiques = [(nom, s) for nom, s in lignes if nom.startswith("logistique")]
     meilleur = min(logistiques, key=lambda x: x[1]["brier"])
     print(f"\nσ recommandé (meilleur Brier) : {meilleur[0]}")

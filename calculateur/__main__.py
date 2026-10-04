@@ -1,4 +1,5 @@
 """python -m calculateur entree.json [-o sortie.json] : complète un dossier sans passer par le back."""
+
 import argparse
 import json
 import sys

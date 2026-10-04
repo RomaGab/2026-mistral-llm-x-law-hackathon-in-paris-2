@@ -1,5 +1,6 @@
 """Mistral : texte → faits. Seul module qui parle au réseau. On ne croit jamais la sortie du LLM :
-tout passe par normaliser_faits / normaliser_decision avant d'être stocké (cf. SPEC-back.md)."""
+tout passe par normaliser_faits / normaliser_decision avant d'être stocké (cf. docs/spec-back.md)."""
+
 import base64
 import io
 import json
@@ -25,13 +26,13 @@ PUBLICATIONS = {"R", "B", "inedit", "na"}
 MENTION_COUR = re.compile(r"(?:FP|FS|F)(?:[-+][A-Z])+")  # mention brute de la Cour, ex. "F-D", "FS-B", "FP-P+B+R+I"
 DISPOSITIFS = {"cassation", "rejet", "confirmation", "infirmation", "autre"}
 GUILLEMETS = {'"': '"', "«": "»", "“": "”"}  # ouvrant → fermant
-TYPO = str.maketrans({q: "'" for q in "\"’‘«»“”"} | {"…": "..."})  # tous les guillemets se valent
+TYPO = str.maketrans({q: "'" for q in '"’‘«»“”'} | {"…": "..."})  # tous les guillemets se valent
 ELLIPSE = re.compile(r"\[\s*\.\.\.\s*\]|\.\.\.")
 PUCE = re.compile(r"(?m)^\s*[-•*]\s+")  # une citation peut enjamber deux lignes à puces
 
 
 # Notre abonnement a une limite de débit serrée : le SDK réessaie sur 429 et 5xx (2 s, 4 s, 8 s…).
-ATTENTE_LOT_MS = 120_000        # ingestion en lot : on peut attendre 2 min
+ATTENTE_LOT_MS = 120_000  # ingestion en lot : on peut attendre 2 min
 ATTENTE_INTERACTIVE_MS = 25_000  # un utilisateur attend devant l'écran : on abandonne vite, avec un message clair
 
 
@@ -45,7 +46,9 @@ def _client(attente_max_ms: int = ATTENTE_LOT_MS) -> Mistral:
 
 def _message_panne(quoi: str, e: Exception) -> str:
     if "429" in str(e):
-        return f"{quoi} : limite de débit Mistral atteinte (429). Réessayez dans une minute, ou déposez un fichier .txt."
+        return (
+            f"{quoi} : limite de débit Mistral atteinte (429). Réessayez dans une minute, ou déposez un fichier .txt."
+        )
     return f"{quoi} : {e}"
 
 
@@ -77,8 +80,10 @@ def ocr(octets: bytes, mime: str) -> str:
     """PDF ou DOCX → texte (markdown) via Mistral OCR. Toute panne donne un 502."""
     url = f"data:{mime};base64,{base64.b64encode(octets).decode()}"
     try:
-        r = _client(ATTENTE_INTERACTIVE_MS).ocr.process(model=os.environ.get("MISTRAL_OCR", "mistral-ocr-latest"),
-                                  document={"type": "document_url", "document_url": url})
+        r = _client(ATTENTE_INTERACTIVE_MS).ocr.process(
+            model=os.environ.get("MISTRAL_OCR", "mistral-ocr-latest"),
+            document={"type": "document_url", "document_url": url},
+        )
         return "\n\n".join(page.markdown for page in r.pages)
     except Erreur:
         raise
@@ -233,7 +238,8 @@ def normaliser_decision(brut, texte: str, grille: list[dict], id_: str, pays: st
     ressort = brut.get("ressort") if isinstance(brut.get("ressort"), str) else None
     return {
         "id": id_,
-        "pays": pays or (brut["pays"].strip() if isinstance(brut.get("pays"), str) and brut["pays"].strip() else "France"),
+        "pays": pays
+        or (brut["pays"].strip() if isinstance(brut.get("pays"), str) and brut["pays"].strip() else "France"),
         "intitule": texte_requis("intitule"),
         "juridiction": texte_requis("juridiction"),
         "formation": formation,
@@ -243,14 +249,17 @@ def normaliser_decision(brut, texte: str, grille: list[dict], id_: str, pays: st
         "publication": _publication(brut.get("publication")),
         "dispositif": brut.get("dispositif") if brut.get("dispositif") in DISPOSITIFS else None,
         "issue": brut["issue"],
-        "textes": [t for t in brut.get("textes") or [] if isinstance(t, str)] if isinstance(brut.get("textes"), list) else [],
+        "textes": [t for t in brut.get("textes") or [] if isinstance(t, str)]
+        if isinstance(brut.get("textes"), list)
+        else [],
         "remise_en_cause": None,  # seul le juriste le renseigne
         "url": None,
         "validee": False,  # seul le juriste valide
         "facteurs": facteurs,
         # ordre de la grille, sans doublon ; un motif décisif est connu ET cité (extrait vérifié)
         "determinants": [
-            f["id"] for f in grille
+            f["id"]
+            for f in grille
             if f["id"] in cites and facteurs[f["id"]] is not None and (preuves.get(f["id"]) or {}).get("extrait")
         ],
         "preuves": preuves,
@@ -291,7 +300,10 @@ Identifiants et questions :
             + json.dumps(notes, ensure_ascii=False, indent=1)
         )
     return [
-        {"role": "system", "content": "Tu es un juriste qui fiche des décisions de justice. Tu réponds uniquement en JSON."},
+        {
+            "role": "system",
+            "content": "Tu es un juriste qui fiche des décisions de justice. Tu réponds uniquement en JSON.",
+        },
         {"role": "user", "content": f"{consignes}\n\n<decision>\n{texte}\n</decision>"},
     ]
 
@@ -316,7 +328,10 @@ Réponds uniquement par un objet JSON {{"faits": {{...}}}} avec, pour CHAQUE ide
 Identifiants et questions :
 {questions}"""
     return [
-        {"role": "system", "content": "Tu es un juriste qui qualifie les faits d'un dossier client. Tu réponds uniquement en JSON."},
+        {
+            "role": "system",
+            "content": "Tu es un juriste qui qualifie les faits d'un dossier client. Tu réponds uniquement en JSON.",
+        },
         {"role": "user", "content": f"{consignes}\n\n<dossier>\n{texte}\n</dossier>"},
     ]
 

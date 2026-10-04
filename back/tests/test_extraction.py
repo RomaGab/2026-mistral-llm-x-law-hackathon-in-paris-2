@@ -47,7 +47,11 @@ def decision_brute(**changements):
 
 
 def test_valeur_non_booleenne_devient_null():
-    brut = {"geolocalisation_suivi": {"valeur": "oui"}, "tarif_impose": {"valeur": 1}, "liberte_horaires": {"valeur": "true"}}
+    brut = {
+        "geolocalisation_suivi": {"valeur": "oui"},
+        "tarif_impose": {"valeur": 1},
+        "liberte_horaires": {"valeur": "true"},
+    }
 
     facteurs, _ = extraction.normaliser_faits(brut, TEXTE, GRILLE)
 
@@ -64,7 +68,9 @@ def test_facteur_manquant_vaut_null_et_tous_les_facteurs_sont_presents():
 
 
 def test_cle_hors_grille_ignoree():
-    facteurs, preuves = extraction.normaliser_faits({"facteur_invente": {"valeur": True, "extrait": "x"}}, TEXTE, GRILLE)
+    facteurs, preuves = extraction.normaliser_faits(
+        {"facteur_invente": {"valeur": True, "extrait": "x"}}, TEXTE, GRILLE
+    )
 
     assert "facteur_invente" not in facteurs
     assert "facteur_invente" not in preuves
@@ -84,13 +90,21 @@ def test_extrait_retrouve_malgre_espaces_et_apostrophes_typographiques():
 
     _, preuves = extraction.normaliser_faits(brut, texte, GRILLE)
 
-    assert preuves["service_organise"] == {"extrait": "ne pouvait refuser l'offre", "confiance": 0.9, "source": "extraction"}
+    assert preuves["service_organise"] == {
+        "extrait": "ne pouvait refuser l'offre",
+        "confiance": 0.9,
+        "source": "extraction",
+    }
 
 
 def test_citation_entre_guillemets_suivie_d_un_commentaire_nettoyee():
-    brut = {"geolocalisation_suivi": {
-        "valeur": True, "confiance": 0.9,
-        "extrait": '"système de géolocalisation permettant le suivi en temps réel" (sous-entendu : contrôle)'}}
+    brut = {
+        "geolocalisation_suivi": {
+            "valeur": True,
+            "confiance": 0.9,
+            "extrait": '"système de géolocalisation permettant le suivi en temps réel" (sous-entendu : contrôle)',
+        }
+    }
 
     _, preuves = extraction.normaliser_faits(brut, TEXTE, GRILLE)
 
@@ -99,8 +113,13 @@ def test_citation_entre_guillemets_suivie_d_un_commentaire_nettoyee():
 
 
 def test_citation_avec_ellipses_acceptee_si_chaque_fragment_est_dans_le_texte():
-    brut = {"geolocalisation_suivi": {"valeur": True, "confiance": 0.9,
-                                      "extrait": "La société disposait [...] de la position du coursier"}}
+    brut = {
+        "geolocalisation_suivi": {
+            "valeur": True,
+            "confiance": 0.9,
+            "extrait": "La société disposait [...] de la position du coursier",
+        }
+    }
 
     _, preuves = extraction.normaliser_faits(brut, TEXTE, GRILLE)
 
@@ -108,8 +127,13 @@ def test_citation_avec_ellipses_acceptee_si_chaque_fragment_est_dans_le_texte():
 
 
 def test_citation_avec_ellipses_refusee_si_un_fragment_est_invente():
-    brut = {"geolocalisation_suivi": {"valeur": True, "confiance": 0.9,
-                                      "extrait": "La société disposait [...] d'un algorithme de tarification"}}
+    brut = {
+        "geolocalisation_suivi": {
+            "valeur": True,
+            "confiance": 0.9,
+            "extrait": "La société disposait [...] d'un algorithme de tarification",
+        }
+    }
 
     _, preuves = extraction.normaliser_faits(brut, TEXTE, GRILLE)
 
@@ -118,7 +142,9 @@ def test_citation_avec_ellipses_refusee_si_un_fragment_est_invente():
 
 def test_casse_et_type_de_guillemets_ignores():
     texte = 'Un système de "strikes" était mis en place.'
-    brut = {"penalites_bonus": {"valeur": True, "confiance": 0.9, "extrait": "un système de 'strikes' était mis en place"}}
+    brut = {
+        "penalites_bonus": {"valeur": True, "confiance": 0.9, "extrait": "un système de 'strikes' était mis en place"}
+    }
 
     _, preuves = extraction.normaliser_faits(brut, texte, GRILLE)
 
@@ -127,8 +153,13 @@ def test_casse_et_type_de_guillemets_ignores():
 
 def test_citation_qui_enjambe_des_lignes_a_puces_acceptee():
     texte = "ELEMENTS :\n- Un système de strikes était mis en place.\n- L'accumulation entraînait la désactivation."
-    brut = {"sanction_deconnexion": {"valeur": True, "confiance": 1,
-                                     "extrait": "Un système de strikes était mis en place. L'accumulation entraînait la désactivation."}}
+    brut = {
+        "sanction_deconnexion": {
+            "valeur": True,
+            "confiance": 1,
+            "extrait": "Un système de strikes était mis en place. L'accumulation entraînait la désactivation.",
+        }
+    }
 
     _, preuves = extraction.normaliser_faits(brut, texte, GRILLE)
 
@@ -136,7 +167,9 @@ def test_citation_qui_enjambe_des_lignes_a_puces_acceptee():
 
 
 def test_extrait_introuvable_supprime_et_confiance_plafonnee():
-    brut = {"sanction_deconnexion": {"valeur": True, "extrait": "la plateforme désactive les comptes", "confiance": 0.95}}
+    brut = {
+        "sanction_deconnexion": {"valeur": True, "extrait": "la plateforme désactive les comptes", "confiance": 0.95}
+    }
 
     facteurs, preuves = extraction.normaliser_faits(brut, TEXTE, GRILLE)
 
@@ -190,7 +223,9 @@ def test_decision_normalisee_jamais_validee_ni_remise_en_cause():
 
 
 def test_determinants_null_hors_grille_ou_en_double_retires():
-    brut = decision_brute(determinants=["geolocalisation_suivi", "sanction_deconnexion", "invente", "geolocalisation_suivi", 3])
+    brut = decision_brute(
+        determinants=["geolocalisation_suivi", "sanction_deconnexion", "invente", "geolocalisation_suivi", 3]
+    )
 
     fiche = extraction.normaliser_decision(brut, TEXTE, GRILLE, "dec-1")
 
@@ -198,7 +233,9 @@ def test_determinants_null_hors_grille_ou_en_double_retires():
 
 
 def test_determinants_donnes_sous_forme_d_objets_acceptes():
-    brut = decision_brute(determinants=[{"identifiant": "geolocalisation_suivi", "extrait": "..."}, {"id": "liberte_horaires"}])
+    brut = decision_brute(
+        determinants=[{"identifiant": "geolocalisation_suivi", "extrait": "..."}, {"id": "liberte_horaires"}]
+    )
 
     fiche = extraction.normaliser_decision(brut, TEXTE, GRILLE, "dec-1")
 
@@ -206,7 +243,9 @@ def test_determinants_donnes_sous_forme_d_objets_acceptes():
 
 
 def test_determinant_sans_extrait_verifie_retire():
-    faits = decision_brute()["faits"] | {"tarif_impose": {"valeur": True, "extrait": "le prix est fixé par la plateforme"}}
+    faits = decision_brute()["faits"] | {
+        "tarif_impose": {"valeur": True, "extrait": "le prix est fixé par la plateforme"}
+    }
     brut = decision_brute(faits=faits, determinants=["geolocalisation_suivi", "tarif_impose"])
 
     fiche = extraction.normaliser_decision(brut, TEXTE, GRILLE, "dec-1")
@@ -217,8 +256,15 @@ def test_determinant_sans_extrait_verifie_retire():
 
 @pytest.mark.parametrize(
     "champ, valeur",
-    [("issue", "salariat"), ("issue", None), ("formation", "chambre sociale"), ("date", "28/11/2018"),
-     ("publication", "publié"), ("intitule", ""), ("juridiction", None)],
+    [
+        ("issue", "salariat"),
+        ("issue", None),
+        ("formation", "chambre sociale"),
+        ("date", "28/11/2018"),
+        ("publication", "publié"),
+        ("intitule", ""),
+        ("juridiction", None),
+    ],
 )
 def test_metadonnee_obligatoire_invalide_rejetee(champ, valeur):
     with pytest.raises(Erreur) as e:
@@ -228,8 +274,9 @@ def test_metadonnee_obligatoire_invalide_rejetee(champ, valeur):
     assert champ in e.value.message
 
 
-@pytest.mark.parametrize("mention, attendu", [("F-D", "inedit"), ("FS-D", "inedit"), ("FS-B", "B"),
-                                              ("FP-P+B+R+I", "R"), ("f-d", "inedit")])
+@pytest.mark.parametrize(
+    "mention, attendu", [("F-D", "inedit"), ("FS-D", "inedit"), ("FS-B", "B"), ("FP-P+B+R+I", "R"), ("f-d", "inedit")]
+)
 def test_mention_brute_de_publication_convertie(mention, attendu):
     fiche = extraction.normaliser_decision(decision_brute(publication=mention), TEXTE, GRILLE, "dec-1")
 
@@ -304,7 +351,9 @@ def test_echec_de_mistral_donne_502(monkeypatch, client):
 
 def test_extraire_decision_transmet_les_notes_et_normalise(monkeypatch):
     messages_recus = []
-    monkeypatch.setattr(extraction, "appeler_mistral", lambda m: messages_recus.append(m) or decision_brute(validee=True))
+    monkeypatch.setattr(
+        extraction, "appeler_mistral", lambda m: messages_recus.append(m) or decision_brute(validee=True)
+    )
 
     fiche = extraction.extraire_decision(TEXTE, "dec-1", notes={"fait_pivot_censure": "géolocalisation ET sanction"})
 
@@ -328,10 +377,15 @@ def dataset(tmp_path, monkeypatch):
     (racine / "02_UK" / "2021-02-19_UKSC5_Uber_BV_v_Aslam.txt").write_text("judgment", encoding="utf-8")
     (racine / "README.txt").write_text("contenu du dossier", encoding="utf-8")
     tableau = [
-        {"juridiction_pays": "France - Cour de cassation (Chambre sociale)", "fait_pivot_censure": "géoloc ET sanction",
-         "fichier_source_brute": "01_France/2018-11-28_Cass_Soc_17-20.079_TakeEatEasy.txt"},
-        {"juridiction_pays": "Royaume-Uni - UK Supreme Court",
-         "fichier_source_brute": "02_UK/2021-02-19_UKSC5_Uber_BV_v_Aslam.txt"},
+        {
+            "juridiction_pays": "France - Cour de cassation (Chambre sociale)",
+            "fait_pivot_censure": "géoloc ET sanction",
+            "fichier_source_brute": "01_France/2018-11-28_Cass_Soc_17-20.079_TakeEatEasy.txt",
+        },
+        {
+            "juridiction_pays": "Royaume-Uni - UK Supreme Court",
+            "fichier_source_brute": "02_UK/2021-02-19_UKSC5_Uber_BV_v_Aslam.txt",
+        },
     ]
     (racine / "00_Tableau_synthese_structure.json").write_text(json.dumps(tableau), encoding="utf-8")
     appels = []
@@ -391,7 +445,9 @@ def test_ingerer_avec_etrangeres_garde_le_pays(dataset):
     ingerer.ingerer(racine, etrangeres=True)
 
     anglaise = json.loads((data / "fiches" / "2021-02-19_uksc5_uber_bv_v_aslam.json").read_text(encoding="utf-8"))
-    francaise = json.loads((data / "fiches" / "2018-11-28_cass_soc_17-20-079_takeeateasy.json").read_text(encoding="utf-8"))
+    francaise = json.loads(
+        (data / "fiches" / "2018-11-28_cass_soc_17-20-079_takeeateasy.json").read_text(encoding="utf-8")
+    )
     assert anglaise["pays"] == "Royaume-Uni"
     assert francaise["pays"] == "France"
 
@@ -402,7 +458,9 @@ def test_pays_par_defaut_france():
 
 
 def test_limite_de_debit_donne_un_message_clair(monkeypatch):
-    monkeypatch.setattr(extraction, "_client", lambda *_: FauxClient(exception=RuntimeError("API error occurred: Status 429")))
+    monkeypatch.setattr(
+        extraction, "_client", lambda *_: FauxClient(exception=RuntimeError("API error occurred: Status 429"))
+    )
 
     with pytest.raises(Erreur) as e:
         extraction.appeler_mistral([{"role": "user", "content": "x"}], extraction.ATTENTE_INTERACTIVE_MS)

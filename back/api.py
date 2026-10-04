@@ -1,4 +1,5 @@
 """API REST pour le front (§7 du contrat). Lancer : uv run uvicorn back.api:app --reload --port 8000"""
+
 from typing import Annotated, Any
 
 from fastapi import FastAPI, File, Form, UploadFile
@@ -23,6 +24,7 @@ class CorpsCas(BaseModel):
     ressort: str | None = None
     pays: str | None = None  # « France » si absent
     document_ids: list[str] = []
+
 
 app = FastAPI(title="Pivot")
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])  # démo locale

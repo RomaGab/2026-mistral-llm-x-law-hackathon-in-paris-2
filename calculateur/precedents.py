@@ -2,6 +2,7 @@
 
 Tout est déterministe et ne dépend que du dossier (pas d'horloge, pas de réseau).
 """
+
 import math
 from datetime import date
 
@@ -11,13 +12,50 @@ PORTEE = {"R": 1.0, "B": 0.8, "inedit": 0.4, "na": 0.3}
 # ---- système juridique (v1.4) : coefficient MULTIPLICATIF sur le poids d'une décision
 PAYS_DEFAUT = "France"
 TRADITIONS = {
-    **dict.fromkeys(["Royaume-Uni", "États-Unis", "Australie", "Canada", "Irlande", "Nouvelle-Zélande", "Inde"], "common_law"),
-    **dict.fromkeys(["France", "Espagne", "Italie", "Pays-Bas", "Suisse", "Belgique", "Allemagne", "Portugal",
-                     "Luxembourg", "Autriche", "Brésil", "Chili", "Colombie", "Argentine", "Québec"], "civil_law"),
+    **dict.fromkeys(
+        ["Royaume-Uni", "États-Unis", "Australie", "Canada", "Irlande", "Nouvelle-Zélande", "Inde"], "common_law"
+    ),
+    **dict.fromkeys(
+        [
+            "France",
+            "Espagne",
+            "Italie",
+            "Pays-Bas",
+            "Suisse",
+            "Belgique",
+            "Allemagne",
+            "Portugal",
+            "Luxembourg",
+            "Autriche",
+            "Brésil",
+            "Chili",
+            "Colombie",
+            "Argentine",
+            "Québec",
+        ],
+        "civil_law",
+    ),
     "Union européenne": "union_europeenne",
 }
-MEMBRES_UE = {"France", "Espagne", "Italie", "Pays-Bas", "Belgique", "Allemagne", "Portugal", "Luxembourg", "Autriche", "Irlande"}
-ALIAS = {"USA": "États-Unis", "Etats-Unis": "États-Unis", "UK": "Royaume-Uni", "CJUE": "Union européenne", "UE": "Union européenne"}
+MEMBRES_UE = {
+    "France",
+    "Espagne",
+    "Italie",
+    "Pays-Bas",
+    "Belgique",
+    "Allemagne",
+    "Portugal",
+    "Luxembourg",
+    "Autriche",
+    "Irlande",
+}
+ALIAS = {
+    "USA": "États-Unis",
+    "Etats-Unis": "États-Unis",
+    "UK": "Royaume-Uni",
+    "CJUE": "Union européenne",
+    "UE": "Union européenne",
+}
 SYSTEME = {"meme_pays": 1.0, "droit_ue": 0.6, "meme_tradition": 0.35, "autre_tradition": 0.08}
 
 

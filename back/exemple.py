@@ -6,6 +6,7 @@ pour faire tourner le back et le calculateur en local sans clé Mistral.
 
 Refuse d'écrire dans data/ : aucune décision [FICTIF] ne doit entrer dans le vrai corpus.
 """
+
 import argparse
 import json
 import os

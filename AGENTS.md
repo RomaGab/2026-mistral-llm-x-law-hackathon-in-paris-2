@@ -55,7 +55,7 @@ The sample facts, cases, score, and interval are fixture data, not fixed product
 
 ## Types, mock data, and integration
 
-- Read `distinguo-architecture-contrats.md` for workflow and API behavior; `contracts/` is the source of truth. Preserve the shared schemas, examples, and calculator contracts.
+- Read `docs/architecture-contrats.md` for workflow and API behavior; `contracts/` is the source of truth. Preserve the shared schemas, examples, and calculator contracts.
 - Facts are `true`, `false`, or `null` (unknown). Follow factor labels and order from the grid. Render factor explanations from `resultat.facteurs`, ordered pivots from `resultat.pivots`, and combined scenarios from `resultat.pivots_combines`; never calculate these in the frontend.
 - Contract v1.3 adds optional decision explanations: `s_applique_a_fortiori`, `arguments_manquants`, and `arguments_contraires`. Render them when present and continue accepting v1.2 results. Use the returned interval level; the current default is 95%.
 - Toggle overrides request a simulation through `POST /cas/{id}/analyse`; permanent fact confirmation uses `PATCH /cas/{id}`. The frontend performs no prediction or pivot calculation.

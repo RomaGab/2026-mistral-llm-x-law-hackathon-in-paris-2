@@ -1,6 +1,6 @@
 # Tâches : Back Distinguo
 
-Spec : [SPEC-back.md](../SPEC-back.md) · Plan : [plan.md](plan.md).
+Spec : [spec-back.md](../spec-back.md) · Plan : [plan-back.md](plan-back.md).
 Vérification commune à chaque tâche : `uv run pytest` vert, et aucun dossier produit qui soit refusé par `valider.py`.
 
 ## Phase 1 : J1, socle, vraie décision, analyse

@@ -1,4 +1,5 @@
 """T5 (lecture TXT / PDF / DOCX) et T7 (dépôt de documents, création d'un cas). Mistral est simulé."""
+
 import io
 import zipfile
 
@@ -17,13 +18,23 @@ PIECE = "Contrat : le prix de chaque course est fixé par la plateforme."
 
 def reponse_cas(_messages, *_):
     """Ce que Mistral pourrait renvoyer pour un cas, avec une citation inventée à éliminer."""
-    return {"faits": {
-        "liberte_horaires": {"valeur": True, "extrait": "Les livreurs choisissent leurs créneaux", "confiance": 1},
-        "geolocalisation_suivi": {"valeur": True, "extrait": "les géolocalise pendant les courses", "confiance": 0.9},
-        "tarif_impose": {"valeur": True, "extrait": "le prix de chaque course est fixé par la plateforme", "confiance": 1},
-        "sanction_deconnexion": {"valeur": True, "extrait": "désactivés après trois refus", "confiance": 0.9},
-        "facteur_imaginaire": {"valeur": True, "extrait": None, "confiance": 1},
-    }}
+    return {
+        "faits": {
+            "liberte_horaires": {"valeur": True, "extrait": "Les livreurs choisissent leurs créneaux", "confiance": 1},
+            "geolocalisation_suivi": {
+                "valeur": True,
+                "extrait": "les géolocalise pendant les courses",
+                "confiance": 0.9,
+            },
+            "tarif_impose": {
+                "valeur": True,
+                "extrait": "le prix de chaque course est fixé par la plateforme",
+                "confiance": 1,
+            },
+            "sanction_deconnexion": {"valeur": True, "extrait": "désactivés après trois refus", "confiance": 0.9},
+            "facteur_imaginaire": {"valeur": True, "extrait": None, "confiance": 1},
+        }
+    }
 
 
 @pytest.fixture
@@ -34,15 +45,19 @@ def mistral_simule(monkeypatch):
 
 # ---------------------------------------------------------------- T5
 
+
 def test_txt_lu_en_utf8():
     assert extraction.lire_document("piece.TXT", "Équipement imposé".encode()) == "Équipement imposé"
 
 
-@pytest.mark.parametrize("nom, octets, code", [
-    ("photo.png", b"x", "format_refuse"),
-    ("piece.txt", "é".encode("latin-1"), "encodage"),
-    ("vide.txt", b"   ", "document_vide"),
-])
+@pytest.mark.parametrize(
+    "nom, octets, code",
+    [
+        ("photo.png", b"x", "format_refuse"),
+        ("piece.txt", "é".encode("latin-1"), "encodage"),
+        ("vide.txt", b"   ", "document_vide"),
+    ],
+)
 def test_documents_refuses(nom, octets, code):
     with pytest.raises(Erreur) as e:
         extraction.lire_document(nom, octets)
@@ -52,23 +67,30 @@ def test_documents_refuses(nom, octets, code):
 def pdf_texte(texte: str) -> bytes:
     """Un PDF « texte » minimal (une page, Helvetica), sans dépendance."""
     flux = f"BT /F1 12 Tf 72 720 Td ({texte}) Tj ET".encode("latin-1")
-    objets = [b"<< /Type /Catalog /Pages 2 0 R >>", b"<< /Type /Pages /Kids [3 0 R] /Count 1 >>",
-              b"<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>",
-              b"<< /Length %d >>\nstream\n" % len(flux) + flux + b"\nendstream",
-              b"<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>"]
+    objets = [
+        b"<< /Type /Catalog /Pages 2 0 R >>",
+        b"<< /Type /Pages /Kids [3 0 R] /Count 1 >>",
+        b"<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>",
+        b"<< /Length %d >>\nstream\n" % len(flux) + flux + b"\nendstream",
+        b"<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>",
+    ]
     sortie, positions = b"%PDF-1.4\n", []
     for i, objet in enumerate(objets, 1):
         positions.append(len(sortie))
         sortie += b"%d 0 obj\n" % i + objet + b"\nendobj\n"
     xref = len(sortie)
-    sortie += b"xref\n0 %d\n0000000000 65535 f \n" % (len(objets) + 1) + b"".join(b"%010d 00000 n \n" % x for x in positions)
+    sortie += b"xref\n0 %d\n0000000000 65535 f \n" % (len(objets) + 1) + b"".join(
+        b"%010d 00000 n \n" % x for x in positions
+    )
     return sortie + b"trailer\n<< /Size %d /Root 1 0 R >>\nstartxref\n%d\n%%%%EOF\n" % (len(objets) + 1, xref)
 
 
 def docx(*paragraphes: str) -> bytes:
     corps = "".join(f"<w:p><w:r><w:t>{p}</w:t></w:r></w:p>" for p in paragraphes)
-    xml = ('<?xml version="1.0" encoding="UTF-8"?><w:document xmlns:w="http://schemas.openxmlformats.org/'
-           f'wordprocessingml/2006/main"><w:body>{corps}</w:body></w:document>')
+    xml = (
+        '<?xml version="1.0" encoding="UTF-8"?><w:document xmlns:w="http://schemas.openxmlformats.org/'
+        f'wordprocessingml/2006/main"><w:body>{corps}</w:body></w:document>'
+    )
     tampon = io.BytesIO()
     with zipfile.ZipFile(tampon, "w") as archive:
         archive.writestr("word/document.xml", xml)
@@ -78,6 +100,7 @@ def docx(*paragraphes: str) -> bytes:
 def test_pdf_texte_lu_localement_sans_ocr(monkeypatch):
     def interdit(*_):
         raise AssertionError("l'OCR ne doit pas être appelé pour un PDF texte")
+
     monkeypatch.setattr(extraction, "ocr", interdit)
     phrase = "Le prix de chaque course est fixe par la plateforme. " * 5
 
@@ -91,7 +114,9 @@ def test_pdf_sans_texte_passe_par_l_ocr(mistral_simule):
 def test_docx_lu_localement(monkeypatch):
     monkeypatch.setattr(extraction, "ocr", lambda *_: pytest.fail("pas d'OCR pour un DOCX"))
 
-    texte = extraction.lire_document("cgu.docx", docx("Article 4.2", "Le coursier peut travailler pour des concurrents."))
+    texte = extraction.lire_document(
+        "cgu.docx", docx("Article 4.2", "Le coursier peut travailler pour des concurrents.")
+    )
 
     assert texte == "Article 4.2\nLe coursier peut travailler pour des concurrents."
 
@@ -103,6 +128,7 @@ def test_docx_illisible_donne_400():
 
 
 # ---------------------------------------------------------------- T7
+
 
 def test_depot_d_une_piece_du_client(data_vide, mistral_simule):
     r = client.post("/documents", files={"file": ("contrat.txt", PIECE.encode(), "text/plain")}, data={"type": "cas"})
@@ -117,7 +143,9 @@ def test_depot_d_une_decision_donne_une_fiche_a_relire(data_vide, monkeypatch):
     fiche = {"id": "x", "validee": False}
     monkeypatch.setattr(extraction, "extraire_decision", lambda texte, id_: {**fiche, "id": id_})
 
-    r = client.post("/documents", files={"file": ("arret.txt", b"Attendu que...", "text/plain")}, data={"type": "decision"})
+    r = client.post(
+        "/documents", files={"file": ("arret.txt", b"Attendu que...", "text/plain")}, data={"type": "decision"}
+    )
 
     corps = r.json()
     assert r.status_code == 200 and corps["decision_id"].startswith("dec_")
@@ -125,23 +153,36 @@ def test_depot_d_une_decision_donne_une_fiche_a_relire(data_vide, monkeypatch):
 
 
 def test_depot_type_ou_format_invalide_donne_400(data_vide, mistral_simule):
-    assert client.post("/documents", files={"file": ("a.txt", b"x", "text/plain")}, data={"type": "autre"}).status_code == 400
-    assert client.post("/documents", files={"file": ("a.png", b"x", "image/png")}, data={"type": "cas"}).status_code == 400
+    assert (
+        client.post("/documents", files={"file": ("a.txt", b"x", "text/plain")}, data={"type": "autre"}).status_code
+        == 400
+    )
+    assert (
+        client.post("/documents", files={"file": ("a.png", b"x", "image/png")}, data={"type": "cas"}).status_code == 400
+    )
 
 
 def test_creer_un_cas_depuis_description_et_pieces(data_vide, mistral_simule):
-    doc = client.post("/documents", files={"file": ("contrat.txt", PIECE.encode(), "text/plain")},
-                      data={"type": "cas"}).json()["document_id"]
+    doc = client.post(
+        "/documents", files={"file": ("contrat.txt", PIECE.encode(), "text/plain")}, data={"type": "cas"}
+    ).json()["document_id"]
 
-    r = client.post("/cas", json={"description": DESCRIPTION, "ressort": "CA Paris", "document_ids": [doc],
-                                  "question": "Risque de requalification ?"})
+    r = client.post(
+        "/cas",
+        json={
+            "description": DESCRIPTION,
+            "ressort": "CA Paris",
+            "document_ids": [doc],
+            "question": "Risque de requalification ?",
+        },
+    )
 
     cas = r.json()
     assert r.status_code == 200 and cas["id"].startswith("cas_")
     assert cas["facteurs"]["geolocalisation_suivi"] is True
-    assert cas["facteurs"]["tarif_impose"] is True                      # extrait trouvé dans la pièce
-    assert cas["preuves"]["sanction_deconnexion"]["extrait"] is None     # citation inventée éliminée
-    assert "sanction_deconnexion" in cas["a_confirmer"]                 # donc à confirmer
+    assert cas["facteurs"]["tarif_impose"] is True  # extrait trouvé dans la pièce
+    assert cas["preuves"]["sanction_deconnexion"]["extrait"] is None  # citation inventée éliminée
+    assert "sanction_deconnexion" in cas["a_confirmer"]  # donc à confirmer
     assert "facteur_imaginaire" not in cas["facteurs"]
     assert set(cas["facteurs"]) == {f["id"] for f in service.grille()["facteurs"]}
 
@@ -165,6 +206,7 @@ def test_description_vide_donne_400(data_vide, mistral_simule):
 def test_panne_de_mistral_donne_502(data_vide, monkeypatch):
     def panne(*_):
         raise Erreur(502, "mistral", "quota dépassé")
+
     monkeypatch.setattr(extraction, "appeler_mistral", panne)
 
     r = client.post("/cas", json={"description": DESCRIPTION})

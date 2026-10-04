@@ -3,6 +3,7 @@
 Run from the project root: uv run python scripts/generate-dashboard-fixtures.py
 The fictional contract examples are for frontend development only.
 """
+
 import copy
 import json
 import sys
@@ -11,15 +12,15 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from calculateur import completer  # noqa: E402
-from contracts.valider import erreurs_dossier  # noqa: E402
+from calculateur import completer
+from contracts.valider import erreurs_dossier
 
 
 def main():
     original = json.loads((ROOT / "contracts/exemples/dossier_entree.json").read_text())
     scenarios = {}
     for factor in [None, *original["grille"]["facteurs"]]:
-        for value in ([None] if factor is None else [True, False, None]):
+        for value in [None] if factor is None else [True, False, None]:
             dossier = copy.deepcopy(original)
             key = "baseline"
             if factor is not None:

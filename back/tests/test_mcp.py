@@ -1,4 +1,5 @@
 """T8 : outils MCP pivot_*. Les outils sont des fonctions Python : on les appelle directement."""
+
 import anyio
 import pytest
 from mcp.server.mcpserver.exceptions import ToolError
@@ -51,7 +52,9 @@ def test_leviers_et_decisions(donnees_exemple):
     assert 0 < len(r["leviers"]) <= 3
     assert all(l["valeur_actuelle"] in ("Oui", "Non") for l in r["leviers"])
     assert r["decisions_retenues"]["nombre"] == 4
-    assert [d["motif"] for d in r["decisions_ecartees"]] == ["Fait déterminant divergent : Géolocalisation en temps réel"]
+    assert [d["motif"] for d in r["decisions_ecartees"]] == [
+        "Fait déterminant divergent : Géolocalisation en temps réel"
+    ]
 
 
 def test_etat_du_droit(donnees_exemple):
@@ -62,10 +65,17 @@ def test_etat_du_droit(donnees_exemple):
 
 
 def test_structurer_cas(data_vide, monkeypatch):
-    monkeypatch.setattr(extraction, "appeler_mistral", lambda *_: {"faits": {
-        "geolocalisation_suivi": {"valeur": True, "extrait": "géolocalisés en continu", "confiance": 1}}})
+    monkeypatch.setattr(
+        extraction,
+        "appeler_mistral",
+        lambda *_: {
+            "faits": {"geolocalisation_suivi": {"valeur": True, "extrait": "géolocalisés en continu", "confiance": 1}}
+        },
+    )
 
-    r = serveur_mcp.pivot_structurer_cas("Les livreurs sont géolocalisés en continu.", ["Pièce 1 : contrat."], "CA Paris")
+    r = serveur_mcp.pivot_structurer_cas(
+        "Les livreurs sont géolocalisés en continu.", ["Pièce 1 : contrat."], "CA Paris"
+    )
 
     assert r["cas_id"].startswith("cas_")
     geoloc = next(f for f in r["faits"] if f["id"] == "geolocalisation_suivi")
