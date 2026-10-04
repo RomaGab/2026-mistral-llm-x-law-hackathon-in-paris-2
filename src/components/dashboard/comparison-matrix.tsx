@@ -1,22 +1,9 @@
-import { useLayoutEffect, useRef, useState, type CSSProperties, type UIEvent } from "react";
+import { useRef, type CSSProperties, type UIEvent } from "react";
 import { FiAlignLeft, FiCheckCircle, FiEdit3, FiInfo, FiXCircle, FiZap } from "react-icons/fi";
 import { decisionLabel, decisionStatusChange, factLabel, factValueLabel } from "@/lib/dashboard/presentation";
 import type { DashboardDetail, DashboardDossier, FactorDefinition, FactValue } from "@/types/dashboard";
 import { FactValueCell } from "./fact-value-cell";
 import styles from "./dashboard.module.css";
-
-/** Narrowest a case or precedent column may get before the table scrolls. */
-const MIN_COLUMN_WIDTH = 148;
-
-/**
- * Width that makes the visible area end exactly on a column edge: the space beside the sticky
- * fact column is split evenly between as many whole columns as fit.
- */
-function wholeColumnWidth(visibleWidth: number, factColumnWidth: number, columnCount: number) {
-  const available = visibleWidth - factColumnWidth;
-  const visibleColumns = Math.min(columnCount, Math.max(1, Math.floor(available / MIN_COLUMN_WIDTH)));
-  return available / visibleColumns;
-}
 
 export function CaseFactsTable({ dossier, original, factors, selectedFactor, detail, onInspect, onFactChange, onFactSelect }: {
   dossier: DashboardDossier;
@@ -30,27 +17,7 @@ export function CaseFactsTable({ dossier, original, factors, selectedFactor, det
 }) {
   const headerRef = useRef<HTMLTableSectionElement>(null);
   const bodyRef = useRef<HTMLTableSectionElement>(null);
-  const tableRef = useRef<HTMLTableElement>(null);
-  const [columnWidth, setColumnWidth] = useState(MIN_COLUMN_WIDTH);
-  const columnCount = dossier.decisions.length + 1;
-  const columnStyle: CSSProperties & { "--column-count": number; "--column-width": string } = {
-    "--column-count": columnCount,
-    "--column-width": `${columnWidth}px`,
-  };
-
-  useLayoutEffect(() => {
-    const table = tableRef.current;
-    const body = bodyRef.current;
-    if (!table || !body) return;
-    const measure = () => {
-      const factColumnWidth = parseFloat(getComputedStyle(table).getPropertyValue("--fact-column")) || 0;
-      setColumnWidth(wholeColumnWidth(body.clientWidth, factColumnWidth, columnCount));
-    };
-    measure();
-    const observer = new ResizeObserver(measure);
-    observer.observe(body);
-    return () => observer.disconnect();
-  }, [columnCount]);
+  const columnStyle: CSSProperties & { "--precedent-count": number } = { "--precedent-count": dossier.decisions.length };
   const results = dossier.resultat.decisions;
   const retained = results.filter((decision) => decision.retenue).length;
 
@@ -65,7 +32,7 @@ export function CaseFactsTable({ dossier, original, factors, selectedFactor, det
   return (
     <>
       <div className={styles.matrixScroll} role="region" aria-label="Case facts and precedents">
-        <table ref={tableRef} className={styles.matrix} style={columnStyle} role="table">
+        <table className={styles.matrix} style={columnStyle} role="table">
           <caption className={styles.srOnly}>Case facts beside precedents. Your case values are editable. Precedent buttons open a detail panel.</caption>
           <thead ref={headerRef} onScroll={syncHorizontalScroll} role="rowgroup"><tr role="row">
             <th scope="col" role="columnheader"><span className={styles.columnLabel}><FiAlignLeft size={16} aria-hidden="true" />Case fact</span></th>
