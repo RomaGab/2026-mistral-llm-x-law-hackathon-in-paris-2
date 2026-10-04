@@ -12,7 +12,7 @@ const inter = localFont({
 
 export const metadata: Metadata = {
   title: "pivot — New case",
-  description: "Ask your legal question and gather your case documents with pivot.",
+  description: "Explore the facts that could change your case. Start with your question and documents in pivot.",
 };
 
 export default function RootLayout({

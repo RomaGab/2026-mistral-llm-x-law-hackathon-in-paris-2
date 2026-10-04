@@ -1,0 +1,13 @@
+.pixel {
+  animation: pixel-shapes 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes pixel-shapes {
+  0%, 12%, 100% { transform: translate(0, 0); }
+  33%, 43% { transform: translate(var(--diamond-x), var(--diamond-y)); }
+  64%, 74% { transform: translate(var(--cross-x), var(--cross-y)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pixel { animation: none; }
+}

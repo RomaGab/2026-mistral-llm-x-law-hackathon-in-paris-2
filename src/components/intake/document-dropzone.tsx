@@ -1,12 +1,14 @@
 "use client";
 
-import { useRef, useState, type DragEvent, type ReactNode, type RefObject } from "react";
+import { useId, useRef, useState, type DragEvent, type ReactNode, type RefObject } from "react";
 import { FiPlus, FiUpload, FiX } from "react-icons/fi";
 
-import { DOCUMENT_ACCEPT, formatDocumentSize, getDocumentType, mergeSelectedDocuments } from "@/lib/intake/files";
+import { DOCUMENT_ACCEPT, MAX_DOCUMENT_BYTES, formatDocumentSize, getDocumentType, mergeSelectedDocuments } from "@/lib/intake/files";
 import type { SelectedDocument } from "@/types/intake";
 
 import styles from "./document-dropzone.module.css";
+
+const documentGuidance = `PDF, TXT, or DOCX · Up to ${formatDocumentSize(MAX_DOCUMENT_BYTES)} per file`;
 
 type DocumentDropzoneProps = {
   fileInputRef: RefObject<HTMLInputElement | null>;
@@ -17,6 +19,7 @@ type DocumentDropzoneProps = {
 };
 
 export function DocumentDropzone({ fileInputRef, documents, onDocumentsChange, children, actions }: DocumentDropzoneProps) {
+  const guidanceId = useId();
   const attachRef = useRef<HTMLButtonElement>(null);
   const dragDepth = useRef(0);
   const [isDragging, setIsDragging] = useState(false);
@@ -100,7 +103,8 @@ export function DocumentDropzone({ fileInputRef, documents, onDocumentsChange, c
           type="button"
           className={styles.attachButton}
           aria-label="Attach documents"
-          title="Attach documents"
+          aria-describedby={guidanceId}
+          title={`Attach documents — ${documentGuidance}`}
           onClick={() => fileInputRef.current?.click()}
         >
           <FiPlus size={20} strokeWidth={1.6} aria-hidden="true" />
@@ -112,17 +116,21 @@ export function DocumentDropzone({ fileInputRef, documents, onDocumentsChange, c
           multiple
           hidden
           aria-label="Attach documents"
+          aria-describedby={guidanceId}
           onChange={(event) => {
             addDocuments(Array.from(event.currentTarget.files ?? []));
             event.currentTarget.value = "";
           }}
         />
+        <span id={guidanceId} className={styles.srOnly}>{documentGuidance}</span>
         {actions}
       </div>
 
       {isDragging && (
         <div className={styles.dropOverlay} aria-hidden="true">
           <FiUpload size={28} strokeWidth={1.5} aria-hidden="true" />
+          <strong>Drop documents to attach</strong>
+          <span>{documentGuidance}</span>
         </div>
       )}
       <div role="alert" className={styles.errors}>

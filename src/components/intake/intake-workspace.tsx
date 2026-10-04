@@ -1,10 +1,12 @@
 "use client";
 
-import { useLayoutEffect, useRef, useState, type FormEvent } from "react";
+import { useEffect, useLayoutEffect, useRef, useState, type FormEvent } from "react";
 import { FiArrowUp, FiFileText, FiX } from "react-icons/fi";
 
 import type { CaseIntakeDraft } from "@/types/case-intake";
+import { BrandMark } from "@/components/ui/brand-mark";
 
+import { CasePreparation } from "./case-preparation";
 import { DocumentDropzone } from "./document-dropzone";
 import styles from "./intake-workspace.module.css";
 
@@ -14,11 +16,17 @@ type CaseIntakeFormProps = {
   onSubmit: (draft: CaseIntakeDraft) => void;
 };
 
+type IntakePhase = "intake" | "leaving" | "preparing" | "returning";
+
+// Temporary preview; backend completion will replace this timer.
+const PREPARATION_PREVIEW_MS = 3000;
+
 export function CaseIntakeForm({ draft, onDraftChange, onSubmit }: CaseIntakeFormProps) {
   const promptRef = useRef<HTMLTextAreaElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const confirmationRef = useRef<HTMLDialogElement>(null);
   const addDocumentsRef = useRef<HTMLButtonElement>(null);
+  const [confirmationAction, setConfirmationAction] = useState<"dismiss" | "submit" | null>(null);
   const canSubmit = draft.question.trim().length > 0;
 
   useLayoutEffect(() => {
@@ -43,6 +51,18 @@ export function CaseIntakeForm({ draft, onDraftChange, onSubmit }: CaseIntakeFor
     onSubmit({ ...draft, question: draft.question.trim() });
   }
 
+  function closeConfirmation(action: "dismiss" | "submit" = "dismiss") {
+    if (!confirmationRef.current?.open || confirmationAction !== null) return;
+    setConfirmationAction(action);
+  }
+
+  function finishClosingConfirmation() {
+    confirmationRef.current?.close();
+    setConfirmationAction(null);
+    if (confirmationAction === "submit") submitDraft();
+    else promptRef.current?.focus({ preventScroll: true });
+  }
+
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!canSubmit) {
@@ -61,7 +81,7 @@ export function CaseIntakeForm({ draft, onDraftChange, onSubmit }: CaseIntakeFor
   return (
     <form
       className={styles.form}
-      aria-label="Your legal question"
+      aria-label="Your case and legal question"
       onSubmit={handleSubmit}
       onKeyDown={(event) => {
         if (confirmationRef.current?.open) return;
@@ -89,12 +109,13 @@ export function CaseIntakeForm({ draft, onDraftChange, onSubmit }: CaseIntakeFor
       >
         <textarea
           ref={promptRef}
+          autoFocus={draft.question.length > 0}
           name="question"
           className={styles.textarea}
           rows={4}
           required
-          aria-label="Your legal question"
-          placeholder="Ask your legal question…"
+          aria-label="Your case and legal question"
+          placeholder="Describe the situation and the legal question you want to explore…"
           value={draft.question}
           onChange={(event) => onDraftChange({ ...draft, question: event.target.value })}
         />
@@ -105,6 +126,16 @@ export function CaseIntakeForm({ draft, onDraftChange, onSubmit }: CaseIntakeFor
         className={styles.confirmation}
         aria-labelledby="no-documents-title"
         aria-describedby="no-documents-description"
+        data-closing={confirmationAction !== null}
+        onCancel={(event) => {
+          event.preventDefault();
+          closeConfirmation();
+        }}
+        onAnimationEnd={(event) => {
+          if (event.target === event.currentTarget && !event.nativeEvent.pseudoElement && confirmationAction !== null) {
+            finishClosingConfirmation();
+          }
+        }}
       >
         <div className={styles.dialogHeader}>
           <span className={styles.dialogIcon}><FiFileText size={20} aria-hidden="true" /></span>
@@ -112,7 +143,7 @@ export function CaseIntakeForm({ draft, onDraftChange, onSubmit }: CaseIntakeFor
             type="button"
             className={styles.closeButton}
             aria-label="Close confirmation"
-            onClick={() => confirmationRef.current?.close()}
+            onClick={() => closeConfirmation()}
           >
             <FiX size={20} aria-hidden="true" />
           </button>
@@ -127,8 +158,10 @@ export function CaseIntakeForm({ draft, onDraftChange, onSubmit }: CaseIntakeFor
             type="button"
             className={styles.secondaryButton}
             onClick={() => {
-              confirmationRef.current?.close();
+              if (confirmationAction !== null) return;
+              // Keep the picker inside the click gesture for Safari.
               fileInputRef.current?.click();
+              closeConfirmation();
             }}
           >
             Add documents
@@ -136,10 +169,7 @@ export function CaseIntakeForm({ draft, onDraftChange, onSubmit }: CaseIntakeFor
           <button
             type="button"
             className={styles.continueButton}
-            onClick={() => {
-              confirmationRef.current?.close();
-              submitDraft();
-            }}
+            onClick={() => closeConfirmation("submit")}
           >
             Continue without documents
           </button>
@@ -153,7 +183,14 @@ export function IntakeWorkspace() {
   const [draft, setDraft] = useState<CaseIntakeDraft>({
     question: "", description: "", ressort: null, documents: [],
   });
-  const [submitted, setSubmitted] = useState(false);
+  const [phase, setPhase] = useState<IntakePhase>("intake");
+  const showIntake = phase === "intake" || phase === "leaving";
+
+  useEffect(() => {
+    if (phase !== "preparing") return;
+    const timeout = window.setTimeout(() => setPhase("returning"), PREPARATION_PREVIEW_MS);
+    return () => window.clearTimeout(timeout);
+  }, [phase]);
 
   return (
     <div
@@ -167,33 +204,49 @@ export function IntakeWorkspace() {
     >
       <header className={styles.header}>
         <div className={styles.brand} aria-label="pivot">
-          <svg className={styles.brandMark} width="32" height="32" viewBox="0 0 28 28" fill="currentColor" aria-hidden="true">
-            <path d="M4 4h12v4H8v8h8v4H8v4H4V4Zm12 4h4v8h-4V8Z" />
-          </svg>
+          <BrandMark className={styles.brandMark} />
           <span className={styles.brandName}>pivot<span>.</span></span>
         </div>
       </header>
 
       <main className={styles.content} id="main-content">
         <div className={styles.composer}>
-          <div className={styles.intro}>
-            <h1>Analyze your case.</h1>
-            <p>Ask your question and add your documents to identify the decisive facts.</p>
-          </div>
-          <CaseIntakeForm
-            draft={draft}
-            onDraftChange={(next) => {
-              setDraft(next);
-              setSubmitted(false);
-            }}
-            onSubmit={(next) => {
-              setDraft(next);
-              setSubmitted(true);
-            }}
-          />
-          <div className={styles.feedback} role="status" aria-live="polite">
-            {submitted && "Preview saved for this session. Analysis will be available once connected."}
-          </div>
+          {showIntake ? (
+            <div
+              key="intake"
+              className={styles.intakeStage}
+              data-leaving={phase === "leaving"}
+              inert={phase === "leaving"}
+              onAnimationEnd={(event) => {
+                if (event.target === event.currentTarget && phase === "leaving") setPhase("preparing");
+              }}
+            >
+              <div className={styles.intro}>
+                <h1>Find the facts that could change your case.</h1>
+                <p>Add your documents, confirm the facts, and explore what could shift the outcome.</p>
+              </div>
+              <CaseIntakeForm
+                draft={draft}
+                onDraftChange={setDraft}
+                onSubmit={(next) => {
+                  if (phase !== "intake") return;
+                  setDraft(next);
+                  setPhase("leaving");
+                }}
+              />
+            </div>
+          ) : (
+            <div
+              key="preparation"
+              className={styles.preparationStage}
+              data-leaving={phase === "returning"}
+              onAnimationEnd={(event) => {
+                if (event.target === event.currentTarget && phase === "returning") setPhase("intake");
+              }}
+            >
+              <CasePreparation />
+            </div>
+          )}
         </div>
       </main>
     </div>
