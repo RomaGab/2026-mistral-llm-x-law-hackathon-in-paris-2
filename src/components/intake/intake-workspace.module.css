@@ -2,16 +2,9 @@
   min-height: 100svh;
 }
 
-.header {
-  display: flex;
-  align-items: center;
-  height: 76px;
-  padding: 0 32px;
-}
-
 .content {
   display: grid;
-  min-height: calc(100svh - 76px);
+  min-height: calc(100svh - var(--app-header-height));
   align-items: center;
   padding: 24px 24px 16vh;
 }
@@ -264,8 +257,7 @@
 }
 
 @media (max-width: 600px) {
-  .header { height: 64px; padding-inline: 20px; }
-  .content { min-height: calc(100svh - 64px); padding: 20px 16px 12vh; }
+  .content { padding: 20px 16px 12vh; }
   .textarea { padding: 18px 18px 10px; }
   .dialogActions { flex-direction: column; }
 }

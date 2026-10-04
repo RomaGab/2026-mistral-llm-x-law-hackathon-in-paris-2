@@ -17,12 +17,17 @@
   --shadow-surface: 0 1px 3px #00000008;
   --shadow-dialog: 0 20px 60px #201f1c26;
   --font-page-title: 24px;
+  --app-header-height: 76px;
   --motion-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --motion-stage-duration: 320ms;
   --motion-panel-duration: 220ms;
   --motion-exit-duration: 200ms;
   --font-sans: var(--font-inter), Arial, Helvetica, sans-serif;
   --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+}
+
+@media (max-width: 600px) {
+  :root { --app-header-height: 64px; }
 }
 
 * {
