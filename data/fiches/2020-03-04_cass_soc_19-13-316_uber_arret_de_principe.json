@@ -1,0 +1,138 @@
+{
+  "id": "2020-03-04_cass_soc_19-13-316_uber_arret_de_principe",
+  "intitule": "Cass. soc., 4 mars 2020, n° 19-13.316 (Uber)",
+  "juridiction": "Cour de cassation, chambre sociale",
+  "formation": "cass",
+  "ressort": null,
+  "date": "2020-03-04",
+  "numero": "19-13.316",
+  "publication": "R",
+  "dispositif": "rejet",
+  "issue": true,
+  "textes": [
+    "L. 1221-1 du code du travail",
+    "L. 1411-1 du code du travail",
+    "L. 7341-1 du code du travail",
+    "L. 8221-6 du code du travail"
+  ],
+  "remise_en_cause": null,
+  "url": null,
+  "validee": false,
+  "facteurs": {
+    "service_organise": true,
+    "geolocalisation_suivi": true,
+    "sanction_deconnexion": true,
+    "penalites_bonus": true,
+    "tarif_impose": true,
+    "clientele_attribuee": true,
+    "execution_dirigee": true,
+    "multi_plateformes": false,
+    "remplacement_possible": false,
+    "info_masquee": true,
+    "evaluation_performance": true,
+    "equipement_marque": false,
+    "liberte_horaires": false,
+    "moyens_propres": true,
+    "immatriculation": true,
+    "charte_sociale": true,
+    "qualification_contractuelle": false,
+    "dependance_economique": true
+  },
+  "determinants": [
+    "service_organise",
+    "geolocalisation_suivi",
+    "sanction_deconnexion"
+  ],
+  "preuves": {
+    "service_organise": {
+      "extrait": "il a ainsi intégré un service de prestation de transport créé et entièrement organisé par la société Uber BV, qui n'existe que grâce à cette plateforme",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "geolocalisation_suivi": {
+      "extrait": "les informations de géolocalisation du chauffeur seront analysées et suivies par les services Uber lorsque le chauffeur est connecté",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "sanction_deconnexion": {
+      "extrait": "Uber se réserve également le droit de désactiver ou autrement de restreindre l'accès ou l'utilisation de l'Application Chauffeur [...] ce qui signifie que la connexion à la plateforme ne dépend pas du chauffeur",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "penalites_bonus": {
+      "extrait": "la fixation par la société Uber BV d'un taux d'annulation de commandes [...] pouvant entraîner la perte d'accès au compte",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "tarif_impose": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "clientele_attribuee": {
+      "extrait": "il ne constitue aucune clientèle propre",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "execution_dirigee": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "multi_plateformes": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "remplacement_possible": {
+      "extrait": "l'interdiction faite au chauffeur pendant l'exécution d'une course réservée via l'application Uber de prendre en charge d'autres passagers",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "info_masquee": {
+      "extrait": "le critère de destination [...] est parfois inconnu du chauffeur lorsqu'il doit répondre à une sollicitation de la plateforme Uber",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "evaluation_performance": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "equipement_marque": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "liberte_horaires": {
+      "extrait": "le fait de pouvoir choisir ses jours et heures de travail n'exclut pas en soi une relation de travail subordonnée, dès lors que lorsqu'un chauffeur se connecte à la plateforme Uber, il intègre un service organisé",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "moyens_propres": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "immatriculation": {
+      "extrait": "M. F..., qui était inscrit au répertoire des métiers en qualité de chauffeur",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "charte_sociale": {
+      "extrait": "la charte de la communauté Uber [...] interdit aux chauffeurs [...] de prendre en charge d'autres passagers en dehors du système Uber",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "qualification_contractuelle": {
+      "extrait": "la qualification contractuelle que les parties donnent à leur relation doit s'effacer devant les conditions de fait",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "dependance_economique": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    }
+  }
+}

@@ -25,7 +25,7 @@ Le back ne pondère rien et ne calcule aucune probabilité : c'est le travail du
 |---|---|
 | Langage | Python ≥ 3.12, géré par `uv` |
 | API | FastAPI + uvicorn (`python-multipart` pour les dépôts de fichiers) |
-| LLM | SDK `mistralai` : `mistral-large-latest` pour l'extraction (JSON mode, `temperature=0`), `mistral-ocr-latest` pour PDF/DOCX |
+| LLM | SDK `mistralai` : `ministral-14b-latest` pour l'extraction (avec notre clé, Large, Medium, Small et Magistral sont à 0 requête/min ; à remonter via `MISTRAL_MODELE` si la clé change) (JSON mode, `temperature=0`), `mistral-ocr-latest` pour PDF/DOCX |
 | MCP | SDK `mcp` (`FastMCP`), transport streamable HTTP |
 | Validation | `jsonschema` via `contracts/valider.py` (déjà écrit) |
 | Tests | `pytest` (+ `httpx` pour le `TestClient`) |
@@ -37,7 +37,7 @@ Configuration dans `.env` (déjà ignoré par git) :
 | Variable | Défaut | Rôle |
 |---|---|---|
 | `MISTRAL_API_KEY` | — (obligatoire) | Clé API |
-| `MISTRAL_MODELE` | `mistral-large-latest` | Modèle d'extraction |
+| `MISTRAL_MODELE` | `ministral-14b-latest` | Modèle d'extraction |
 | `DISTINGUO_DATA` | `data` | Racine du stockage. Les tests la pointent vers un dossier temporaire. |
 
 ## Commandes

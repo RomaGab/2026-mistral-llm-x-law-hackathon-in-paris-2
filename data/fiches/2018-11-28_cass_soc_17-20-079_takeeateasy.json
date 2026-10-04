@@ -1,0 +1,81 @@
+{
+  "id": "2018-11-28_cass_soc_17-20-079_takeeateasy",
+  "intitule": "Cass. soc., 28 nov. 2018, n° 17-20.079",
+  "juridiction": "Cour de cassation, chambre sociale",
+  "formation": "cass",
+  "ressort": null,
+  "date": "2018-11-28",
+  "numero": "17-20.079",
+  "publication": "R",
+  "dispositif": "cassation",
+  "issue": true,
+  "textes": [
+    "Art. L. 8221-1 du code du travail (ancien art. L. 122-4-1)",
+    "Art. L. 8221-5 du code du travail (ancien art. L. 122-4-2)"
+  ],
+  "remise_en_cause": null,
+  "url": null,
+  "validee": false,
+  "facteurs": {
+    "service_organise": null,
+    "geolocalisation_suivi": true,
+    "sanction_deconnexion": true,
+    "penalites_bonus": true,
+    "tarif_impose": null,
+    "clientele_attribuee": null,
+    "execution_dirigee": null,
+    "multi_plateformes": null,
+    "remplacement_possible": null,
+    "info_masquee": null,
+    "evaluation_performance": true,
+    "equipement_marque": null,
+    "liberte_horaires": true,
+    "moyens_propres": true,
+    "immatriculation": null,
+    "charte_sociale": null,
+    "qualification_contractuelle": true,
+    "dependance_economique": null
+  },
+  "determinants": [
+    "geolocalisation_suivi",
+    "sanction_deconnexion",
+    "evaluation_performance"
+  ],
+  "preuves": {
+    "geolocalisation_suivi": {
+      "extrait": "l'application était dotée d'un système de géolocalisation permettant le suivi en temps réel par la société Take Eat Easy de la position du coursier et la comptabilisation du nombre total de kilomètres parcourus par celui-ci.",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "sanction_deconnexion": {
+      "extrait": "La société Take Eat Easy disposait d'un pouvoir de sanction à l'égard du coursier : un système de 'strikes' était mis en place, comptabilisant les manquements du coursier à ses obligations (absence de connexion, défaut de réponse au téléphone, retard, etc.). L'accumulation de quatre 'strikes' entraînait la perte, par le coursier, de l'accès à son compte, caractérisée par la société elle-même comme une désactivation.",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "penalites_bonus": {
+      "extrait": "un système de 'strikes' était mis en place, comptabilisant les manquements du coursier à ses obligations",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "evaluation_performance": {
+      "extrait": "un système de 'strikes' était mis en place, comptabilisant les manquements du coursier à ses obligations",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "liberte_horaires": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "moyens_propres": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "qualification_contractuelle": {
+      "extrait": "M. [...] a conclu un contrat intitulé 'contrat de prestation de services'",
+      "confiance": 1.0,
+      "source": "extraction"
+    }
+  }
+}

@@ -20,11 +20,21 @@ def _dossier(genre: str) -> Path:
     return Path(os.environ.get("DISTINGUO_DATA", RACINE / "data")) / genre
 
 
-def _chemin(genre: str, id_: str) -> Path:
+def _chemin(genre: str, id_: str, extension: str = "json") -> Path:
     # Vérifié avant tout accès disque : un id sert de nom de fichier (pas de traversée de chemin).
     if not ID_VALIDE.match(id_):
         raise Erreur(400, "id_invalide", f"Identifiant invalide : {id_!r}")
-    return _dossier(genre) / f"{id_}.json"
+    return _dossier(genre) / f"{id_}.{extension}"
+
+
+def existe(genre: str, id_: str) -> bool:
+    return _chemin(genre, id_).exists()
+
+
+def ecrire_texte(genre: str, id_: str, texte: str) -> None:
+    chemin = _chemin(genre, id_, "txt")
+    chemin.parent.mkdir(parents=True, exist_ok=True)
+    chemin.write_text(texte, encoding="utf-8")
 
 
 def lire(genre: str, id_: str) -> dict:

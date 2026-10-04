@@ -12,6 +12,7 @@ dependencies = [
     # back
     "fastapi>=0.142.2",
     "uvicorn>=0.54.0",
+    "mistralai>=3.0.0",
 ]
 
 [dependency-groups]
