@@ -45,6 +45,8 @@ venv/
 # Back : données client (cas et documents déposés), jamais versionnées
 data/cas/
 data/documents/
+# Données fictives pour tourner en local (python -m back.exemple)
+data-exemple/
 
 # Operating system and editor temporary files
 .DS_Store

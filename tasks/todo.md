@@ -24,7 +24,7 @@ Vérification commune à chaque tâche : `uv run pytest` vert, et aucun dossier 
   - Vérif : `uv run pytest back/tests/test_extraction.py` ; `uv run python -m back.ingerer dataset-legora/sources_jurisprudence_plateformes/sources_brutes --limite 1`.
   - Fichiers : `back/extraction.py`, `back/ingerer.py`, `back/tests/test_extraction.py`, `data/decisions/`, `data/fiches/`
 
-- [ ] **T3. Analyser un cas, simulation comprise** · M · dépend de : T1
+- [x] **T3. Analyser un cas, simulation comprise** · M · dépend de : T1
   - Faire : `service.analyser(cas_id, facteurs=None)`, selon le spec (construction, validation avant et après, appel direct du vrai `completer`, `ErreurDossier.problemes` → 422) ; le gestionnaire `RequestValidationError` → 400, reporté de T1 parce qu'il n'est testable qu'avec un premier corps de requête ; `GET /cas/{id}` et `POST /cas/{id}/analyse` ; un `conftest.py` qui charge le cas et les décisions de `dossier_entree.json` dans un `DISTINGUO_DATA` temporaire.
   - Accepté si :
     - Le dossier passé à `completer()` est accepté par `erreurs_dossier`, et une décision `validee: false` n'y entre pas.
@@ -33,7 +33,7 @@ Vérification commune à chaque tâche : `uv run pytest` vert, et aucun dossier 
   - Vérif : `uv run pytest` ; à la main, la fiche validée de T2, copiée dans les données, donne un dossier valide.
   - Fichiers : `back/service.py`, `back/api.py`, `back/tests/conftest.py`, `back/tests/test_service.py`, `back/tests/test_api.py`
 
-- [ ] **T4. Corriger les faits d'un cas** · XS · dépend de : T3
+- [x] **T4. Corriger les faits d'un cas** · XS · dépend de : T3
   - Faire : `PATCH /cas/{id}` ; une preuve `source: "utilisateur"`, `confiance: 1.0` pour chaque fait modifié ; `a_confirmer` recalculé à chaque écriture du cas.
   - Accepté si :
     - `{"facteurs": {"sanction_deconnexion": true}}` enregistre la valeur, et le facteur sort de `a_confirmer`.
@@ -57,7 +57,7 @@ Vérification commune à chaque tâche : `uv run pytest` vert, et aucun dossier 
   - Vérif : `uv run pytest back/tests/test_extraction.py` (extension refusée, TXT lu) ; à la main, `ingerer` sur un PDF.
   - Fichiers : `back/extraction.py`, `back/ingerer.py`, `back/tests/test_extraction.py`
 
-- [ ] **T6. Relecture par le juriste** · S · dépend de : T2
+- [x] **T6. Relecture par le juriste** · S · dépend de : T2
   - Faire : `GET /decisions`, `GET /decisions/{id}` et `PATCH /decisions/{id}` (fusion, puis contrôle par `valider.py` dans un dossier minimal).
   - Accepté si :
     - `PATCH {"validee": true}` sur une fiche correcte la fait entrer dans le prochain dossier.

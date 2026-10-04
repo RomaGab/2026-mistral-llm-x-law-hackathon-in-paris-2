@@ -51,6 +51,8 @@ uv run python -m back.serveur_mcp                    # serveur MCP → http://lo
 uv run python -m back.ingerer dataset-legora/sources_jurisprudence_plateformes/sources_brutes             # → data/fiches/ (validee: false)
 uv run python -m back.ingerer dataset-legora/sources_jurisprudence_plateformes/sources_brutes --limite 1  # une seule, pour tester
 uv run pytest                                        # tests (sans réseau)
+uv run python -m back.exemple                        # cas + décisions FICTIVES dans data-exemple/ (sans clé Mistral)
+DISTINGUO_DATA=data-exemple uv run uvicorn back.api:app --port 8000   # back + calculateur en local sur ces données
 uv run python contracts/valider.py dossier.json      # valide un dossier sauvegardé
 uvx ruff check back/                                 # lint, sans dépendance ajoutée (pas de ruff format : le calculateur ne suit pas ses 88 colonnes)
 npx @modelcontextprotocol/inspector                  # tester le MCP à la main
