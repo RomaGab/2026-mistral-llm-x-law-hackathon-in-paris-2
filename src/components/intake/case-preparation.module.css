@@ -26,7 +26,7 @@
 }
 
 .progressWindow {
-  --progress-line-height: 24px;
+  --progress-line-height: 36px;
   height: calc(3 * var(--progress-line-height));
   margin: 10px 0 0 22px;
   overflow-x: hidden;
@@ -46,17 +46,36 @@
 }
 
 .progressLine {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 8px;
   height: var(--progress-line-height);
   overflow: hidden;
-  color: var(--color-muted);
+  color: var(--color-subtle);
   font-size: 13px;
   line-height: var(--progress-line-height);
   white-space: nowrap;
-  transition: color 340ms ease;
-  animation: progress-enter 340ms ease-out both;
+}
+
+.progressLine::before,
+.progressLine::after {
+  position: absolute;
+  left: 6.25px;
+  width: 1.5px;
+  height: calc((var(--progress-line-height) - 14px) / 2 - 4px);
+  background: var(--color-border);
+  pointer-events: none;
+}
+
+.progressLine:not(:first-child)::before {
+  content: "";
+  top: 0;
+}
+
+.progressLine:not(:last-child)::after {
+  content: "";
+  bottom: 0;
 }
 
 .progressLine span {
@@ -68,15 +87,6 @@
 .progressIcon {
   flex-shrink: 0;
   color: var(--color-muted);
-}
-
-.progressLine[data-current="true"] {
-  color: var(--color-subtle);
-}
-
-@keyframes progress-enter {
-  from { opacity: 0; transform: translateY(4px); }
-  to { opacity: 1; transform: translateY(0); }
 }
 
 .srOnly {
@@ -92,10 +102,5 @@
 @media (prefers-reduced-motion: reduce) {
   .progressWindow {
     scroll-behavior: auto;
-  }
-
-  .progressLine {
-    transition: none;
-    animation: none;
   }
 }

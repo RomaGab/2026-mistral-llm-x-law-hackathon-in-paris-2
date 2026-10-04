@@ -23,8 +23,6 @@ const stepIcons = {
   review: FiClipboard,
 };
 
-const PROGRESS_FADE_HEIGHT = 12;
-
 export function CasePreparation({ steps, currentStep }: CasePreparationProps) {
   const headingRef = useRef<HTMLHeadingElement>(null);
   const progressRef = useRef<HTMLDivElement>(null);
@@ -38,7 +36,7 @@ export function CasePreparation({ steps, currentStep }: CasePreparationProps) {
     const viewport = progressRef.current;
     if (!viewport || !followProgressRef.current) return;
     viewport.scrollTo({
-      top: Math.max(0, viewport.scrollHeight - viewport.clientHeight - PROGRESS_FADE_HEIGHT),
+      top: Math.max(0, viewport.scrollHeight - viewport.clientHeight),
     });
   }, [currentStep]);
 
@@ -54,17 +52,16 @@ export function CasePreparation({ steps, currentStep }: CasePreparationProps) {
         role="region"
         aria-label="Preparation updates"
         tabIndex={0}
-        style={{ maskImage: `linear-gradient(to bottom, #000 calc(100% - ${PROGRESS_FADE_HEIGHT}px), transparent)` }}
         onScroll={(event) => {
           const viewport = event.currentTarget;
-          followProgressRef.current = viewport.scrollHeight - viewport.scrollTop - viewport.clientHeight <= PROGRESS_FADE_HEIGHT + 2;
+          followProgressRef.current = viewport.scrollHeight - viewport.scrollTop - viewport.clientHeight <= 2;
         }}
       >
-        <div style={{ paddingBottom: PROGRESS_FADE_HEIGHT }}>
-          {steps.slice(0, currentStep + 1).map((step, index) => {
+        <div>
+          {steps.slice(0, currentStep + 1).map((step) => {
             const Icon = stepIcons[step.kind];
             return (
-              <div key={step.id} className={styles.progressLine} data-current={index === currentStep}>
+              <div key={step.id} className={styles.progressLine}>
                 <Icon className={styles.progressIcon} size={14} strokeWidth={1.6} aria-hidden="true" />
                 <span>{step.label}</span>
               </div>
