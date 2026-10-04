@@ -5,8 +5,9 @@ import { FiArrowUp, FiFileText, FiX } from "react-icons/fi";
 
 import type { CaseIntakeDraft } from "@/types/case-intake";
 import { BrandMark } from "@/components/ui/brand-mark";
+import { PREPARATION_PREVIEW_MS } from "@/mocks/case-preparation";
 
-import { CasePreparation } from "./case-preparation";
+import { CasePreparationPreview } from "./case-preparation";
 import { DocumentDropzone } from "./document-dropzone";
 import styles from "./intake-workspace.module.css";
 
@@ -18,14 +19,11 @@ type CaseIntakeFormProps = {
 
 type IntakePhase = "intake" | "leaving" | "preparing" | "returning";
 
-// Temporary preview; backend completion will replace this timer.
-const PREPARATION_PREVIEW_MS = 3000;
-
 export function CaseIntakeForm({ draft, onDraftChange, onSubmit }: CaseIntakeFormProps) {
   const promptRef = useRef<HTMLTextAreaElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const confirmationRef = useRef<HTMLDialogElement>(null);
-  const addDocumentsRef = useRef<HTMLButtonElement>(null);
+  const confirmationTitleRef = useRef<HTMLHeadingElement>(null);
   const [confirmationAction, setConfirmationAction] = useState<"dismiss" | "submit" | null>(null);
   const canSubmit = draft.question.trim().length > 0;
 
@@ -72,7 +70,7 @@ export function CaseIntakeForm({ draft, onDraftChange, onSubmit }: CaseIntakeFor
     if (confirmationRef.current?.open) return;
     if (draft.documents.length === 0) {
       confirmationRef.current?.showModal();
-      addDocumentsRef.current?.focus();
+      confirmationTitleRef.current?.focus({ preventScroll: true });
       return;
     }
     submitDraft();
@@ -148,13 +146,12 @@ export function CaseIntakeForm({ draft, onDraftChange, onSubmit }: CaseIntakeFor
             <FiX size={20} aria-hidden="true" />
           </button>
         </div>
-        <h2 id="no-documents-title">Continue without documents?</h2>
+        <h2 ref={confirmationTitleRef} id="no-documents-title" tabIndex={-1}>Continue without documents?</h2>
         <p id="no-documents-description">
           No files are attached to your question. Would you like to continue without documents?
         </p>
         <div className={styles.dialogActions}>
           <button
-            ref={addDocumentsRef}
             type="button"
             className={styles.secondaryButton}
             onClick={() => {
@@ -244,7 +241,7 @@ export function IntakeWorkspace() {
                 if (event.target === event.currentTarget && phase === "returning") setPhase("intake");
               }}
             >
-              <CasePreparation />
+              <CasePreparationPreview hasDocuments={draft.documents.length > 0} />
             </div>
           )}
         </div>

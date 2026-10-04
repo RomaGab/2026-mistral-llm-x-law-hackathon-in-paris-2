@@ -7,3 +7,9 @@ export type CaseIntakeDraft = {
   ressort: string | null;
   documents: SelectedDocument[];
 };
+
+export type CasePreparationStep = {
+  id: string;
+  label: string;
+  kind: "question" | "document" | "context" | "facts" | "missing" | "review";
+};
