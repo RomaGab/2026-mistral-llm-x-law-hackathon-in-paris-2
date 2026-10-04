@@ -28,7 +28,7 @@ ORI = {f["id"]: f["oriente"] for f in grille["facteurs"]}
 LIB = {f["id"]: f["libelle"] for f in grille["facteurs"]}
 ACTIFS = [i for i in IDS if IMP[i] > 0]
 
-PARAMETRES = {"modele": "logistique_bayesienne", "niveau_intervalle": 0.8, "date_reference": "2026-10-04",
+PARAMETRES = {"modele": "logistique_bayesienne", "niveau_intervalle": 0.95, "date_reference": "2026-10-04",
               "seuil_exception": 0.15, "seuil_sensibilite": 0.10, "marge_pivot": 0.15}
 K, SIGMA = 1.0, 0.5
 EPS = 1e-9  # comparaisons sur valeurs arrondies : tolérance flottante  # a priori du modèle jouet : moyenne = sens × importance × K, écart-type SIGMA

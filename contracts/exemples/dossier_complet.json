@@ -643,7 +643,7 @@
   ],
   "parametres": {
     "modele": "logistique_bayesienne",
-    "niveau_intervalle": 0.8,
+    "niveau_intervalle": 0.95,
     "date_reference": "2026-10-04",
     "seuil_exception": 0.15,
     "seuil_sensibilite": 0.1,
@@ -655,8 +655,8 @@
     "prediction": {
       "probabilite": 0.47,
       "intervalle": [
-        0.16,
-        0.81
+        0.08,
+        0.91
       ],
       "issue": false,
       "incertain": true

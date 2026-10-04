@@ -95,7 +95,7 @@ Un dossier a six blocs. Le schéma exact est dans `contracts/dossier.schema.json
   "decisions":  [ { "id": "…", "intitule": "Cass. soc., 4 mars 2020", "formation": "cass", "date": "2020-03-04",
                     "issue": true, "validee": true,
                     "facteurs": { "…": "…" }, "determinants": ["sanction_deconnexion"], "…": "…" } ],
-  "parametres": { "modele": "logistique_bayesienne", "niveau_intervalle": 0.8, "date_reference": "2026-10-04" },
+  "parametres": { "modele": "logistique_bayesienne", "niveau_intervalle": 0.95, "date_reference": "2026-10-04" },
   "resultat":   null
 }
 ```
@@ -140,7 +140,7 @@ La grille contient 18 facteurs (15 actifs, 3 neutralisés). Le juriste doit la v
 | Champ | Sens |
 |---|---|
 | `modele` | `logistique_bayesienne` (principal) ou `vote_pondere` (comparaison) |
-| `niveau_intervalle` | 0,8 par défaut |
+| `niveau_intervalle` | 0,95 par défaut (intervalle à 95 %) |
 | `date_reference` | Date utilisée pour l'ancienneté des décisions. Le calculateur ne lit jamais l'horloge. |
 | `seuil_exception` | 0,15 par défaut. Probabilité minimale de l'issue minoritaire pour afficher une exception même sans pivot. |
 | `seuil_sensibilite` | 0,10 par défaut. Écart de P à partir duquel un facteur est « sensible ». |
@@ -323,4 +323,4 @@ Un point de 5 minutes à chaque jalon : ce qui marche, ce qui bloque, ce qui cha
 - [ ] Fichiers JSON ou SQLite pour le stockage côté back ?
 - [ ] Le serveur MCP est-il dans la démo, ou seulement mentionné dans le pitch ?
 - [ ] Le juriste valide-t-il la grille telle quelle (facteurs, orientations, importances) ?
-- [ ] **Calculateur — largeur des intervalles.** Avec une quinzaine de décisions, l'intervalle à 80 % est très large : dans les exemples, même après la bascule (P = 0,72), le résultat reste « incertain ». Il faut choisir : a priori plus fort, intervalle plus étroit (ex. 60 %), ou assumer « salariat probable mais incertain » dans la démo.
+- [ ] **Calculateur — largeur des intervalles.** L'intervalle est à 95 %. Avec une quinzaine de décisions, il est très large : dans les exemples, même après la bascule (P = 0,72), il va de 0,16 à 0,97 et le résultat reste « incertain ». Pour qu'un statut « net » apparaisse, il faudra un a priori plus fort ou plus de décisions ; sinon, assumer « salariat probable mais incertain » dans la démo.
