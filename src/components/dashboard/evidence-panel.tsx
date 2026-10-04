@@ -85,12 +85,13 @@ export function EvidencePanel({ detail, dossier, original, closing, preserveFocu
       const gap = 10;
       const edge = 12;
       const target = anchor.getBoundingClientRect();
+      // Anchored sizing applies before measuring, so the height below is the final one.
+      dialog.setAttribute("data-anchored", "true");
       const header = parseFloat(getComputedStyle(dialog).getPropertyValue("--app-header-height")) || 0;
       const { offsetWidth: width, offsetHeight: height } = dialog;
       let left = target.right + gap;
       if (left + width > window.innerWidth - edge) left = target.left - width - gap;
       const top = Math.max(header + edge, Math.min(target.top, window.innerHeight - height - edge));
-      dialog.setAttribute("data-anchored", "true");
       dialog.style.left = `${Math.max(edge, left)}px`;
       dialog.style.top = `${top}px`;
     }
