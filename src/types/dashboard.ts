@@ -65,9 +65,9 @@ export type DashboardDossier = {
   };
   cas: {
     id: string;
-    question: string;
+    question?: string;
     facteurs: Record<string, FactValue>;
-    preuves: Record<string, { extrait: string | null; confiance: number; source: string }>;
+    preuves?: Record<string, { extrait: string | null; confiance: number; source: string }>;
   };
   decisions: CaseDecision[];
   parametres: { niveau_intervalle: number };

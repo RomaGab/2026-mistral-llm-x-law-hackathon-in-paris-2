@@ -1,31 +1,52 @@
 "use client";
 
 import { useLayoutEffect, useRef, useState, type CSSProperties } from "react";
+import { analyseCase, ApiError } from "@/lib/api/client";
 import { AppBrand } from "@/components/ui/app-brand";
 import { decisionStatusChange, factLabel, factValueLabel, percent } from "@/lib/dashboard/presentation";
-import { exampleDossier, getDashboardPreview } from "@/mocks/dashboard";
-import type { DashboardDetail, FactOverride, FactValue } from "@/types/dashboard";
+import { getDashboardPreview } from "@/mocks/dashboard";
+import type { DashboardDetail, DashboardDossier, FactOverride, FactValue } from "@/types/dashboard";
 import { BalancePanel } from "./balance-panel";
+import { CaseBrief } from "./case-brief";
 import { CaseFactsTable } from "./comparison-matrix";
 import { DashboardPanel } from "./dashboard-panel";
 import { EvidencePanel } from "./evidence-panel";
 import { FloatingAnalysisSummary } from "./floating-analysis-summary";
 import styles from "./dashboard.module.css";
 
-export function DashboardWorkspace() {
+function overrideKey(override: FactOverride) {
+  return `${override.factorId}:${override.value === null ? "unknown" : override.value}`;
+}
+
+function firstQuestion(dossier: DashboardDossier) {
+  return dossier.resultat.pivots[0] ?? dossier.grille.facteurs.find((factor) => dossier.cas.facteurs[factor.id] === null)?.id ?? dossier.grille.facteurs[0].id;
+}
+
+// With `initialDossier` (a real analysis from the backend), each fact change asks the backend for a
+// simulation. Without it (the /dashboard route), the frozen fixtures are shown as before.
+export function DashboardWorkspace({ initialDossier }: { initialDossier?: DashboardDossier }) {
+  const [original] = useState<DashboardDossier>(() => initialDossier ?? getDashboardPreview(null));
+  const live = initialDossier !== undefined;
   const [override, setOverride] = useState<FactOverride | null>(null);
-  const [selectedFactor, setSelectedFactor] = useState("sanction_deconnexion");
+  const [simulations, setSimulations] = useState<Record<string, DashboardDossier>>({});
+  const [simulationError, setSimulationError] = useState<string | null>(null);
+  const latestKey = useRef<string | null>(null);
+  const [selectedFactor, setSelectedFactor] = useState(() => firstQuestion(original));
   const [detail, setDetail] = useState<DashboardDetail | null>(null);
   const [detailClosing, setDetailClosing] = useState(false);
   const [floatingHeight, setFloatingHeight] = useState(0);
   const scoreRef = useRef<HTMLDivElement>(null);
   const detailTriggerRef = useRef<HTMLButtonElement | null>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
-  const dossier = getDashboardPreview(override);
+  const simulated = override ? (live ? simulations[overrideKey(override)] : getDashboardPreview(override)) : original;
+  const pending = override !== null && !simulated;
+  // While a simulation is pending, keep the last analysis and show only the edited fact.
+  const dossier = simulated ?? (override
+    ? { ...original, cas: { ...original.cas, facteurs: { ...original.cas.facteurs, [override.factorId]: override.value } } }
+    : original);
   const floatingStyle: CSSProperties & { "--floating-summary-height": string } = {
     "--floating-summary-height": `${floatingHeight}px`,
   };
-  const original = getDashboardPreview(null);
   const changedDecisions = dossier.resultat.decisions.filter((decision) => decisionStatusChange(decision, original.resultat.decisions.find((item) => item.id === decision.id)));
   // Keep unknown facts first without moving a focused row after a simulation.
   // Preserve shared grid order within the two groups.
@@ -38,7 +59,18 @@ export function DashboardWorkspace() {
 
   function changeFact(factorId: string, value: FactValue) {
     setSelectedFactor(factorId);
-    setOverride(value === exampleDossier.cas.facteurs[factorId] ? null : { factorId, value });
+    const next = value === original.cas.facteurs[factorId] ? null : { factorId, value };
+    setOverride(next);
+    setSimulationError(null);
+    latestKey.current = next ? overrideKey(next) : null;
+    if (!live || !next || simulations[overrideKey(next)]) return;
+    const key = overrideKey(next);
+    analyseCase(original.cas.id, { [factorId]: value })
+      .then((result) => setSimulations((previous) => ({ ...previous, [key]: result })))
+      .catch((error: unknown) => {
+        if (latestKey.current !== key) return;
+        setSimulationError(error instanceof ApiError ? error.message : "The simulation failed.");
+      });
   }
 
   function selectCaseFact(factorId: string) {
@@ -80,7 +112,8 @@ export function DashboardWorkspace() {
           <div className={styles.pageHeading}>
             <h1 ref={titleRef} tabIndex={-1}>Case analysis</h1>
           </div>
-          <div className={styles.analysisSummary}>
+          <CaseBrief dossier={dossier} pending={pending} error={simulationError} onFactSelect={selectCaseFact} />
+          <div className={styles.analysisSummary} aria-busy={pending}>
             <BalancePanel scoreRef={scoreRef} dossier={dossier} originalProbability={original.resultat.prediction.probabilite} override={override} />
           </div>
           <div className={styles.factsSection}>

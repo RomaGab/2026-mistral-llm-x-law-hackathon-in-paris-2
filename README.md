@@ -2,19 +2,9 @@
 
 Next.js App Router frontend with React, strict TypeScript, ESLint, and plain CSS.
 The intake screen contains a prompt composer with PDF/TXT/DOCX selection, drag and
-drop, and removable attachments. On sending, the heading and composer fade away
-before a small pivot mark blends into pixel shapes beside “Preparing your case…”.
-Its square blocks move and merge at full opacity to form each shape.
-Below the heading, a scrollable three-line window follows illustrative progress
-sentences with grey task icons. Text aligns with the heading, and the lower half
-of the third row fades to suggest scrolling. Scrolling back pauses automatic
-following until the user returns to the latest updates. The document-reading step is shown
-only when files are attached. Copy and timing live in `src/mocks/case-preparation.ts`;
-the display accepts steps and a current step for eventual backend integration.
-This frontend preview lasts three seconds, then restores the draft and attachments.
-Preview timers are cleaned up on unmount; backend events will replace them.
-Files remain in memory; backend upload, extraction, and analysis are not connected.
-Reduced-motion preferences disable the loading animation and fades.
+drop, and removable attachments. On send, the documents are uploaded, the backend extracts
+the facts with Mistral, and the dashboard opens on the real analysis. The `/dashboard` route
+still shows the frozen fixtures, for offline demos.
 
 The design tokens were inspected in Mistral Studio using Safari Web Inspector.
 Inter is self-hosted, with its license in `public/fonts/Inter-LICENSE.txt`.
@@ -30,6 +20,17 @@ Open [http://localhost:3000](http://localhost:3000).
 
 Start editing `src/app/page.tsx`. Shared design tokens and base styles are in
 `src/app/globals.css`. Project conventions are in [AGENTS.md](AGENTS.md).
+
+## Run with the backend
+
+```bash
+uv sync                                                         # Python dependencies (repo root)
+uv run --env-file .env uvicorn back.api:app --port 8000          # API + calculator (needs MISTRAL_API_KEY in .env)
+npm run dev                                                     # front on http://localhost:3000
+```
+
+The front calls `NEXT_PUBLIC_API_URL` (default `http://localhost:8000`, see `.env.example`).
+Only decisions validated in `data/fiches/` are used by the analysis.
 
 ## Checks
 

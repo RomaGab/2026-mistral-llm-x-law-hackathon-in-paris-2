@@ -20,7 +20,7 @@ export function PivotInsight({ dossier, original, selectedFactor, onFactChange, 
   const analysis = original.resultat.facteurs[selectedFactor];
   return (
     <section ref={ref} className={styles.pivotInsight} data-compact={compact} aria-labelledby={headingId}>
-      <div className={styles.pivotEyebrow}><FiZap size={15} aria-hidden="true" />{analysis.est_pivot ? "A pivotal question" : "Explore a fact"}</div>
+      <div className={styles.pivotEyebrow}><FiZap size={15} aria-hidden="true" />{analysis?.est_pivot ? "A pivotal question" : "Explore a fact"}</div>
       <div className={styles.pivotQuestion}>
         <h2 key={selectedFactor} className={styles.questionUpdate} id={headingId}>{copy.question}</h2>
         <div className={styles.pivotControls}>

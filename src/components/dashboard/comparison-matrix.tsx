@@ -33,7 +33,7 @@ export function CaseFactsTable({ dossier, original, factors, selectedFactor, det
     <>
       <div className={styles.matrixScroll} role="region" aria-label="Case facts and precedents">
         <table className={styles.matrix} style={columnStyle} role="table">
-          <caption className={styles.srOnly}>Case facts beside fictional precedents. Your case values are editable. Precedent buttons open a detail panel.</caption>
+          <caption className={styles.srOnly}>Case facts beside precedents. Your case values are editable. Precedent buttons open a detail panel.</caption>
           <thead ref={headerRef} onScroll={syncHorizontalScroll} role="rowgroup"><tr role="row">
             <th scope="col" role="columnheader"><span className={styles.columnLabel}><FiAlignLeft size={16} aria-hidden="true" />Case fact</span></th>
             <th scope="col" role="columnheader" className={styles.caseColumn}>

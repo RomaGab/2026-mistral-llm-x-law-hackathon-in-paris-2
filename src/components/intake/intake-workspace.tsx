@@ -4,11 +4,13 @@ import { useEffect, useLayoutEffect, useRef, useState, type FormEvent } from "re
 import { FiArrowUp, FiFileText, FiX } from "react-icons/fi";
 
 import type { CaseIntakeDraft } from "@/types/case-intake";
+import type { DashboardDossier } from "@/types/dashboard";
 import { AppBrand } from "@/components/ui/app-brand";
 import { DashboardWorkspace } from "@/components/dashboard/dashboard-workspace";
-import { PREPARATION_PREVIEW_MS } from "@/mocks/case-preparation";
+import { analyseCase, ApiError, createCase, uploadDocument } from "@/lib/api/client";
+import { getPreparationPreviewSteps } from "@/mocks/case-preparation";
 
-import { CasePreparationPreview } from "./case-preparation";
+import { CasePreparation } from "./case-preparation";
 import { DocumentDropzone } from "./document-dropzone";
 import styles from "./intake-workspace.module.css";
 
@@ -182,16 +184,44 @@ export function IntakeWorkspace() {
     question: "", description: "", ressort: null, documents: [],
   });
   const [phase, setPhase] = useState<IntakePhase>("intake");
+  const [step, setStep] = useState(0);
+  const [dossier, setDossier] = useState<DashboardDossier | null>(null);
+  const [error, setError] = useState<string | null>(null);
   const showIntake = phase === "intake" || phase === "leaving";
 
+  // Leave the preparation screen once the analysis is back, after a short beat on the last step.
   useEffect(() => {
-    if (phase !== "preparing") return;
-    const timeout = window.setTimeout(() => setPhase("returning"), PREPARATION_PREVIEW_MS);
+    if (phase !== "preparing" || !dossier) return;
+    const timeout = window.setTimeout(() => setPhase("returning"), 600);
     return () => window.clearTimeout(timeout);
-  }, [phase]);
+  }, [phase, dossier]);
 
-  if (phase === "dashboard") {
-    return <DashboardWorkspace />;
+  // Upload documents → extract the facts (Mistral) → analyse. Steps follow real progress.
+  async function prepareCase(next: CaseIntakeDraft) {
+    try {
+      setStep(1);
+      const documentIds: string[] = [];
+      for (const document of next.documents) documentIds.push(await uploadDocument(document.file));
+      setStep(2);
+      const caseId = await createCase({
+        question: next.question,
+        // The backend extracts facts from the description; the prompt is the case description here.
+        description: next.description.trim() || next.question,
+        ressort: next.ressort,
+        documentIds,
+      });
+      setStep(3);
+      const result = await analyseCase(caseId);
+      setStep(4);
+      setDossier(result);
+    } catch (caught) {
+      setError(caught instanceof ApiError ? caught.message : "The case could not be prepared. Please try again.");
+      setPhase("intake");
+    }
+  }
+
+  if (phase === "dashboard" && dossier) {
+    return <DashboardWorkspace initialDossier={dossier} />;
   }
 
   return (
@@ -230,9 +260,14 @@ export function IntakeWorkspace() {
                 onSubmit={(next) => {
                   if (phase !== "intake") return;
                   setDraft(next);
+                  setError(null);
+                  setDossier(null);
+                  setStep(0);
                   setPhase("leaving");
+                  void prepareCase(next);
                 }}
               />
+              {error && <p className={styles.error} role="alert">{error}</p>}
             </div>
           ) : (
             <div
@@ -243,7 +278,7 @@ export function IntakeWorkspace() {
                 if (event.target === event.currentTarget && phase === "returning") setPhase("dashboard");
               }}
             >
-              <CasePreparationPreview hasDocuments={draft.documents.length > 0} />
+              <CasePreparation steps={getPreparationPreviewSteps(draft.documents.length > 0)} currentStep={step} />
             </div>
           )}
         </div>

@@ -72,9 +72,13 @@ export function EvidencePanel({ detail, dossier, original, closing, onClose, onE
 }
 
 function EvidenceExcerpt({ excerpt }: { excerpt: string | null | undefined }) {
-  if (!excerpt) return <p>No supporting excerpt in this example.</p>;
+  if (!excerpt) return <p>No supporting excerpt was found in the sources.</p>;
   const translation = englishExcerpt(excerpt);
-  if (!translation) return <p>An English translation of this excerpt is not available yet.</p>;
+  // Legal sources are quoted verbatim: without a reviewed translation, show the original French.
+  if (!translation) return <figure className={styles.evidenceExcerpt}>
+    <blockquote lang="fr">“{excerpt}”</blockquote>
+    <figcaption>Original excerpt (French)</figcaption>
+  </figure>;
   return <figure className={styles.evidenceExcerpt}>
     <blockquote lang="en">“{translation}”</blockquote>
     <figcaption>English translation</figcaption>
@@ -83,12 +87,12 @@ function EvidenceExcerpt({ excerpt }: { excerpt: string | null | undefined }) {
 
 function FactEvidence({ dossier, factor }: { dossier: DashboardDossier; factor: FactorDefinition }) {
   const copy = factCopy(factor);
-  const evidence = dossier.cas.preuves[factor.id]?.extrait;
+  const evidence = dossier.cas.preuves?.[factor.id]?.extrait;
   const analysis = dossier.resultat.facteurs[factor.id];
   return <div className={styles.factEvidence}>
     <h3>{copy.question}</h3>
     <EvidenceExcerpt excerpt={evidence} />
-    <p>From the original case: Yes {percent(analysis.probabilite_si_vrai)} · No {percent(analysis.probabilite_si_faux)} employment estimate.</p>
+    {analysis && <p>From the original case: Yes {percent(analysis.probabilite_si_vrai)} · No {percent(analysis.probabilite_si_faux)} employment estimate.</p>}
   </div>;
 }
 
@@ -109,7 +113,7 @@ function DecisionDetail({ dossier, original, decisionId, factorId }: { dossier: 
         <p>Precedent: {factValueLabel(decision.facteurs[factorId])} · Your case: {factValueLabel(dossier.cas.facteurs[factorId])}</p>
         <p>{alignment === "identique" ? "This fact matches your case." : alignment === "oppose" ? "This fact differs from your case." : "The comparison is unknown because a fact has not been established."}</p>
         <EvidenceExcerpt excerpt={evidence} />
-      </> : <p className={styles.decisionMeta}>Fictional precedent · {new Date(`${decision.date}T12:00:00Z`).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" })} · Similarity {percent(result.proximite)}</p>}
+      </> : <p className={styles.decisionMeta}>{decision.intitule.includes("[FICTIF]") ? "Fictional precedent" : "Precedent"} · {new Date(`${decision.date}T12:00:00Z`).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" })} · Similarity {percent(result.proximite)}</p>}
       {result.motif_exclusion && <p className={styles.sourceNote}>{englishExclusionReason(result.motif_exclusion, dossier.grille.facteurs)}</p>}
       {!factorId && <>
         {result.s_applique_a_fortiori === true && <p>This precedent applies even more strongly to your case.</p>}

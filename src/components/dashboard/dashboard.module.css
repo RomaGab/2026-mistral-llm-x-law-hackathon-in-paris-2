@@ -190,9 +190,39 @@
   .main:has(.floatingSummary) .evidencePanel { max-height: calc(100dvh - 112px - max(24px, env(safe-area-inset-bottom)) - var(--floating-summary-height)); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .pageHeading, .analysisSummary, .factsSection, .valueUpdate, .questionUpdate, .estimateChange, .evidenceContent, .floatingSummary, .floatingEstimate, .evidencePanel[open], .evidencePanel[open][data-closing="true"], .evidencePanel::backdrop, .evidencePanel[data-closing="true"]::backdrop { animation-duration: 1ms; animation-delay: 0ms; }
-  .choiceIndicator, .factChoices label, .interval, .balanceMarker, .matrix th, .matrix td, .matrix .factCell, .valueCell select, .matrix .precedentCell, .matrix .precedentCell svg, .closePanel { transition: none; }
+  .pageHeading, .brief, .analysisSummary, .factsSection, .valueUpdate, .questionUpdate, .estimateChange, .evidenceContent, .floatingSummary, .floatingEstimate, .evidencePanel[open], .evidencePanel[open][data-closing="true"], .evidencePanel::backdrop, .evidencePanel[data-closing="true"]::backdrop { animation-duration: 1ms; animation-delay: 0ms; }
+  .choiceIndicator, .factChoices label, .questionButton, .brief[aria-busy="true"], .interval, .balanceMarker, .matrix th, .matrix td, .matrix .factCell, .valueCell select, .matrix .precedentCell, .matrix .precedentCell svg, .closePanel { transition: none; }
   @keyframes stage-enter { from { opacity: 0; } to { opacity: 1; } }
   @keyframes surface-enter { from { opacity: 0; } to { opacity: 1; } }
   @keyframes surface-leave { from { opacity: 1; } to { opacity: 0; } }
+}
+
+/* Answer-first brief: the leading position, open questions, exception and exclusions. */
+.brief { margin-bottom: 24px; padding: 24px 28px; border: 1px solid var(--color-border); border-radius: var(--radius-surface); background: var(--color-surface); box-shadow: var(--shadow-surface); animation: stage-enter var(--motion-stage-duration) var(--motion-ease-out) 20ms backwards; }
+.brief[aria-busy="true"] { opacity: .75; transition: opacity 150ms ease; }
+.briefEyebrow { margin: 0 0 6px; color: var(--color-subtle); font-size: 13px; font-weight: 500; line-height: 20px; }
+.briefAnswer { margin: 0; font-size: 28px; line-height: 36px; letter-spacing: -.6px; }
+.briefAnswer strong { font-weight: 600; }
+.briefMeta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 6px 0 0; color: var(--color-subtle); font-size: 13px; }
+.badge { display: inline-flex; align-items: center; border: 1px solid var(--color-border); border-radius: 5px; padding: 2px 7px; color: var(--color-subtle); font-size: 11px; font-weight: 500; }
+.badge[data-tone="warning"] { border-color: transparent; background: var(--color-accent-soft); color: var(--color-accent); }
+.briefColumns { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 28px; margin-top: 22px; padding-top: 20px; border-top: 1px solid var(--color-border); }
+.briefHeading { display: flex; align-items: center; gap: 8px; margin: 0 0 10px; font-size: 13px; font-weight: 500; line-height: 20px; }
+.briefHeading svg { color: var(--color-accent); }
+.briefHeading:not(:first-child) { margin-top: 18px; }
+.questionList { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; counter-reset: question; }
+.questionButton { display: grid; gap: 2px; width: 100%; padding: 10px 12px; border: 1px solid var(--color-border); border-radius: var(--radius-control); background: var(--color-background); color: var(--color-text); font: inherit; font-size: 14px; line-height: 1.45; text-align: left; cursor: pointer; transition: border-color 150ms ease, background-color 150ms ease; }
+.questionButton:hover { border-color: var(--color-accent); background: var(--color-accent-soft); }
+.questionImpact { color: var(--color-subtle); font-size: 12px; }
+.briefText, .briefNote { margin: 0; color: var(--color-subtle); font-size: 13px; line-height: 1.6; }
+.briefNote { margin-top: 8px; }
+.briefError { margin: 8px 0 0; color: var(--color-danger); font-size: 13px; }
+.briefList { margin: 0; padding-left: 18px; color: var(--color-subtle); font-size: 13px; line-height: 1.6; }
+.briefList strong { color: var(--color-text); font-weight: 500; }
+.briefWarnings { display: grid; gap: 6px; margin: 18px 0 0; padding: 12px; border-radius: var(--radius-control); background: var(--color-background); color: var(--color-subtle); font-size: 12px; line-height: 1.5; list-style: none; }
+.briefWarnings li { display: flex; gap: 8px; }
+.briefWarnings svg { flex-shrink: 0; margin-top: 2px; color: var(--color-accent); }
+@media (max-width: 767px) {
+  .brief { padding: 20px; }
+  .briefColumns { grid-template-columns: 1fr; gap: 20px; }
 }

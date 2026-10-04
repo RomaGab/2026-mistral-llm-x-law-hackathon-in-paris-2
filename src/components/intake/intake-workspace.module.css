@@ -302,3 +302,5 @@
     to { opacity: 0; }
   }
 }
+
+.error { margin: 12px 0 0; color: var(--color-danger); font-size: 13px; line-height: 1.5; }
