@@ -6,7 +6,7 @@ Vérification commune à chaque tâche : `uv run pytest` vert, et aucun dossier 
 ## Phase 1 : J1, socle, vraie décision, analyse
 
 - [ ] **T1. Socle : l'API répond et sert la grille** · S · dépend de : rien
-  - Faire : `pyproject.toml` racine (stack du spec ; `[tool.pytest.ini_options] pythonpath = ["."]`) ; dans `service.py`, `lire` / `ecrire` / `lister`, le contrôle des ids et `Erreur` ; dans `api.py`, `/sante`, `/grille`, le CORS et les gestionnaires d'erreurs (`Erreur` → son statut, `RequestValidationError` → 400, tout au format `erreur`) ; dans `.gitignore`, `data/cas/` et `data/documents/`.
+  - Faire : `pyproject.toml` racine (stack du spec ; `[tool.pytest.ini_options] pythonpath = ["."]`) ; dans `service.py`, `lire` / `ecrire` / `lister`, le contrôle des ids et `Erreur` ; dans `api.py`, `/sante`, `/grille`, le CORS et les gestionnaires d'erreurs (`Erreur` → son statut, `RequestValidationError` → 400, tout au format `erreur`) ; dans `.gitignore`, `data/cas/`, `data/documents/` et `.DS_Store` (le dataset en contient).
   - Accepté si :
     - `GET /sante` renvoie `{"ok": true}` et `GET /grille` renvoie le contenu de `contracts/grille.json`.
     - `lire("cas", "../x")` lève un 400 sans accéder au disque.
