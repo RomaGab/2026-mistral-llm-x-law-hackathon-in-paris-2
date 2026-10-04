@@ -36,9 +36,9 @@
 .outcomeLabels [data-leading="true"] { color: var(--color-text); font-weight: 500; }
 .balanceTrack { position: relative; height: 36px; margin-top: 8px; }
 .balanceRule { position: absolute; top: 17px; right: 0; left: 0; height: 2px; background: var(--color-control); }
-.interval { position: absolute; top: 10px; height: 16px; border: 1px solid #fa500f26; border-radius: 4px; background: var(--color-accent-soft); transition: left var(--motion-stage-duration) var(--motion-ease-out), width var(--motion-stage-duration) var(--motion-ease-out); }
+.interval { position: absolute; top: 10px; height: 16px; border: 1px solid #fa500f26; border-radius: 4px; background: var(--color-accent-soft); transition: left var(--motion-balance-duration) var(--motion-ease-out) var(--motion-balance-delay), width var(--motion-balance-duration) var(--motion-ease-out) var(--motion-balance-delay); }
 .midpoint { position: absolute; top: 7px; bottom: 5px; left: 50%; border-left: 1px dashed var(--color-border); }
-.balanceMarker { position: absolute; top: 11px; width: 14px; height: 14px; border: 3px solid var(--color-surface); border-radius: 50%; background: var(--color-accent); box-shadow: 0 0 0 1px var(--color-accent); transform: translateX(-50%); transition: left var(--motion-stage-duration) var(--motion-ease-out); }
+.balanceMarker { position: absolute; top: 11px; width: 14px; height: 14px; border: 3px solid var(--color-surface); border-radius: 50%; background: var(--color-accent); box-shadow: 0 0 0 1px var(--color-accent); transform: translateX(-50%); transition: left var(--motion-balance-duration) var(--motion-ease-out) var(--motion-balance-delay); }
 .originalMarker { position: absolute; top: 13px; width: 10px; height: 10px; border: 1px solid var(--color-muted); border-radius: 50%; background: var(--color-surface); transform: translateX(-50%); }
 .scaleLabels { display: flex; justify-content: space-between; color: var(--color-muted); font-size: 10px; font-variant-numeric: tabular-nums; }
 .intervalCaption { display: flex; align-items: center; gap: 7px; margin-top: 12px; color: var(--color-subtle); font-size: 11px; }
@@ -122,10 +122,14 @@
 .floatingEstimate > strong { font-size: 28px; font-weight: 500; line-height: 1.15; letter-spacing: -.8px; font-variant-numeric: tabular-nums; }
 .main:has(.floatingSummary) { padding-bottom: calc(var(--floating-summary-height) + max(48px, env(safe-area-inset-bottom))); }
 .evidencePanel { position: fixed; inset: calc(var(--app-header-height) + 20px) 24px auto auto; z-index: 20; width: 400px; max-width: calc(100vw - 48px); max-height: calc(100dvh - var(--app-header-height) - 44px); margin: 0; padding: 0; border: 1px solid var(--color-border); border-radius: var(--radius-surface); background: var(--color-surface); color: var(--color-text); box-shadow: var(--shadow-dialog); }
+/* Anchored beside the inspected cell on desktop; top/left are set by the component. */
+.evidencePanel[data-anchored="true"] { right: auto; bottom: auto; width: 360px; }
 .evidencePanel[open] { display: flex; flex-direction: column; animation: surface-enter var(--motion-panel-duration) var(--motion-ease-out) backwards; }
 .evidencePanel[open][data-closing="true"] { pointer-events: none; animation: surface-leave var(--motion-exit-duration) ease-in both; }
 .evidenceHeader { display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; gap: 16px; padding: 18px 20px; border-bottom: 1px solid var(--color-border); }
 .evidenceHeader h2 { margin: 0; outline: none; font-size: 16px; font-weight: 600; letter-spacing: -.3px; }
+/* Hides the floating pivotal question; a data-room question brings it back. */
+.floatingClose { position: absolute; top: 12px; right: 12px; z-index: 1; width: 32px; height: 32px; }
 .closePanel { display: grid; flex-shrink: 0; width: 36px; height: 36px; place-items: center; border: 0; border-radius: var(--radius-control); background: transparent; color: var(--color-subtle); cursor: pointer; transition: background-color 150ms ease; }
 .closePanel:hover { background: var(--color-control); }
 .evidenceBody { min-height: 0; overflow: auto; overscroll-behavior: contain; overflow-wrap: anywhere; padding: 24px; }
@@ -207,23 +211,18 @@
 .briefMeta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 6px 0 0; color: var(--color-subtle); font-size: 13px; }
 .badge { display: inline-flex; align-items: center; border: 1px solid var(--color-border); border-radius: 5px; padding: 2px 7px; color: var(--color-subtle); font-size: 11px; font-weight: 500; }
 .badge[data-tone="warning"] { border-color: transparent; background: var(--color-accent-soft); color: var(--color-accent); }
-.briefColumns { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 28px; margin-top: 22px; padding-top: 20px; border-top: 1px solid var(--color-border); }
+.briefQuestions { margin-top: 22px; padding-top: 20px; border-top: 1px solid var(--color-border); }
 .briefHeading { display: flex; align-items: center; gap: 8px; margin: 0 0 10px; font-size: 13px; font-weight: 500; line-height: 20px; }
 .briefHeading svg { color: var(--color-accent); }
 .briefHeading:not(:first-child) { margin-top: 18px; }
-.questionList { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; counter-reset: question; }
-.questionButton { display: grid; gap: 2px; width: 100%; padding: 10px 12px; border: 1px solid var(--color-border); border-radius: var(--radius-control); background: var(--color-background); color: var(--color-text); font: inherit; font-size: 14px; line-height: 1.45; text-align: left; cursor: pointer; transition: border-color 150ms ease, background-color 150ms ease; }
+.questionList { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin: 0; padding: 0; list-style: none; }
+.questionList li { display: flex; }
+.questionButton { display: flex; flex-direction: column; justify-content: space-between; gap: 8px; width: 100%; padding: 10px 12px; border: 1px solid var(--color-border); border-radius: var(--radius-control); background: var(--color-background); color: var(--color-text); font: inherit; font-size: 14px; line-height: 1.45; text-align: left; cursor: pointer; transition: border-color 150ms ease, background-color 150ms ease; }
 .questionButton:hover { border-color: var(--color-accent); background: var(--color-accent-soft); }
 .questionImpact { color: var(--color-subtle); font-size: 12px; }
-.briefText, .briefNote { margin: 0; color: var(--color-subtle); font-size: 13px; line-height: 1.6; }
+.briefNote { margin: 0; color: var(--color-subtle); font-size: 13px; line-height: 1.6; }
 .briefNote { margin-top: 8px; }
 .briefError { margin: 8px 0 0; color: var(--color-danger); font-size: 13px; }
-.briefList { margin: 0; padding-left: 18px; color: var(--color-subtle); font-size: 13px; line-height: 1.6; }
-.briefList strong { color: var(--color-text); font-weight: 500; }
-.briefWarnings { display: grid; gap: 6px; margin: 18px 0 0; padding: 12px; border-radius: var(--radius-control); background: var(--color-background); color: var(--color-subtle); font-size: 12px; line-height: 1.5; list-style: none; }
-.briefWarnings li { display: flex; gap: 8px; }
-.briefWarnings svg { flex-shrink: 0; margin-top: 2px; color: var(--color-accent); }
 @media (max-width: 767px) {
   .brief { padding: 20px; }
-  .briefColumns { grid-template-columns: 1fr; gap: 20px; }
 }

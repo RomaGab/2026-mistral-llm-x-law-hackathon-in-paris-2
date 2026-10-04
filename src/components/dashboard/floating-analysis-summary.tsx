@@ -1,10 +1,11 @@
 import { useEffect, useLayoutEffect, useRef, useState, type RefObject } from "react";
+import { FiX } from "react-icons/fi";
 import { percent } from "@/lib/dashboard/presentation";
 import type { DashboardDossier, FactValue } from "@/types/dashboard";
 import { PivotInsight } from "./pivot-insight";
 import styles from "./dashboard.module.css";
 
-export function FloatingAnalysisSummary({ dossier, original, selectedFactor, onFactChange, scoreRef, headerRef, onHeightChange }: {
+export function FloatingAnalysisSummary({ dossier, original, selectedFactor, onFactChange, scoreRef, headerRef, onHeightChange, onDismiss }: {
   dossier: DashboardDossier;
   original: DashboardDossier;
   selectedFactor: string;
@@ -12,6 +13,7 @@ export function FloatingAnalysisSummary({ dossier, original, selectedFactor, onF
   scoreRef: RefObject<HTMLDivElement | null>;
   headerRef: RefObject<HTMLElement | null>;
   onHeightChange: (height: number) => void;
+  onDismiss: () => void;
 }) {
   const [showScore, setShowScore] = useState(false);
   const floatingRef = useRef<HTMLElement>(null);
@@ -59,6 +61,7 @@ export function FloatingAnalysisSummary({ dossier, original, selectedFactor, onF
 
   return (
     <aside ref={floatingRef} className={styles.floatingSummary} aria-label="Current case analysis">
+      <button type="button" className={`${styles.closePanel} ${styles.floatingClose}`} aria-label="Hide the pivotal question" onClick={onDismiss}><FiX size={18} aria-hidden="true" /></button>
       <PivotInsight compact dossier={dossier} original={original} selectedFactor={selectedFactor} onFactChange={onFactChange} />
       {showScore && <div className={styles.floatingEstimate} aria-hidden="true">
         <span>Employment estimate</span>

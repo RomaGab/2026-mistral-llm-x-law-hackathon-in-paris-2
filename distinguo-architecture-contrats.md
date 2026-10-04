@@ -150,8 +150,8 @@ La grille contient 18 facteurs (15 actifs, 3 neutralisés). Le juriste doit la v
 | `date_reference` | Date utilisée pour l'ancienneté des décisions. Le calculateur ne lit jamais l'horloge. |
 | `seuil_exception` | 0,15 par défaut. Probabilité minimale de l'issue minoritaire pour afficher une exception même sans pivot. |
 | `seuil_sensibilite` | 0,10 par défaut. Écart de P à partir duquel un facteur est « sensible ». |
-| `marge_pivot` | 0,15 par défaut. Pour être pivot, un fait inversé doit faire passer P de l'autre côté de 0,5 **et** à au moins cette distance de 0,5. |
-| `sigma_a_priori` | Facultatif, 0,5 par défaut (régression logistique). Confiance dans la grille du juriste : plus petit = le modèle suit davantage la grille. À choisir avec `python -m calculateur.evaluation`. |
+| `marge_pivot` | 0,15 par défaut (le back envoie 0,10, adapté à σ = 0,3). Pour être pivot, un fait inversé doit faire passer P de l'autre côté de 0,5 **et** à au moins cette distance de 0,5. |
+| `sigma_a_priori` | Facultatif, 0,3 par défaut (régression logistique), choisi par validation croisée sur les 12 arrêts : même justesse (12/12) et même calibration qu'à 0,5, mais 11 résultats nets sur 12 au lieu de 8. Confiance dans la grille du juriste : plus petit = le modèle suit davantage la grille. À choisir avec `python -m calculateur.evaluation`. |
 | `kappa` | Facultatif, 2,0 par défaut (vote pondéré). Force probante d'une décision. |
 
 ### Résultat (rempli par le calculateur)

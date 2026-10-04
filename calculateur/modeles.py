@@ -15,7 +15,7 @@ from scipy.stats import beta, norm
 
 from .precedents import Grille, detail_poids, exclusion, poids, proximite
 
-SIGMA_DEFAUT = 0.5   # écart-type de l'a priori : confiance dans la grille du juriste
+SIGMA_DEFAUT = 0.3   # écart-type de l'a priori : confiance dans la grille du juriste (choisi par validation croisée sur le corpus)
 KAPPA_DEFAUT = 2.0   # force probante d'une décision dans le vote pondéré
 ECHELLE_A_PRIORI = 1.0
 PLAFOND_JURIDICTION = 1.5

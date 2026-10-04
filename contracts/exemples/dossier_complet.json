@@ -653,17 +653,17 @@
     "modele": "logistique_bayesienne",
     "version_calculateur": "0.1.0",
     "prediction": {
-      "probabilite": 0.47,
+      "probabilite": 0.5,
       "intervalle": [
-        0.08,
-        0.91
+        0.18,
+        0.82
       ],
       "issue": false,
       "incertain": true
     },
     "majeure": {
       "issue": false,
-      "probabilite": 0.53,
+      "probabilite": 0.5,
       "decisions": [
         "exemple-ca-paris-1",
         "exemple-ca-paris-2"
@@ -671,30 +671,30 @@
     },
     "exception": {
       "issue": true,
-      "probabilite": 0.47,
+      "probabilite": 0.5,
       "conditions": [
+        {
+          "facteur": "sanction_deconnexion",
+          "valeur": true,
+          "probabilite_si": 0.74
+        },
         {
           "facteur": "multi_plateformes",
           "valeur": false,
-          "probabilite_si": 0.73
+          "probabilite_si": 0.74
         },
         {
           "facteur": "remplacement_possible",
           "valeur": false,
-          "probabilite_si": 0.73
-        },
-        {
-          "facteur": "sanction_deconnexion",
-          "valeur": true,
-          "probabilite_si": 0.72
+          "probabilite_si": 0.74
         }
       ],
       "decision_reference": "exemple-cass-1"
     },
     "pivots": [
+      "sanction_deconnexion",
       "multi_plateformes",
       "remplacement_possible",
-      "sanction_deconnexion",
       "service_organise",
       "penalites_bonus"
     ],
@@ -704,8 +704,8 @@
         "est_pivot": true,
         "niveau": "pivot",
         "type": "a_documenter",
-        "probabilite_si_vrai": 0.71,
-        "probabilite_si_faux": 0.24,
+        "probabilite_si_vrai": 0.73,
+        "probabilite_si_faux": 0.27,
         "contribution": 0.0,
         "ecartees_si_vrai": [
           "exemple-ca-lyon-1"
@@ -719,9 +719,9 @@
         "est_pivot": false,
         "niveau": "sensible",
         "type": "levier",
-        "probabilite_si_vrai": 0.47,
-        "probabilite_si_faux": 0.11,
-        "contribution": 0.97,
+        "probabilite_si_vrai": 0.5,
+        "probabilite_si_faux": 0.12,
+        "contribution": 0.99,
         "ecartees_si_vrai": [
           "exemple-ca-lyon-1"
         ],
@@ -733,8 +733,8 @@
         "est_pivot": true,
         "niveau": "pivot",
         "type": "a_documenter",
-        "probabilite_si_vrai": 0.72,
-        "probabilite_si_faux": 0.24,
+        "probabilite_si_vrai": 0.74,
+        "probabilite_si_faux": 0.27,
         "contribution": 0.0,
         "ecartees_si_vrai": [
           "exemple-ca-paris-1",
@@ -750,8 +750,8 @@
         "est_pivot": true,
         "niveau": "pivot",
         "type": "a_documenter",
-        "probabilite_si_vrai": 0.71,
-        "probabilite_si_faux": 0.24,
+        "probabilite_si_vrai": 0.73,
+        "probabilite_si_faux": 0.27,
         "contribution": 0.0,
         "ecartees_si_vrai": [
           "exemple-ca-lyon-1"
@@ -764,9 +764,9 @@
         "est_pivot": false,
         "niveau": "sensible",
         "type": "levier",
-        "probabilite_si_vrai": 0.47,
-        "probabilite_si_faux": 0.24,
-        "contribution": 0.53,
+        "probabilite_si_vrai": 0.5,
+        "probabilite_si_faux": 0.27,
+        "contribution": 0.51,
         "ecartees_si_vrai": [
           "exemple-ca-lyon-1"
         ],
@@ -778,8 +778,8 @@
         "est_pivot": false,
         "niveau": "sensible",
         "type": "a_documenter",
-        "probabilite_si_vrai": 0.6,
-        "probabilite_si_faux": 0.35,
+        "probabilite_si_vrai": 0.63,
+        "probabilite_si_faux": 0.38,
         "contribution": 0.0,
         "ecartees_si_vrai": [
           "exemple-ca-lyon-1"
@@ -792,8 +792,8 @@
         "est_pivot": false,
         "niveau": "sensible",
         "type": "a_documenter",
-        "probabilite_si_vrai": 0.6,
-        "probabilite_si_faux": 0.35,
+        "probabilite_si_vrai": 0.63,
+        "probabilite_si_faux": 0.38,
         "contribution": 0.0,
         "ecartees_si_vrai": [
           "exemple-ca-lyon-1"
@@ -806,9 +806,9 @@
         "est_pivot": true,
         "niveau": "pivot",
         "type": "levier",
-        "probabilite_si_vrai": 0.47,
-        "probabilite_si_faux": 0.73,
-        "contribution": -0.55,
+        "probabilite_si_vrai": 0.5,
+        "probabilite_si_faux": 0.74,
+        "contribution": -0.52,
         "ecartees_si_vrai": [
           "exemple-ca-lyon-1"
         ],
@@ -820,9 +820,9 @@
         "est_pivot": true,
         "niveau": "pivot",
         "type": "levier",
-        "probabilite_si_vrai": 0.47,
-        "probabilite_si_faux": 0.73,
-        "contribution": -0.55,
+        "probabilite_si_vrai": 0.5,
+        "probabilite_si_faux": 0.74,
+        "contribution": -0.52,
         "ecartees_si_vrai": [
           "exemple-ca-lyon-1"
         ],
@@ -834,8 +834,8 @@
         "est_pivot": false,
         "niveau": "faible",
         "type": "a_documenter",
-        "probabilite_si_vrai": 0.52,
-        "probabilite_si_faux": 0.42,
+        "probabilite_si_vrai": 0.55,
+        "probabilite_si_faux": 0.45,
         "contribution": 0.0,
         "ecartees_si_vrai": [
           "exemple-ca-lyon-1"
@@ -848,8 +848,8 @@
         "est_pivot": false,
         "niveau": "faible",
         "type": "a_documenter",
-        "probabilite_si_vrai": 0.52,
-        "probabilite_si_faux": 0.42,
+        "probabilite_si_vrai": 0.55,
+        "probabilite_si_faux": 0.45,
         "contribution": 0.0,
         "ecartees_si_vrai": [
           "exemple-ca-lyon-1"
@@ -862,8 +862,8 @@
         "est_pivot": false,
         "niveau": "faible",
         "type": "a_documenter",
-        "probabilite_si_vrai": 0.52,
-        "probabilite_si_faux": 0.42,
+        "probabilite_si_vrai": 0.55,
+        "probabilite_si_faux": 0.45,
         "contribution": 0.0,
         "ecartees_si_vrai": [
           "exemple-ca-lyon-1"
@@ -876,9 +876,9 @@
         "est_pivot": false,
         "niveau": "sensible",
         "type": "levier",
-        "probabilite_si_vrai": 0.47,
-        "probabilite_si_faux": 0.59,
-        "contribution": -0.24,
+        "probabilite_si_vrai": 0.5,
+        "probabilite_si_faux": 0.61,
+        "contribution": -0.22,
         "ecartees_si_vrai": [
           "exemple-ca-lyon-1"
         ],
@@ -890,8 +890,8 @@
         "est_pivot": false,
         "niveau": "faible",
         "type": "a_documenter",
-        "probabilite_si_vrai": 0.42,
-        "probabilite_si_faux": 0.52,
+        "probabilite_si_vrai": 0.45,
+        "probabilite_si_faux": 0.55,
         "contribution": 0.0,
         "ecartees_si_vrai": [
           "exemple-ca-lyon-1"
@@ -904,9 +904,9 @@
         "est_pivot": false,
         "niveau": "sensible",
         "type": "levier",
-        "probabilite_si_vrai": 0.47,
-        "probabilite_si_faux": 0.59,
-        "contribution": -0.24,
+        "probabilite_si_vrai": 0.5,
+        "probabilite_si_faux": 0.61,
+        "contribution": -0.22,
         "ecartees_si_vrai": [
           "exemple-ca-lyon-1"
         ],
@@ -918,8 +918,8 @@
         "est_pivot": false,
         "niveau": "neutralise",
         "type": "a_documenter",
-        "probabilite_si_vrai": 0.47,
-        "probabilite_si_faux": 0.47,
+        "probabilite_si_vrai": 0.5,
+        "probabilite_si_faux": 0.5,
         "contribution": 0.0,
         "ecartees_si_vrai": [
           "exemple-ca-lyon-1"
@@ -932,8 +932,8 @@
         "est_pivot": false,
         "niveau": "neutralise",
         "type": "a_documenter",
-        "probabilite_si_vrai": 0.47,
-        "probabilite_si_faux": 0.47,
+        "probabilite_si_vrai": 0.5,
+        "probabilite_si_faux": 0.5,
         "contribution": 0.0,
         "ecartees_si_vrai": [
           "exemple-ca-lyon-1"
@@ -946,8 +946,8 @@
         "est_pivot": false,
         "niveau": "neutralise",
         "type": "a_documenter",
-        "probabilite_si_vrai": 0.47,
-        "probabilite_si_faux": 0.47,
+        "probabilite_si_vrai": 0.5,
+        "probabilite_si_faux": 0.5,
         "contribution": 0.0,
         "ecartees_si_vrai": [
           "exemple-ca-lyon-1"

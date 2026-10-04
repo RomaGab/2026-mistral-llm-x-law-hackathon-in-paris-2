@@ -22,6 +22,8 @@
   --motion-stage-duration: 320ms;
   --motion-panel-duration: 220ms;
   --motion-exit-duration: 200ms;
+  --motion-balance-duration: 1100ms;
+  --motion-balance-delay: 350ms;
   --font-sans: var(--font-inter), Arial, Helvetica, sans-serif;
   --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
 }

@@ -5,14 +5,17 @@ import { englishExcerpt, englishExclusionReason } from "@/lib/dashboard/source-c
 import type { DashboardDetail, DashboardDossier, FactorDefinition } from "@/types/dashboard";
 import styles from "./dashboard.module.css";
 
-export function EvidencePanel({ detail, dossier, original, closing, preserveFocus, onClose, onExited }: {
+export function EvidencePanel({ detail, dossier, original, closing, preserveFocus, anchor, onClose, onExited, onPointerEnter, onPointerLeave }: {
   detail: DashboardDetail;
   dossier: DashboardDossier;
   original: DashboardDossier;
   closing: boolean;
   preserveFocus: boolean;
+  anchor: HTMLElement | null;
   onClose: () => void;
   onExited: () => void;
+  onPointerEnter?: () => void;
+  onPointerLeave?: () => void;
 }) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
@@ -56,13 +59,47 @@ export function EvidencePanel({ detail, dossier, original, closing, preserveFocu
     return () => dialog?.close();
   }, []);
 
+  // Desktop: sit beside the inspected cell (right, or left when there is no room) and follow scrolling.
+  useLayoutEffect(() => {
+    const dialog = dialogRef.current;
+    if (!dialog) return;
+    const compact = window.matchMedia("(max-width: 767px)");
+    function place() {
+      if (!dialog) return;
+      if (compact.matches || !anchor) {
+        dialog.style.removeProperty("top");
+        dialog.style.removeProperty("left");
+        dialog.removeAttribute("data-anchored");
+        return;
+      }
+      const gap = 10;
+      const edge = 12;
+      const target = anchor.getBoundingClientRect();
+      const header = parseFloat(getComputedStyle(dialog).getPropertyValue("--app-header-height")) || 0;
+      const { offsetWidth: width, offsetHeight: height } = dialog;
+      let left = target.right + gap;
+      if (left + width > window.innerWidth - edge) left = target.left - width - gap;
+      const top = Math.max(header + edge, Math.min(target.top, window.innerHeight - height - edge));
+      dialog.setAttribute("data-anchored", "true");
+      dialog.style.left = `${Math.max(edge, left)}px`;
+      dialog.style.top = `${top}px`;
+    }
+    place();
+    window.addEventListener("scroll", place, true);
+    window.addEventListener("resize", place);
+    return () => {
+      window.removeEventListener("scroll", place, true);
+      window.removeEventListener("resize", place);
+    };
+  }, [anchor, detail]);
+
   useLayoutEffect(() => {
     if (!preserveFocus) headingRef.current?.focus({ preventScroll: true });
     bodyRef.current?.scrollTo({ top: 0 });
   }, [detail, preserveFocus]);
 
   return (
-    <dialog ref={dialogRef} id="case-details" className={styles.evidencePanel} data-closing={closing} data-preserve-focus={preserveFocus} aria-labelledby="evidence-title" onAnimationEnd={(event) => {
+    <dialog ref={dialogRef} id="case-details" className={styles.evidencePanel} data-closing={closing} data-preserve-focus={preserveFocus} aria-labelledby="evidence-title" onMouseEnter={onPointerEnter} onMouseLeave={onPointerLeave} onAnimationEnd={(event) => {
       if (event.target === event.currentTarget && !event.nativeEvent.pseudoElement && closing) onExited();
     }} onCancel={(event) => {
       event.preventDefault();

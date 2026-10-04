@@ -16,8 +16,10 @@ ID_VALIDE = re.compile(r"^[a-z0-9_-]{1,64}$")
 VERSION_FORMAT = "1.4"
 SEUIL_CONFIANCE = 0.6  # en dessous, un fait extrait est à confirmer par l'avocat
 # Valeurs par défaut du contrat (§5) ; date_reference est ajoutée à chaque analyse.
-PARAMETRES = {"modele": "logistique_bayesienne", "niveau_intervalle": 0.95,
-              "seuil_exception": 0.15, "seuil_sensibilite": 0.10, "marge_pivot": 0.15}
+# sigma_a_priori 0,3 : choisi par validation croisée ; avec cet a priori plus serré, une marge de pivot de 0,10
+# (au lieu de 0,15) garde les vraies bascules, comme la sanction dans le cas de démo.
+PARAMETRES = {"modele": "logistique_bayesienne", "niveau_intervalle": 0.95, "sigma_a_priori": 0.3,
+              "seuil_exception": 0.15, "seuil_sensibilite": 0.10, "marge_pivot": 0.10}
 PARIS = ZoneInfo("Europe/Paris")
 
 
