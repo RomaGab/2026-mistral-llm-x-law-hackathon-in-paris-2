@@ -48,8 +48,8 @@ Toutes les commandes se lancent **depuis la racine du dépôt**, pour que `back`
 uv sync                                              # installe les dépendances (pyproject.toml racine)
 uv run uvicorn back.api:app --reload --port 8000     # API pour le front
 uv run python -m back.serveur_mcp                    # serveur MCP → http://localhost:8001/mcp
-uv run python -m back.ingerer dataset-legora/        # extrait toutes les décisions du dataset → data/fiches/ (validee: false)
-uv run python -m back.ingerer dataset-legora/ --limite 1   # une seule, pour tester
+uv run python -m back.ingerer dataset-legora/sources_jurisprudence_plateformes/sources_brutes             # → data/fiches/ (validee: false)
+uv run python -m back.ingerer dataset-legora/sources_jurisprudence_plateformes/sources_brutes --limite 1  # une seule, pour tester
 uv run pytest                                        # tests (sans réseau)
 uv run python contracts/valider.py dossier.json      # valide un dossier sauvegardé
 uvx ruff check back/ && uvx ruff format back/        # lint + format, sans dépendance ajoutée
@@ -91,6 +91,8 @@ data/
 
 **`a_confirmer`** contient les facteurs qui valent `null` ou dont la confiance est < 0,6, dans l'ordre de la grille. Il est recalculé à chaque écriture du cas.
 
+**Ingestion (`ingerer.py`).** On parcourt les fichiers `.txt`, `.pdf` et `.docx` du dossier, sous-dossiers compris. Si `00_Tableau_synthese_structure.json` est présent (format Legora), l'entrée qui pointe vers le fichier (`fichier_source_brute`) est passée **telle quelle** à Mistral, comme notes d'aide à l'extraction (date, référence, statut jugé, faits déterminants, fait pivot). Ces notes viennent elles-mêmes d'un outil de recherche : ce sont des indices, pas des vérités, et la fiche passe quand même par la relecture du juriste. Une entrée dont `juridiction_pays` ne commence pas par « France » est **sautée** (avec un message) : le schéma `decision` ne sait pas représenter une juridiction étrangère, qui n'a de toute façon pas d'autorité en droit français. Un fichier absent du tableau (ajout manuel) est extrait sans notes.
+
 **Identifiants.** Format `^[a-z0-9_-]{1,64}$`, vérifié **avant tout accès disque** (pas de traversée de chemin). Un cas s'appelle `cas_<8 hex>`, un document `doc_<8 hex>`. Une décision déposée s'appelle `dec_<8 hex>` ; une décision ingérée reprend le nom de son fichier en slug, ce qui rend l'ingestion idempotente : une fiche qui existe déjà est sautée.
 
 **`PATCH /cas/{id}`.** Les identifiants doivent être dans la grille et les valeurs valoir `true`, `false` ou `null` ; sinon 400. Chaque fait modifié reçoit une preuve `source: "utilisateur"`, `confiance: 1.0`, en gardant l'extrait existant.
@@ -98,7 +100,7 @@ data/
 **`PATCH /decisions/{id}`.** Fusionne les champs reçus, puis vérifie la fiche avec `valider.py` (on l'insère dans un dossier minimal). Si la fiche devient invalide, on refuse avec un 400 qui liste les problèmes, et rien n'est écrit.
 
 **Construction du dossier** (`service.analyser(cas_id, facteurs=None)`) :
-- `meta` : `version_format: "1.2"`, `dossier_id` = id du cas, `genere_le` = heure actuelle, `simulation` = `facteurs is not None` ;
+- `meta` : `version_format: "1.3"`, `dossier_id` = id du cas, `genere_le` = heure actuelle, `simulation` = `facteurs is not None` ;
 - `grille` : copie de `contracts/grille.json`, relue à chaque appel ;
 - `cas` : le cas stocké. En simulation, les facteurs fournis remplacent ceux du cas, et rien n'est écrit sur le disque ;
 - `decisions` : toutes les fiches avec `validee: true`, triées par id ;
@@ -193,7 +195,7 @@ def normaliser_faits(brut: dict, texte: str, grille: list[dict]) -> tuple[dict, 
 
 ## Questions ouvertes
 
-1. **Format du dataset Legora** (le dossier est vide pour l'instant) : des textes bruts, ou un JSON avec des métadonnées (date, juridiction, numéro) ? Si les métadonnées sont fournies, `ingerer.py` les reprend telles quelles au lieu de les faire extraire par le LLM.
+1. ~~Format du dataset Legora~~ **Réglé** : un TXT par décision et un tableau de synthèse JSON (voir « Ingestion »). Le corpus est constitué **à la main**, sans Judilibre. Il reste à l'équilibrer : 6 arrêts français, dont 1 seul pour l'indépendance, et aucune cour d'appel (T11).
 2. **Client MCP de la démo** : Le Chat (URL publique nécessaire, donc tunnel ; auth ?) ou Claude Desktop / Inspector (localhost) ? Ça fixe le transport et le besoin d'un jeton.
 3. **`pyproject.toml` racine partagé avec le calculateur** : à confirmer avec Mathis, et récupérer la liste de ses dépendances.
 4. **Mistral OCR et DOCX** : à vérifier en premier. S'il ne les lit pas, on refuse les DOCX (400) : TXT et PDF suffisent pour la démo.
