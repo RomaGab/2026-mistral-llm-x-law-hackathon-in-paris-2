@@ -8,7 +8,7 @@
 Le back transforme des textes juridiques en **dossiers valides** et les fait compléter par le calculateur. Il a deux clients :
 
 - **le front**, via l'API REST du contrat (§7) ;
-- **un agent IA (Le Chat, Claude…)**, via un serveur MCP montré **en démo**. C'est le produit vendu (cf. [idee.md](idee.md), partie 2).
+- **un agent Mistral dans Le Chat** (prompt « Agent Stratégique Pivot »), via un serveur MCP montré **en démo**. C'est le produit vendu (cf. [idee.md](idee.md), partie 2).
 
 Il fait quatre choses, et rien d'autre :
 
@@ -64,6 +64,7 @@ pyproject.toml          ← racine, partagé avec le calculateur (à confirmer a
 back/
 ├── api.py              ← FastAPI : routes du §7, CORS, format d'erreur unique
 ├── serveur_mcp.py      ← outils MCP, appellent service.py directement (pas d'appel HTTP)
+├── prompt_agent.md     ← instructions de l'agent Mistral, alignées sur les noms d'outils et de champs
 ├── service.py          ← stockage JSON + cas d'usage partagés par l'API et le MCP
 │                          (deposer_document, creer_cas, modifier_cas, analyser, lister/modifier décisions)
 ├── extraction.py       ← Mistral : OCR, texte → faits (cas / décision), normalisation des sorties
@@ -116,13 +117,20 @@ data/
 
 ### Outils MCP
 
-Ces trois outils appellent `service.py`. Ils renvoient un **résumé** (libellés de la grille, pas les ids bruts) et non le dossier complet de ~35 Ko, pour ne pas saturer le contexte de l'agent.
+Le client est un **agent Mistral** (Le Chat, connecteur MCP distant), qui suit le prompt « Agent Stratégique Pivot ». Les noms et le découpage des outils suivent ce prompt. Les trois outils appellent `service.py`. Ils renvoient un **résumé** avec les libellés de la grille, et non le dossier complet de ~35 Ko, pour ne pas saturer le contexte de l'agent. Les règles que le prompt aurait laissées au LLM (score définitif ou non, leviers) sont **calculées ici** : le LLM extrait, le code décide.
 
 | Outil | Entrée | Sortie |
 |---|---|---|
-| `distinguo_analyser` | `description`, `ressort?`, `facteurs?` | Crée le cas (extraction Mistral), l'analyse. Renvoie `cas_id`, l'issue (libellé), P, l'intervalle, `incertain`, les pivots (libellé, P si vrai/faux), les faits à confirmer (libellé + question), les décisions de la majeure (intitulé) et l'exception. |
-| `distinguo_simuler` | `cas_id`, `facteurs` | Même résumé, en simulation (rien n'est enregistré). C'est la « bascule » de la démo. |
-| `distinguo_expliquer_score` | `cas_id`, `facteurs?` | Détail par facteur (`resultat.facteurs`) et par décision (retenue / motif, proximité, poids) avec les intitulés : un résultat qu'on peut auditer critère par critère. |
+| `pivot_structurer_cas` | `description`, `pieces?` (liste de textes), `ressort?` | Crée le cas par extraction Mistral, **sans l'analyser**. Le serveur ne voit pas les fichiers joints dans Le Chat : l'agent recopie mot pour mot dans `pieces` les passages utiles de chaque pièce. Chaque pièce est stockée comme un document du cas, et les extraits sont vérifiés contre `description` + `pieces`. Renvoie `cas_id`, chaque fait (libellé → Oui / Non / Inconnu, avec son extrait) et `a_confirmer` (libellé + question). |
+| `pivot_etat_du_droit` | — | La grille (id, libellé, question, sens, importance) et le corpus validé (intitulé, formation, issue en libellé). Aucun appel à Mistral. |
+| `pivot_arbitrer` | `cas_id`, `faits?` (`{facteur_id: true/false/null}`), `hypothese?` (défaut `false`) | Les `faits` sont **enregistrés** (source `utilisateur`, comme `PATCH /cas`) ; avec `hypothese: true`, c'est une simulation et rien n'est écrit. Lance ensuite l'analyse. Un id hors grille donne une erreur qui liste les ids valides. |
+
+Résumé renvoyé par `pivot_arbitrer`, rien que des valeurs lues dans `resultat`. Les probabilités y sont en **pourcentage entier** (72, pas 0,72), pour que l'agent n'ait aucune conversion à faire :
+- `position_majeure` : libellé de l'issue, `majeure.probabilite`, intervalle, `incertain` ; `probabilite_salariat` = P ; `indice_liceite` = 1 − P (probabilité d'indépendance), pour que l'agent ne calcule rien ;
+- `definitif` : `false` dès qu'un facteur pivot vaut `null` dans le cas (`est_pivot` et `type: a_documenter`). C'est la « règle de blocage » du prompt. `faits_manquants` liste ces facteurs : libellé, question, P si vrai et si faux ;
+- `decisions_retenues` : nombre, et intitulés de la majeure dans l'ordre du calculateur (la première est l'arrêt de référence) ; `decisions_ecartees` : intitulé et motif d'exclusion ;
+- `pivots` (libellé, P si vrai et si faux), ou les paires de `pivots_combines` s'il n'y en a pas ; `exception` : issue, probabilité, conditions, décision de référence ;
+- `leviers` : les 3 faits **connus** dont l'inversion fait le plus bouger P, avec la nouvelle valeur de P et d'`indice_liceite` ; `avertissements` tels quels.
 
 ## Style de code
 
@@ -157,7 +165,7 @@ def normaliser_faits(brut: dict, texte: str, grille: list[dict]) -> tuple[dict, 
   - `test_extraction.py` : normalisation (`"oui"` → `null`, facteur manquant → `null`, clé hors grille ignorée, extrait introuvable → `null` + confiance ≤ 0,5, déterminant `null` retiré, `validee` forcé à `false`) ;
   - `test_service.py` : avec le cas et les décisions de `dossier_entree.json`, le dossier construit est valide ; une simulation met `meta.simulation = true` et laisse le cas inchangé sur le disque ; une décision non validée n'entre pas dans le dossier ; un id `../x` est refusé ;
   - `test_api.py` : chaque route du §7 au moins une fois ; un corps mal formé donne 400 au format `erreur` ; un id inconnu donne 404 ; Mistral en échec donne 502.
-- **Vérifs manuelles (clé réelle)** : `ingerer --limite 1` sur une vraie décision Legora ; le scénario de démo complet par l'API ; les trois outils MCP via l'Inspector.
+- **Vérifs manuelles (clé réelle)** : `ingerer --limite 1` sur une vraie décision Legora ; le scénario de démo complet par l'API ; les trois outils `pivot_*` via l'Inspector.
 - Pas d'objectif de couverture chiffré : on est en hackathon. Le critère est « chaque route et chaque règle de normalisation a son test ».
 
 ## Limites
@@ -177,7 +185,7 @@ def normaliser_faits(brut: dict, texte: str, grille: list[dict]) -> tuple[dict, 
 
 **Jamais**
 - De logique de pondération, de probabilité ou de pivot dans le back.
-- D'appel à Mistral dans `/analyse` ni dans `distinguo_simuler`.
+- D'appel à Mistral dans `/analyse`, `pivot_arbitrer` ni `pivot_etat_du_droit`.
 - De passage automatique d'une décision à `validee: true` : seul le juriste le fait.
 - De commit de `.env`, de clé API, de `data/cas/` ou de `data/documents/`.
 - De modification de `calculateur/` ou de `front/`.
@@ -190,12 +198,12 @@ def normaliser_faits(brut: dict, texte: str, grille: list[dict]) -> tuple[dict, 
 |---|---|
 | **J1** | Les routes du §7 répondent, avec le faux calculateur. `ingerer --limite 1` transforme une vraie décision Legora en fiche ; une fois passée à `validee: true`, elle produit un dossier que `valider.py` accepte. `uv run pytest` passe. |
 | **J2** | `POST /cas/{id}/analyse` renvoie un dossier complété par le **vrai** `completer()`, validé, en < 1 s avec ~20 décisions. |
-| **MCP** | Depuis le client de démo : `distinguo_analyser` sur la description du cas Uber renvoie P, l'issue et les pivots ; `distinguo_simuler` avec `sanction_deconnexion: true` montre la bascule ; `distinguo_expliquer_score` détaille les facteurs. |
+| **MCP** | Dans Le Chat, avec le prompt « Agent Stratégique Pivot » : la description du cas de livreurs déclenche `pivot_structurer_cas` et `pivot_etat_du_droit` ; `pivot_arbitrer` renvoie `definitif: false` avec la sanction dans `faits_manquants`, et l'agent pose la question ; la réponse de l'avocat (« shadow-banning ») déclenche `pivot_arbitrer` avec `sanction_deconnexion: true` et la bascule. Tous les chiffres de la restitution sont ceux de l'outil. |
 | **J3** | Le front est branché. Scénario de démo de bout en bout sur de vraies décisions validées : dépôt → faits à confirmer (dont la sanction) → analyse → case cochée → bascule. |
 
 ## Questions ouvertes
 
 1. ~~Format du dataset Legora~~ **Réglé** : un TXT par décision et un tableau de synthèse JSON (voir « Ingestion »). Le corpus est constitué **à la main**, sans Judilibre. Il reste à l'équilibrer : 6 arrêts français, dont 1 seul pour l'indépendance, et aucune cour d'appel (T11).
-2. **Client MCP de la démo** : Le Chat (URL publique nécessaire, donc tunnel ; auth ?) ou Claude Desktop / Inspector (localhost) ? Ça fixe le transport et le besoin d'un jeton.
+2. ~~Client MCP de la démo~~ **Réglé** : un agent Mistral dans Le Chat, donc une URL publique via le tunnel. Il reste à vérifier quelle authentification le connecteur accepte (aucune, ou un jeton) : à tester en premier en T9.
 3. **`pyproject.toml` racine partagé avec le calculateur** : à confirmer avec Mathis, et récupérer la liste de ses dépendances.
 4. **Mistral OCR et DOCX** : à vérifier en premier. S'il ne les lit pas, on refuse les DOCX (400) : TXT et PDF suffisent pour la démo.

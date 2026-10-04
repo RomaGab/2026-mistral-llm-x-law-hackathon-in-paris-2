@@ -22,7 +22,7 @@ T1 socle
  │                              ├── T6 relecture juriste ────────┤
  │                              └── T7 créer un cas ──┐          ├── T11 corpus réel
  └── T3 analyse ── T4 PATCH cas ──────────────────────┤          │
-        │                                             └── T8 MCP local ── T9 MCP depuis le client de démo
+        │                                             └── T8 MCP local ── T9 MCP depuis Le Chat
         └── T10 vrai calculateur (dès que Mathis livre)
                                          tout ──► T12 répétition de la démo
 ```
@@ -33,7 +33,7 @@ T1 socle
 |---|---|---|
 | 1. J1 : socle, vraie décision, analyse | T1 → T2 → T3 → T4 | Une vraie décision extraite donne un dossier valide ; l'analyse et la simulation marchent avec le faux calculateur |
 | 2. Parcours du front | T5, T6, T7 | Toutes les routes du §7 répondent |
-| 3. MCP | T8 → T9 | Les 3 outils marchent depuis le client de démo |
+| 3. MCP | T8 → T9 | Les 3 outils `pivot_*` marchent depuis l'agent Mistral dans Le Chat |
 | 4. J2/J3 : vrai calculateur, vrai corpus, démo | T10, T11, T12 | Scénario de démo de bout en bout sur de vraies décisions |
 
 Un checkpoint en fin de phase : `uv run pytest` vert, commit, push, 5 minutes avec l'équipe.
@@ -54,6 +54,6 @@ Un checkpoint en fin de phase : `uv run pytest` vert, commit, push, 5 minutes av
 ## Questions ouvertes (reprises du spec)
 
 1. ~~Format du dataset Legora~~ Réglé (TXT + tableau de synthèse JSON ; les juridictions étrangères sont exclues). Corpus constitué à la main.
-2. Client MCP de la démo : Le Chat ou Claude Desktop. Bloque T9.
+2. ~~Client MCP de la démo~~ Réglé : agent Mistral dans Le Chat (prompt « Agent Stratégique Pivot »). Reste à vérifier l'authentification du connecteur (T9).
 3. `pyproject.toml` racine partagé : à annoncer à Mathis avant de pousser T1.
 4. Lecture des DOCX par Mistral OCR. Réglé dans T5.

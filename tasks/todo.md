@@ -82,19 +82,20 @@ Vérification commune à chaque tâche : `uv run pytest` vert, et aucun dossier 
 ## Phase 3 : MCP (obligatoire en démo)
 
 - [ ] **T8. Serveur MCP local** · S · dépend de : T3, T7
-  - Faire : `serveur_mcp.py` avec `distinguo_analyser`, `distinguo_simuler` et `distinguo_expliquer_score`, qui appellent `service.py`. Un résumé avec les libellés de la grille, pas le dossier brut. Transport streamable HTTP sur le port 8001.
+  - Faire : `serveur_mcp.py` (serveur `pivot`) avec `pivot_structurer_cas`, `pivot_etat_du_droit` et `pivot_arbitrer`, qui appellent `service.py`. Le résumé de `pivot_arbitrer` est décrit dans le spec (`definitif`, `faits_manquants`, `leviers`, `indice_liceite`…). Transport streamable HTTP sur le port 8001.
   - Accepté si :
-    - Dans l'Inspector, `distinguo_analyser` sur la description du cas exemple renvoie `cas_id`, P, l'issue en libellé, les pivots et les faits à confirmer.
-    - `distinguo_simuler` avec `sanction_deconnexion: true` montre un P différent, et rien n'est écrit.
-    - `distinguo_expliquer_score` donne le détail par facteur et par décision.
+    - Dans l'Inspector, `pivot_structurer_cas` sur la description du cas exemple renvoie `cas_id`, les faits et la sanction dans `a_confirmer`.
+    - `pivot_arbitrer(cas_id)` renvoie `definitif: false`, avec `sanction_deconnexion` dans `faits_manquants`.
+    - `pivot_arbitrer` avec `{"sanction_deconnexion": true}` fait bouger P et enregistre le fait ; avec `hypothese: true`, rien n'est écrit.
+    - `pivot_etat_du_droit` renvoie la grille et le corpus validé.
   - Vérif : `uv run python -m back.serveur_mcp` puis `npx @modelcontextprotocol/inspector`.
   - Fichiers : `back/serveur_mcp.py`
 
-- [ ] **T9. Le MCP depuis le client de démo** · S · dépend de : T8 · **bloqué par la question ouverte 2**
-  - Faire : brancher le client choisi (Le Chat : tunnel `cloudflared`, puis déclarer le connecteur ; Claude Desktop : configuration locale), et noter la procédure dans le README de démo ou dans le spec.
+- [ ] **T9. Le MCP depuis l'agent Mistral (Le Chat)** · S · dépend de : T8
+  - Faire : ouvrir le tunnel `cloudflared`, déclarer le connecteur MCP dans Le Chat (vérifier **d'abord** l'authentification acceptée), créer l'agent avec le prompt « Agent Stratégique Pivot » (noms d'outils alignés), et noter la procédure.
   - Accepté si :
-    - Depuis le client, une question en langage naturel sur le cas Uber déclenche `distinguo_analyser`, et l'agent cite P et le pivot.
-    - Une relance (« et si la plateforme sanctionnait les refus ? ») déclenche `distinguo_simuler`.
+    - Le scénario « MCP » des critères de réussite du spec passe : structuration → score provisoire + question sur la sanction → réponse « shadow-banning » → bascule.
+    - Chaque chiffre de la restitution en 5 rubriques correspond à la sortie de `pivot_arbitrer`, sans aucun pourcentage inventé.
   - Vérif : à la main, depuis le client ; capture d'écran en secours.
   - Fichiers : la procédure de démo uniquement
 
