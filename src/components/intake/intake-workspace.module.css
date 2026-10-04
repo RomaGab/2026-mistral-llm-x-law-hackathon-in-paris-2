@@ -9,23 +9,6 @@
   padding: 0 32px;
 }
 
-.brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-}
-
-.brandMark,
-.brandName > span {
-  color: var(--color-accent);
-}
-
-.brandName {
-  font-size: 26px;
-  font-weight: 650;
-  letter-spacing: -1px;
-}
-
 .content {
   display: grid;
   min-height: calc(100svh - 76px);

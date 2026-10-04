@@ -4,7 +4,8 @@ import { useEffect, useLayoutEffect, useRef, useState, type FormEvent } from "re
 import { FiArrowUp, FiFileText, FiX } from "react-icons/fi";
 
 import type { CaseIntakeDraft } from "@/types/case-intake";
-import { BrandMark } from "@/components/ui/brand-mark";
+import { AppBrand } from "@/components/ui/app-brand";
+import { DashboardWorkspace } from "@/components/dashboard/dashboard-workspace";
 import { PREPARATION_PREVIEW_MS } from "@/mocks/case-preparation";
 
 import { CasePreparationPreview } from "./case-preparation";
@@ -17,7 +18,7 @@ type CaseIntakeFormProps = {
   onSubmit: (draft: CaseIntakeDraft) => void;
 };
 
-type IntakePhase = "intake" | "leaving" | "preparing" | "returning";
+type IntakePhase = "intake" | "leaving" | "preparing" | "returning" | "dashboard";
 
 export function CaseIntakeForm({ draft, onDraftChange, onSubmit }: CaseIntakeFormProps) {
   const promptRef = useRef<HTMLTextAreaElement>(null);
@@ -189,6 +190,10 @@ export function IntakeWorkspace() {
     return () => window.clearTimeout(timeout);
   }, [phase]);
 
+  if (phase === "dashboard") {
+    return <DashboardWorkspace submittedQuestion={draft.question} onBack={() => setPhase("intake")} />;
+  }
+
   return (
     <div
       className={styles.shell}
@@ -200,10 +205,7 @@ export function IntakeWorkspace() {
       }}
     >
       <header className={styles.header}>
-        <div className={styles.brand} aria-label="pivot">
-          <BrandMark className={styles.brandMark} />
-          <span className={styles.brandName}>pivot<span>.</span></span>
-        </div>
+        <AppBrand />
       </header>
 
       <main className={styles.content} id="main-content">
@@ -238,7 +240,7 @@ export function IntakeWorkspace() {
               className={styles.preparationStage}
               data-leaving={phase === "returning"}
               onAnimationEnd={(event) => {
-                if (event.target === event.currentTarget && phase === "returning") setPhase("intake");
+                if (event.target === event.currentTarget && phase === "returning") setPhase("dashboard");
               }}
             >
               <CasePreparationPreview hasDocuments={draft.documents.length > 0} />

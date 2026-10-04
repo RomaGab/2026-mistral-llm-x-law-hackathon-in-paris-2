@@ -1,0 +1,3 @@
+.brand { display: inline-flex; align-items: center; gap: 9px; }
+.mark, .name > span { color: var(--color-accent); }
+.name { font-size: 26px; font-weight: 650; letter-spacing: -1px; }
