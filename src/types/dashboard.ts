@@ -54,6 +54,8 @@ export type CaseDecision = {
   date: string;
   issue: boolean;
   url: string | null;
+  facteurs: Record<string, FactValue>;
+  preuves?: Partial<Record<string, { extrait: string | null; confiance: number; source: string }>>;
 };
 
 export type DashboardDossier = {
@@ -73,3 +75,7 @@ export type DashboardDossier = {
 };
 
 export type FactOverride = { factorId: string; value: FactValue };
+
+export type DashboardDetail =
+  | { kind: "fact"; factorId: string }
+  | { kind: "decision"; decisionId: string; factorId?: string };

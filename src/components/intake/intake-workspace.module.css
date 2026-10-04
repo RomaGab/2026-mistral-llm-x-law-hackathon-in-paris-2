@@ -24,7 +24,7 @@
 
 .intakeStage,
 .preparationStage {
-  animation: stage-enter 320ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: stage-enter var(--motion-stage-duration) var(--motion-ease-out) both;
 }
 
 .intakeStage[data-leaving="true"] {
@@ -60,7 +60,7 @@
 
 .intro h1 {
   margin: 0 0 10px;
-  font-size: 24px;
+  font-size: var(--font-page-title);
   font-weight: 600;
   line-height: 32px;
   letter-spacing: -0.6px;
@@ -98,7 +98,7 @@
 .textarea::-webkit-scrollbar { width: 6px; }
 .textarea::-webkit-scrollbar-track { background: transparent; }
 .textarea::-webkit-scrollbar-thumb {
-  border-radius: 8px;
+  border-radius: var(--radius-control);
   background: var(--color-muted);
 }
 
@@ -116,7 +116,7 @@
   place-items: center;
   padding: 0;
   border: 0;
-  border-radius: 8px;
+  border-radius: var(--radius-control);
   background: var(--color-button);
   color: white;
   cursor: pointer;
@@ -142,19 +142,19 @@
   max-height: calc(100svh - 32px);
   padding: 24px;
   border: 1px solid var(--color-border);
-  border-radius: 12px;
+  border-radius: var(--radius-surface);
   background: var(--color-surface);
   color: var(--color-text);
-  box-shadow: 0 20px 60px #201f1c26;
+  box-shadow: var(--shadow-dialog);
 }
 
 .confirmation[open] {
-  animation: confirmation-enter 220ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: confirmation-enter var(--motion-panel-duration) var(--motion-ease-out) both;
 }
 
 .confirmation[open][data-closing="true"] {
   pointer-events: none;
-  animation: confirmation-leave 200ms ease-in both;
+  animation: confirmation-leave var(--motion-exit-duration) ease-in both;
 }
 
 .confirmation::backdrop {
@@ -195,7 +195,7 @@
   place-items: center;
   width: 36px;
   height: 36px;
-  border-radius: 8px;
+  border-radius: var(--radius-control);
 }
 
 .dialogIcon {
@@ -242,7 +242,7 @@
   min-height: 40px;
   padding: 10px 14px;
   border: 1px solid var(--color-border);
-  border-radius: 8px;
+  border-radius: var(--radius-control);
   font-size: 13px;
   font-weight: 500;
   cursor: pointer;

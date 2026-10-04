@@ -1,22 +1,22 @@
-import { useId } from "react";
+import { useId, type CSSProperties } from "react";
+import { factValueChoices } from "@/lib/dashboard/presentation";
 import type { FactValue } from "@/types/dashboard";
 import styles from "./dashboard.module.css";
-
-const choices: { value: FactValue; label: string }[] = [
-  { value: true, label: "Yes" }, { value: false, label: "No" }, { value: null, label: "Unknown" },
-];
 
 export function FactValueControl({ label, value, onChange }: {
   label: string;
   value: FactValue;
   onChange: (value: FactValue) => void;
 }) {
-  // A fact can appear both in the focused question and the expanded list.
   const name = useId();
+  const selectionStyle: CSSProperties & { "--choice-index": number } = {
+    "--choice-index": factValueChoices.findIndex((choice) => choice.value === value),
+  };
   return (
-    <fieldset className={styles.factChoices}>
+    <fieldset className={styles.factChoices} style={selectionStyle}>
       <legend className={styles.srOnly}>{label}</legend>
-      {choices.map((choice) => (
+      <span className={styles.choiceIndicator} aria-hidden="true" />
+      {factValueChoices.map((choice) => (
         <label key={choice.label} data-checked={value === choice.value}>
           <input type="radio" name={name} checked={value === choice.value} onChange={() => onChange(choice.value)} />
           <span>{choice.label}</span>

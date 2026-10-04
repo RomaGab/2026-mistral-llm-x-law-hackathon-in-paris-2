@@ -1,32 +1,29 @@
-import { useState } from "react";
-import { FiInfo } from "react-icons/fi";
-import { outcomeLabel, percent } from "@/lib/dashboard/presentation";
-import type { DashboardDossier } from "@/types/dashboard";
+import type { Ref } from "react";
+import { FiArrowRight } from "react-icons/fi";
+import { factLabel, factValueLabel, outcomeLabel, percent } from "@/lib/dashboard/presentation";
+import type { DashboardDossier, FactOverride } from "@/types/dashboard";
 import { DashboardPanel } from "./dashboard-panel";
 import styles from "./dashboard.module.css";
 
-export function BalancePanel({ dossier, originalProbability, isSimulation, submittedQuestion }: {
+export function BalancePanel({ dossier, originalProbability, override, scoreRef }: {
   dossier: DashboardDossier;
   originalProbability: number;
-  isSimulation: boolean;
-  submittedQuestion?: string;
+  override: FactOverride | null;
+  scoreRef: Ref<HTMLDivElement>;
 }) {
-  const [showExplanation, setShowExplanation] = useState(false);
   const prediction = dossier.resultat.prediction;
   const [low, high] = prediction.intervalle;
   const labels = dossier.grille.issue;
+  const isSimulation = override !== null;
+  const pointChange = Math.round(prediction.probabilite * 100) - Math.round(originalProbability * 100);
+  const changeLabel = `${pointChange > 0 ? "+" : pointChange < 0 ? "−" : ""}${Math.abs(pointChange)} ${Math.abs(pointChange) === 1 ? "point" : "points"}`;
+
   return (
-    <DashboardPanel id="balance-title" title="The balance" action={
-      <div className={styles.balanceActions}>
-        <span className={styles.status}>{prediction.incertain ? "Uncertain" : "Clear direction"}</span>
-        <button type="button" className={styles.infoButton} aria-label="About this estimate" aria-expanded={showExplanation} aria-controls="balance-explanation" onClick={() => setShowExplanation(!showExplanation)}><FiInfo size={17} aria-hidden="true" /></button>
-      </div>
-    }>
+    <DashboardPanel id="balance-title" title="The balance">
       <div className={styles.balanceBody}>
         <div className={styles.score}>
-          <div className={styles.scoreValue}>{percent(prediction.probabilite)}</div>
+          <div ref={scoreRef} className={styles.scoreValue}><span key={prediction.probabilite} className={styles.valueUpdate}>{percent(prediction.probabilite)}</span></div>
           <span>Employment estimate</span>
-          {isSimulation && <small>Original: {percent(originalProbability)}</small>}
         </div>
         <div className={styles.balanceChart}>
           <div className={styles.outcomeLabels}>
@@ -47,13 +44,15 @@ export function BalancePanel({ dossier, originalProbability, isSimulation, submi
           </div>
         </div>
       </div>
-      <div className={styles.balanceNote} id="balance-explanation" hidden={!showExplanation}>
-        <p>{prediction.incertain
-        ? "The interval crosses the midpoint. More evidence is needed to resolve the uncertainty."
-        : `The interval falls on the ${outcomeLabel(prediction.issue, labels).toLowerCase()} side of the midpoint.`}</p>
-        {submittedQuestion && <><p>Your draft is saved. This example does not analyse your documents.</p><blockquote>{submittedQuestion}</blockquote></>}
-        {dossier.resultat.avertissements.map((warning) => <p key={warning} lang="fr">{warning}</p>)}
-      </div>
+      {override && <div className={styles.estimateChange}>
+        <p className={styles.changedFact}>{factLabel(override.factorId)} <strong>{factValueLabel(override.value)}</strong></p>
+        <div className={styles.estimateComparison} role="group" aria-label={`Employment estimate: originally ${percent(originalProbability)}, now ${percent(prediction.probabilite)}. Change of ${pointChange} percentage points.`}>
+          <span className={styles.originalEstimate}>{percent(originalProbability)}</span>
+          <FiArrowRight size={14} aria-hidden="true" />
+          <strong>{percent(prediction.probabilite)}</strong>
+          <span className={styles.pointChange}>{changeLabel}</span>
+        </div>
+      </div>}
     </DashboardPanel>
   );
 }

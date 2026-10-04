@@ -45,7 +45,7 @@ The sample facts, cases, score, and interval are fixture data, not fixed product
 
 - Search for existing components, utilities, and types before creating another.
 - Reuse components for repeated panels, controls, matrix cells, and status displays. Keep props explicit and components focused.
-- Render the fact list from data through one reusable `FactToggle` component; do not copy JSX for each fact.
+- Render the fact table from data through reusable `FactValueCell` controls; do not copy JSX for each fact. Only Your case cells are editable; precedent cells open supporting details.
 - Extract duplicated behavior into a utility or hook when it has real repeated use. Avoid building a generic dashboard framework during the hackathon.
 - Give shared dashboard state one owner. Use controlled inputs with values and callbacks, and lift coordinated state to the nearest common parent.
 - Derive values from existing state instead of storing duplicates. Update state immutably and use functional setters when depending on previous state.
@@ -73,7 +73,9 @@ The sample facts, cases, score, and interval are fixture data, not fixed product
 ## Visual quality and accessibility
 
 - Write user-facing interface content in English, including placeholders, validation messages, metadata, and accessible labels.
+- Display source excerpts and exclusion explanations in English too. Keep shared source data intact, translate in the presentation layer, and label translated quotations.
 - Use shared tokens for colors, spacing, typography, borders, and radii. Avoid repeating slightly different values across components.
+- Treat the existing homepage as the dashboard's style and motion reference. Share the surface, control, heading, shadow, and timing tokens from `src/app/globals.css`; use restrained neutral surfaces, dark selected controls, and small orange accents. Keep table sticking independent of entrance transforms, and support reduced motion for animated panel exits.
 - Preserve the reference's panel hierarchy while adapting the layout to desktop and mobile. Stack panels on narrow screens and allow wide matrices to scroll.
 - Keep content readable with long fact labels, many rows, missing values, and empty lists.
 - Use semantic buttons, labeled controls, visible keyboard focus, and native checkbox behavior for fact toggles.

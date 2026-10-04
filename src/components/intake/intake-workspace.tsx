@@ -191,7 +191,7 @@ export function IntakeWorkspace() {
   }, [phase]);
 
   if (phase === "dashboard") {
-    return <DashboardWorkspace submittedQuestion={draft.question} onBack={() => setPhase("intake")} />;
+    return <DashboardWorkspace />;
   }
 
   return (

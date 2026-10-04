@@ -1,4 +1,10 @@
-import type { FactorDefinition, FactValue } from "@/types/dashboard";
+import type { DecisionAnalysis, FactorDefinition, FactValue } from "@/types/dashboard";
+
+export const factValueChoices: { value: FactValue; inputValue: string; label: string }[] = [
+  { value: true, inputValue: "yes", label: "Yes" },
+  { value: false, inputValue: "no", label: "No" },
+  { value: null, inputValue: "unknown", label: "Unknown" },
+];
 
 // English presentation of the shared French grid. IDs and ordering stay intact.
 const factorCopy: Record<string, { label: string; question: string }> = {
@@ -32,6 +38,12 @@ export function factLabel(id: string) {
 
 export function percent(value: number) {
   return `${Math.round(value * 100)}%`;
+}
+
+// Describe changes in returned results; no analysis is calculated in the browser.
+export function decisionStatusChange(current: DecisionAnalysis | undefined, original: DecisionAnalysis | undefined) {
+  if (!current || !original || current.retenue === original.retenue) return null;
+  return current.retenue ? "Newly retained" : "Newly excluded";
 }
 
 export function factValueLabel(value: FactValue) {
