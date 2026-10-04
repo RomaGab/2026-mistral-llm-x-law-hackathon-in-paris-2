@@ -1,34 +1,36 @@
 .preparing {
-  width: min(100%, 330px);
+  width: min(100%, 390px);
   margin-inline: auto;
 }
 
 .heading {
   display: flex;
   align-items: center;
-  gap: 12px;
-  min-height: 40px;
+  gap: 14px;
+  min-height: 44px;
 }
 
 .heading h2 {
   margin: 0;
   outline: none;
   color: var(--color-text);
-  font-size: 18px;
+  font-size: 22px;
   font-weight: 500;
-  line-height: 28px;
+  line-height: 32px;
   letter-spacing: -0.35px;
 }
 
 .mark {
+  width: 40px;
+  height: 40px;
   flex-shrink: 0;
   color: var(--color-accent);
 }
 
 .progressWindow {
-  --progress-line-height: 36px;
+  --progress-line-height: 40px;
   height: calc(3 * var(--progress-line-height));
-  margin: 10px 0 0 22px;
+  margin: 12px 0 0 28px;
   overflow-x: hidden;
   overflow-y: auto;
   overscroll-behavior: contain;
@@ -49,21 +51,22 @@
   position: relative;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   height: var(--progress-line-height);
   overflow: hidden;
   color: var(--color-subtle);
-  font-size: 13px;
+  font-size: 15px;
   line-height: var(--progress-line-height);
   white-space: nowrap;
+  animation: progress-appear 360ms linear both;
 }
 
 .progressLine::before,
 .progressLine::after {
   position: absolute;
-  left: 6.25px;
+  left: 7.25px;
   width: 1.5px;
-  height: calc((var(--progress-line-height) - 14px) / 2 - 4px);
+  height: calc((var(--progress-line-height) - 16px) / 2 - 4px);
   background: var(--color-border);
   pointer-events: none;
 }
@@ -89,6 +92,11 @@
   color: var(--color-muted);
 }
 
+@keyframes progress-appear {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 .srOnly {
   position: absolute;
   width: 1px;
@@ -102,5 +110,9 @@
 @media (prefers-reduced-motion: reduce) {
   .progressWindow {
     scroll-behavior: auto;
+  }
+
+  .progressLine {
+    animation: none;
   }
 }

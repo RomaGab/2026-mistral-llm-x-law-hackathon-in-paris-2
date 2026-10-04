@@ -62,7 +62,7 @@ export function CasePreparation({ steps, currentStep }: CasePreparationProps) {
             const Icon = stepIcons[step.kind];
             return (
               <div key={step.id} className={styles.progressLine}>
-                <Icon className={styles.progressIcon} size={14} strokeWidth={1.6} aria-hidden="true" />
+                <Icon className={styles.progressIcon} size={16} strokeWidth={1.6} aria-hidden="true" />
                 <span>{step.label}</span>
               </div>
             );
