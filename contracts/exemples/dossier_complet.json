@@ -1,6 +1,6 @@
 {
   "meta": {
-    "version_format": "1.2",
+    "version_format": "1.3",
     "dossier_id": "cas_exemple1",
     "genere_le": "2026-10-04T14:00:00+02:00",
     "simulation": false
@@ -989,7 +989,40 @@
           "charte_sociale": "inconnu",
           "qualification_contractuelle": "inconnu",
           "dependance_economique": "inconnu"
-        }
+        },
+        "s_applique_a_fortiori": false,
+        "arguments_manquants": [
+          {
+            "facteur": "service_organise",
+            "valeur": true
+          },
+          {
+            "facteur": "sanction_deconnexion",
+            "valeur": true
+          },
+          {
+            "facteur": "penalites_bonus",
+            "valeur": true
+          },
+          {
+            "facteur": "clientele_attribuee",
+            "valeur": true
+          },
+          {
+            "facteur": "execution_dirigee",
+            "valeur": true
+          }
+        ],
+        "arguments_contraires": [
+          {
+            "facteur": "multi_plateformes",
+            "valeur": true
+          },
+          {
+            "facteur": "remplacement_possible",
+            "valeur": true
+          }
+        ]
       },
       {
         "id": "exemple-cass-2",
@@ -1022,7 +1055,40 @@
           "charte_sociale": "inconnu",
           "qualification_contractuelle": "inconnu",
           "dependance_economique": "inconnu"
-        }
+        },
+        "s_applique_a_fortiori": false,
+        "arguments_manquants": [
+          {
+            "facteur": "service_organise",
+            "valeur": true
+          },
+          {
+            "facteur": "sanction_deconnexion",
+            "valeur": true
+          },
+          {
+            "facteur": "clientele_attribuee",
+            "valeur": true
+          },
+          {
+            "facteur": "execution_dirigee",
+            "valeur": true
+          },
+          {
+            "facteur": "info_masquee",
+            "valeur": true
+          }
+        ],
+        "arguments_contraires": [
+          {
+            "facteur": "multi_plateformes",
+            "valeur": true
+          },
+          {
+            "facteur": "remplacement_possible",
+            "valeur": true
+          }
+        ]
       },
       {
         "id": "exemple-ca-paris-1",
@@ -1055,7 +1121,23 @@
           "charte_sociale": "inconnu",
           "qualification_contractuelle": "inconnu",
           "dependance_economique": "inconnu"
-        }
+        },
+        "s_applique_a_fortiori": false,
+        "arguments_manquants": [
+          {
+            "facteur": "sanction_deconnexion",
+            "valeur": false
+          },
+          {
+            "facteur": "penalites_bonus",
+            "valeur": false
+          },
+          {
+            "facteur": "moyens_propres",
+            "valeur": true
+          }
+        ],
+        "arguments_contraires": []
       },
       {
         "id": "exemple-ca-lyon-1",
@@ -1088,7 +1170,32 @@
           "charte_sociale": "inconnu",
           "qualification_contractuelle": "inconnu",
           "dependance_economique": "inconnu"
-        }
+        },
+        "s_applique_a_fortiori": false,
+        "arguments_manquants": [
+          {
+            "facteur": "geolocalisation_suivi",
+            "valeur": false
+          },
+          {
+            "facteur": "sanction_deconnexion",
+            "valeur": false
+          },
+          {
+            "facteur": "moyens_propres",
+            "valeur": true
+          }
+        ],
+        "arguments_contraires": [
+          {
+            "facteur": "geolocalisation_suivi",
+            "valeur": true
+          },
+          {
+            "facteur": "tarif_impose",
+            "valeur": true
+          }
+        ]
       },
       {
         "id": "exemple-ca-paris-2",
@@ -1121,7 +1228,20 @@
           "charte_sociale": "inconnu",
           "qualification_contractuelle": "inconnu",
           "dependance_economique": "inconnu"
-        }
+        },
+        "s_applique_a_fortiori": false,
+        "arguments_manquants": [
+          {
+            "facteur": "tarif_impose",
+            "valeur": false
+          }
+        ],
+        "arguments_contraires": [
+          {
+            "facteur": "tarif_impose",
+            "valeur": true
+          }
+        ]
       }
     ],
     "avertissements": [

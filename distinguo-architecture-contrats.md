@@ -3,7 +3,9 @@
 *But : que le front, le back et le calculateur avancent en parallèle sans s'attendre.*
 *Règle d'or : **le dossier `contracts/` fait foi**. Toute modification d'un format est annoncée à toute l'équipe avant d'être codée.*
 
-> **Version 1.2 — ce qui change :** le résultat donne maintenant **l'analyse de chaque facteur** (`resultat.facteurs`) : est-il pivot (`est_pivot`), son niveau, s'il est à documenter ou un levier, ce que deviendrait P s'il valait vrai ou faux, et quelles décisions seraient alors écartées. **Plusieurs facteurs peuvent être pivots** (`resultat.pivots`), et si aucun ne l'est seul, on cherche les paires (`resultat.pivots_combines`). Les champs `impacts` et `fait_pivot` de la v1.1 sont supprimés. Personne ne les avait encore codés, donc ce n'est pas une v2.0, mais c'est un changement incompatible.
+> **Version 1.3 — compatible avec la 1.2 :** chaque ligne de `resultat.decisions` peut indiquer si la décision **s'applique a fortiori** au cas, quels arguments **manquent** au cas pour qu'elle s'applique, et quels arguments **contraires** le cas a en plus. Ces trois champs sont facultatifs : un dossier 1.2 reste valide. Le choix du modèle est fixé (§8).
+>
+> *Version 1.2 :* le résultat donne maintenant **l'analyse de chaque facteur** (`resultat.facteurs`) : est-il pivot (`est_pivot`), son niveau, s'il est à documenter ou un levier, ce que deviendrait P s'il valait vrai ou faux, et quelles décisions seraient alors écartées. **Plusieurs facteurs peuvent être pivots** (`resultat.pivots`), et si aucun ne l'est seul, on cherche les paires (`resultat.pivots_combines`). Les champs `impacts` et `fait_pivot` de la v1.1 sont supprimés. Personne ne les avait encore codés, donc ce n'est pas une v2.0, mais c'est un changement incompatible.
 >
 > *Version 1.1 :* format unique, le « dossier ». Issue booléenne. Grille, schéma, validateur et exemples dans `contracts/`.
 
@@ -86,7 +88,7 @@ Un dossier a six blocs. Le schéma exact est dans `contracts/dossier.schema.json
 ### Forme générale
 ```json
 {
-  "meta":       { "version_format": "1.2", "dossier_id": "cas_7f3a9c21", "simulation": false },
+  "meta":       { "version_format": "1.3", "dossier_id": "cas_7f3a9c21", "simulation": false },
   "grille":     { "version": "1.0", "question": "…", "issue": { "libelle": "…", "si_vrai": "Salariat", "si_faux": "Indépendance" }, "facteurs": [ … ] },
   "cas":        { "id": "cas_7f3a9c21", "description": "…", "ressort": "CA Paris",
                   "facteurs": { "geolocalisation_suivi": true, "sanction_deconnexion": null, "…": "…" },
@@ -160,8 +162,21 @@ La grille contient 18 facteurs (15 actifs, 3 neutralisés). Le juriste doit la v
 | `pivots` | Identifiants des facteurs pivots, du plus influent au moins influent. Peut être vide. |
 | `pivots_combines` | Si `pivots` est vide : jusqu'à 5 **paires** de faits qui font basculer ensemble (ex. géolocalisation **et** sanction). Vide sinon. |
 | `facteurs` | **L'analyse de chaque facteur de la grille**, détaillée ci-dessous |
-| `decisions[]` | Une ligne par décision du dossier, **dans le même ordre** : retenue ou non, motif d'exclusion, proximité (0 à 1), poids utilisé, détail du poids, alignement fait par fait (`identique` · `oppose` · `inconnu`) |
+| `decisions[]` | Une ligne par décision du dossier, **dans le même ordre** : retenue ou non, motif d'exclusion, proximité (0 à 1), poids utilisé, détail du poids, alignement fait par fait (`identique` · `oppose` · `inconnu`), et en v1.3 la lecture a fortiori (ci-dessous) |
 | `avertissements` | Messages à afficher tels quels (corpus déséquilibré, réforme en cours…) |
+
+#### `resultat.decisions[]` : la lecture a fortiori (v1.3, facultative)
+Chaque fait connu du cas ou d'une décision est un **argument** pour l'un des deux camps : « sanction = oui » est un argument pour le salariat, « peut travailler pour des concurrents = oui » un argument pour l'indépendance. Une décision s'applique **a fortiori** au cas si le cas a tous ses arguments en faveur de son issue, et aucun argument contraire de plus.
+
+| Champ | Sens | Usage dans le front |
+|---|---|---|
+| `s_applique_a_fortiori` | `true` si rien ne manque et rien ne s'oppose | « Cet arrêt s'applique pleinement à votre cas » |
+| `arguments_manquants` | Arguments de la décision, en faveur de son issue, que le cas n'a pas. Liste de `{"facteur", "valeur"}` | Si le fait vaut `null` dans le cas : « à documenter » ; s'il a la valeur opposée : déjà couvert par les contraires, ne pas afficher deux fois |
+| `arguments_contraires` | Arguments du cas, contre l'issue de la décision, que la décision n'avait pas | « Votre cas s'en distingue par… » |
+
+Exemple tiré de `dossier_complet.json` : pour CA Paris 2023 (indépendance), il manque `tarif_impose = non`, et le cas a en contraire `tarif_impose = oui`. Lecture : *« cet arrêt s'appliquerait si le prix n'était pas fixé par la plateforme »*.
+
+Avec un petit corpus et un faisceau d'indices, il est rare qu'une décision s'applique pleinement : dans les exemples, aucune ne le fait. Ces champs servent à **expliquer** (ce qui rapproche ou distingue le cas de chaque arrêt), pas à décider.
 
 #### `resultat.facteurs` : une entrée par facteur, pour l'affichage ligne par ligne
 ```json
@@ -209,6 +224,8 @@ Elles sont toutes vérifiées par `contracts/valider.py`. Un dossier qui en viol
 - Un facteur neutralisé n'est jamais pivot et n'a aucun effet.
 - `pivots` liste exactement les facteurs pivots, triés. `pivots_combines` est vide s'il existe des pivots simples.
 - Les conditions de l'exception reprennent les probabilités de `resultat.facteurs`.
+- (v1.3) Si une ligne de `resultat.decisions` donne la lecture a fortiori, ses trois champs sont présents ensemble et correspondent aux faits du cas et de la décision.
+- `version_format` vaut `"1.2"` ou `"1.3"`.
 
 **Vérifier un dossier :**
 ```
@@ -258,6 +275,25 @@ uv run --with jsonschema python contracts/valider.py mon_dossier.json
 4. **Modèle de comparaison, le vote pondéré :** mêmes entrées, même sortie. Les deux sont comparés en retirant chaque décision tour à tour, et on garde le meilleur.
 5. **Analyse des facteurs :** chaque fait est testé à vrai et à faux. On recalcule les exclusions puis P, et on en déduit pivot, niveau, contribution et décisions écartées. Si aucun fait seul n'est pivot, on teste les paires (environ 100 calculs, instantané). L'exception reprend les faits qui rapprochent le plus de l'issue minoritaire.
 6. **Proximité et alignement :** comparaison fait par fait du cas avec chaque décision, pour la matrice et pour désigner la décision de référence de l'exception.
+7. **Lecture a fortiori (v1.3) :** pour chaque décision, les arguments qui manquent au cas et les arguments contraires en trop.
+
+### Pourquoi ce modèle (décision d'équipe)
+**Choix : régression logistique bayésienne, avec la grille du juriste comme a priori, et une lecture a fortiori pour l'explication.**
+
+| Option | Décision | Raison |
+|---|---|---|
+| Régression logistique bayésienne | **Moteur** | Marche avec une quinzaine de décisions grâce à l'a priori. Traduction directe du faisceau d'indices : le juge pèse les indices globalement, le modèle additionne leurs poids. Pivots et explications testés sur le contrat. |
+| LOPA (Morello et al., JURIX 2025) : agrégation des précédents qui s'appliquent a fortiori | **Explication + vision** | Testé sur nos exemples : aucune décision ne s'applique a fortiori, donc il s'abstiendrait sur tout. Il faut des centaines de décisions. On reprend sa lecture précédent par précédent pour expliquer (point 7). |
+| Vote pondéré | Comparaison | Défaut connu : beaucoup de précédents faibles peuvent écraser un précédent fort. |
+| Forêt aléatoire | Écartée | Surapprendrait sur 15 décisions, et n'explique rien. |
+
+**Ce que dit la littérature :**
+- **Morello, Ciabattoni, Gray (JURIX 2025)** : sur 201 affaires décrites par des facteurs, les modèles transparents fondés sur les précédents font jeu égal avec une forêt aléatoire optimisée (F1 0,754 contre 0,740), tout en expliquant chaque décision et en donnant une confiance utile.
+- **Gray, Savelka, Oliver, Ashley (2024)** : des facteurs proposés par un LLM puis affinés par un humain prédisent aussi bien que ceux des experts. Ce sont eux qui valident notre chaîne « le LLM extrait, l'humain valide ». En revanche, chez eux, la régression logistique régularisée fait moins bien que la forêt aléatoire (MCC 0,56 contre 0,66) : ne pas les citer pour la parité.
+
+**Réglage :** σ (la confiance dans la grille) est choisi en retirant chaque décision tour à tour, parmi 0,2, 0,3 et 0,5. On compare au vote pondéré, à Mistral seul et à la classe majoritaire.
+
+**Phrase pour le pitch :** *« Un raisonnement transparent sur les facteurs, une approche qui fait jeu égal avec les modèles boîte noire selon la littérature récente (Morello et al., JURIX 2025), et qui dit quand il ne sait pas. »*
 
 ---
 
@@ -297,7 +333,7 @@ Les décisions sont **fictives** et les chiffres viennent d'un modèle jouet. Il
 ```
 - Une branche par personne, fusion sur `main` à chaque jalon.
 - Personne ne modifie le dossier d'un autre sans le prévenir.
-- **Changer un format :** proposer la modification de `contracts/` à toute l'équipe, mettre à jour schéma, exemples et validateur ensemble, puis augmenter la version (ajout d'un champ optionnel : version mineure suivante, 1.3 ; changement incompatible : 2.0). Régénérer les exemples avec `generer_exemples.py`.
+- **Changer un format :** proposer la modification de `contracts/` à toute l'équipe, mettre à jour schéma, exemples et validateur ensemble, puis augmenter la version (ajout d'un champ optionnel : version mineure suivante, 1.4 ; changement incompatible : 2.0). Régénérer les exemples avec `generer_exemples.py`.
 
 ---
 

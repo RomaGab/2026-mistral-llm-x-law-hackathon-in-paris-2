@@ -1,4 +1,4 @@
-"""Génère contracts/exemples/*.json, cohérents avec le contrat v1.2.
+"""Génère contracts/exemples/*.json, cohérents avec le contrat v1.3.
 
 ATTENTION : le modèle ci-dessous est un modèle JOUET (régression logistique bayésienne
 minimale) qui sert uniquement à produire des exemples dont tous les chiffres sont
@@ -136,6 +136,25 @@ def poids(dp):
     return r2(0.5 * dp["autorite"] + 0.2 * dp["portee"] + 0.15 * dp["actualite"] + 0.15 * dp["geographie"])
 
 
+def litteraux(faits):
+    """Faits connus et non neutralisés, rangés par camp : True = favorise l'issue vraie."""
+    camps = {True: [], False: []}
+    for f in ACTIFS:
+        v = faits[f]
+        if v is not None:
+            camps[ORI[f] if v else not ORI[f]].append({"facteur": f, "valeur": v})
+    return camps
+
+
+def a_fortiori(fc, d):
+    """Lecture précédent par précédent (result model, cf. Morello et al. 2025)."""
+    X, P, s = litteraux(fc), litteraux(d["facteurs"]), d["issue"]
+    manquants = [l for l in P[s] if l not in X[s]]
+    contraires = [l for l in X[not s] if l not in P[not s]]
+    return {"s_applique_a_fortiori": not manquants and not contraires,
+            "arguments_manquants": manquants, "arguments_contraires": contraires}
+
+
 def proximite(fc, fd):
     num = den = 0.0
     for i in ACTIFS:
@@ -231,7 +250,8 @@ def completer(cas):
                        "proximite": proximite(fc, d["facteurs"]), "poids": 0.0 if motif else poids(dp),
                        "detail_poids": dp,
                        "alignement": {i: "inconnu" if fc[i] is None or d["facteurs"][i] is None
-                                      else ("identique" if fc[i] == d["facteurs"][i] else "oppose") for i in IDS}})
+                                      else ("identique" if fc[i] == d["facteurs"][i] else "oppose") for i in IDS},
+                       **a_fortiori(fc, d)})
     issue_de = {d["id"]: d["issue"] for d in DECISIONS}
     retenues = [l for l in lignes if l["retenue"]]
 
@@ -275,7 +295,7 @@ def completer(cas):
 
 def dossier(cas, simulation, avec_resultat):
     return {
-        "meta": {"version_format": "1.2", "dossier_id": cas["id"], "genere_le": "2026-10-04T14:00:00+02:00",
+        "meta": {"version_format": "1.3", "dossier_id": cas["id"], "genere_le": "2026-10-04T14:00:00+02:00",
                  "simulation": simulation},
         "grille": grille, "cas": cas, "decisions": DECISIONS, "parametres": PARAMETRES,
         "resultat": completer(cas) if avec_resultat else None,

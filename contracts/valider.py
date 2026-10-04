@@ -170,6 +170,42 @@ def erreurs_dossier(d: dict) -> list[str]:
         if not franchit(c["probabilite_si"]):
             errs.append(f"pivots_combines {c['facteurs']} : la combinaison doit faire basculer franchement")
 
+    # ---- lecture a fortiori (v1.3, champs facultatifs)
+    champs = ("s_applique_a_fortiori", "arguments_manquants", "arguments_contraires")
+    ori = {f["id"]: f["oriente"] for f in d["grille"]["facteurs"]}
+
+    def litteraux(faits):
+        """Faits connus et non neutralisés, rangés par camp : True = favorise l'issue vraie."""
+        camps = {True: [], False: []}
+        for f in ids:
+            v = faits.get(f)
+            if v is None or imp.get(f) == 0:
+                continue
+            camps[ori[f] if v else not ori[f]].append({"facteur": f, "valeur": v})
+        return camps
+
+    X = litteraux(cas["facteurs"])
+    for ligne in r["decisions"]:
+        presents = [c in ligne for c in champs]
+        if not any(presents):
+            continue
+        w = f"resultat.decisions[{ligne['id']}]"
+        if not all(presents):
+            errs.append(f"{w} : {', '.join(champs)} vont ensemble")
+            continue
+        dec = next((x for x in d["decisions"] if x["id"] == ligne["id"]), None)
+        if dec is None:
+            continue
+        P, s = litteraux(dec["facteurs"]), dec["issue"]
+        manquants = [l for l in P[s] if l not in X[s]]
+        contraires = [l for l in X[not s] if l not in P[not s]]
+        if ligne["arguments_manquants"] != manquants:
+            errs.append(f"{w}.arguments_manquants : attendu {manquants}")
+        if ligne["arguments_contraires"] != contraires:
+            errs.append(f"{w}.arguments_contraires : attendu {contraires}")
+        if ligne["s_applique_a_fortiori"] != (not manquants and not contraires):
+            errs.append(f"{w}.s_applique_a_fortiori : true si et seulement si rien ne manque et rien ne s'oppose")
+
     seuil_exc = params.get("seuil_exception", 0.15)
     exception_attendue = bool(pivots or r["pivots_combines"] or (1 - maj["probabilite"]) >= seuil_exc - EPS)
     if (exc is not None) != exception_attendue:
