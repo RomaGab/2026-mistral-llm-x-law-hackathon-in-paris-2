@@ -5,7 +5,7 @@ import { FiArrowUp, FiFileText, FiX } from "react-icons/fi";
 
 import type { CaseIntakeDraft } from "@/types/case-intake";
 import type { DashboardDossier } from "@/types/dashboard";
-import { AppBrand } from "@/components/ui/app-brand";
+import { AppHeader } from "@/components/ui/app-header";
 import { DashboardWorkspace } from "@/components/dashboard/dashboard-workspace";
 import { analyseCase, ApiError, createCase, uploadDocument } from "@/lib/api/client";
 import { getPreparationPreviewSteps } from "@/mocks/case-preparation";
@@ -234,9 +234,7 @@ export function IntakeWorkspace() {
         if (event.dataTransfer.types.includes("Files")) event.preventDefault();
       }}
     >
-      <header className={styles.header}>
-        <AppBrand />
-      </header>
+      <AppHeader />
 
       <main className={styles.content} id="main-content">
         <div className={styles.composer}>

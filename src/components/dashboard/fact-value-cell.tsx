@@ -1,20 +1,28 @@
+import { useRef } from "react";
 import { FiChevronDown } from "react-icons/fi";
 import { factValueChoices, factValueLabel } from "@/lib/dashboard/presentation";
 import type { FactValue } from "@/types/dashboard";
 import styles from "./dashboard.module.css";
 
-export function FactValueCell({ label, value, originalValue, onChange, onActivate }: {
+export function FactValueCell({ label, value, originalValue, evidenceOpen, onChange, onActivate }: {
   label: string;
   value: FactValue;
   originalValue: FactValue;
+  evidenceOpen: boolean;
   onChange: (value: FactValue) => void;
-  onActivate: () => void;
+  onActivate: (trigger: HTMLSelectElement) => void;
 }) {
+  const selectRef = useRef<HTMLSelectElement>(null);
   const inputValue = factValueChoices.find((choice) => choice.value === value)?.inputValue ?? "unknown";
+  function activate() {
+    if (selectRef.current) onActivate(selectRef.current);
+  }
   return (
-    <div className={styles.valueCell} data-changed={value !== originalValue} data-value={inputValue} onPointerDown={onActivate} onClick={onActivate} onFocus={onActivate}>
+    <div className={styles.valueCell} data-changed={value !== originalValue} data-value={inputValue} onPointerDown={activate} onClick={activate} onFocus={activate}>
       <select
+        ref={selectRef}
         aria-label={label}
+        aria-details={evidenceOpen ? "case-details" : undefined}
         title={value !== originalValue ? `Original: ${factValueLabel(originalValue)}` : label}
         value={inputValue}
         onChange={(event) => {

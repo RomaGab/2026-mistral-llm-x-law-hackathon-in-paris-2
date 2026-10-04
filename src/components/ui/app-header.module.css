@@ -1,0 +1,15 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  height: var(--app-header-height);
+  padding: 0 32px;
+  background: var(--color-background);
+  box-shadow: 0 1px 0 var(--color-border);
+}
+
+@media (max-width: 600px) {
+  .header { padding-inline: 20px; }
+}

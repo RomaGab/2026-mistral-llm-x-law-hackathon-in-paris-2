@@ -2,14 +2,13 @@
 
 import { useLayoutEffect, useRef, useState, type CSSProperties } from "react";
 import { analyseCase, ApiError } from "@/lib/api/client";
-import { AppBrand } from "@/components/ui/app-brand";
+import { AppHeader } from "@/components/ui/app-header";
 import { decisionStatusChange, factLabel, factValueLabel, percent } from "@/lib/dashboard/presentation";
 import { getDashboardPreview } from "@/mocks/dashboard";
 import type { DashboardDetail, DashboardDossier, FactOverride, FactValue } from "@/types/dashboard";
 import { BalancePanel } from "./balance-panel";
 import { CaseBrief } from "./case-brief";
 import { CaseFactsTable } from "./comparison-matrix";
-import { DashboardPanel } from "./dashboard-panel";
 import { EvidencePanel } from "./evidence-panel";
 import { FloatingAnalysisSummary } from "./floating-analysis-summary";
 import styles from "./dashboard.module.css";
@@ -34,9 +33,12 @@ export function DashboardWorkspace({ initialDossier }: { initialDossier?: Dashbo
   const [selectedFactor, setSelectedFactor] = useState(() => firstQuestion(original));
   const [detail, setDetail] = useState<DashboardDetail | null>(null);
   const [detailClosing, setDetailClosing] = useState(false);
+  const [detailKeepsFocus, setDetailKeepsFocus] = useState(false);
   const [floatingHeight, setFloatingHeight] = useState(0);
+  const headerRef = useRef<HTMLElement>(null);
   const scoreRef = useRef<HTMLDivElement>(null);
-  const detailTriggerRef = useRef<HTMLButtonElement | null>(null);
+  const detailTriggerRef = useRef<HTMLButtonElement | HTMLSelectElement | null>(null);
+  const restoringDetailFocusRef = useRef(false);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const simulated = override ? (live ? simulations[overrideKey(override)] : getDashboardPreview(override)) : original;
   const pending = override !== null && !simulated;
@@ -73,19 +75,17 @@ export function DashboardWorkspace({ initialDossier }: { initialDossier?: Dashbo
       });
   }
 
-  function selectCaseFact(factorId: string) {
-    setSelectedFactor(factorId);
-    if (detail) {
-      // Keep focus on the case selector when switching away from evidence.
-      detailTriggerRef.current = null;
-      setDetailClosing(true);
-    }
+  function selectCaseFact(factorId: string, trigger: HTMLSelectElement) {
+    // Closing evidence returns focus without immediately reopening it.
+    if (restoringDetailFocusRef.current) return;
+    inspectDetail({ kind: "fact", factorId }, trigger);
   }
 
-  function inspectDetail(nextDetail: DashboardDetail, trigger: HTMLButtonElement) {
+  function inspectDetail(nextDetail: DashboardDetail, trigger: HTMLButtonElement | HTMLSelectElement) {
     detailTriggerRef.current = trigger;
     setDetailClosing(false);
-    setDetail(nextDetail);
+    setDetailKeepsFocus(trigger instanceof HTMLSelectElement);
+    setDetail((current) => current?.kind === "fact" && nextDetail.kind === "fact" && current.factorId === nextDetail.factorId ? current : nextDetail);
     if (nextDetail.factorId) setSelectedFactor(nextDetail.factorId);
   }
 
@@ -96,12 +96,16 @@ export function DashboardWorkspace({ initialDossier }: { initialDossier?: Dashbo
   function finishClosingDetail() {
     setDetail(null);
     setDetailClosing(false);
-    requestAnimationFrame(() => detailTriggerRef.current?.focus({ preventScroll: true }));
+    requestAnimationFrame(() => {
+      restoringDetailFocusRef.current = true;
+      detailTriggerRef.current?.focus({ preventScroll: true });
+      restoringDetailFocusRef.current = false;
+    });
   }
 
   return (
     <div className={styles.shell}>
-      <header className={styles.header}><AppBrand /></header>
+      <AppHeader ref={headerRef} />
       <main className={styles.main} style={floatingStyle} id="main-content" onKeyDown={(event) => {
         if (event.key === "Escape" && !event.defaultPrevented && detail && !(event.target instanceof HTMLSelectElement)) {
           event.preventDefault();
@@ -112,19 +116,20 @@ export function DashboardWorkspace({ initialDossier }: { initialDossier?: Dashbo
           <div className={styles.pageHeading}>
             <h1 ref={titleRef} tabIndex={-1}>Case analysis</h1>
           </div>
-          <CaseBrief dossier={dossier} pending={pending} error={simulationError} onFactSelect={selectCaseFact} />
+          <CaseBrief dossier={dossier} pending={pending} error={simulationError} onFactSelect={setSelectedFactor} />
           <div className={styles.analysisSummary} aria-busy={pending}>
             <BalancePanel scoreRef={scoreRef} dossier={dossier} originalProbability={original.resultat.prediction.probabilite} override={override} />
           </div>
-          <div className={styles.factsSection}>
-            <DashboardPanel id="facts-title" title="Facts & precedents">
+          <section className={styles.factsSection} aria-labelledby="facts-title">
+            <h2 id="facts-title" className={styles.factsHeading}>Facts & precedents</h2>
+            <div className={styles.panel}>
               <CaseFactsTable dossier={dossier} original={original} factors={facts} selectedFactor={selectedFactor} detail={detailClosing ? null : detail} onInspect={inspectDetail} onFactChange={changeFact} onFactSelect={selectCaseFact} />
-            </DashboardPanel>
-          </div>
+            </div>
+          </section>
           <p className={styles.srOnly} role="status">{override ? `Simulation: ${factLabel(override.factorId)}, ${factValueLabel(override.value)}` : "Original analysis"}. Employment estimate {percent(dossier.resultat.prediction.probabilite)}. {dossier.resultat.decisions.filter((decision) => decision.retenue).length} decisions retained. {changedDecisions.length} precedent statuses changed from the original case.</p>
         </div>
-        <FloatingAnalysisSummary dossier={dossier} original={original} selectedFactor={selectedFactor} onFactChange={changeFact} scoreRef={scoreRef} onHeightChange={setFloatingHeight} />
-        {detail && <EvidencePanel detail={detail} dossier={dossier} original={original} closing={detailClosing} onClose={closeDetail} onExited={finishClosingDetail} />}
+        <FloatingAnalysisSummary dossier={dossier} original={original} selectedFactor={selectedFactor} onFactChange={changeFact} scoreRef={scoreRef} headerRef={headerRef} onHeightChange={setFloatingHeight} />
+        {detail && <EvidencePanel detail={detail} dossier={dossier} original={original} closing={detailClosing} preserveFocus={detailKeepsFocus} onClose={closeDetail} onExited={finishClosingDetail} />}
       </main>
     </div>
   );

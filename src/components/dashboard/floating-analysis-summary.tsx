@@ -4,12 +4,13 @@ import type { DashboardDossier, FactValue } from "@/types/dashboard";
 import { PivotInsight } from "./pivot-insight";
 import styles from "./dashboard.module.css";
 
-export function FloatingAnalysisSummary({ dossier, original, selectedFactor, onFactChange, scoreRef, onHeightChange }: {
+export function FloatingAnalysisSummary({ dossier, original, selectedFactor, onFactChange, scoreRef, headerRef, onHeightChange }: {
   dossier: DashboardDossier;
   original: DashboardDossier;
   selectedFactor: string;
   onFactChange: (id: string, value: FactValue) => void;
   scoreRef: RefObject<HTMLDivElement | null>;
+  headerRef: RefObject<HTMLElement | null>;
   onHeightChange: (height: number) => void;
 }) {
   const [showScore, setShowScore] = useState(false);
@@ -18,13 +19,29 @@ export function FloatingAnalysisSummary({ dossier, original, selectedFactor, onF
   useEffect(() => {
     const score = scoreRef.current;
     if (!score) return;
-    const observer = new IntersectionObserver(([entry]) => {
-      // Content below the viewport has not been reached yet, especially on mobile.
-      setShowScore(!entry.isIntersecting && entry.boundingClientRect.bottom <= 0);
-    });
-    observer.observe(score);
-    return () => observer.disconnect();
-  }, [scoreRef]);
+    const header = headerRef.current;
+    let observer: IntersectionObserver | undefined;
+    let observedHeight = -1;
+    function observeVisibleArea() {
+      if (!score) return;
+      const headerHeight = header?.offsetHeight ?? 0;
+      if (headerHeight === observedHeight) return;
+      observedHeight = headerHeight;
+      observer?.disconnect();
+      observer = new IntersectionObserver(([entry]) => {
+        // Treat the area behind the sticky navbar as outside the visible viewport.
+        setShowScore(!entry.isIntersecting && entry.boundingClientRect.bottom <= headerHeight);
+      }, { rootMargin: `-${headerHeight}px 0px 0px 0px` });
+      observer.observe(score);
+    }
+    observeVisibleArea();
+    const resizeObserver = new ResizeObserver(observeVisibleArea);
+    if (header) resizeObserver.observe(header);
+    return () => {
+      observer?.disconnect();
+      resizeObserver.disconnect();
+    };
+  }, [scoreRef, headerRef]);
 
   useLayoutEffect(() => {
     const floating = floatingRef.current;

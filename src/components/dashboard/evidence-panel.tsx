@@ -5,11 +5,12 @@ import { englishExcerpt, englishExclusionReason } from "@/lib/dashboard/source-c
 import type { DashboardDetail, DashboardDossier, FactorDefinition } from "@/types/dashboard";
 import styles from "./dashboard.module.css";
 
-export function EvidencePanel({ detail, dossier, original, closing, onClose, onExited }: {
+export function EvidencePanel({ detail, dossier, original, closing, preserveFocus, onClose, onExited }: {
   detail: DashboardDetail;
   dossier: DashboardDossier;
   original: DashboardDossier;
   closing: boolean;
+  preserveFocus: boolean;
   onClose: () => void;
   onExited: () => void;
 }) {
@@ -19,40 +20,49 @@ export function EvidencePanel({ detail, dossier, original, closing, onClose, onE
   const factor = original.grille.facteurs.find((item) => item.id === detail.factorId);
   const title = detail.kind === "fact" ? "Your case evidence" : detail.factorId ? "Precedent evidence" : "Precedent details";
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const dialog = dialogRef.current;
     if (!dialog) return;
-    // Match the CSS breakpoint: the desktop floating panel keeps the table usable.
+    // Dropdown evidence stays nonmodal so the native select remains usable.
     const compact = window.matchMedia("(max-width: 767px)");
     const previousOverflow = document.body.style.overflow;
     function syncMode() {
       if (!dialog) return;
-      dialog.close();
-      if (compact.matches) {
-        dialog.showModal();
-        document.body.style.overflow = "hidden";
-      } else {
-        dialog.show();
-        document.body.style.overflow = previousOverflow;
+      const modal = compact.matches && !preserveFocus;
+      if (dialog.open && dialog.matches(":modal") !== modal) dialog.close();
+      if (!dialog.open) {
+        if (preserveFocus) {
+          // show() runs native autofocus; opening directly leaves the select alone.
+          dialog.open = true;
+        } else if (modal) {
+          dialog.showModal();
+        } else {
+          dialog.show();
+        }
       }
-      headingRef.current?.focus({ preventScroll: true });
+      document.body.style.overflow = modal ? "hidden" : previousOverflow;
+      if (!preserveFocus) headingRef.current?.focus({ preventScroll: true });
     }
     syncMode();
     compact.addEventListener("change", syncMode);
     return () => {
       compact.removeEventListener("change", syncMode);
       document.body.style.overflow = previousOverflow;
-      dialog.close();
     };
+  }, [preserveFocus]);
+
+  useEffect(() => {
+    const dialog = dialogRef.current;
+    return () => dialog?.close();
   }, []);
 
   useLayoutEffect(() => {
-    headingRef.current?.focus({ preventScroll: true });
+    if (!preserveFocus) headingRef.current?.focus({ preventScroll: true });
     bodyRef.current?.scrollTo({ top: 0 });
-  }, [detail]);
+  }, [detail, preserveFocus]);
 
   return (
-    <dialog ref={dialogRef} id="case-details" className={styles.evidencePanel} data-closing={closing} aria-labelledby="evidence-title" onAnimationEnd={(event) => {
+    <dialog ref={dialogRef} id="case-details" className={styles.evidencePanel} data-closing={closing} data-preserve-focus={preserveFocus} aria-labelledby="evidence-title" onAnimationEnd={(event) => {
       if (event.target === event.currentTarget && !event.nativeEvent.pseudoElement && closing) onExited();
     }} onCancel={(event) => {
       event.preventDefault();
