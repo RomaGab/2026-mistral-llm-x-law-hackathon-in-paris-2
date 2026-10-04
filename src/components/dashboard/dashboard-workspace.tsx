@@ -48,6 +48,7 @@ export function DashboardWorkspace({ initialDossier }: { initialDossier?: Dashbo
   const restoringDetailFocusRef = useRef(false);
   // Hover previews open beside the cell and close when the pointer leaves; a click pins the panel.
   const [detailAnchor, setDetailAnchor] = useState<HTMLElement | null>(null);
+  const [detailPreview, setDetailPreview] = useState(false);
   const hoverTimerRef = useRef<number | undefined>(undefined);
   const hoverOpenRef = useRef(false);
   const titleRef = useRef<HTMLHeadingElement>(null);
@@ -93,15 +94,16 @@ export function DashboardWorkspace({ initialDossier }: { initialDossier?: Dashbo
     balanceRef.current?.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "center" });
   }
 
-  function selectCaseFact(factorId: string, trigger: HTMLSelectElement) {
-    // Closing evidence returns focus without immediately reopening it.
+  // Editing "Your case" only selects the fact for the pivotal question; it never opens evidence.
+  function selectCaseFact(factorId: string) {
     if (restoringDetailFocusRef.current) return;
-    inspectDetail({ kind: "fact", factorId }, trigger);
+    setSelectedFactor(factorId);
   }
 
   function inspectDetail(nextDetail: DashboardDetail, trigger: HTMLButtonElement | HTMLSelectElement) {
     window.clearTimeout(hoverTimerRef.current);
     hoverOpenRef.current = false;
+    setDetailPreview(false);
     setDetailAnchor(trigger);
     detailTriggerRef.current = trigger;
     setDetailClosing(false);
@@ -116,6 +118,7 @@ export function DashboardWorkspace({ initialDossier }: { initialDossier?: Dashbo
     hoverTimerRef.current = window.setTimeout(() => {
       // Hovering another cell always takes over, even from a panel opened by a click.
       hoverOpenRef.current = true;
+      setDetailPreview(true);
       setDetailAnchor(trigger);
       setDetailClosing(false);
       setDetailKeepsFocus(true);
@@ -127,10 +130,6 @@ export function DashboardWorkspace({ initialDossier }: { initialDossier?: Dashbo
     window.clearTimeout(hoverTimerRef.current);
     if (!hoverOpenRef.current) return;
     hoverTimerRef.current = window.setTimeout(() => setDetailClosing(true), 220);
-  }
-
-  function keepPreview() {
-    window.clearTimeout(hoverTimerRef.current);
   }
 
   function closeDetail() {
@@ -176,7 +175,7 @@ export function DashboardWorkspace({ initialDossier }: { initialDossier?: Dashbo
           <p className={styles.srOnly} role="status">{override ? `Simulation: ${factLabel(override.factorId)}, ${factValueLabel(override.value)}` : "Original analysis"}. Employment estimate {percent(dossier.resultat.prediction.probabilite)}. {dossier.resultat.decisions.filter((decision) => decision.retenue).length} decisions retained. {changedDecisions.length} precedent statuses changed from the original case.</p>
         </div>
         {questionOpen && <FloatingAnalysisSummary dossier={dossier} original={original} selectedFactor={selectedFactor} onFactChange={answerPivotalQuestion} scoreRef={scoreRef} headerRef={headerRef} onHeightChange={setFloatingHeight} onDismiss={() => setQuestionOpen(false)} />}
-        {detail && <EvidencePanel detail={detail} dossier={dossier} original={original} closing={detailClosing} preserveFocus={detailKeepsFocus} anchor={detailAnchor} onClose={closeDetail} onExited={finishClosingDetail} onPointerEnter={keepPreview} onPointerLeave={endPreview} />}
+        {detail && <EvidencePanel detail={detail} dossier={dossier} original={original} closing={detailClosing} preserveFocus={detailKeepsFocus} preview={detailPreview} anchor={detailAnchor} onClose={closeDetail} onExited={finishClosingDetail} />}
       </main>
     </div>
   );

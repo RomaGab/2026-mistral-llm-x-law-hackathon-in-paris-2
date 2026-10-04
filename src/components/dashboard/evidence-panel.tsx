@@ -5,17 +5,16 @@ import { englishExcerpt, englishExclusionReason } from "@/lib/dashboard/source-c
 import type { DashboardDetail, DashboardDossier, FactorDefinition } from "@/types/dashboard";
 import styles from "./dashboard.module.css";
 
-export function EvidencePanel({ detail, dossier, original, closing, preserveFocus, anchor, onClose, onExited, onPointerEnter, onPointerLeave }: {
+export function EvidencePanel({ detail, dossier, original, closing, preserveFocus, preview, anchor, onClose, onExited }: {
   detail: DashboardDetail;
   dossier: DashboardDossier;
   original: DashboardDossier;
   closing: boolean;
   preserveFocus: boolean;
+  preview: boolean;
   anchor: HTMLElement | null;
   onClose: () => void;
   onExited: () => void;
-  onPointerEnter?: () => void;
-  onPointerLeave?: () => void;
 }) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
@@ -99,7 +98,7 @@ export function EvidencePanel({ detail, dossier, original, closing, preserveFocu
   }, [detail, preserveFocus]);
 
   return (
-    <dialog ref={dialogRef} id="case-details" className={styles.evidencePanel} data-closing={closing} data-preserve-focus={preserveFocus} aria-labelledby="evidence-title" onMouseEnter={onPointerEnter} onMouseLeave={onPointerLeave} onAnimationEnd={(event) => {
+    <dialog ref={dialogRef} id="case-details" className={styles.evidencePanel} data-closing={closing} data-preserve-focus={preserveFocus} aria-labelledby="evidence-title" data-preview={preview} onAnimationEnd={(event) => {
       if (event.target === event.currentTarget && !event.nativeEvent.pseudoElement && closing) onExited();
     }} onCancel={(event) => {
       event.preventDefault();
