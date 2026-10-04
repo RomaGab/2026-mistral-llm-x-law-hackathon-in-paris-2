@@ -13,7 +13,7 @@ from contracts.valider import erreurs_dossier
 
 RACINE = Path(__file__).resolve().parents[1]
 ID_VALIDE = re.compile(r"^[a-z0-9_-]{1,64}$")
-VERSION_FORMAT = "1.3"
+VERSION_FORMAT = "1.4"
 SEUIL_CONFIANCE = 0.6  # en dessous, un fait extrait est à confirmer par l'avocat
 # Valeurs par défaut du contrat (§5) ; date_reference est ajoutée à chaque analyse.
 PARAMETRES = {"modele": "logistique_bayesienne", "niveau_intervalle": 0.95,
@@ -134,7 +134,7 @@ def deposer_document(nom: str, octets: bytes, type_: str) -> dict:
 
 
 def creer_cas(description: str, ressort: str | None = None, document_ids: list[str] | None = None,
-              question: str | None = None, pieces: list[str] | None = None) -> dict:
+              question: str | None = None, pieces: list[str] | None = None, pays: str | None = None) -> dict:
     """Description + pièces → faits extraits par Mistral, preuves vérifiées, a_confirmer.
 
     `pieces` (textes bruts, utilisé par le MCP) sont d'abord enregistrées comme documents du cas.
@@ -156,6 +156,8 @@ def creer_cas(description: str, ressort: str | None = None, document_ids: list[s
            "documents": document_ids, "facteurs": facteurs, "preuves": preuves}
     if question:
         cas["question"] = question
+    if pays:
+        cas["pays"] = pays  # absent = France (pondération par système juridique)
     return ecrire_cas(cas)
 
 

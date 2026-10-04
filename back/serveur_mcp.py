@@ -103,11 +103,13 @@ def resumer(dossier: dict) -> dict:
 
 
 @mcp.tool()
-def pivot_structurer_cas(description: str, pieces: list[str] | None = None, ressort: str | None = None) -> dict:
+def pivot_structurer_cas(description: str, pieces: list[str] | None = None, ressort: str | None = None,
+                         pays: str | None = None) -> dict:
     """Crée le cas : extrait les faits (Oui / Non / Inconnu, avec l'extrait qui les justifie) de la description
     et des pièces. `pieces` : un texte par pièce, passages recopiés MOT POUR MOT (le moteur ne voit pas les fichiers).
-    `ressort` : cour d'appel du client, ex. « CA Paris ». Renvoie cas_id, les faits et ceux à confirmer."""
-    cas = _sur_erreur(service.creer_cas, description, ressort, None, None, pieces)
+    `ressort` : cour d'appel du client, ex. « CA Paris ». `pays` : système juridique du client (« France » par défaut ;
+    les décisions d'un autre système pèsent beaucoup moins). Renvoie cas_id, les faits et ceux à confirmer."""
+    cas = _sur_erreur(service.creer_cas, description, ressort, None, None, pieces, pays)
     g = service.grille()["facteurs"]
     preuves = cas.get("preuves", {})
     return {

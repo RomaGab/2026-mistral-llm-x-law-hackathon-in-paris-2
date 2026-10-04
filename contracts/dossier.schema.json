@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/RomaGab/2026-mistral-llm-x-law-hackathon-in-paris-2/contracts/dossier.schema.json",
   "title": "Distinguo — Dossier",
-  "description": "Format unique échangé entre le front, le back et le calculateur. Le calculateur reçoit un dossier avec resultat = null et le renvoie avec resultat rempli. Version 1.3 (accepte aussi 1.2).",
+  "description": "Format unique échangé entre le front, le back et le calculateur. Le calculateur reçoit un dossier avec resultat = null et le renvoie avec resultat rempli. Version 1.4 (accepte aussi 1.2 et 1.3).",
   "type": "object",
   "required": [
     "meta",
@@ -116,7 +116,8 @@
         "version_format": {
           "enum": [
             "1.2",
-            "1.3"
+            "1.3",
+            "1.4"
           ]
         },
         "dossier_id": {
@@ -253,6 +254,11 @@
           "items": {
             "$ref": "#/$defs/id_facteur"
           }
+        },
+        "pays": {
+          "type": "string",
+          "minLength": 1,
+          "description": "v1.4, facultatif, « France » par défaut. Pays ou ordre juridique, ex. « Royaume-Uni », « États-Unis », « Union européenne » (CJUE)."
         }
       }
     },
@@ -363,6 +369,11 @@
         },
         "preuves": {
           "$ref": "#/$defs/preuves"
+        },
+        "pays": {
+          "type": "string",
+          "minLength": 1,
+          "description": "v1.4, facultatif, « France » par défaut. Pays ou ordre juridique, ex. « Royaume-Uni », « États-Unis », « Union européenne » (CJUE)."
         }
       }
     },

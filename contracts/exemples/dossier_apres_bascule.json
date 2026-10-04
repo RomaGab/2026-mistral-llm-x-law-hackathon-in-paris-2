@@ -1,6 +1,6 @@
 {
   "meta": {
-    "version_format": "1.3",
+    "version_format": "1.4",
     "dossier_id": "cas_exemple1",
     "genere_le": "2026-10-04T14:00:00+02:00",
     "simulation": true
@@ -998,7 +998,8 @@
           "autorite": 0.85,
           "portee": 0.8,
           "actualite": 0.46,
-          "geographie": 1.0
+          "geographie": 1.0,
+          "systeme_juridique": 1.0
         },
         "alignement": {
           "service_organise": "inconnu",
@@ -1060,7 +1061,8 @@
           "autorite": 0.85,
           "portee": 0.8,
           "actualite": 0.52,
-          "geographie": 1.0
+          "geographie": 1.0,
+          "systeme_juridique": 1.0
         },
         "alignement": {
           "service_organise": "inconnu",
@@ -1122,7 +1124,8 @@
           "autorite": 0.5,
           "portee": 0.3,
           "actualite": 0.59,
-          "geographie": 1.0
+          "geographie": 1.0,
+          "systeme_juridique": 1.0
         },
         "alignement": {
           "service_organise": "inconnu",
@@ -1176,7 +1179,8 @@
           "autorite": 0.5,
           "portee": 0.3,
           "actualite": 0.62,
-          "geographie": 0.5
+          "geographie": 0.5,
+          "systeme_juridique": 1.0
         },
         "alignement": {
           "service_organise": "inconnu",
@@ -1238,7 +1242,8 @@
           "autorite": 0.5,
           "portee": 0.3,
           "actualite": 0.74,
-          "geographie": 1.0
+          "geographie": 1.0,
+          "systeme_juridique": 1.0
         },
         "alignement": {
           "service_organise": "inconnu",

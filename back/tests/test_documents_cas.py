@@ -119,3 +119,13 @@ def test_panne_de_mistral_donne_502(data_vide, monkeypatch):
     r = client.post("/cas", json={"description": DESCRIPTION})
 
     assert r.status_code == 502 and r.json()["erreur"]["code"] == "mistral"
+
+
+def test_le_pays_du_cas_pondere_l_analyse(data_vide, mistral_simule):
+    cas = client.post("/cas", json={"description": DESCRIPTION, "pays": "Royaume-Uni"}).json()
+    assert cas["pays"] == "Royaume-Uni"
+
+    dossier = client.post(f"/cas/{cas['id']}/analyse").json()
+
+    assert dossier["cas"]["pays"] == "Royaume-Uni"
+    assert erreurs_dossier(dossier) == []

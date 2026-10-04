@@ -3,7 +3,9 @@
 *But : que le front, le back et le calculateur avancent en parallèle sans s'attendre.*
 *Règle d'or : **le dossier `contracts/` fait foi**. Toute modification d'un format est annoncée à toute l'équipe avant d'être codée.*
 
-> **Version 1.3 — compatible avec la 1.2 :** chaque ligne de `resultat.decisions` peut indiquer si la décision **s'applique a fortiori** au cas, quels arguments **manquent** au cas pour qu'elle s'applique, et quels arguments **contraires** le cas a en plus. Ces trois champs sont facultatifs : un dossier 1.2 reste valide. Le choix du modèle est fixé (§8).
+> **Version 1.4 — compatible :** champ facultatif `pays` pour le cas et pour chaque décision (« France » par défaut). Le calculateur pondère chaque décision par son **système juridique** : même pays ×1, CJUE pour un pays membre de l'UE ×0,6, même tradition juridique (civil law / common law) ×0,35, tradition opposée ×0,08. Coefficient visible dans `detail_poids.systeme_juridique`.
+>
+> *Version 1.3 :* chaque ligne de `resultat.decisions` peut indiquer si la décision **s'applique a fortiori** au cas, quels arguments **manquent** au cas pour qu'elle s'applique, et quels arguments **contraires** le cas a en plus. Ces trois champs sont facultatifs : un dossier 1.2 reste valide. Le choix du modèle est fixé (§8).
 >
 > *Version 1.2 :* le résultat donne maintenant **l'analyse de chaque facteur** (`resultat.facteurs`) : est-il pivot (`est_pivot`), son niveau, s'il est à documenter ou un levier, ce que deviendrait P s'il valait vrai ou faux, et quelles décisions seraient alors écartées. **Plusieurs facteurs peuvent être pivots** (`resultat.pivots`), et si aucun ne l'est seul, on cherche les paires (`resultat.pivots_combines`). Les champs `impacts` et `fait_pivot` de la v1.1 sont supprimés. Personne ne les avait encore codés, donc ce n'est pas une v2.0, mais c'est un changement incompatible.
 >
@@ -88,7 +90,7 @@ Un dossier a six blocs. Le schéma exact est dans `contracts/dossier.schema.json
 ### Forme générale
 ```json
 {
-  "meta":       { "version_format": "1.3", "dossier_id": "cas_7f3a9c21", "simulation": false },
+  "meta":       { "version_format": "1.4", "dossier_id": "cas_7f3a9c21", "simulation": false },
   "grille":     { "version": "1.0", "question": "…", "issue": { "libelle": "…", "si_vrai": "Salariat", "si_faux": "Indépendance" }, "facteurs": [ … ] },
   "cas":        { "id": "cas_7f3a9c21", "description": "…", "ressort": "CA Paris",
                   "facteurs": { "geolocalisation_suivi": true, "sanction_deconnexion": null, "…": "…" },
@@ -124,6 +126,7 @@ La grille contient 18 facteurs (15 actifs, 3 neutralisés). Le juriste doit la v
 | `preuves` | Pour les faits renseignés : extrait du document, confiance (0 à 1), source (`extraction`, `utilisateur`, `juriste`) |
 | `a_confirmer` | Faits inconnus ou de confiance < 0,6. Le front les met en avant. Calculé par le back. |
 | `ressort` | Cour d'appel du client, ex. `"CA Paris"`. Sert au critère géographique. |
+| `pays` | v1.4, facultatif, « France » par défaut. Système juridique du client : les décisions d'un autre système pèsent beaucoup moins. |
 
 ### Décision
 | Champ | Sens |
@@ -131,6 +134,7 @@ La grille contient 18 facteurs (15 actifs, 3 neutralisés). Le juriste doit la v
 | `intitule` | Libellé court pour le front, ex. « Cass. soc., 4 mars 2020 » |
 | `formation` | `ass_pleniere` · `ch_mixte` · `cass` · `ca` · `premiere_instance` |
 | `ressort` | `null` pour la Cour de cassation, sinon `"CA Paris"`, etc. |
+| `pays` | v1.4, facultatif, « France » par défaut. Ex. « Royaume-Uni », « États-Unis », « Union européenne » (CJUE). Pour un pays étranger, `formation: "cass"` désigne sa cour suprême. |
 | `publication` | `R` · `B` · `inedit` · `na` |
 | `issue` | **Issue au fond**, pas le dispositif. Une cassation peut aboutir à `true`. |
 | `facteurs` | **Tous** les facteurs de la grille |
@@ -272,7 +276,16 @@ uv run --with jsonschema python contracts/valider.py mon_dossier.json
 
 ### Ce qu'il fait
 1. **Exclusions :** une décision est écartée si un de ses faits déterminants est contraire au cas, ou si sa solution a été remise en cause.
-2. **Pondération des décisions :** autorité, publication, ancienneté et ressort donnent le poids de chaque décision retenue.
+2. **Pondération des décisions :** autorité, publication, ancienneté et ressort donnent un poids de base, **multiplié** par le coefficient de système juridique (v1.4) :
+
+   | Décision par rapport au cas | Coefficient |
+   |---|---|
+   | Même pays | ×1 |
+   | CJUE, pour un cas d'un pays membre de l'UE | ×0,6 |
+   | Même tradition juridique, autre pays (ex. Espagne pour la France) | ×0,35 |
+   | Tradition opposée (common law contre civil law), ou pays inconnu de la table | ×0,08 |
+
+   Un coefficient multiplicatif, et non un critère de plus dans la somme, pour qu'une décision d'un autre système pèse **beaucoup** moins, quelle que soit son autorité chez elle. La table des traditions est dans `calculateur/precedents.py`.
 3. **Modèle principal, la régression logistique bayésienne :**
    - variable à prédire : `issue` ;
    - codage des faits : `true` = +1, `false` = −1, `null` = 0 (un fait inconnu ne pousse dans aucun sens) ; facteurs neutralisés exclus ;

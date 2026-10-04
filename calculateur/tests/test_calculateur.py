@@ -102,6 +102,43 @@ def test_performance_20_decisions(dossier):
         assert time.perf_counter() - t < 1.0
 
 
+def _poids(sortie, decision_id):
+    return next(l for l in sortie["resultat"]["decisions"] if l["id"] == decision_id)
+
+
+@pytest.mark.parametrize("pays_decision, coefficient", [
+    ("France", 1.0), ("Espagne", 0.35), ("CJUE", 0.6), ("Royaume-Uni", 0.08), ("USA", 0.08), ("Atlantide", 0.08),
+])
+def test_systeme_juridique_d_un_cas_francais(dossier, pays_decision, coefficient):
+    dossier["decisions"][0]["pays"] = pays_decision
+    ligne = _poids(completer(dossier), "exemple-cass-1")
+    assert ligne["detail_poids"]["systeme_juridique"] == coefficient
+
+
+def test_common_law_fortement_devaluee_pour_un_cas_de_civil_law(dossier):
+    francais = _poids(completer(dossier), "exemple-cass-1")["poids"]
+    dossier["decisions"][0]["pays"] = "Royaume-Uni"
+    sortie = completer(dossier)
+    assert _poids(sortie, "exemple-cass-1")["poids"] < francais / 10
+    assert any("autre système juridique" in a for a in sortie["resultat"]["avertissements"])
+
+
+def test_et_inversement_pour_un_cas_de_common_law(dossier):
+    dossier["cas"]["pays"] = "Royaume-Uni"
+    dossier["decisions"][0]["pays"] = "Royaume-Uni"
+    sortie = completer(dossier)
+    anglaise = _poids(sortie, "exemple-cass-1")
+    francaise = _poids(sortie, "exemple-cass-2")
+    assert anglaise["detail_poids"]["systeme_juridique"] == 1.0
+    assert francaise["detail_poids"]["systeme_juridique"] == 0.08
+    assert erreurs_dossier(sortie) == []
+
+
+def test_sans_pays_tout_est_francais(dossier):
+    assert "pays" not in dossier["cas"]
+    assert all(l["detail_poids"]["systeme_juridique"] == 1.0 for l in completer(dossier)["resultat"]["decisions"])
+
+
 def test_evaluation(dossier):
     lignes = evaluer(dossier)
     assert [nom for nom, _ in lignes][-1] == "classe majoritaire"

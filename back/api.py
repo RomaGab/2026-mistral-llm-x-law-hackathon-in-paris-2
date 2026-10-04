@@ -21,6 +21,7 @@ class CorpsCas(BaseModel):
     description: str
     question: str | None = None
     ressort: str | None = None
+    pays: str | None = None  # « France » si absent
     document_ids: list[str] = []
 
 app = FastAPI(title="Pivot")
@@ -67,7 +68,7 @@ async def deposer_document(file: Annotated[UploadFile, File()], type: Annotated[
 @app.post("/cas")
 def creer_cas(corps: CorpsCas):
     """Extraction Mistral des faits (10 à 30 s) : faits, preuves et faits à confirmer."""
-    return service.creer_cas(corps.description, corps.ressort, corps.document_ids, corps.question)
+    return service.creer_cas(corps.description, corps.ressort, corps.document_ids, corps.question, pays=corps.pays)
 
 
 @app.get("/cas/{cas_id}")

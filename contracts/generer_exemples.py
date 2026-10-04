@@ -90,7 +90,7 @@ CAS = {
 
 def dossier(cas, simulation):
     return {
-        "meta": {"version_format": "1.3", "dossier_id": cas["id"], "genere_le": "2026-10-04T14:00:00+02:00",
+        "meta": {"version_format": "1.4", "dossier_id": cas["id"], "genere_le": "2026-10-04T14:00:00+02:00",
                  "simulation": simulation},
         "grille": grille, "cas": cas, "decisions": DECISIONS, "parametres": PARAMETRES, "resultat": None,
     }

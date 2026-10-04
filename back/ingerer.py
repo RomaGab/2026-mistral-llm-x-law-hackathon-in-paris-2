@@ -29,7 +29,13 @@ def _notes_par_fichier(racine: Path) -> dict[str, dict]:
     return {e["fichier_source_brute"]: e for e in entrees if isinstance(e, dict) and "fichier_source_brute" in e}
 
 
-def ingerer(racine, limite: int | None = None) -> list[str]:
+def _pays(notes: dict | None) -> str | None:
+    """« Royaume-Uni - UK Supreme Court » → « Royaume-Uni »."""
+    brut = str((notes or {}).get("juridiction_pays", ""))
+    return brut.split(" - ")[0].split(" (")[0].strip() or None
+
+
+def ingerer(racine, limite: int | None = None, etrangeres: bool = False) -> list[str]:
     """Extrait chaque décision française du dossier. Saute les fiches existantes (on ne paie Mistral qu'une fois).
     `limite` borne le nombre d'appels à Mistral. Renvoie le rapport, une ligne par fichier."""
     racine = Path(racine)
@@ -41,8 +47,8 @@ def ingerer(racine, limite: int | None = None) -> list[str]:
         id_ = slug(chemin.name)
         if chemin.name.lower().startswith("readme"):
             rapport.append(f"ignoré      {rel} (README)")
-        elif notes and not str(notes.get("juridiction_pays", "")).startswith("France"):
-            rapport.append(f"sauté       {rel} : juridiction étrangère ({notes['juridiction_pays']})")
+        elif notes and not etrangeres and not str(notes.get("juridiction_pays", "")).startswith("France"):
+            rapport.append(f"sauté       {rel} : juridiction étrangère ({notes['juridiction_pays']}) — option --etrangeres")
         elif service.existe("fiches", id_):
             rapport.append(f"déjà fait   {rel}")
         elif limite is not None and appels >= limite:
@@ -51,7 +57,7 @@ def ingerer(racine, limite: int | None = None) -> list[str]:
             appels += 1
             try:
                 texte = extraction.lire_document(chemin.name, chemin.read_bytes())
-                fiche = extraction.extraire_decision(texte, id_, notes)
+                fiche = extraction.extraire_decision(texte, id_, notes, _pays(notes))
             except Erreur as e:
                 rapport.append(f"échec       {rel} : {getattr(e, 'message', e)}")
                 continue
@@ -65,8 +71,10 @@ def main() -> int:
     parser = argparse.ArgumentParser(prog="python -m back.ingerer", description=__doc__.splitlines()[0])
     parser.add_argument("dossier", type=Path)
     parser.add_argument("--limite", type=int, help="nombre maximal d'appels à Mistral")
+    parser.add_argument("--etrangeres", action="store_true",
+                        help="extraire aussi les décisions étrangères (pondérées selon leur système juridique)")
     args = parser.parse_args()
-    rapport = ingerer(args.dossier, args.limite)
+    rapport = ingerer(args.dossier, args.limite, args.etrangeres)
     print("\n".join(rapport))
     return 1 if any(ligne.startswith("échec") for ligne in rapport) else 0
 

@@ -8,6 +8,38 @@ from datetime import date
 AUTORITE = {"ass_pleniere": 1.0, "ch_mixte": 1.0, "cass": 0.85, "ca": 0.5, "premiere_instance": 0.25}
 PORTEE = {"R": 1.0, "B": 0.8, "inedit": 0.4, "na": 0.3}
 
+# ---- système juridique (v1.4) : coefficient MULTIPLICATIF sur le poids d'une décision
+PAYS_DEFAUT = "France"
+TRADITIONS = {
+    **dict.fromkeys(["Royaume-Uni", "États-Unis", "Australie", "Canada", "Irlande", "Nouvelle-Zélande", "Inde"], "common_law"),
+    **dict.fromkeys(["France", "Espagne", "Italie", "Pays-Bas", "Suisse", "Belgique", "Allemagne", "Portugal",
+                     "Luxembourg", "Autriche", "Brésil", "Chili", "Colombie", "Argentine", "Québec"], "civil_law"),
+    "Union européenne": "union_europeenne",
+}
+MEMBRES_UE = {"France", "Espagne", "Italie", "Pays-Bas", "Belgique", "Allemagne", "Portugal", "Luxembourg", "Autriche", "Irlande"}
+ALIAS = {"USA": "États-Unis", "Etats-Unis": "États-Unis", "UK": "Royaume-Uni", "CJUE": "Union européenne", "UE": "Union européenne"}
+SYSTEME = {"meme_pays": 1.0, "droit_ue": 0.6, "meme_tradition": 0.35, "autre_tradition": 0.08}
+
+
+def pays(obj: dict) -> str:
+    """Pays d'un cas ou d'une décision, normalisé (« France » si absent)."""
+    p = (obj.get("pays") or PAYS_DEFAUT).strip()
+    return ALIAS.get(p, p)
+
+
+def systeme_juridique(cas: dict, decision: dict) -> float:
+    """Même pays : ×1. CJUE pour un pays membre : ×0,6. Même tradition : ×0,35. Tradition opposée
+    (common law contre civil law, ou pays inconnu) : ×0,08."""
+    pc, pd = pays(cas), pays(decision)
+    if pc == pd:
+        return SYSTEME["meme_pays"]
+    if pd == "Union européenne" and pc in MEMBRES_UE:
+        return SYSTEME["droit_ue"]
+    tc, td = TRADITIONS.get(pc), TRADITIONS.get(pd)
+    if tc is not None and tc == td:
+        return SYSTEME["meme_tradition"]
+    return SYSTEME["autre_tradition"]
+
 
 class Grille:
     """Vue pratique sur dossier["grille"]."""
@@ -40,11 +72,13 @@ def detail_poids(cas: dict, decision: dict, date_reference: str) -> dict:
         "portee": PORTEE[decision["publication"]],
         "actualite": round(math.exp(-max(age, 0.0) / 10), 2),
         "geographie": geo,
+        "systeme_juridique": systeme_juridique(cas, decision),
     }
 
 
 def poids(dp: dict) -> float:
-    return round(0.5 * dp["autorite"] + 0.2 * dp["portee"] + 0.15 * dp["actualite"] + 0.15 * dp["geographie"], 2)
+    base = 0.5 * dp["autorite"] + 0.2 * dp["portee"] + 0.15 * dp["actualite"] + 0.15 * dp["geographie"]
+    return round(base * dp.get("systeme_juridique", 1.0), 2)
 
 
 def proximite(faits: dict, decision: dict, g: Grille) -> float:

@@ -13,11 +13,13 @@ from contracts.valider import erreurs_dossier
 
 from .modeles import creer_modele
 from .precedents import (
+    TRADITIONS,
     Grille,
     a_fortiori,
     alignement,
     detail_poids,
     exclusion,
+    pays,
     poids,
     proximite,
 )
@@ -154,7 +156,7 @@ def completer(dossier: dict) -> dict:
         "pivots_combines": combines,
         "facteurs": analyse,
         "decisions": lignes,
-        "avertissements": _avertissements(decisions, retenues, issue_de),
+        "avertissements": _avertissements(cas, decisions, retenues, issue_de),
     }
 
     problemes = erreurs_dossier(d)
@@ -163,12 +165,19 @@ def completer(dossier: dict) -> dict:
     return d
 
 
-def _avertissements(decisions: list, retenues: list, issue_de: dict) -> list[str]:
+def _avertissements(cas: dict, decisions: list, retenues: list, issue_de: dict) -> list[str]:
     out = []
     if not retenues:
         out.append("Aucune décision retenue : le résultat ne repose que sur la grille du juriste.")
     elif len({issue_de[l["id"]] for l in retenues}) == 1:
         out.append("Toutes les décisions retenues vont dans le même sens : l'autre issue n'a aucun précédent.")
+    etrangeres = [dec for dec in decisions if pays(dec) != pays(cas)]
+    if etrangeres:
+        out.append(f"{len(etrangeres)} décision(s) d'un autre système juridique que le cas ({pays(cas)}) : "
+                   "poids fortement réduit (×0,35 même tradition, ×0,08 tradition opposée).")
+    inconnus = sorted({pays(dec) for dec in decisions} - set(TRADITIONS))
+    if inconnus:
+        out.append(f"Pays absents de la table des traditions juridiques : {', '.join(inconnus)} (coefficient minimal).")
     if any("[FICTIF]" in dec.get("intitule", "") for dec in decisions):
         out.append("Le dossier contient des décisions fictives ([FICTIF]) : à ne pas utiliser en démo.")
     return out

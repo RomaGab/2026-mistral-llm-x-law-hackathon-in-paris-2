@@ -383,3 +383,19 @@ def test_slug_compatible_avec_les_ids_du_service():
     assert service.ID_VALIDE.match(slug)
     assert slug == "2023-11-21_uksc43_iwgb_v_cac_deliveroo_extrait_pages1-10-copie"
     assert ingerer.slug("Décision été.txt") == "decision-ete"
+
+
+def test_ingerer_avec_etrangeres_garde_le_pays(dataset):
+    racine, data, _ = dataset
+
+    ingerer.ingerer(racine, etrangeres=True)
+
+    anglaise = json.loads((data / "fiches" / "2021-02-19_uksc5_uber_bv_v_aslam.json").read_text(encoding="utf-8"))
+    francaise = json.loads((data / "fiches" / "2018-11-28_cass_soc_17-20-079_takeeateasy.json").read_text(encoding="utf-8"))
+    assert anglaise["pays"] == "Royaume-Uni"
+    assert francaise["pays"] == "France"
+
+
+def test_pays_par_defaut_france():
+    assert extraction.normaliser_decision(decision_brute(), TEXTE, GRILLE, "dec-1")["pays"] == "France"
+    assert extraction.normaliser_decision(decision_brute(pays="Espagne"), TEXTE, GRILLE, "dec-1")["pays"] == "Espagne"

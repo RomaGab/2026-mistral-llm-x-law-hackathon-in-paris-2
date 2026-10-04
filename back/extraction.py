@@ -146,7 +146,7 @@ def _invalide(champ: str, valeur) -> Erreur:
     return Erreur(502, "extraction_invalide", f"Mistral a renvoyé un champ {champ} invalide : {valeur!r}")
 
 
-def normaliser_decision(brut, texte: str, grille: list[dict], id_: str) -> dict:
+def normaliser_decision(brut, texte: str, grille: list[dict], id_: str, pays: str | None = None) -> dict:
     """Sortie Mistral → fiche au format `decision` du schéma, toujours validee: false.
     Une métadonnée obligatoire invalide fait échouer la fiche plutôt que d'inventer une valeur."""
     if not isinstance(brut, dict):
@@ -180,6 +180,7 @@ def normaliser_decision(brut, texte: str, grille: list[dict], id_: str) -> dict:
     ressort = brut.get("ressort") if isinstance(brut.get("ressort"), str) else None
     return {
         "id": id_,
+        "pays": pays or (brut["pays"].strip() if isinstance(brut.get("pays"), str) and brut["pays"].strip() else "France"),
         "intitule": texte_requis("intitule"),
         "juridiction": texte_requis("juridiction"),
         "formation": formation,
@@ -210,8 +211,9 @@ def _messages_decision(texte: str, grille: dict, notes: dict | None) -> list[dic
 
 Réponds uniquement par un objet JSON avec exactement ces clés :
 - "intitule" : libellé court, ex. "Cass. soc., 4 mars 2020, n° 19-13.316" ou "CA Paris, 10 janv. 2019, n° 18/08357".
+- "pays" : pays ou ordre juridique de la juridiction, ex. "France", "Royaume-Uni", "États-Unis", "Union européenne".
 - "juridiction" : ex. "Cour de cassation, chambre sociale".
-- "formation" : "ass_pleniere", "ch_mixte", "cass" (toute chambre de la Cour de cassation), "ca" (cour d'appel) ou "premiere_instance".
+- "formation" : "ass_pleniere", "ch_mixte", "cass" (toute chambre de la Cour de cassation ; pour un pays étranger, sa cour suprême), "ca" (cour d'appel) ou "premiere_instance".
 - "ressort" : pour une cour d'appel, "CA <ville>" ; sinon null.
 - "date" : date de la décision, au format AAAA-MM-JJ.
 - "numero" : numéro de pourvoi ou de RG, sinon null.
@@ -241,9 +243,9 @@ Identifiants et questions :
     ]
 
 
-def extraire_decision(texte: str, id_: str, notes: dict | None = None) -> dict:
+def extraire_decision(texte: str, id_: str, notes: dict | None = None, pays: str | None = None) -> dict:
     g = service.grille()
-    return normaliser_decision(appeler_mistral(_messages_decision(texte, g, notes)), texte, g["facteurs"], id_)
+    return normaliser_decision(appeler_mistral(_messages_decision(texte, g, notes)), texte, g["facteurs"], id_, pays)
 
 
 def _messages_cas(texte: str, grille: dict) -> list[dict]:
