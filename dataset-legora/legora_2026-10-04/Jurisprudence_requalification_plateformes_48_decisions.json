@@ -1,0 +1,434 @@
+[
+  {
+    "juridiction_pays": "France - Cour de cassation (Ch. sociale)",
+    "date": "2018-11-28",
+    "reference": "n° 17-20.079 (arrêt n° 1737 FP-P+B+R+I) - Take Eat Easy",
+    "statut_juge": "Salariat (lien de subordination caractérisé par la Cour)",
+    "faits_determinants_salariat": ["Géolocalisation en temps réel du coursier et comptabilisation des kilomètres parcourus", "Système gradué de 'strikes' pouvant conduire à la désactivation du compte et à la désinscription des shifts (4 strikes)", "Obligation de garder l'application allumée et le smartphone chargé pendant le créneau choisi, livraison non validée en 5 minutes réattribuée automatiquement"],
+    "faits_determinants_independance": ["Coursier fournissant son propre vélo, casque et kit de réparation", "Absence de clause d'exclusivité, possibilité de contracter avec d'autres entreprises", "Liberté de choisir ses shifts"],
+    "fait_pivot_censure": "L'application permettait le suivi en temps réel du coursier et la plateforme disposait d'un pouvoir de sanction, révélant un pouvoir de direction et de contrôle caractérisant un lien de subordination, la liberté de choisir ses horaires n'étant pas à elle seule décisive"
+  },
+  {
+    "juridiction_pays": "France - Cour de cassation (Ch. sociale)",
+    "date": "2020-03-04",
+    "reference": "n° 19-13.316 (arrêt n° 374 FP-P+B+R+I) - Uber",
+    "statut_juge": "Salariat",
+    "faits_determinants_salariat": ["Algorithme centralisant et attribuant les courses, tarifs fixés par algorithme prédictif, ajustement du tarif en cas d'itinéraire jugé inefficace", "Géolocalisation permanente du chauffeur connecté", "Déconnexion temporaire après refus répétés, taux d'annulation seuil entraînant perte d'accès, désactivation définitive du compte après avertissements liés à la notation"],
+    "faits_determinants_independance": ["Possibilité théorique de travailler pour d'autres plateformes et de choisir ses horaires de connexion"],
+    "fait_pivot_censure": "Intégration du chauffeur dans un service de transport entièrement organisé par Uber, sans clientèle propre ni maîtrise des tarifs ni des conditions d'exercice"
+  },
+  {
+    "juridiction_pays": "France - Cour de cassation (Ch. sociale)",
+    "date": "2020-06-24",
+    "reference": "n° 18-26.088 (arrêt n° 486 F-D) - Take Eat Easy",
+    "statut_juge": "Salariat (cassation pour défaut de caractérisation par la cour d'appel)",
+    "faits_determinants_salariat": ["Géolocalisation en temps réel et suivi du comportement du livreur", "Système de strikes jusqu'à désactivation du compte", "Livraisons proposées et réattribuées automatiquement via l'application en cas de non-validation"],
+    "faits_determinants_independance": ["Liberté de choisir ses shifts", "Vélo et matériel personnels"],
+    "fait_pivot_censure": "La géolocalisation permettait le suivi en temps réel de la position et du comportement du coursier, combinée à un pouvoir de sanction"
+  },
+  {
+    "juridiction_pays": "France - Cour de cassation (Ch. sociale)",
+    "date": "2020-06-24",
+    "reference": "n° 19-13.476 (arrêt n° 489 F-D) - Take Eat Easy",
+    "statut_juge": "Salariat (cassation)",
+    "faits_determinants_salariat": ["Géolocalisation, comptabilisation des kilomètres, surveillance des horaires", "Strikes jusqu'à désactivation et désinscription des shifts"],
+    "faits_determinants_independance": ["Liberté de choisir les shifts et absence d'exclusivité (jugées insuffisantes par la Cour)"],
+    "fait_pivot_censure": "La cour d'appel aurait dû déduire du système de géolocalisation et du pouvoir de sanction l'existence d'un pouvoir de direction et de contrôle caractérisant la subordination"
+  },
+  {
+    "juridiction_pays": "France - Cour de cassation (Ch. sociale)",
+    "date": "2022-04-13",
+    "reference": "n° 20-14.870 (arrêt n° 549 FS-B) - Voxtur/LeCab",
+    "statut_juge": "Cassation pour insuffisance de caractérisation (position de résistance/nuance)",
+    "faits_determinants_salariat": ["Véhicule imposé par la société, GPS localisant les véhicules pour optimiser la répartition des courses", "Fixation du prix par la société et facturation au nom du chauffeur", "Notation (1 à 5) pouvant entraîner résiliation du contrat et du contrat de location du véhicule"],
+    "faits_determinants_independance": ["Possibilité d'utiliser son propre véhicule ou de louer ailleurs, de choisir ses horaires, de travailler pour d'autres entreprises, de sous-traiter sous conditions"],
+    "fait_pivot_censure": "La seule combinaison du véhicule imposé, de la géolocalisation, de la fixation tarifaire et de la notation ne suffisait pas : il fallait des directives concrètes et un contrôle de leur respect"
+  },
+  {
+    "juridiction_pays": "France - Cour de cassation (Ch. sociale)",
+    "date": "2023-01-25",
+    "reference": "n° 21-11.273 (arrêt n° 40 F-D) - Uber",
+    "statut_juge": "Salariat (cassation)",
+    "faits_determinants_salariat": ["Itinéraire défini par le logiciel, pause obligatoire après 10h de conduite, tarifs fixés par algorithme", "Trois refus successifs entraînant mise hors ligne, suspension de compte pendant deux semaines pour taux d'annulation élevé"],
+    "faits_determinants_independance": ["Possibilité de se connecter ou non, de travailler pour d'autres plateformes et hors application"],
+    "fait_pivot_censure": "Existence simultanée d'un pouvoir de direction (itinéraire, tarifs, consignes), de contrôle et de sanction (mise hors ligne et suspension)"
+  },
+  {
+    "juridiction_pays": "France - Cour de cassation (Ch. sociale)",
+    "date": "2023-03-15",
+    "reference": "n° 21-17.316 (arrêt n° 241 FS-D) - Bolt",
+    "statut_juge": "Salariat (rejet du pourvoi de Bolt)",
+    "faits_determinants_salariat": ["Attribution de la clientèle par Bolt, itinéraire le moins coûteux imposé, tarifs calculés par GPS, consignes sur le comportement avec les clients", "Résiliation à l'entière discrétion de Bolt, blocage immédiat en cas de soupçon de fraude, compte définitivement désactivé après plaintes clients et note moyenne faible"],
+    "faits_determinants_independance": ["Absence formelle d'exclusivité invoquée par Bolt"],
+    "fait_pivot_censure": "Attribution de la clientèle, absence de choix réel des itinéraires et tarifs, interdiction de développer une clientèle personnelle et désactivation fondée sur annulations/évaluations"
+  },
+  {
+    "juridiction_pays": "France - Cour de cassation (Ch. sociale)",
+    "date": "2025-03-05",
+    "reference": "n° 23-18.431 (arrêt n° 224 F-D) - Uber",
+    "statut_juge": "Salariat (cassation)",
+    "faits_determinants_salariat": ["Interdiction de solliciter les passagers pour constituer une clientèle propre, prix déterminé unilatéralement par algorithme, géolocalisation permanente", "Déconnexion après refus de 80% ou plus des courses ou 3 refus consécutifs, avertissements liés au comportement, désactivation liée à la notation"],
+    "faits_determinants_independance": ["Choix du chauffeur de recourir à la plateforme invoqué par la cour d'appel comme justifiant l'acceptation des règles"],
+    "fait_pivot_censure": "Combinaison du contrôle de la clientèle, de la géolocalisation, de la maîtrise tarifaire et de la déconnexion liée aux refus de courses ; la justification commerciale ne neutralise pas un pouvoir effectivement exercé"
+  },
+  {
+    "juridiction_pays": "France - Cour de cassation (Ch. sociale)",
+    "date": "2025-07-09",
+    "reference": "n° 24-13.504 (arrêt n° 746 F-D) - Uber",
+    "statut_juge": "Indépendant (rejet du pourvoi, absence de lien de subordination confirmée)",
+    "faits_determinants_salariat": ["Déconnexion après trois refus consécutifs (mais réversible immédiatement)"],
+    "faits_determinants_independance": ["Absence de directives pendant la course, 15 secondes pour accepter/refuser, reconnexion quasi immédiate après déconnexion", "Absence d'exclusivité, multi-apping effectif, catégorie 'chauffeur favori' permettant clientèle personnelle", "Absence de preuve d'ajustements tarifaires caractérisant une direction (un seul ajustement à la baisse contre plusieurs à la hausse)"],
+    "fait_pivot_censure": "Absence de directives pendant la course, combinée à la faculté de refuser, de se reconnecter immédiatement et de développer une activité concurrente ou personnelle"
+  },
+  {
+    "juridiction_pays": "France - Cour de cassation (Ch. sociale)",
+    "date": "2025-07-09",
+    "reference": "n° 24-13.513 (arrêt n° 747 F-D) - Uber",
+    "statut_juge": "Indépendant (rejet du pourvoi)",
+    "faits_determinants_salariat": ["Déconnexion après trois refus, réversible rapidement"],
+    "faits_determinants_independance": ["Choix du véhicule, des périodes de travail, du secteur géographique et du temps de connexion", "Travail pour d'autres applications et hors plateforme, catégorie 'chauffeur favori'"],
+    "fait_pivot_censure": "Preuve concrète d'une liberté d'organisation et absence de directives pendant la réalisation de la prestation"
+  },
+  {
+    "juridiction_pays": "Royaume-Uni - UK Supreme Court",
+    "date": "2021-02-19",
+    "reference": "[2021] UKSC 5 - Uber BV and others v Aslam and others",
+    "statut_juge": "Worker (statut intermédiaire)",
+    "faits_determinants_salariat": ["Attribution automatique de la course au chauffeur disponible le plus proche par géolocalisation, 10 secondes pour accepter", "Tarif calculé automatiquement par Uber, commission fixée par Uber, ajustement/annulation du tarif après plainte", "Taux d'acceptation inférieur à 80% déclenchant avertissements puis déconnexion automatique de 10 minutes après 3 refus consécutifs ; note moyenne sous 4.4 après 200 courses pouvant conduire à désactivation"],
+    "faits_determinants_independance": ["Chauffeurs fournissant leur véhicule, supportant assurance/carburant/entretien, pouvant travailler pour des concurrents"],
+    "fait_pivot_censure": "Malgré la liberté de choisir quand se connecter, les chauffeurs travaillaient pour Uber dès qu'ils étaient connectés et disponibles : Uber fixait la rémunération, les conditions, contrôlait l'acceptation/annulation et empêchait la constitution d'une clientèle personnelle"
+  },
+  {
+    "juridiction_pays": "Royaume-Uni - UK Supreme Court",
+    "date": "2023-11-21",
+    "reference": "[2023] UKSC 43 - IWGB v Central Arbitration Committee (Deliveroo)",
+    "statut_juge": "Pas worker (statut d'indépendant maintenu)",
+    "faits_determinants_salariat": ["Algorithme proposant les commandes à proximité", "Résiliation possible avec préavis en cas de délais de livraison durablement trop longs"],
+    "faits_determinants_independance": ["Droit de substitution pratiquement illimité et réellement exercé en pratique (avant ou après acceptation d'une course)", "Riders fournissant leur propre téléphone/vélo/scooter/voiture, pouvant travailler pour des concurrents", "Deliveroo ne contrôlait pas l'utilisation des remplaçants et ne sanctionnait pas les riders y recourant"],
+    "fait_pivot_censure": "Le droit de substitution réellement illimité et exercé en pratique est incompatible avec l'obligation de prestation personnelle, élément essentiel de la relation d'emploi"
+  },
+  {
+    "juridiction_pays": "Royaume-Uni - UK Supreme Court",
+    "date": "2018-06-13",
+    "reference": "[2018] UKSC 29 - Pimlico Plumbers Ltd v Smith",
+    "statut_juge": "Worker (pas employee)",
+    "faits_determinants_salariat": ["Uniforme et véhicule de marque imposés, tracker GPS sur les véhicules, instructions administratives du control room", "Semaine normale de 5 jours/40h minimum imposée par le manuel", "Manquements pouvant entraîner avertissement puis licenciement immédiat"],
+    "faits_determinants_independance": ["Fiscalement indépendant, fournissait ses outils, pouvait refuser certaines missions", "Droit de substitution limité à un autre opérateur Pimlico"],
+    "fait_pivot_censure": "Le contrôle de Pimlico et l'emprise économique sur son activité excluaient que Pimlico soit simplement son client ; la prestation personnelle demeurait la caractéristique dominante"
+  },
+  {
+    "juridiction_pays": "Royaume-Uni - Employment Appeal Tribunal",
+    "date": "2018-11-14",
+    "reference": "UKEAT/0037/18/BA - Addison Lee Ltd v Lange",
+    "statut_juge": "Limb (b) worker",
+    "faits_determinants_salariat": ["Allocation automatique des courses au chauffeur proche par détection de position, controllers déterminant l'ordre des courses", "Absence de bouton 'decline', refus qualifié d'« unallocation » et sanctionné par mise hors ligne"],
+    "faits_determinants_independance": ["Rémunération à la course fixée par Addison Lee, chauffeur ne connaissant pas toujours le montant à l'acceptation"],
+    "fait_pivot_censure": "Le chauffeur, en se connectant, s'engageait objectivement à accepter les courses attribuées et à fournir personnellement le service, résultant du fonctionnement du système et des sanctions"
+  },
+  {
+    "juridiction_pays": "Royaume-Uni - Employment Appeal Tribunal",
+    "date": "2018-05-11",
+    "reference": "UKEAT/0289/17/LA - Addison Lee Ltd v Gascoigne",
+    "statut_juge": "Limb (b) worker",
+    "faits_determinants_salariat": ["Controllers allouant les missions, suivi par radio et GPS, zone approuvée imposée", "Absence de bouton de refus, pression du controller en cas de non-acceptation"],
+    "faits_determinants_independance": ["Courier fournissant son vélo, fiscalement self-employed"],
+    "fait_pivot_censure": "Le courier travaillait en équipe sous la direction d'Addison Lee lorsqu'il était connecté et ne gérait pas une entreprise indépendante fournissant des services à ses propres clients"
+  },
+  {
+    "juridiction_pays": "Royaume-Uni - Employment Appeal Tribunal",
+    "date": "2019-12-05",
+    "reference": "UKEAT/0219/18/BA - Stuart Delivery Ltd v Augustine",
+    "statut_juge": "Worker pendant les créneaux ('slots') acceptés",
+    "faits_determinants_salariat": ["Slots publiés par l'application avec rémunération horaire garantie ; itinéraire recommandé par l'algorithme", "Deux slots manqués faisant perdre les bonus et affectant le score, suspension de l'accès à la plateforme"],
+    "faits_determinants_independance": ["Environ 80% des couriers inscrits sur d'autres plateformes (mais pas simultanément pendant un slot Stuart)"],
+    "fait_pivot_censure": "La libération d'un slot ne dépendait pas du choix du courier mais de l'acceptation par un autre membre de la plateforme ; le mécanisme de Release Notification ne constituait pas un véritable droit de substitution"
+  },
+  {
+    "juridiction_pays": "Royaume-Uni - Employment Tribunal",
+    "date": "2020-07-24",
+    "reference": "Affaires 2301176/2018 et autres - O'Eachtiarna and others v City Sprint (UK) Ltd",
+    "statut_juge": "Worker pendant les périodes d'engagement",
+    "faits_determinants_salariat": ["Controllers utilisant la cartographie de flotte pour la position de chaque courier, missions transmises via City Trakker avec 8 minutes pour accepter", "Manuel City Trakker considéré comme instruction plutôt que simple guide"],
+    "faits_determinants_independance": ["Contrat de novembre 2017 autorisant théoriquement le travail pour des concurrents et le refus de toute mission sans sanction", "Droit de substitution sous conditions (jamais effectivement utilisé)"],
+    "fait_pivot_censure": "La prestation personnelle demeurait la caractéristique dominante du contrat malgré la clause de substitution, le multi-apping simultané étant en pratique presque irréalisable"
+  },
+  {
+    "juridiction_pays": "Royaume-Uni - Employment Appeal Tribunal",
+    "date": "2022-01-18",
+    "reference": "[2022] EAT 6 - Christopher Johnson v Transopco UK Ltd",
+    "statut_juge": "Independent contractor / self-employed",
+    "faits_determinants_salariat": ["4 secondes pour accepter/refuser une course via l'application Mytaxi"],
+    "faits_determinants_independance": ["Seulement ~282 courses via l'app, moins de 15% des revenus de taxi du chauffeur", "Transopco ne fixait pas le tarif, ne contrôlait pas l'exécution ni les relations avec les passagers", "Aucune conséquence attachée aux mauvaises notes des passagers"],
+    "fait_pivot_censure": "Absence de dépendance économique et opérationnelle : le chauffeur exploitait déjà à plein temps sa propre activité de taxi, l'application n'étant qu'une source accessoire"
+  },
+  {
+    "juridiction_pays": "Royaume-Uni - Employment Tribunal",
+    "date": "2024-11-04",
+    "reference": "Affaires 2206953/2021 et autres - Bandi and others v Bolt Operations OÜ",
+    "statut_juge": "Worker (pour les sample claimants, périodes de disponibilité sans multi-apping)",
+    "faits_determinants_salariat": ["Géolocalisation, ETA et proximité pour attribuer les courses, fenêtre de réponse courte, surveillance jusqu'à la fin de la course", "Contrôles biométriques et géolocalisés, suspension/blocage pour plaintes, notes ou qualité de service", "Bolt fixait les tarifs ou commissions et déterminait les Journey Fees"],
+    "faits_determinants_independance": ["Chauffeurs fournissant leurs véhicules, pouvant travailler pour des concurrents, fiscalement indépendants"],
+    "fait_pivot_censure": "Bolt Link ne donnait pas réellement au chauffeur A le droit d'attribuer sa course au chauffeur B ; le contrôle algorithmique, la rémunération fixée et la surveillance qualité l'emportaient"
+  },
+  {
+    "juridiction_pays": "Royaume-Uni - Employment Appeal Tribunal",
+    "date": "2017-11-10",
+    "reference": "UKEAT/0056/17/DA - Uber B.V. v Aslam (appel initial)",
+    "statut_juge": "Worker",
+    "faits_determinants_salariat": ["Affectation automatique des courses au chauffeur proche, calcul de la rémunération par GPS, enregistrement des taux d'acceptation/annulation", "Refus répétés entraînant déconnexion forcée, mauvaises notes après période d'amélioration pouvant conduire à désactivation"],
+    "faits_determinants_independance": ["Véhicule financé par le chauffeur, frais de licence, possibilité de travailler pour des concurrents, fiscalité indépendante"],
+    "fait_pivot_censure": "Les chauffeurs étaient intégrés dans l'entreprise Uber de transport ; le contrat prétendument conclu avec le passager ne reflétait pas la réalité"
+  },
+  {
+    "juridiction_pays": "Espagne - Tribunal Supremo (Sala de lo Social)",
+    "date": "2020-09-25",
+    "reference": "STS 805/2020, rec. 4746/2019 - Glovo",
+    "statut_juge": "Relación laboral (salariat)",
+    "faits_determinants_salariat": ["Glovo fixait le prix et les conditions de paiement et les conditions essentielles d'exécution du service", "Contrôle en temps réel de l'exécution de la prestation", "Glovo n'était pas une simple intermédiaire mais fournissait elle-même le service de messagerie et de livraison"],
+    "faits_determinants_independance": [],
+    "fait_pivot_censure": "Glovo exerçait un pouvoir entrepreneurial sur le mode de prestation et contrôlait l'exécution en temps réel, ce qui caractérisait la dépendance propre à la relation de travail"
+  },
+  {
+    "juridiction_pays": "Espagne - Tribunal Constitucional (Pleno)",
+    "date": "2023-10-25",
+    "reference": "STC 144/2023, recurso de inconstitucionalidad n° 4977-2021 (Ley Rider / RDL 9/2021)",
+    "statut_juge": "N/A (contrôle de constitutionnalité du décret-loi ; confirme la présomption de laboralidad pour les livreurs de plateformes dirigées algorithmiquement)",
+    "faits_determinants_salariat": ["Présomption de laboralidad pour l'activité de livraison organisée, dirigée ou contrôlée directement, indirectement ou implicitement par gestion algorithmique (disposition additionnelle 23 ET)", "Gestion algorithmique du service et des conditions de travail, contrôle des processus et des résultats"],
+    "faits_determinants_independance": [],
+    "fait_pivot_censure": "Le Gouvernement a justifié l'urgence par la nécessité d'incorporer la doctrine de la STS 805/2020 et par la précarité des travailleurs de plateformes ; recours rejeté (avec 4 dissidences)"
+  },
+  {
+    "juridiction_pays": "CJUE",
+    "date": "1986-07-03",
+    "reference": "Affaire 66/85 - Lawrie-Blum v Land Baden-Württemberg",
+    "statut_juge": "Travailleur (notion autonome du droit de l'Union)",
+    "faits_determinants_salariat": ["L'établissement déterminait les prestations et les horaires, la stagiaire devant suivre les instructions et respecter les règles"],
+    "faits_determinants_independance": [],
+    "fait_pivot_censure": "La notion de travailleur ne dépend pas du droit national ; son élément essentiel est l'accomplissement de prestations sous la direction d'une autre personne, en contrepartie d'une rémunération"
+  },
+  {
+    "juridiction_pays": "CJUE",
+    "date": "2014-12-04",
+    "reference": "C-413/13 - FNV Kunsten Informatie en Media",
+    "statut_juge": "Potentiellement travailleur si l'indépendance est fictive (critères posés, renvoi au juge national)",
+    "faits_determinants_salariat": ["Absence de risque commercial, intégration dans l'entreprise du donneur d'ordre au point de former une unité économique"],
+    "faits_determinants_independance": ["Liberté de choisir le temps, le lieu, la manière d'exécuter la tâche et le type de travail"],
+    "fait_pivot_censure": "La qualification de 'self-employed' en droit national n'empêche pas la qualification de travailleur en droit de l'Union lorsque l'indépendance est purement notionnelle et dissimule une relation de travail"
+  },
+  {
+    "juridiction_pays": "CJUE",
+    "date": "2020-04-22",
+    "reference": "C-692/19 - B v Yodel Delivery Network Ltd",
+    "statut_juge": "Indépendance jugée non fictive par la Cour (qualification définitive renvoyée au juge national)",
+    "faits_determinants_salariat": [],
+    "faits_determinants_independance": ["Coursier utilisant son propre véhicule et téléphone", "Droit de sous-traiter ou se faire remplacer, de travailler simultanément pour des concurrents, de refuser des tâches, de fixer un plafond de colis, de choisir l'ordre et l'itinéraire", "Yodel ne pouvait contrôler le choix du sous-traitant que sur critères objectifs de compétence"],
+    "fait_pivot_censure": "Compte tenu de ces libertés réellement exercées, l'indépendance du coursier ne paraissait pas fictive et aucune relation de subordination ne semblait a priori établie"
+  },
+  {
+    "juridiction_pays": "USA - California Supreme Court",
+    "date": "2018-04-30",
+    "reference": "4 Cal. 5th 903 - Dynamex Operations West, Inc. v. Superior Court",
+    "statut_juge": "Salarié présumé (adoption de l'ABC test ; chauffeurs-livreurs traités comme indépendants mais certification de classe maintenue)",
+    "faits_determinants_salariat": ["Dynamex obtenait les clients, fixait les tarifs facturés, attribuait les livraisons par dispatchers, imposait un téléphone Nextel", "Pouvoir de mettre fin au contrat sans cause avec 3 jours de préavis"],
+    "faits_determinants_independance": ["Chauffeurs fournissant leurs véhicules et supportant carburant/péages/entretien/assurance/taxes", "Liberté de travailler pour d'autres entreprises de livraison ou leur propre clientèle hors livraisons Dynamex"],
+    "fait_pivot_censure": "Prong B de l'ABC test : Dynamex était précisément une entreprise de livraison et les chauffeurs réalisaient le service vendu aux clients"
+  },
+  {
+    "juridiction_pays": "USA - U.S. District Court, N.D. California",
+    "date": "2015-03-11",
+    "reference": "60 F. Supp. 3d 1067 - Cotter v. Lyft, Inc.",
+    "statut_juge": "Question laissée au jury (sous le Borello test, aucune classification tranchée comme question de droit)",
+    "faits_determinants_salariat": ["Une fois la course acceptée, Lyft contrôlait les règles de conduite, l'apparence/propreté du véhicule, interdiction de prendre des passagers non-Lyft, usage du GPS", "Taux d'acceptation suivi (seuils 'excellent'/'needs improvement'), avertissements puis désactivation après 3 avertissements ; désactivation possible après note moyenne de 4.54"],
+    "faits_determinants_independance": ["Chauffeurs fournissant leur véhicule, horaires propres, pouvant avoir un autre emploi et choisir les courses acceptées"],
+    "fait_pivot_censure": "Le droit de contrôle de Lyft, notamment le pouvoir de sanctionner/désactiver, était le facteur principal, mais les facteurs secondaires de flexibilité empêchaient une conclusion juridique définitive"
+  },
+  {
+    "juridiction_pays": "USA - U.S. District Court, N.D. California",
+    "date": "2015-01-01",
+    "reference": "82 F. Supp. 3d 1133 - O'Connor v. Uber Technologies, Inc.",
+    "statut_juge": "Analyse favorable à la qualification de salarié (Uber vend des trajets, pas seulement un logiciel)",
+    "faits_determinants_salariat": ["Uber facturait directement les passagers pour le trajet puis reversait une part au chauffeur", "Les revenus d'Uber dépendaient directement de la réalisation effective des trajets"],
+    "faits_determinants_independance": [],
+    "fait_pivot_censure": "Uber ne génère de revenus que si ses chauffeurs transportent effectivement des passagers, ce qui contredit la qualification de simple intermédiaire technologique"
+  },
+  {
+    "juridiction_pays": "USA - California Court of Appeal (First District)",
+    "date": "2020-10-22",
+    "reference": "56 Cal. App. 5th 266 - People v. Uber Technologies, Inc.",
+    "statut_juge": "Injonction confirmée interdisant la classification comme indépendants sous l'AB5 (ABC test)",
+    "faits_determinants_salariat": ["Algorithmes de matching fondés sur la proximité, surveillance de la localisation, des communications et des habitudes de conduite", "Notes des passagers pouvant entraîner désactivation, standards imposés sur véhicules/antécédents/licence/assurance"],
+    "faits_determinants_independance": ["Chauffeurs utilisant leurs propres véhicules, pouvant travailler pour Uber, Lyft et d'autres plateformes simultanément, fixant leurs horaires"],
+    "fait_pivot_censure": "Prong B : les chauffeurs fournissaient le service central vendu par Uber et Lyft (le transport de passagers), rejetant l'argument de simple plateforme logicielle"
+  },
+  {
+    "juridiction_pays": "USA - U.S. District Court, N.D. California",
+    "date": "2020-04-07",
+    "reference": "452 F. Supp. 3d 904 - Rogers v. Lyft, Inc.",
+    "statut_juge": "Statut salarié jugé clair sous l'AB5 (mais injonction refusée pour motifs procéduraux d'arbitrage)",
+    "faits_determinants_salariat": ["Transport de passagers 'squarely within the usual course' de l'activité de Lyft"],
+    "faits_determinants_independance": [],
+    "fait_pivot_censure": "Le prong B ne pouvait être satisfait par Lyft, le transport étant au coeur de son activité ; absence de remède immédiat en raison des clauses d'arbitrage"
+  },
+  {
+    "juridiction_pays": "USA - California Court of Appeal (Fourth District)",
+    "date": "2021-02-17",
+    "reference": "No. D077380 - People v. Maplebear, Inc. (Instacart)",
+    "statut_juge": "Pas de classification finale (injonction annulée pour imprécision, renvoi)",
+    "faits_determinants_salariat": ["Batches proposés par l'application avec itinéraire recommandé, scan/saisie des articles imposée", "4 batches non acceptés provoquant la fin automatique du shift ('reliability incident')"],
+    "faits_determinants_independance": ["Shoppers fournissant leurs sacs, non payés pour l'attente ni les kilomètres jusqu'au magasin"],
+    "fait_pivot_censure": "Le tribunal inférieur avait vu une 'very plausible showing' de mauvaise classification sous l'ABC test, mais la Cour d'appel a tranché sur la vagueness de l'injonction et le changement lié à la Proposition 22"
+  },
+  {
+    "juridiction_pays": "USA - California Supreme Court",
+    "date": "2024-07-25",
+    "reference": "16 Cal. 5th 588 - Castellanos v. State of California",
+    "statut_juge": "Independent contractor validé par la loi (constitutionnalité de la Proposition 22 confirmée)",
+    "faits_determinants_salariat": [],
+    "faits_determinants_independance": ["Section 7451 Business and Professions Code : absence d'horaires/nombre minimal d'heures imposés, absence d'obligation d'accepter une course déterminée, absence de restriction au travail pour d'autres plateformes, absence de restriction concernant d'autres activités licites"],
+    "fait_pivot_censure": "Le pouvoir 'plenary' du législateur en matière de workers' compensation n'est pas exclusif ; le peuple peut modifier cette politique par initiative, ce qui valide la Proposition 22 malgré sa contradiction avec la classification de l'AB5"
+  },
+  {
+    "juridiction_pays": "USA - Ninth Circuit (par analogie, taxi)",
+    "date": "2008-01-01",
+    "reference": "512 F.3d 1090 - NLRB v. Friendly Cab Co.",
+    "statut_juge": "Employee protégé par le NLRA (chauffeurs de taxi, non plateforme numérique)",
+    "faits_determinants_salariat": ["Éléments de contrôle de la centrale de taxi retenus malgré une certaine autonomie des chauffeurs"],
+    "faits_determinants_independance": [],
+    "fait_pivot_censure": "Autorité analogique utile pour l'analyse de l'indépendance entrepreneuriale sous l'article 2(3) du NLRA, bien que non directement relative à une plateforme numérique"
+  },
+  {
+    "juridiction_pays": "Italie - Corte di Cassazione (Sezione lavoro)",
+    "date": "2025-10-31",
+    "reference": "Sentenza n. 28772/2025",
+    "statut_juge": "Application de la discipline du travail salarié (art. 2 d.lgs. 81/2015 - hétéro-organisation, sans créer un 'tertium genus')",
+    "faits_determinants_salariat": ["Système de livraison géré par un algorithme conçu et constamment surveillé par la société ; le dispatcher pouvait substituer un autre rider à celui candidat", "Délai impératif de 30 minutes pour la livraison à compter du retrait de la nourriture, sous peine de pénalité"],
+    "faits_determinants_independance": ["Riders utilisant leur propre bicyclette ou scooter et en supportant les frais d'entretien (jugé indifférent par la Cour)"],
+    "fait_pivot_censure": "L'organisation de la prestation était entièrement réservée à la société via la plateforme et l'algorithme ; la contrainte temporelle et la pénalité démontraient l'hétéro-organisation"
+  },
+  {
+    "juridiction_pays": "Pays-Bas - Hoge Raad",
+    "date": "2023-03-24",
+    "reference": "ECLI:NL:HR:2023:443 - FNV c. Deliveroo",
+    "statut_juge": "Contrat de travail (art. 7:610 BW), malgré la qualification contractuelle d'opdrachtovereenkomst",
+    "faits_determinants_salariat": ["Algorithme 'Frank' attribuant les livraisons, bonus et modèle de rémunération unilatéralement fixé influençant l'acceptation des courses", "Suivi continu par GPS une fois connecté, donnant à Deliveroo une large possibilité de contrôle de l'exécution", "Rémunération fixée unilatéralement par Deliveroo sans influence individuelle du livreur ; plus des deux tiers travaillaient de façon accessoire pour moins de 40% du salaire minimum"],
+    "faits_determinants_independance": ["Liberté de se connecter quand le livreur le souhaite et de refuser une course", "Clause de substitution (portée pratique jugée limitée)", "Livreurs fournissant eux-mêmes téléphone et moyen de transport (jugés objets de la vie courante, non investissement entrepreneurial)"],
+    "fait_pivot_censure": "La seule liberté significative en faveur de l'indépendance était celle de se connecter et de refuser des courses ; tous les autres éléments (paiement, GPS, algorithme, organisation unilatérale, intégration) militaient pour le salariat"
+  },
+  {
+    "juridiction_pays": "Pays-Bas - Gerechtshof Amsterdam",
+    "date": "2021-02-16",
+    "reference": "ECLI:NL:GHAMS:2021:392 (confirmée par la Hoge Raad)",
+    "statut_juge": "Contrat de travail",
+    "faits_determinants_salariat": ["Suivi GPS, algorithme 'Frank', bonus, fixation unilatérale de la rémunération, intégration de la livraison dans l'activité principale de Deliveroo"],
+    "faits_determinants_independance": ["Faible portée pratique de la clause de substitution"],
+    "fait_pivot_censure": "Application des quatre éléments de l'article 7:610 BW (travail, salaire, travail au service d'autrui, durée) selon le critère Haviltex, concluant au contrat de travail"
+  },
+  {
+    "juridiction_pays": "Suisse - Tribunal fédéral (IIe Cour de droit public)",
+    "date": "2022-05-30",
+    "reference": "2C_34/2021 - UberX, Genève",
+    "statut_juge": "Contrat de travail (art. 319 CO) ; Uber B.V. qualifiée d'entreprise de transport",
+    "faits_determinants_salariat": ["Géolocalisation permettant de vérifier l'itinéraire et le respect du trajet direct, coût de la différence de prix lié à l'itinéraire supporté par le chauffeur", "Refus répétés entraînant déconnexion temporaire ou absence de nouvelles courses ; taux d'annulation élevé pouvant conduire à désactivation", "Chauffeurs évalués par les passagers, évaluation utilisée pour contrôler l'accès à la plateforme ; prix fixé par Uber qui encaisse et verse après commission"],
+    "faits_determinants_independance": ["Liberté de travailler pour d'autres plateformes lorsque non connecté à Uber"],
+    "fait_pivot_censure": "Rapport de subordination retenu à partir de l'ensemble formé par les instructions, le contrôle GPS, la notation, les sanctions, la fixation des prix, l'attribution des courses et le faible risque économique"
+  },
+  {
+    "juridiction_pays": "Suisse - Tribunal fédéral (IIe Cour de droit public)",
+    "date": "2022-05-30",
+    "reference": "BGE 148 II 426 / 2C_575/2020 - Uber Eats, Genève",
+    "statut_juge": "Contrat de travail (art. 319 ss CO) pour les livreurs",
+    "faits_determinants_salariat": ["Attribution algorithmique de la course, Uber facturant directement et fixant unilatéralement les prix", "Notation par restaurateurs/clients, note insuffisante entraînant avertissement puis exclusion ; réduction de la rémunération en cas d'itinéraire inefficace", "Géolocalisation divulguée au restaurateur et au client, consignes contraignantes (attente 10 min, trajet imposé)"],
+    "faits_determinants_independance": ["Livreurs utilisant leur propre véhicule", "Possibilité de travailler pour d'autres plateformes lorsque non connecté"],
+    "fait_pivot_censure": "Combinaison du rating sanctionné, de la géolocalisation, de la fixation du prix, de l'attribution algorithmique et des restrictions d'accès plaçant les livreurs en situation de subordination"
+  },
+  {
+    "juridiction_pays": "Suisse - Tribunal fédéral (IIIe Cour de droit public)",
+    "date": "2023-02-16",
+    "reference": "9C_70/2022 et 9C_76/2022 - UberX/UberBlack/UberVan/UberGreen",
+    "statut_juge": "Activité salariée (droit des assurances sociales) ; Uber B.V. qualifiée d'employeur",
+    "faits_determinants_salariat": ["Recommandations d'attente/trajet constituant en réalité des instructions contrôlées par l'application, GPS vérifiant le respect du trajet direct", "Standard minimal de notation fixé par Uber, désactivation ou résiliation immédiate possible en cas de non-respect", "Prix et commission fixés/modifiés par Uber, chauffeur ne pouvant que demander un prix inférieur (théorique)"],
+    "faits_determinants_independance": ["Possibilité théorique d'utiliser une autre application"],
+    "fait_pivot_censure": "Les instructions étendues, le contrôle par l'application, la dépendance organisationnelle et le risque économique pratiquement inexistant l'emportent sur la flexibilité horaire"
+  },
+  {
+    "juridiction_pays": "Suisse - Tribunal fédéral (IIIe Cour de droit public)",
+    "date": "2023-02-16",
+    "reference": "9C_71/2022 et 9C_75/2022 - UberPop",
+    "statut_juge": "Activité salariée pour Rasier Operations B.V. (employeur)",
+    "faits_determinants_salariat": ["Recommandations contraignantes contrôlées par l'application (attente 10 min, trajet direct)", "Rasier fixant le standard minimal d'évaluation, pouvant désactiver l'accès ou résilier immédiatement", "Surveillance GPS du trajet direct et de l'absence d'arrêts"],
+    "faits_determinants_independance": ["Chauffeurs pouvant travailler pour d'autres applications"],
+    "fait_pivot_censure": "Combinaison d'instructions étendues, de contrôle par l'application, de rating sanctionné, de fixation du prix, d'absence de risque entrepreneurial et d'absence de clientèle propre"
+  },
+  {
+    "juridiction_pays": "Australie - Federal Court (Fair Work Division)",
+    "date": "2023-02-08",
+    "reference": "[2023] FCA 59 - Weddall v Rasier Pacific Pty Ltd",
+    "statut_juge": "Non tranché au fond (radiation du pleading pour insuffisance ; possibilité raisonnable d'une relation d'emploi reconnue)",
+    "faits_determinants_salariat": ["Onboarding imposé par Uber (documents, examens médicaux, tests, inspection du véhicule)", "Attribution de courses avec ~8 secondes pour accepter, destination révélée seulement après acceptation", "Déconnexion forcée après 3 refus/annulations consécutifs, suspension/désactivation après plaintes clients"],
+    "faits_determinants_independance": ["Chauffeurs utilisant leurs propres véhicules"],
+    "fait_pivot_censure": "La qualification doit être recherchée dans les droits et obligations contractuels (suivant Personnel Contracting et Jamsek) ; le pleading insuffisant n'a pas permis une décision définitive mais la perspective d'une relation d'emploi n'était pas fantaisiste"
+  },
+  {
+    "juridiction_pays": "Australie - Federal Court (Fair Work Division)",
+    "date": "2022-10-27",
+    "reference": "[2022] FCA 1247 - Gupta v Menulog Pty Ltd",
+    "statut_juge": "Décrit comme independent contractor (décision procédurale, pas de tranchage définitif au fond)",
+    "faits_determinants_salariat": ["Demandes de livraison affichées seulement 60 secondes, localisation du livreur communiquée en temps réel", "Refus d'une demande entraînant réduction des demandes ultérieures ; compte restreint puis définitivement supprimé après manquement allégué"],
+    "faits_determinants_independance": ["Contrat permettant au contractant de ne pas exécuter personnellement les services et d'engager du personnel (sous-traitance effective à un tiers)", "Livreur fournissant son propre véhicule"],
+    "fait_pivot_censure": "Les actes de procédure ne formulaient pas correctement les faits matériels nécessaires ; demandes radiées avec autorisation de reformuler"
+  },
+  {
+    "juridiction_pays": "Brésil - Tribunal Superior do Trabalho (6ª Turma)",
+    "date": "2023-09-13",
+    "reference": "RR-1000764-25.2021.5.02.0301 - Uber",
+    "statut_juge": "Vínculo de emprego (relation d'emploi reconnue)",
+    "faits_determinants_salariat": ["Algorithme préprogrammant les variables pertinentes de l'exécution du transport, constituant un mécanisme d'organisation et de direction", "Maintien du compte et surveillance continue par évaluations ; règles dont le non-respect pouvait entraîner sanctions", "Uber fixait le prix, le pourcentage reversé, les rabais, la classification du véhicule et les conditions de déréférencement"],
+    "faits_determinants_independance": ["Possibilité de travailler pour plusieurs plateformes (non jugée incompatible avec la subordination)"],
+    "fait_pivot_censure": "Absence de contrôle du chauffeur sur les moyens productifs essentiels : clientèle, prix, dynamique de l'activité, accès à la plateforme et maintien du compte"
+  },
+  {
+    "juridiction_pays": "Brésil - Tribunal Superior do Trabalho (6ª Turma)",
+    "date": "2023-09-13",
+    "reference": "RR-1000488-92.2022.5.02.0063 - Rappi",
+    "statut_juge": "Vínculo de emprego (relation d'emploi reconnue)",
+    "faits_determinants_salariat": ["Algorithme préconfigurant les variables du service et organisant la prestation selon les directives de Rappi", "Maintien du compte et évaluations permettant surveillance continue, sanctions possibles en cas de non-respect"],
+    "faits_determinants_independance": ["Faculté de travailler pour plusieurs plateformes concurrentes (non jugée exclusive de la subordination)"],
+    "fait_pivot_censure": "Rappi organisait et dirigeait directement, par la plateforme et ses algorithmes, une activité de livraison exercée personnellement, sous des règles unilatérales sanctionnables"
+  },
+  {
+    "juridiction_pays": "Brésil - Tribunal Superior do Trabalho (4ª Turma)",
+    "date": "2023-01-01",
+    "reference": "Ag-AIRR-0001036-15.2023.5.07.0014 - Uber",
+    "statut_juge": "Travailleur autonome (lien d'emploi écarté)",
+    "faits_determinants_salariat": [],
+    "faits_determinants_independance": ["Liberté de choisir jours, heures et périodes de connexion, possibilité de rester déconnecté plusieurs jours/mois", "Chauffeur recevait 75-80% du montant payé par l'utilisateur", "Possibilité de substitution par une autre personne déjà enregistrée sur la plateforme"],
+    "fait_pivot_censure": "Absence d'obligation de travailler selon une fréquence minimale, un nombre minimal de courses ou un chiffre d'affaires minimal"
+  },
+  {
+    "juridiction_pays": "Brésil - Tribunal Superior do Trabalho (1ª Turma)",
+    "date": "2025-03-07",
+    "reference": "Ag-RR-1000354-71.2023.5.02.0082 - Uber",
+    "statut_juge": "Absence de relation d'emploi confirmée",
+    "faits_determinants_salariat": ["Géolocalisation, fixation de l'itinéraire, suivi par GPS (jugés caractéristiques techniques, non preuve de subordination)"],
+    "faits_determinants_independance": ["Catégories 'platine'/'diamant'/'or' jugées compatibles avec le travail autonome", "Refus de courses possible, travail pour plateformes concurrentes, choix des jours/heures", "Chauffeur supportant les coûts du véhicule, carburant, entretien, IPVA et risques ; conservait 75-80% du prix"],
+    "fait_pivot_censure": "Autodétermination du chauffeur : il choisissait quand se connecter, combien de temps travailler, quelles courses accepter"
+  },
+  {
+    "juridiction_pays": "Brésil - Tribunal Superior do Trabalho (4ª Turma)",
+    "date": "2020-01-01",
+    "reference": "AIRR-10575-88.2019.5.03.0003",
+    "statut_juge": "Absence de relation d'emploi",
+    "faits_determinants_salariat": [],
+    "faits_determinants_independance": ["Absence d'exigence de travail minimum, de nombre minimum de courses ou de chiffre d'affaires minimum", "Qualification du chauffeur comme transporteur autonome au sens de la loi n° 11.442/2007"],
+    "fait_pivot_censure": "Le travailleur utilisait la plateforme technologique mais ne travaillait pas 'pour' la plateforme ; absence de disponibilité minimale imposée et de conséquences disciplinaires"
+  },
+  {
+    "juridiction_pays": "Brésil - Tribunal Superior do Trabalho (5ª Turma)",
+    "date": "2020-01-01",
+    "reference": "RR-1000123-89.2017.5.02.0038",
+    "statut_juge": "Absence de relation d'emploi",
+    "faits_determinants_salariat": [],
+    "faits_determinants_independance": ["Possibilité de rester 'off-line', liberté de déterminer sa routine, ses horaires, lieux d'activité et nombre de clients par jour", "Conservation de 75-80% du prix payé par l'utilisateur"],
+    "fait_pivot_censure": "Combinaison de la liberté de déconnexion et d'une quote-part élevée du prix de la course, excluant la subordination et l'onérosité salariale"
+  }
+]

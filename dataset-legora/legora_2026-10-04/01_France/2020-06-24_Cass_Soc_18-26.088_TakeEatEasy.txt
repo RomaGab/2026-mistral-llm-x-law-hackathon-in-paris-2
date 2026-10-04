@@ -1,0 +1,134 @@
+Source : https://www.courdecassation.fr/decision/5fca4c5d0d5dd16eb7db0fee
+
+Texte de la décision
+Entête
+
+SOC.
+
+CF
+
+
+
+COUR DE CASSATION
+______________________
+
+
+Audience publique du 24 juin 2020
+
+
+
+
+Cassation
+
+
+Mme FARTHOUAT-DANON, conseiller doyen faisant fonction de président
+
+
+
+Arrêt n° 486 F-D
+
+Pourvoi n° D 18-26.088
+
+Aide juridictionnelle totale en demande
+au profit de M. L....
+Admission du bureau d'aide juridictionnelle
+près la Cour de cassation
+en date du 18 octobre 2018.
+
+
+R É P U B L I Q U E F R A N Ç A I S E
+
+_________________________
+
+AU NOM DU PEUPLE FRANÇAIS
+_________________________
+
+
+ARRÊT DE LA COUR DE CASSATION, CHAMBRE SOCIALE, DU 24 JUIN 2020
+
+M. Y... L..., domicilié [...] , a formé le pourvoi n° D 18-26.088 contre l'arrêt rendu le 12 octobre 2017 par la cour d'appel de Paris (pôle 6, chambre 2), dans le litige l'opposant :
+
+1°/ à Mme O... I... , domiciliée [...] , (société d'exercice libéral à forme anonyme MJA), prise en qualité de mandataire liquidateur de la société Take Eat Easy,
+
+2°/ au CGEA Ile-de-France Ouest, dont le siège est [...] ,
+
+défendeurs à la cassation.
+
+Le demandeur invoque, à l'appui de son pourvoi, le moyen unique de cassation annexé au présent arrêt.
+
+Le dossier a été communiqué au procureur général.
+
+Sur le rapport de Mme Valéry, conseiller référendaire, les observations de la SARL Cabinet Munier-Apaire, avocat de M. L..., de la SCP Gatineau, Fattaccini et Rebeyrol, avocat de Mme I... , ès qualités, après débats en l'audience publique du 12 mai 2020 où étaient présentes Mme Farthouat-Danon, conseiller doyen faisant fonction de président, Mme Valéry, conseiller référendaire rapporteur, Mme Van Ruymbeke, conseiller, et Mme Piquot, greffier de chambre,
+
+la chambre sociale de la Cour de cassation, composée des président et conseillers précités, après en avoir délibéré conformément à la loi, a rendu le présent arrêt.
+
+
+
+Exposé du litige
+
+Faits et procédure
+
+1. Selon l'arrêt attaqué (Paris, 12 octobre 2017), M. L..., après avoir été immatriculé en qualité d'auto-entrepreneur, a conclu le 4 novembre 2014 un contrat de prestation de services avec la société Take Eat Easy.
+
+2. Il a saisi la juridiction prud'homale le 14 janvier 2016 d'une demande de requalification de son contrat en un contrat de travail.
+
+3. Par jugement du 30 août 2016, le tribunal de commerce a prononcé la liquidation judiciaire de la société Take Eat Easy et désigné en qualité de mandataire liquidateur Mme I....
+
+
+
+Moyens
+
+Examen du moyen
+
+Enoncé du moyen
+
+4. M. L... fait grief à l'arrêt de dire qu'il n'était pas lié à la société Take Eat Easy par un contrat de travail et de dire le conseil de prud'hommes incompétent pour connaître du litige, alors « que le lien de subordination est caractérisé par l'exécution d'un travail sous l'autorité d'un employeur qui a le pouvoir de donner des ordres et des directives, d'en contrôler l'exécution et de sanctionner les manquements de son subordonné ; qu'en l'espèce, la cour d'appel ne pouvait dire le conseil de prud'hommes incompétent au motif que les parties n'étaient pas liées par un contrat de travail alors qu'il était constant et non contesté que la société Take Eat Easy exigeait de ses coursiers qu'ils s'inscrivent en qualité d'auto-entrepreneur en vue d'une collaboration, et alors également, qu'elle constatait, d'une part, que l'application de la société Take Eat Easy, installée sur le smartphone du coursier, était dotée d'un système de géolocalisation permettant le suivi en temps réel par la société de la position du coursier et la comptabilisation du nombre total de kilomètres parcourus par celui-ci et, d'autre part, que la société Take Eat Easy avait mis en place un système de pénalités qu'elle avait d'ailleurs appliqué à M. L..., ce dont il se déduisait que M. L... ne bénéficiait pas de l'indépendance attachée au statut d'auto-entrepreneur et que la société Take Eat Easy disposait d'un pouvoir de direction et de contrôle de l'exécution de la prestation fournie par celui-ci établissant ainsi l'existence lien de subordination caractéristique d'une relation de travail ; qu'en écartant toutefois la qualification de contrat de travail, la cour d'appel n'a pas tiré les conséquences légales de ses propres constatations et a violé l'article L. 8221-6 du code du travail ».
+
+
+
+Motivation
+
+Réponse de la Cour
+
+Vu l'article L. 8221-6 II du code du travail :
+
+5. Il résulte de ces dispositions que les personnes physiques, dans l'exécution de l'activité donnant lieu à immatriculation aux registres que ce texte énumère, sont présumées ne pas être liées avec le donneur d'ordre par un contrat de travail. L'existence d'un contrat de travail peut toutefois être établie lorsque ces personnes fournissent des prestations dans des conditions qui les placent dans un lien de subordination juridique permanente à l'égard du donneur d'ordre.
+
+6. Pour dire que M. L... n'était pas lié par un contrat de travail à la société Take Eat Easy et dire le conseil de prud'hommes incompétent pour connaître du litige, l'arrêt constate que la société a fait connaître à l'intéressé les modalités d'application des pénalités dites "strikes": un "strike" en cas de désinscription tardive à un "shift", de connexion partielle au "shift" (en-dessous de 80 % du "shift"), d'absence de réponse à son téléphone "wiko" ou "perso" pendant le "shift", d'incapacité de réparer une crevaison, de refus de faire une livraison ; deux "strikes" en cas de "No-show" (inscrit à un "shift" mais non connecté) ; trois "strikes" en cas d'insulte d'un client ou autres comportements graves, et relève que sur une période d'un mois glissant, un "strike" ne porte à aucune conséquence, le cumul de deux "strikes" entraîne une perte de bonus, le cumul de trois "strikes" entraîne la convocation du coursier "pour discuter de la situation et de (sa) motivation à continuer à travailler comme coursier partenaire de Take Eat Easy" et le cumul de quatre "strikes" conduit à la désactivation du compte et la désinscription des "shifts" réservés. L'arrêt retient également que ce système gradué d'incitation à une fiabilité optimale a été appliqué à M. L... étant observé qu'il n'a eu aucune incidence sur la rupture de la relation contractuelle, que si de prime abord un tel système est évocateur du pouvoir de sanction que peut mobiliser un employeur, il ne suffit pas dans les faits à caractériser le lien de subordination allégué, alors que les pénalités considérées, qui ne sont prévues que pour des comportements objectivables du coursier constitutifs de manquements à ses obligations contractuelles, ne remettent nullement en cause la liberté de celui-ci de choisir ses horaires de travail en s'inscrivant ou non sur un shift" proposé par la plate-forme ou de choisir de ne pas travailler pendant une période dont la durée reste à sa seule discrétion, et que la liberté totale de travailler ou non dont a bénéficié l'intéressé, qui lui permettait, sans avoir à en justifier, de choisir chaque semaine ses jours de travail et leur nombre sans être soumis à une quelconque durée du travail ni à un quelconque forfait horaire ou journalier mais aussi par voie de conséquence de fixer seul ses périodes d'inactivité ou de congés et leur durée, est exclusive d'une relation salariale.
+
+7. Cependant, l'existence d'une relation de travail ne dépend ni de la volonté exprimée par les parties ni de la dénomination qu'elles ont donnée à leur convention mais des conditions de fait dans lesquelles est exercée l'activité des travailleurs. Le lien de subordination est caractérisé par l'exécution d'un travail sous l'autorité d'un employeur qui a le pouvoir de donner des ordres et des directives, d'en contrôler l'exécution et de sanctionner les manquements de son subordonné.
+
+8. En statuant comme elle a fait, alors qu'il résultait de ses constatations l'existence d'un pouvoir de direction, de contrôle de l'exécution de la prestation au moyen d'un système de géolocalisation permettant le suivi en temps réel par la société de la position et du comportement du coursier, ainsi que d'un pouvoir de sanction à l'égard de celui-ci, éléments caractérisant un lien de subordination, la cour d'appel, qui n'a pas tiré les conséquences légales de ses constatations, a violé le texte susvisé.
+
+
+
+Dispositif
+
+PAR CES MOTIFS, la Cour :
+
+CASSE ET ANNULE, en toutes ses dispositions, l'arrêt rendu le 12 octobre 2017, entre les parties, par la cour d'appel de Paris ;
+
+Remet l'affaire et les parties dans l'état où elles se trouvaient avant cet arrêt et les renvoie devant la cour d'appel de Paris autrement composée ;
+
+Condamne Mme I..., ès qualités, aux dépens ;
+
+En application de l'article 700 du code de procédure civile, rejette la demande formée par Mme I..., ès qualités et la condamne à payer la somme de 3 000 euros à M. L... ;
+
+Dit que sur les diligences du procureur général près la Cour de cassation, le présent arrêt sera transmis pour être transcrit en marge ou à la suite de l'arrêt cassé ;
+
+Ainsi fait et jugé par la Cour de cassation, chambre sociale, et prononcé par le président en son audience publique du vingt-quatre juin deux mille vingt.
+
+
+Moyens annexés
+
+MOYEN ANNEXE au présent arrêt
+
+Moyen produit par la SARL Cabinet Munier-Apaire, avocat aux Conseils, pour M. L...
+
+Il est fait grief à l'arrêt confirmatif attaqué d'AVOIR rejeté le contredit de M. L..., d'AVOIR dit qu'il n'était pas lié à la société Take Eat Easy par un contrat de travail, d'AVOIR dit que le conseil de prud'hommes était incompétent pour connaître du litige et d'AVOIR en conséquence renvoyé l'affaire devant le tribunal de commerce de Paris ;
+
+AUX MOTIFS QUE « Aux termes de l'article L. 1411-1 du code du travail, le conseil de prud'hommes règle par voie de conciliation les différends qui peuvent s'élever à l'occasion de tout contrat de travail soumis aux dispositions de ce même code entre les employeurs ou leurs représentants été les salariés qu'ils emploient. Il règle les litiges lorsque la conciliation n'a pas abouti. Selon l'article L. 8221-6 du code du travail, sont présumés ne pas être liés avec le donneur d'ordre par un contrat de travail dans l'exécution de l'activité donnant lieu à immatriculation ou inscription, notamment les personnes physiques immatriculées au registre du commerce et des sociétés, au répertoire des métiers, au registre des agents commerciaux ou auprès des unions de recouvrement des cotisations de sécurité sociale et d'allocations familiales. L'existence d'un contrat de travail peut toutefois être établie lorsque ces personnes fournissent directement ou par une personne interposée des prestations à un donneur d'ordre dans les conditions qui les placent dans un lien de subordination juridique permanente à l'égard de celui-ci. Dans ce cas la dissimulation d'emploi salarié est établie si le donneur d'ordre s'est soustrait intentionnellement par ce moyen à l'accomplissement des obligations incombant à l'employeur mentionnées à l'article L. 8221-5. Il résulte des articles L. 1221-1 et suivants du code du travail que le contrat de travail suppose un engagement à travailler pour le compte et sous la subordination d'autrui moyennant rémunération. Le lien de subordination est caractérisé par l'exécution d'un travail sous l'autorité de l'employeur qui a le pouvoir de donner es ordres et des directives, d'en contrôler l'exécution et de sanctionner les manquements de son subordonné. Le travail au sein d'un service organisé peut constituer un indice du lien de subordination, lorsque l'employeur en détermine unilatéralement les conditions d'exécution. L'existence d'un contrat de travail dépend, non pas de la volonté manifestée par les parties ou de la dénomination de la convention, mais des conditions de fait dans lesquelles est exercée l'activité du travailleur. L'existence d'un lien de subordination n'est pas incompatible avec une indépendance technique dans l'exécution de la prestation. Au cas présent, il ressort des pièces communiquées et il n'est pas contesté que M. Y... L... a été immatriculé en qualité d'auto-entrepreneur à compter de septembre 2014 pour exercer l'activité principale « Autres activités de poste et de courrier », étant observé qu'il n'existe en outre aucun contrat de travail apparent entre les parties. [...] Le contrat de prestations de services conclu par les parties est composé de conditions générales et de conditions particulières, seules les premières étant versées aux débats. Il en résulte notamment que : - le prestataire choisit librement les plages horaires disponibles à l'intérieur desquelles il s'engage à effectuer une ou plusieurs livraisons et peut modifier une plage horaire au maximum 72 heures avant son commencement ; - le prestataire exerce son activité de livraison en qualité d'entrepreneur indépendant et doit remettre à la société lors de la conclusion du contrat et tous les six mois jusqu'à la fin de son exécution l'attestation de déclarations sociales mentionnant le paiement des cotisations sociales et contributions de sécurité sociale lui incombant ; - au plus tard à 11h15 pour une plage horaire du midi et au plus tard à 18h30 pour une plage horaire du soir, le prestataire s'engage à être en possession de son propre matériel de livraison comprenant en particulier son vélo, son kit de réparation, son casque, son gilet ou brassard réfléchissant, le sac de livraison équipé d'un sac isotherme mis à sa disposition par la société pour des impératifs de qualité et d'hygiène, et son smartphone chargé avec l'application allumée ; - à défaut de valider dans les cinq minutes de sa notification la proposition de livraison qui lui est faite via l'application, le prestataire est automatiquement réputé la refuser et la livraison est alors redirigée vers un autre livreur ; - pour chaque plage horaire intégralement prise en charge et chaque livraison effectuée conformément à la convention, la prestataire a droit à la rémunération définie d'un commun accord dans les conditions particulières (7,5 € par course selon la facturation communiquée) ; - la société peut sans mise en demeure procéder à la résiliation avec effet immédiat de la convention en cas de manquement grave du prestataire à ses obligations tel que : - ne pas effectuer de manière répétée et après acceptation les livraisons dans le délai imparti, sauf cas de force majeure, - ne pas disposer du matériel requis pour le service de livraison ou disposer d'un matériel qui ne répond pas aux normes légales et réglementaires, notamment en matière de sécurité, - avoir, de manière avérée, adopté un comportement irrespectueux ou impoli à l'égard des partenaires de la société, de leurs dirigeants ou membres du personnel ou à l'égard d'un client, - avoir, de manière avéré, adopté un comportement dangereux (non-respect des règles de circulation routière, ébriété...), - ne pas être en ordre au regard des obligations sociales ou fiscales qui s'imposent au prestataire, - ne pas avoir respecté l'une des stipulations de l'article 10 concernant les obligations fiscales, ne pas disposer d'une assurance couvrant les risques liés à l'exécution de la convention ainsi que les dommages causés ou subis par le prestataire, abandonner l'exécution de ses obligations issues des présentes à un tiers ou céder, à titre onéreux ou non, les droits qui découlent de la convention, sauf le cas échéant à faire réaliser la prestation par ses propres salariés ; - hormis ces cas, chacune des parties peut mettre fin à la convention moyennant le même préavis dont la durée augmente en fonction de celle du contrat, lequel est conclu pour six mois tacitement reconduit à l'issue pour une durée indéterminée ; - l'application est dotée d'un système de géolocalisation permettant le suivi en temps réel tant par la société que par le client de la position du prestataire et la comptabilisation du nombre total de kilomètres parcourus par celui-ci dans le cadre de l'exécution de la convention ; - le prestataire est libre de conclure avec toute entreprise un contrat similaire équivalent, la société Take Eat Easy ne disposant d'aucune exclusivité. Ces stipulations ne sont pas en soi révélatrices du lien de subordination allégué ni même d'une dépendance économique du prestataire, dans la mesure où il n'est lié à la société Take Eat Easy par aucune clause d'exclusivité ou de nonconcurrence et reste libre chaque semaine de déterminer lui-même les plages horaires au cours desquelles il souhaite travailler, ou de n'en sélectionner aucune s'il ne souhaite pas travailler. Par ailleurs, il doit être relevé que le prestataire travaille avec son propre matériel, la société ne fournissant contre caution que le sac de livraison équipé d'un sac isotherme et si nécessaire le smartphone. Y... L... verse aux débats plusieurs échanges avec la société Take Eat Easy : - courriel du 17 décembre 2014 aux termes duquel il fait part de son stress concernant les temps de trajet proposé par l'application : "je n'ai volontairement pas de compteur de km ou de vitesse sur mon vélo pour éviter de faire la course avec moi-même. Depuis une semaine mes livraisons sont faites avec deux minutes ou plus de retard sur ce que propose l'application contre une ou deux minutes d'avance lorsque j'ai commencé avec vous. Je trouve ça stressant...", ce à quoi il lui est répondu le lendemain : "La vitesse se recalcule tous les jours, di tu prends l'habitude de rouler moins vite cela se mettra à jour tout seul. Il est bien évident que ta sécurité passe avant tout, nous préférons que tu aies 5 minutes de retard plutôt que de prendre des risques..." ; - courriel du 12 janvier 2015 : "Q... à tous ! Nous manquons cruellement de grands sacs sur le dos de nos livreurs pour le moment ! il est donc OBLIGATOIRE de passer chez dropit prendre un grand sac à dos (les BLAHOL). Ces sac sont non seulement plus grands mais ont aussi un branding Take Eat Easy ce qui est très important pour continuer notre croissance. Vous pourrez en profiter pour prendre une casquette et une veste pour les plus anciens". Ces courriels montrent que dans le cadre de la relation tripartite entre le restaurateur, le coursier à vélo et le client, le service de livraison de repas était nécessairement organisé, mais ils n'établissent pas que la société Take Eat Easy déterminait unilatéralement les conditions d'exécution du travail du livreur puisque celui-ci choisissait librement ses plages horaires d'activité comme son trajet puisqu'il n'était pas tenu de suivre le trajet suggéré. Rien ne permet de constater une intégration des livreurs à l'équipe support des salariés de la société Take Eat Easy, dès lors que les rares contacts entre les premiers et les seconds sont exclusivement téléphoniques et que les "drinks" mensuels et évènements divers organisés par la société Take Eat Easy afin de réunir les coursiers ne revêtent aucun caractère obligatoire. Il doit encore être relevé que le prestataire travaille avec son propre matériel, la société ne fournissant contre caution que le sac de livraison équipé d'un sac isotherme et si nécessaire le smartphone. Le système de "strikes", critiqué par Y... L..., a été mis en place à partir du 4 mars 2015, et était dans un premier temps prévu dans trois cas : - en cas de désinscription à un "shift" sans venir ; - une désinscription moins de 72 heures à l'avance ; - une impossibilité de travail à cause d'un problème mécanique (crevaison ou batterie du téléphone qui n'est pas bien chargée. Le 23 juin 2016, une clarification lui a été apportée à sa demande concernant les modalités d'attribution des "strikes" à savoir : - un "strike" en cas de désinscription tardive, de connexion partielle au "shift" (en dessous de 80 % du "shift"), d'absence de réponse à son téléphone "wiko" ou "perso" pendant le "shift", d'incapacité de réparer une crevaison, de refus de faire une livraison ; - deux "strikes" en cas de "No-Show" (inscrit mais non connecté) ; trois "strikes" en cas d'insulte d'un client ou autres comportements graves. Sur une période d'un mois glissant, un "strike" ne porte à aucune conséquence, le cumul de deux "strikes" entraîne une perte de bonus, le cumul de trois "strikes" entraîne un "coup de fil" au coursier "pour discuter de la situation et de [sa] motivation à continuer de travailler comme coursier partenaire de Take Eat Easy" et le cumul de quatre "strikes" conduit à la désactivation du compte et la désinscription des "shifts" réservés. Ce système gradué d'incitation a une fiabilité optimale qui ne soit pas évoquée dans les conditions générales du contrat de prestations de services a bien été appliqué à Y... L... ainsi qu'il ressort de ses fiches de statistiques, étant observé qu'il n'a eu aucune incidence sur la rupture de la relation contractuelle. Si de prime abord un tel système est évocateur du pouvoir de sanction que peut mobiliser un employeur, il ne suffit pas dans les faits à caractériser le lien du subordination allégué, alors que les pénalités considérées, qui ne sont prévues que pour des comportements objectivables du coursier constitutifs de manquements à ses obligations contractuelles, ne remettent nullement en cause la liberté de celui-ci de choisir ses horaires de travail en s'inscrivant ou non sur un "shift" proposé par la plate-forme ou de choisir de ne pas travailler pendant une période dont la durée reste à sa seule discrétion. En effet, aucune pénalité n'était prévue en cas de non-inscription sur un "shift", ni même en cas de désinscription dans un délai de prévenance raisonnable d'au moins 48 heures. La liberté totale de travailler ou non dont a bénéficié Y... L... qui lui permettait, sans avoir à en justifier, de choisir chaque semaine ses jours de travail et leur nombre sans être soumis à une quelconque durée de travail ni à un quelconque forfait horaire ou journalier mais aussi par voie de conséquence de fixer seul ses périodes d'inactivité ou de congés et leur durée, est exclusive d'une relation salariale. Il s'ensuit que Y... L... manque à rapporter la preuve qu'il fournissait des prestations à la société Take Eat Easy dans des conditions le plaçant dans un lien de subordination à l'égard de celle-ci, et spécialement dans un lien de subordination juridique permanent. Il n'est donc nullement établi que les parties étaient liées par un contrat de travail. Il convient par conséquent de rejeter le contredit, de dire que Y... L... n'était pas lié à la société Take Eat Easy par un contrat de travail, de confirmer le jugement entrepris, de dire que le litige ne relève pas de la compétence du conseil de prud'hommes de Paris, de renvoyer l'affaire devant le tribunal de commerce de Paris, la cour estimant n'y avoir lieu d'évoquer et le mandataire liquidateur défendeur au contredit n'étant pas recevable à solliciter le renvoi aux fins de poursuite de l'instance selon la procédure d'arbitrage ».
+
+ET AUX MOTIFS EVENTUELLEMENT ADOPTES QUE « En l'absence de contrat de travail apparent, il appartient à celui qui se prévaut de son existence d'en rapporter la preuve. En l'espèce Monsieur Y... L... ne justifie d'aucun contrat de travail avec la SARL Take Eat Easy. L'article L. 8221-6 du code du travail pose une présomption de non salariat s'agissant des dirigeants des personnes morales immatriculées au registre du commerce et des sociétés et leurs salariés. En l'espèce, Monsieur Y... L... s'est inscrit au Registre du commerce et des sociétés de Paris, en qualité d'auto-entrepreneur, en septembre 2014. En outre, le contrat de prestation signé le 4 novembre 2014 précise que "le prestataire assurera, en sa qualité de prestataire indépendant, toutes les charges liées à l'exécution de ses activités." En conséquence, le Conseil dit que Monsieur Y... L... ne démontre pas sa qualité de salarié » ;
+
+ALORS QUE le lien de subordination est caractérisé par l'exécution d'un travail sous l'autorité d'un employeur qui a le pouvoir de donner des ordres et des directives, d'en contrôler l'exécution et de sanctionner les manquements de son subordonné ; qu'en l'espèce, la cour d'appel ne pouvait dire le conseil de prud'hommes incompétent au motif que les parties n'étaient pas liées par un contrat de travail alors qu'il était constant et non contesté que la société Take Eat Easy exigeait de ses coursiers qu'ils s'inscrivent en qualité d'auto-entrepreneur en vue d'une collaboration, et alors également, qu'elle constatait, d'une part, que l'application de la société Take Eat Easy, installée sur le smartphone du coursier, était dotée d'un système de géolocalisation permettant le suivi en temps réel par la société de la position du coursier et la comptabilisation du nombre total de kilomètres parcourus par celui-ci et, d'autre part, que la société Take Eat Easy avait mis en place un système de pénalités qu'elle avait d'ailleurs appliqué à M. L..., ce dont il se déduisait que M. L... ne bénéficiait pas de l'indépendance attachée au statut d'auto-entrepreneur et que la société Take Eat Easy disposait d'un pouvoir de direction et de contrôle de l'exécution de la prestation fournie par celui-ci établissant ainsi l'existence lien de subordination caractéristique d'une relation de travail ; qu'en écartant toutefois la qualification de contrat de travail, la cour d'appel n'a pas tiré les conséquences légales de ses propres constatations et a violé l'article L. 8221-6 du code du travail.

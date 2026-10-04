@@ -228,6 +228,14 @@ def test_metadonnee_obligatoire_invalide_rejetee(champ, valeur):
     assert champ in e.value.message
 
 
+@pytest.mark.parametrize("mention, attendu", [("F-D", "inedit"), ("FS-D", "inedit"), ("FS-B", "B"),
+                                              ("FP-P+B+R+I", "R"), ("f-d", "inedit")])
+def test_mention_brute_de_publication_convertie(mention, attendu):
+    fiche = extraction.normaliser_decision(decision_brute(publication=mention), TEXTE, GRILLE, "dec-1")
+
+    assert fiche["publication"] == attendu
+
+
 def test_metadonnees_facultatives_invalides_mises_a_null():
     brut = decision_brute(dispositif="annulation", ressort=12, numero=["17-20.079"], textes=["art. L. 1221-1", 4])
 

@@ -43,6 +43,9 @@ Vérification commune à chaque tâche : `uv run pytest` vert, et aucun dossier 
 
 > **État à 16h (reprise par Mathis) :** T1 à T8 faits, 114 tests verts. 6 décisions françaises extraites dans `data/fiches/` (5 salariat, 1 indépendance), **toutes en `validee: false`** : relecture du juriste à faire (T11). T9 (Le Chat) et T12 (répétition) sont manuels.
 
+> **Corpus (16h45) :** 12 arrêts de cassation extraits dans `data/fiches/` (9 salariat, 3 indépendance), dont 6 venant du fichier Legora (`dataset-legora/legora_2026-10-04/`, textes officiels de courdecassation.fr). Tous en `validee: false`.
+> **À trancher par le juriste avant de valider** : dans les deux arrêts Uber du 9 juillet 2025 (24-13.504 et 24-13.513), Mistral a codé `sanction_deconnexion: true` (la déconnexion après trois refus existe) et `service_organise: true`. La Cour juge au contraire que le chauffeur peut refuser « sans réelle conséquence » : coder `sanction_deconnexion: false`, l'ajouter aux `determinants`, et revoir `service_organise`. Avec cette correction, le cas de démo passe de 51 % à 76 % quand la sanction est confirmée, et ces deux arrêts sont écartés.
+
 ### Checkpoint J1
 - [ ] `uv run pytest` est vert.
 - [ ] Une vraie décision extraite, puis validée, donne un dossier valide.

@@ -17,6 +17,7 @@ from back.service import Erreur
 FORMATIONS = {"ass_pleniere", "ch_mixte", "cass", "ca", "premiere_instance"}
 NATIONALES = {"ass_pleniere", "ch_mixte", "cass"}  # Cour de cassation : pas de ressort
 PUBLICATIONS = {"R", "B", "inedit", "na"}
+MENTION_COUR = re.compile(r"(?:FP|FS|F)(?:[-+][A-Z])+")  # mention brute de la Cour, ex. "F-D", "FS-B", "FP-P+B+R+I"
 DISPOSITIFS = {"cassation", "rejet", "confirmation", "infirmation", "autre"}
 GUILLEMETS = {'"': '"', "«": "»", "“": "”"}  # ouvrant → fermant
 TYPO = str.maketrans({q: "'" for q in "\"’‘«»“”"} | {"…": "..."})  # tous les guillemets se valent
@@ -130,6 +131,17 @@ def normaliser_faits(brut, texte: str, grille: list[dict]) -> tuple[dict, dict]:
     return facteurs, preuves
 
 
+def _publication(valeur) -> str:
+    """Catégorie du schéma. Le modèle renvoie parfois la mention brute de la Cour (« F-D ») :
+    elle se convertit sans ambiguïté (R s'il y a un R, sinon B s'il y a un B, sinon inédit)."""
+    if valeur in PUBLICATIONS:
+        return valeur
+    if isinstance(valeur, str) and MENTION_COUR.fullmatch(valeur.strip().upper()):
+        lettres = set(valeur.strip().upper().split("-", 1)[1].replace("+", "-").split("-"))
+        return "R" if "R" in lettres else "B" if "B" in lettres else "inedit"
+    raise _invalide("publication", valeur)
+
+
 def _invalide(champ: str, valeur) -> Erreur:
     return Erreur(502, "extraction_invalide", f"Mistral a renvoyé un champ {champ} invalide : {valeur!r}")
 
@@ -174,7 +186,7 @@ def normaliser_decision(brut, texte: str, grille: list[dict], id_: str) -> dict:
         "ressort": None if formation in NATIONALES else ressort,
         "date": jour,
         "numero": brut.get("numero") if isinstance(brut.get("numero"), str) else None,
-        "publication": dans("publication", PUBLICATIONS),
+        "publication": _publication(brut.get("publication")),
         "dispositif": brut.get("dispositif") if brut.get("dispositif") in DISPOSITIFS else None,
         "issue": brut["issue"],
         "textes": [t for t in brut.get("textes") or [] if isinstance(t, str)] if isinstance(brut.get("textes"), list) else [],

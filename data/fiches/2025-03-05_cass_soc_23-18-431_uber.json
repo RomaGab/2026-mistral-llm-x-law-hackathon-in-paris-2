@@ -1,0 +1,116 @@
+{
+  "id": "2025-03-05_cass_soc_23-18-431_uber",
+  "intitule": "Cass. soc., 5 mars 2025, n° 23-18.431",
+  "juridiction": "Cour de cassation, chambre sociale",
+  "formation": "cass",
+  "ressort": null,
+  "date": "2025-03-05",
+  "numero": "23-18.431",
+  "publication": "inedit",
+  "dispositif": "cassation",
+  "issue": true,
+  "textes": [
+    "L. 8221-6 du code du travail",
+    "L. 1411-1 du code du travail"
+  ],
+  "remise_en_cause": null,
+  "url": null,
+  "validee": false,
+  "facteurs": {
+    "service_organise": true,
+    "geolocalisation_suivi": true,
+    "sanction_deconnexion": true,
+    "penalites_bonus": true,
+    "tarif_impose": true,
+    "clientele_attribuee": true,
+    "execution_dirigee": true,
+    "multi_plateformes": null,
+    "remplacement_possible": false,
+    "info_masquee": true,
+    "evaluation_performance": true,
+    "equipement_marque": null,
+    "liberte_horaires": false,
+    "moyens_propres": true,
+    "immatriculation": true,
+    "charte_sociale": null,
+    "qualification_contractuelle": false,
+    "dependance_economique": null
+  },
+  "determinants": [
+    "service_organise",
+    "geolocalisation_suivi",
+    "sanction_deconnexion"
+  ],
+  "preuves": {
+    "service_organise": {
+      "extrait": "Peut constituer un indice de subordination le travail au sein d'un service organisé lorsque l'employeur en détermine unilatéralement les conditions d'exécution.",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "geolocalisation_suivi": {
+      "extrait": "le système de géolocalisation était inhérent au fonctionnement de la plateforme et permettait de proposer la course aux chauffeurs les mieux situés",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "sanction_deconnexion": {
+      "extrait": "il ne peut être reproché à la société Uber de déconnecter de son application le chauffeur qui refuse au moins 80 % des courses proposées ou trois courses d'affilée",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "penalites_bonus": {
+      "extrait": "le système de notation ne pouvait être considéré comme un pouvoir de sanction",
+      "confiance": 0.8,
+      "source": "extraction"
+    },
+    "tarif_impose": {
+      "extrait": "le prix des prestations de services fournies par son intermédiaire en fonction d'un algorithme selon l'affluence de la clientèle",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "clientele_attribuee": {
+      "extrait": "M. [K] reproche à la société Uber de lui interdire, de fait, d'avoir une clientèle personnelle, au motif qu'il lui est interdit de solliciter les clients qu'elle transporte pour recueillir les données personnelles",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "execution_dirigee": {
+      "extrait": "les itinéraires sont déterminés électroniquement par la plateforme",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "remplacement_possible": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "info_masquee": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "evaluation_performance": {
+      "extrait": "le système de notation ne pouvait être considéré comme un pouvoir de sanction",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "liberte_horaires": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "moyens_propres": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "immatriculation": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "qualification_contractuelle": {
+      "extrait": "contrat de prestation de service",
+      "confiance": 1.0,
+      "source": "extraction"
+    }
+  }
+}

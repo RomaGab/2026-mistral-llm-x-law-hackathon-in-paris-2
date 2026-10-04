@@ -1,0 +1,136 @@
+{
+  "id": "2020-06-24_cass_soc_18-26-088_takeeateasy",
+  "intitule": "Cass. soc., 24 juin 2020, n° 18-26.088 (Take Eat Easy)",
+  "juridiction": "Cour de cassation, chambre sociale",
+  "formation": "cass",
+  "ressort": null,
+  "date": "2020-06-24",
+  "numero": "18-26.088",
+  "publication": "inedit",
+  "dispositif": "cassation",
+  "issue": true,
+  "textes": [
+    "Article L. 8221-6 du code du travail",
+    "Articles L. 1221-1 et suivants du code du travail"
+  ],
+  "remise_en_cause": null,
+  "url": null,
+  "validee": false,
+  "facteurs": {
+    "service_organise": false,
+    "geolocalisation_suivi": true,
+    "sanction_deconnexion": true,
+    "penalites_bonus": true,
+    "tarif_impose": true,
+    "clientele_attribuee": true,
+    "execution_dirigee": false,
+    "multi_plateformes": true,
+    "remplacement_possible": false,
+    "info_masquee": false,
+    "evaluation_performance": true,
+    "equipement_marque": true,
+    "liberte_horaires": true,
+    "moyens_propres": true,
+    "immatriculation": true,
+    "charte_sociale": false,
+    "qualification_contractuelle": false,
+    "dependance_economique": false
+  },
+  "determinants": [
+    "geolocalisation_suivi",
+    "sanction_deconnexion",
+    "evaluation_performance"
+  ],
+  "preuves": {
+    "service_organise": {
+      "extrait": "Rien ne permet de constater une intégration des livreurs à l'équipe support des salariés de la société Take Eat Easy, dès lors que les rares contacts entre les premiers et les seconds sont exclusivement téléphoniques et que les 'drinks' mensuels et évènements divers organisés par la société Take Eat Easy afin de réunir les coursiers ne revêtent aucun caractère obligatoire.",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "geolocalisation_suivi": {
+      "extrait": "l'application de la société Take Eat Easy, installée sur le smartphone du coursier, était dotée d'un système de géolocalisation permettant le suivi en temps réel par la société de la position du coursier et la comptabilisation du nombre total de kilomètres parcourus par celui-ci",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "sanction_deconnexion": {
+      "extrait": "le cumul de quatre 'strikes' conduit à la désactivation du compte et la désinscription des 'shifts' réservés",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "penalites_bonus": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "tarif_impose": {
+      "extrait": "la rémunération définie d'un commun accord dans les conditions particulières (7,5 € par course selon la facturation communiquée)",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "clientele_attribuee": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "execution_dirigee": {
+      "extrait": "il n'était pas tenu de suivre le trajet suggéré",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "multi_plateformes": {
+      "extrait": "le prestataire est libre de conclure avec toute entreprise un contrat similaire équivalent, la société Take Eat Easy ne disposant d'aucune exclusivité",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "remplacement_possible": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "info_masquee": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "evaluation_performance": {
+      "extrait": "système de 'strikes' [...] pour des comportements objectivables du coursier constitutifs de manquements à ses obligations contractuelles",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "equipement_marque": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "liberte_horaires": {
+      "extrait": "la liberté totale de travailler ou non dont a bénéficié l'intéressé, qui lui permettait, sans avoir à en justifier, de choisir chaque semaine ses jours de travail et leur nombre",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "moyens_propres": {
+      "extrait": "le prestataire travaille avec son propre matériel, la société ne fournissant contre caution que le sac de livraison équipé d'un sac isotherme et si nécessaire le smartphone",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "immatriculation": {
+      "extrait": "M. L..., après avoir été immatriculé en qualité d'auto-entrepreneur",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "charte_sociale": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "qualification_contractuelle": {
+      "extrait": "le contrat de prestations de services conclu par les parties est composé de conditions générales et de conditions particulières, seules les premières étant versées aux débats",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "dependance_economique": {
+      "extrait": "il n'est lié à la société Take Eat Easy par aucune clause d'exclusivité ou de nonconcurrence",
+      "confiance": 1.0,
+      "source": "extraction"
+    }
+  }
+}

@@ -1,0 +1,125 @@
+{
+  "id": "2020-06-24_cass_soc_19-13-476_takeeateasy",
+  "intitule": "Cass. soc., 24 juin 2020, n° 19-13.476 (Take Eat Easy)",
+  "juridiction": "Cour de cassation, chambre sociale",
+  "formation": "cass",
+  "ressort": null,
+  "date": "2020-06-24",
+  "numero": "19-13.476",
+  "publication": "inedit",
+  "dispositif": "cassation",
+  "issue": true,
+  "textes": [
+    "Article L. 8221-6 II du code du travail",
+    "Article L. 1221-1 et suivants du code du travail"
+  ],
+  "remise_en_cause": null,
+  "url": null,
+  "validee": false,
+  "facteurs": {
+    "service_organise": false,
+    "geolocalisation_suivi": true,
+    "sanction_deconnexion": true,
+    "penalites_bonus": true,
+    "tarif_impose": true,
+    "clientele_attribuee": false,
+    "execution_dirigee": false,
+    "multi_plateformes": true,
+    "remplacement_possible": false,
+    "info_masquee": false,
+    "evaluation_performance": true,
+    "equipement_marque": true,
+    "liberte_horaires": true,
+    "moyens_propres": true,
+    "immatriculation": true,
+    "charte_sociale": null,
+    "qualification_contractuelle": false,
+    "dependance_economique": null
+  },
+  "determinants": [
+    "geolocalisation_suivi",
+    "evaluation_performance"
+  ],
+  "preuves": {
+    "service_organise": {
+      "extrait": "la société Take eat easy ne détermine pas unilatéralement les conditions d'exécution du travail du livreur puisque celui-ci choisit librement ses plages horaires d'activité",
+      "confiance": 0.8,
+      "source": "extraction"
+    },
+    "geolocalisation_suivi": {
+      "extrait": "l'application était dotée d'un système de géolocalisation permettant le suivi en temps réel par la société Take Eat Easy de la position du livreur et la comptabilisation du nombre total de kilomètres parcourus par celui-ci",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "sanction_deconnexion": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "penalites_bonus": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "tarif_impose": {
+      "extrait": "le montant variait constamment selon le bon vouloir de la société",
+      "confiance": 0.9,
+      "source": "extraction"
+    },
+    "clientele_attribuee": {
+      "extrait": "le prestataire est libre de conclure avec toute autre entreprise un contrat similaire ou équivalent",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "execution_dirigee": {
+      "extrait": "la société Take eat easy ne détermine pas unilatéralement les conditions d'exécution du travail du livreur",
+      "confiance": 0.8,
+      "source": "extraction"
+    },
+    "multi_plateformes": {
+      "extrait": "le prestataire est libre de conclure avec toute autre entreprise un contrat similaire ou équivalent",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "remplacement_possible": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "info_masquee": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "evaluation_performance": {
+      "extrait": "un système de bonus et de pénalités graduées pouvant aller jusqu'à l'éviction du coursier",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "equipement_marque": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "liberte_horaires": {
+      "extrait": "M. I... avait la liberté de choisir ses horaires de travail en s'inscrivant ou non sur un « shift » ou de ne pas travailler pendant une durée laissée à sa discrétion",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "moyens_propres": {
+      "extrait": "le prestataire travaille avec son propre matériel, la société ne fournissant contre caution que le sac de livraison équipé d'un sac isotherme et si nécessaire le smartphone",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "immatriculation": {
+      "extrait": "S... I... a été immatriculé en qualité d'auto-entrepreneur",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "qualification_contractuelle": {
+      "extrait": "Les parties reconnaissent que le présent contrat n'établit, en aucun cas, sous quelque forme que ce soit, une hiérarchie ou un quelconque lien de subordination entre elles",
+      "confiance": 1.0,
+      "source": "extraction"
+    }
+  }
+}

@@ -1,0 +1,116 @@
+{
+  "id": "2023-03-15_cass_soc_21-17-316_bolt",
+  "intitule": "Cass. soc., 15 mars 2023, n° 21-17.316 (Bolt)",
+  "juridiction": "Cour de cassation, chambre sociale",
+  "formation": "cass",
+  "ressort": null,
+  "date": "2023-03-15",
+  "numero": "21-17.316",
+  "publication": "inedit",
+  "dispositif": "rejet",
+  "issue": true,
+  "textes": [
+    "L. 8221-6 du code du travail",
+    "L. 1221-1 du code du travail",
+    "L. 1411-1 du code du travail",
+    "L. 7341-1 du code du travail",
+    "L. 3142-3 du code des transports",
+    "L. 121-11 du code de la consommation"
+  ],
+  "remise_en_cause": null,
+  "url": null,
+  "validee": false,
+  "facteurs": {
+    "service_organise": true,
+    "geolocalisation_suivi": true,
+    "sanction_deconnexion": true,
+    "penalites_bonus": true,
+    "tarif_impose": true,
+    "clientele_attribuee": true,
+    "execution_dirigee": true,
+    "multi_plateformes": false,
+    "remplacement_possible": null,
+    "info_masquee": true,
+    "evaluation_performance": true,
+    "equipement_marque": null,
+    "liberte_horaires": false,
+    "moyens_propres": true,
+    "immatriculation": null,
+    "charte_sociale": null,
+    "qualification_contractuelle": false,
+    "dependance_economique": true
+  },
+  "determinants": [],
+  "preuves": {
+    "service_organise": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "geolocalisation_suivi": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "sanction_deconnexion": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "penalites_bonus": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "tarif_impose": {
+      "extrait": "le prix est calculé sur la base d'un tarif de base appliqué par défaut, la distance du trajet spécifique telle que déterminée par le système GPS, et la durée du trajet spécifique",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "clientele_attribuee": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "execution_dirigee": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "multi_plateformes": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "info_masquee": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "evaluation_performance": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "liberte_horaires": {
+      "extrait": "le chauffeur n'était pas libre de déterminer le moment et la durée d'utilisation de l'application puisque à tout moment la société Bolt pouvait à son entière discrétion suspendre son accès à la plateforme",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "moyens_propres": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "qualification_contractuelle": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "dependance_economique": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    }
+  }
+}

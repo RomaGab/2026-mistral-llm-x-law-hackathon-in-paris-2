@@ -1,0 +1,102 @@
+{
+  "id": "2025-07-09_cass_soc_24-13-504_uber",
+  "intitule": "Cass. soc., 9 juillet 2025, n° 24-13.504",
+  "juridiction": "Cour de cassation, chambre sociale",
+  "formation": "cass",
+  "ressort": null,
+  "date": "2025-07-09",
+  "numero": "24-13.504",
+  "publication": "inedit",
+  "dispositif": "rejet",
+  "issue": false,
+  "textes": [
+    "L. 8221-6 du code du travail",
+    "L. 1411-1 du code du travail",
+    "L. 7341-1 et suivants du code du travail",
+    "L. 1326-2 du code des transports"
+  ],
+  "remise_en_cause": null,
+  "url": null,
+  "validee": false,
+  "facteurs": {
+    "service_organise": true,
+    "geolocalisation_suivi": true,
+    "sanction_deconnexion": true,
+    "penalites_bonus": null,
+    "tarif_impose": true,
+    "clientele_attribuee": false,
+    "execution_dirigee": false,
+    "multi_plateformes": true,
+    "remplacement_possible": null,
+    "info_masquee": false,
+    "evaluation_performance": true,
+    "equipement_marque": null,
+    "liberte_horaires": true,
+    "moyens_propres": null,
+    "immatriculation": null,
+    "charte_sociale": null,
+    "qualification_contractuelle": true,
+    "dependance_economique": null
+  },
+  "determinants": [
+    "execution_dirigee",
+    "multi_plateformes"
+  ],
+  "preuves": {
+    "service_organise": {
+      "extrait": "la cour d'appel a retenu que si l'intéressé était intégré dans un service organisé par la plateforme Uber",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "geolocalisation_suivi": {
+      "extrait": "les chauffeurs utilisateurs de cette plateforme [...] étaient, à l'occasion de l'utilisation de la plateforme, géolocalisés de manière permanente",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "sanction_deconnexion": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "tarif_impose": {
+      "extrait": "la fixation du prix par la plateforme est légalement prévue en application des articles L. 7341-1 et suivants du code du travail",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "clientele_attribuee": {
+      "extrait": "la création d'une catégorie « chauffeur favori » de nature à permettre la création d'un lien privilégié entre les chauffeurs et les passagers et ouvrant la possibilité de développer une clientèle personnelle",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "execution_dirigee": {
+      "extrait": "la société ne contrôle ni ne dirige le chauffeur, lequel est responsable du choix de la manière la plus efficace et la plus sûre pour se rendre à destination",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "multi_plateformes": {
+      "extrait": "ils avaient la liberté de s'inscrire et de travailler par le biais d'autres applications ou bien d'exercer leur activité en dehors de toute application numérique",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "info_masquee": {
+      "extrait": "le chauffeur voyant apparaître, au moment de la proposition de la course : le prix minimal de la course net de frais de services Uber, le temps et la distance pour récupérer le passager, le temps et la distance de la course",
+      "confiance": 1.0,
+      "source": "extraction"
+    },
+    "evaluation_performance": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "liberte_horaires": {
+      "extrait": null,
+      "confiance": 0.5,
+      "source": "extraction"
+    },
+    "qualification_contractuelle": {
+      "extrait": "la volonté de la société Uber de conclure des partenariats commerciaux avec des chauffeurs indépendants",
+      "confiance": 1.0,
+      "source": "extraction"
+    }
+  }
+}

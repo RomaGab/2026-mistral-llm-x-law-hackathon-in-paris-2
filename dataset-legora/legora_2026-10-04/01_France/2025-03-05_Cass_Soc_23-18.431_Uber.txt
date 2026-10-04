@@ -1,0 +1,130 @@
+Source : https://www.courdecassation.fr/decision/67c7f7a6d80e40890638ebb5
+
+Texte de la décision
+Entête
+
+SOC.
+
+CZ
+
+
+
+COUR DE CASSATION
+______________________
+
+
+Audience publique du 5 mars 2025
+
+
+
+
+Cassation
+
+
+Mme CAPITAINE, conseiller doyen
+faisant fonction de président
+
+
+
+Arrêt n° 224 F-D
+
+Pourvoi n° J 23-18.431
+
+
+
+
+R É P U B L I Q U E F R A N Ç A I S E
+
+_________________________
+
+AU NOM DU PEUPLE FRANÇAIS
+_________________________
+
+
+ARRÊT DE LA COUR DE CASSATION, CHAMBRE SOCIALE, DU 5 MARS 2025
+
+M. [O] [K], domicilié [Adresse 1], a formé le pourvoi n° J 23-18.431 contre l'arrêt rendu le 11 mai 2023 par la cour d'appel de Paris (pôle 6, chambre 2), dans le litige l'opposant :
+
+1°/ à la société Uber France, société par actions simplifiée unipersonnelle, dont le siège est [Adresse 2],
+
+2°/ à la société Uber BV, société de droit néerlandais, dont le siège est [Adresse 4], Pays-Bas,
+
+3°/ à la société Uber Partner Support France, société par actions simplifiée, dont le siège est [Adresse 3],
+
+défenderesses à la cassation.
+
+Le demandeur invoque, à l'appui de son pourvoi, un moyen de cassation.
+
+Le dossier a été communiqué au procureur général.
+
+Sur le rapport de M. Leperchey, conseiller référendaire, les observations de la SCP Lyon-Caen et Thiriez, avocat de M. [K], de la SCP Célice, Texidor, Périer, avocat des sociétés Uber France, Uber BV et Uber Partner Support France, ainsi que l'avis de Mme Roques, avocat général référendaire, après débats en l'audience publique du 28 janvier 2025 où étaient présents Mme Capitaine, conseiller doyen faisant fonction de président, M. Leperchey, conseiller référendaire rapporteur, Mme Lacquemant conseiller, et Mme Pontonnier, greffier de chambre,
+
+la chambre sociale de la Cour de cassation, composée des président et conseillers précités, après en avoir délibéré conformément à la loi, a rendu le présent arrêt.
+
+
+
+Exposé du litige
+
+Faits et procédure
+
+1. Selon l'arrêt attaqué (Paris, 11 mai 2023), M. [K], qui a signé un contrat de prestation de service avec la société de droit néerlandais Uber BV, a exercé une activité de chauffeur à compter du 28 mai 2016 en recourant à la plateforme numérique Uber, après avoir enregistré une entreprise au répertoire Sirene, sous l'activité de transport de voyageurs par taxis.
+
+2. Il a saisi la juridiction prud'homale d'une demande de requalification de sa relation contractuelle avec la société Uber en contrat de travail et a formé des demandes de rappels de salaires et d'indemnités de rupture.
+
+
+
+Moyens
+
+Examen du moyen
+
+Sur le moyen, pris en ses quatrième, cinquième et sixième branches
+
+Enoncé du moyen
+
+3. M. [K] fait grief à l'arrêt de déclarer la juridiction prud'homale incompétente au profit du tribunal de commerce, alors :
+
+« 4°/ que le lien de subordination est caractérisé par l'exécution d'un travail sous l'autorité d'un employeur qui a le pouvoir de donner des ordres et des directives, d'en contrôler l'exécution et de sanctionner les manquements de son subordonné ; que constitue l'exercice d'un pouvoir de direction, caractéristique du lien de subordination juridique permanent, le fait d'interdire à un prestataire de se constituer une clientèle propre, d'imposer l'installation d'une application, et de modifier unilatéralement le tarif de la prestation ; qu'en retenant en l'espèce, pour écarter l'existence d'un lien de subordination, par motifs propres et adoptés, que l'interdiction faite au chauffeur de solliciter les clients qu'il transportait pour recueillir les données personnelles qui permettraient de les recontacter ne pouvait s'envisager comme l'expression d'un pouvoir de direction dans la mesure où il ne s'agissait que de protéger la ressource ''client/passager'' construite par Uber en vue de réaliser un chiffre d'affaires et que cette interdiction ne valait que tant que le client n'avait pas donné son accord pour ce faire, que prendre l'obligation d'installer l'application Uber comme un élément de sujétion ne faisait aucun sens puisque le service auquel le chauffeur avait délibérément choisi d'adhérer ne pouvait fonctionner autrement, que la société Uber déterminait unilatéralement le prix des prestations de services fournies par son intermédiaire en fonction d'un algorithme selon l'affluence de la clientèle et du nombre de chauffeurs disponibles dans la zone géographique donnée et que la pratique de modification unilatérale des tarifs comme la pratique des tarifs différenciés ne constituaient pas l'expression d'un pouvoir de direction dès lors que le chauffeur n'avait aucune obligation de recourir à la plateforme, la cour d'appel, qui n'a pas tiré les conséquences légales de ses propres constatations, desquelles il ressortait l'existence d'un pouvoir de direction, a violé les articles L. 8221-6 et L. 1411-1 du code du travail ;
+
+5°/ que le lien de subordination est caractérisé par l'exécution d'un travail sous l'autorité d'un employeur qui a le pouvoir de donner des ordres et des directives, d'en contrôler l'exécution et de sanctionner les manquements de son subordonné ; que constitue l'exercice d'un pouvoir de contrôle, caractéristique du lien de subordination juridique permanent, le contrôle des documents nécessaires à l'exercice de l'activité, la géolocalisation permanente du chauffeur, et la maîtrise du système de facturation et du prix de la prestation ; qu'en retenant en l'espèce, pour écarter l'existence d'un lien de subordination, par motifs propres et adoptés, que la société Uber limitait le droit d'accès à sa plateforme en fonction du respect de la législation mais aussi de la sécurité des utilisateurs, que la demande faite par Uber au chauffeur de fournir un certain nombre de documents s'imposait dans la mesure où la société avait l'obligation de s'assurer que le professionnel disposait des autorisations nécessaires et du véhicule adapté pour la réalisation de la prestation de service, que le système de géolocalisation était inhérent au fonctionnement de la plateforme et permettait de proposer la course aux chauffeurs les mieux situés, que la géolocalisation permanente était le seul moyen de tendre vers un idéal en terme de délai de prise en charge d'un client potentiel par un chauffeur potentiel et constituait un simple outil d'optimisation, que le contrôle du système de facturation ne constituait, comme dans d'autres contrats commerciaux, qu'un paiement par l'intermédiaire d'un tiers et que le contrôle des tarifs résultait directement et nécessairement du libre engagement par le chauffeur de recourir à la plateforme, la cour d'appel, qui n'a pas tiré les conséquences légales de ses propres constatations, desquelles il ressortait l'existence d'un pouvoir de contrôle, a violé les articles L. 8221-6 et L. 1411-1 du code du travail ;
+
+6°/ que le lien de subordination est caractérisé par l'exécution d'un travail sous l'autorité d'un employeur qui a le pouvoir de donner des ordres et des directives, d'en contrôler l'exécution et de sanctionner les manquements de son subordonné ; que constitue l'exercice d'un pouvoir de sanction, caractéristique du lien de subordination juridique permanent, le fait de déconnecter un chauffeur qui refuse 80 % ou plus des courses proposées ou trois courses d'affilée, ou encore le fait de procéder à un avertissement du salarié en raison de son comportement à l'égard des clients ; qu'en retenant en l'espèce, pour écarter l'existence d'un lien de subordination, par motifs propres et adoptés, que la société Uber se réservait le droit de rompre unilatéralement le contrat de manière définitive ou temporaire en fonction des évaluations clientèles et que le système de notation ne pouvait être considéré comme un pouvoir de sanction, que contrairement à ce que suggérait le chauffeur, il ne s'agissait pas pour Uber de le sanctionner mais de permettre que continue de fonctionner un système gagnant-gagnant, pour le chauffeur (qui trouve des clients dans les délais les plus rapides), pour le client (qui obtient dans les délais les plus rapides un véhicule pour le transporter) et pour Uber (son chiffre d'affaires est directement fonction du nombre de courses réalisées) et que le chauffeur qui était automatiquement ''déconnecté'' par la plateforme pouvait se reconnecter presqu'immédiatement, que le message dans lequel Uber rappelait au chauffeur qu'un retour similaire d'un autre client pourrait entraîner une désactivation permanente de son compte ne constituait qu'un rappel des obligations auxquelles il avait librement souscrit et de la sanction contractuelle prévue, ou encore que pour ce qui était du prix de la course, M. [K] produisait des messages dont il résultait qu'il avait pu contester, en une occasion, la rémunération d'une course qu'il avait effectuée mais que les huit autres messages étaient relatifs à des ajustements de tarif, et qu'outre que ce nombre était particulièrement limité au regard de la durée des relations entre M. [K] et Uber, le motif de ces ajustements était soit un début ou une fin de course mal indiqué, soit un itinéraire non optimal, la cour d'appel, qui n'a pas tiré les conséquences légales de ses propres constatations, desquelles il ressortait l'existence d'un pouvoir de sanction, a violé les articles L. 8221-6 et L. 1411-1 du code du travail. »
+
+
+
+Motivation
+
+Réponse de la Cour
+
+Vu l'article L. 8221-6 du code du travail :
+
+4. Il résulte de ce texte que les personnes physiques, dans l'exécution de l'activité donnant lieu à immatriculation aux registres que ce texte énumère, sont présumées ne pas être liées avec le donneur d'ordre par un contrat de travail. L'existence d'un contrat de travail peut toutefois être établie lorsque ces personnes fournissent des prestations dans des conditions qui les placent dans un lien de subordination juridique permanente à l'égard du donneur d'ordre.
+
+5. Le lien de subordination est caractérisé par l'exécution d'un travail sous l'autorité d'un employeur qui a le pouvoir de donner des ordres et des directives, d'en contrôler l'exécution et de sanctionner les manquements de son subordonné. Peut constituer un indice de subordination le travail au sein d'un service organisé lorsque l'employeur en détermine unilatéralement les conditions d'exécution.
+
+6. Pour déclarer la juridiction prud'homale incompétente au profit du tribunal de commerce, l'arrêt retient d'abord que, si M. [K] reproche à la société Uber de lui interdire, de fait, d'avoir une clientèle personnelle, au motif qu'il lui est interdit de solliciter les clients qu'elle transporte pour recueillir les données personnelles qui permettraient de les recontacter, la société Uber est légitime à vouloir protéger sa « ressource client/passager » puisque, si elle n'a pas de client/passager, elle n'a aucune chance de réaliser un chiffre d'affaires. L'arrêt ajoute que la clientèle personnelle que M. [K] peut développer ne doit donc pas, en principe, être la même que celle procurée par les facilités qu'offre la plate-forme et qu'il ne s'agit pas d'un pouvoir de direction ni de contrôle ni de sanction mais du droit de tout contractant de se défendre de la mauvaise exécution du contrat par son co-contractant.
+
+7. L'arrêt ajoute ensuite que, si les itinéraires sont déterminés électroniquement par la plateforme, le chauffeur qui décide, pour une raison qui lui appartient, de suivre un autre itinéraire, doit légitimement s'attendre à ce que le surcoût engendré par ce choix lui soit imputé plutôt que d'être imputé au client.
+
+8. L'arrêt relève encore que le système mis en place ne correspond en aucune manière à un tarif unilatéralement imposé puisqu'il résulte, directement et nécessairement du libre engagement par le chauffeur de recourir à la plate-forme et de ne pas respecter les règles qui en permettent le meilleur fonctionnement, dans l'intérêt des chauffeurs eux-mêmes.
+
+9. L'arrêt retient, enfin, qu'il ne peut être reproché à la société Uber de déconnecter de son application le chauffeur qui refuse au moins 80 % des courses proposées ou trois courses d'affilée, dès lors qu'il s'agit là d'une politique générale et que la société Uber ne peut espérer réaliser un bénéfice si elle n'est pas assurée que les personnes qui ont recours, de leur côté, à la plate-forme, trouveront dans les meilleurs délais un véhicule pour les transporter.
+
+10. En statuant ainsi, alors qu'il résultait de ses constatations l'existence d'un pouvoir de direction, de contrôle de l'exécution de la prestation ainsi que d'un pouvoir de sanction à l'égard du chauffeur, éléments caractérisant un lien de subordination, la cour d'appel, qui n'a pas tiré les conséquences légales de ses constatations, a violé le texte susvisé.
+
+
+
+Dispositif
+
+PAR CES MOTIFS, et sans qu'il y ait lieu de statuer sur les autres griefs, la Cour :
+
+CASSE ET ANNULE, en toutes ses dispositions, l'arrêt rendu le 11 mai 2023, entre les parties, par la cour d'appel de Paris ;
+
+Remet l'affaire et les parties dans l'état où elles se trouvaient avant cet arrêt et les renvoie devant la cour d'appel de Paris autrement composée ;
+
+Condamne les sociétés Uber France, Uber BV et Uber Partner Support France aux dépens ;
+
+En application de l'article 700 du code de procédure civile, rejette la demande formée par les sociétés Uber France, Uber BV et Uber Partner Support France et les condamne à payer à M. [K] la somme de 2 000 euros ;
+
+Dit que sur les diligences du procureur général près la Cour de cassation, le présent arrêt sera transmis pour être transcrit en marge ou à la suite de l'arrêt cassé ;
+
+Ainsi fait et jugé par la Cour de cassation, chambre sociale, et prononcé par le président en son audience publique du cinq mars deux mille vingt-cinq.

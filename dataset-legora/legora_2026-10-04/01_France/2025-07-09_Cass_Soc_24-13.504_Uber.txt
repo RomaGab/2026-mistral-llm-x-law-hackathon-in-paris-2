@@ -1,0 +1,108 @@
+Source : https://www.courdecassation.fr/decision/686e0206e0a6f0ca1546ef1c
+
+Texte de la décision
+
+SOC.
+
+JL10
+
+
+
+COUR DE CASSATION
+______________________
+
+
+Arrêt du 9 juillet 2025
+
+
+
+
+Rejet
+
+
+Mme CAPITAINE, conseillère doyenne
+faisant fonction de présidente
+
+
+
+Arrêt n° 746 F-D
+
+Pourvoi n° Z 24-13.504
+
+R É P U B L I Q U E F R A N Ç A I S E
+
+_________________________
+
+AU NOM DU PEUPLE FRANÇAIS
+_________________________
+
+
+ARRÊT DE LA COUR DE CASSATION, CHAMBRE SOCIALE, DU 9 JUILLET 2025
+
+M. [S] [G], domicilié [Adresse 1], a formé le pourvoi n° Z 24-13.504 contre l'arrêt rendu le 14 décembre 2023 par la cour d'appel de Paris (pôle 6, chambre 2), dans le litige l'opposant :
+
+1°/ à la société Uber France, société par actions simplifiée, dont le siège est [Adresse 2],
+
+2°/ à la société Uber BV, dont le siège est [Adresse 3] (Pays-Bas),
+
+défenderesses à la cassation.
+
+Le demandeur invoque, à l'appui de son pourvoi, un moyen de cassation.
+
+Le dossier a été communiqué au procureur général.
+
+Sur le rapport de M. Leperchey, conseiller référendaire, les observations de la SCP Lyon-Caen et Thiriez, avocat de M. [G], de la SCP Célice, Texidor, Périer, avocat des sociétés Uber France et Uber BV, les plaidoiries de Me Lyon-Caen, avocat de M. [G], et celles de Me Célice, avocat des sociétés Uber France et Uber BV, et l'avis oral de Mme Roques, avocate générale référendaire, après débats en l'audience publique du 11 juin 2025 où étaient présents Mme Capitaine, conseillère doyenne faisant fonction de présidente, M. Leperchey, conseiller référendaire rapporteur, Mme Degouys, conseillère, Mme Roques, avocate générale référendaire, et Mme Jouanneau, greffière de chambre,
+
+la chambre sociale de la Cour de cassation, composée des présidente et conseillers précités, après en avoir délibéré conformément à la loi, a rendu le présent arrêt.
+
+Faits et procédure
+
+1. Selon l'arrêt attaqué (Paris, 14 décembre 2023), M. [G] a conclu un contrat de partenariat avec la société Uber BV.
+
+2. Soutenant que la relation contractuelle devait être requalifiée en contrat de travail, il a saisi la juridiction prud'homale.
+
+Examen du moyen
+
+3. L'intéressé fait grief à l'arrêt de déclarer la juridiction prud'homale incompétente pour statuer au profit du tribunal de commerce, alors :
+
+« 1°/ que le lien de subordination est caractérisé par l'exécution d'un travail sous l'autorité d'un employeur qui a le pouvoir de donner des ordres et des directives, d'en contrôler l'exécution et de sanctionner les manquements de son subordonné ; que constitue l'exercice d'un pouvoir de contrôle, caractéristique du lien de subordination juridique permanent, la géolocalisation permanente du chauffeur au cours de l'exécution de la prestation de travail, la possibilité de fixer unilatéralement le prix de la prestation, la faculté de désactiver l'accès à l'application en cas de note inférieure à 4,5/5, le pouvoir de modifier unilatéralement le montant de la prestation en cas de non-respect de l'itinéraire proposé, la faculté de déconnexion à l'application à la suite de trois refus de courses, le fait d'interdire au chauffeur de contacter le client en dehors de la course concernée, et l'obligation de respecter un comportement approprié et professionnel ; qu'en écartant en l'espèce l'existence d'un lien de subordination, tout en constatant que les chauffeurs étaient, à l'occasion de l'utilisation de la plateforme, géolocalisés de manière permanente, que la société Uber disposait du pouvoir fixer unilatéralement le prix de la course sans accord du chauffeur, qu'elle pouvait désactiver l'accès à l'application en cas de note inférieure à 4,5/5, qu'elle se réservait la faculté d'ajuster unilatéralement le tarif de la course en cas de non-respect par le chauffeur de l'itinéraire proposé, qu'elle disposait du pouvoir de déconnecter le chauffeur de l'application en cas de manquements à certaines obligations, particulièrement à la suite de trois refus consécutifs de course, que la plateforme interdisait aux chauffeurs de prendre directement contact avec les clients en dehors de la course réalisée, et qu'elle se réservait la faculté de déconnecter le chauffeur en cas de non-respect des obligations prévues au contrat de prestation de service en termes de comportement et de professionnalisme, la cour d'appel, qui n'a pas tiré les conséquences légales de ses propres constatations, desquelles il ressortait l'existence d'un pouvoir de direction, de contrôle et de sanction, a violé les articles L. 8221-6 et L. 1411-1 du code du travail ;
+
+2°/ que l'existence d'un lien de subordination n'impose pas de se tenir à la disposition permanente de l'employeur mais d'être placé, à l'occasion de l'exécution de la prestation de travail, dans un rapport de subordination ; qu'en l'espèce, pour dire que le lien de subordination entre le chauffeur et la plateforme n'était pas établi, la cour d'appel a retenu que, dès lors qu'il n'utilisait pas l'application, le chauffeur n'était pas tenu d'être géolocalisé et donc connecté en permanence et que donc il n'était nullement justifié que le chauffeur devait se tenir à la disposition permanente de la société Uber ; qu'en se déterminant ainsi, quand l'existence d'un lien de subordination n'impose pas de se tenir à la disposition permanente de l'employeur mais d'être placé, à l'occasion de l'exécution de la prestation de travail, dans un rapport de subordination, la cour d'appel, qui a statué par ce motif erroné, a violé les articles L. 8221-6 et L. 1411-1 du code du travail ;
+
+3°/ qu'il appartient au juge de rechercher l'existence d'un lien de subordination au cours de l'exécution de la prestation de travail ; qu'en se fondant en l'espèce, de manière systématique et péremptoire, pour écarter tout lien de subordination, sur les libertés dont bénéficiait le chauffeur en dehors de son temps de connexion, notamment la liberté de choisir son véhicule, la liberté de refuser une course, la liberté de se constituer en société, la liberté de choisir d'exercer son activité en acquisition ou en location du véhicule, la liberté d'organiser son activité, la liberté de s'inscrire et travailler par le biais d'autres applications ou bien d'exercer son activité en dehors de toute application numérique, la liberté de se connecter ou se déconnecter de l'application et de déterminer le temps qu'il souhaite donner à l'utilisation de l'application Uber, la liberté de choisir ses périodes de travail, ses congés, son secteur géographique d'activité et ses horaires de courses, sans rechercher l'existence d'un lien de subordination au cours de l'exécution de la relation de travail, la cour d'appel a statué par des motifs inopérants, privant ainsi sa décision de base légale au regard des articles L. 8221-6 et L. 1411-1 du code du travail ;
+
+4°/ que l'existence d'une relation de travail ne dépend ni de la volonté exprimée par les parties ni de la dénomination qu'elles ont donnée à leur convention mais des conditions de fait dans lesquelles est exercée l'activité des travailleurs ; qu'en se fondant de manière systématique et péremptoire sur la seule référence à la volonté du chauffeur et à l'acceptation par celui-ci des clauses du contrat de partenariat qu'il avait acceptées et signées" ainsi qu'à la dénomination des contrats signés et à la volonté de la société Uber de conclure des partenariats commerciaux avec des chauffeurs indépendants, au lieu d'analyser les conditions de fait dans lesquelles s'exerçait l'activité de transport, la cour d'appel a statué par des motifs inopérants, privant ainsi sa décision de base légale au regard des articles L. 8221-6 et L. 1411-1 du code du travail. »
+
+Réponse de la Cour
+
+4. Selon l'article L. 8221-6 du code du travail, les personnes physiques, dans l'exécution de l'activité donnant lieu à immatriculation sur les registres ou répertoires que ce texte énumère, sont présumées ne pas être liées avec le donneur d'ordre par un contrat de travail. L'existence d'un contrat de travail peut toutefois être établie lorsque ces personnes fournissent des prestations dans des conditions qui les placent dans un lien de subordination juridique permanente à l'égard du donneur d'ordre.
+
+5. Selon la jurisprudence constante de la Cour (Soc., 13 novembre 1996, pourvoi n° 94-13187, Bull. V, n° 386, Société générale), le lien de subordination est caractérisé par l'exécution d'un travail sous l'autorité d'un employeur qui a le pouvoir de donner des ordres et des directives, d'en contrôler l'exécution et de sanctionner les manquements de son subordonné.
+
+6. Selon cette même jurisprudence, peut constituer un indice de subordination le travail au sein d'un service organisé lorsque l'employeur en détermine unilatéralement les conditions d'exécution.
+
+7. A cet égard, la cour d'appel a retenu que si l'intéressé était intégré dans un service organisé par la plateforme Uber, les chauffeurs utilisateurs de cette plateforme n'étaient liés par aucune obligation de non-concurrence ou d'exclusivité, qu'ils avaient la liberté de s'inscrire et de travailler par le biais d'autres applications ou bien d'exercer leur activité en dehors de toute application numérique, qu'il avaient la possibilité de ne pas se connecter ou se déconnecter de l'application afin d'effectuer des courses en dehors de la plateforme ou au titre de leur clientèle personnelle, ainsi qu'il a été constaté dans le procès-verbal du 29 juillet 2022. La cour d'appel a relevé également la création d'une catégorie « chauffeur favori » de nature à permettre la création d'un lien privilégié entre les chauffeurs et les passagers et ouvrant la possibilité de développer une clientèle personnelle.
+
+8. S'agissant des conditions d'exercice de la prestation de service, elle a relevé que le chauffeur disposait de quinze secondes pour accepter ou refuser la course qui lui était proposée par la plateforme et qu'il avait ainsi la faculté de refuser une course, que, selon l'annexe du contrat de prestation de services, la société ne contrôle ni ne dirige le chauffeur, lequel est responsable du choix de la manière la plus efficace et la plus sûre pour se rendre à destination, de sorte qu'il est totalement indépendant dans la réalisation de sa prestation de transport, le chauffeur ne démontrant pas que la société formulait des directives ou des ordres durant l'exécution de celle-ci.
+
+9. Elle a retenu que, si la plateforme reconnaît que la déconnexion peut intervenir après trois refus de courses, le chauffeur peut se reconnecter ultérieurement, presque immédiatement, par un simple clic, lorsqu'il y est invité par la plateforme et que l'invitation à se reconnecter ultérieurement ne constitue pas une sanction à l'égard du chauffeur dès lors qu'il peut se reconnecter presque immédiatement et a relevé que conformément à l'article L. 1326-2 du code des transports qui fait interdiction aux plateformes de mettre fin à la relation contractuelle au motif que les travailleurs ont refusé une ou plusieurs propositions, il n'est pas justifié ni allégué d'une rupture de la relation contractuelle en lien avec des refus de proposition de prestation de transport. Elle a également constaté que le relevé d'état des courses concernant l'intéressé établissait que celui-ci avait alterné des périodes de forte activité, de moindre activité et même d'absence d'activité, ce qui était de nature à établir une absence de permanence quant à la connexion.
+
+10. S'agissant des tarifs, la cour d'appel a relevé que la fixation du prix par la plateforme est légalement prévue en application des articles L. 7341-1 et suivants du code du travail, et qu'à cet égard, depuis le mois de juillet 2020, l'application Uber a évolué afin de se conformer aux nouvelles dispositions de la loi d'orientation des mobilités du 24 décembre 2019, le chauffeur voyant apparaître, au moment de la proposition de la course :
+- le prix minimal de la course net de frais de services Uber,
+- le temps et la distance pour récupérer le passager,
+- le temps et la distance de la course.
+Elle a également retenu que la fixation d'un tarif maximum n'est pas susceptible, à elle seule, de démontrer la réalité d'un lien de subordination, que les pièces produites concernant l'intéressé font uniquement apparaître des ajustements à la hausse et que la possibilité d'ajustements ne permet pas de caractériser la réalité d'un indice de subordination juridique.
+
+11. La cour d'appel, ayant procédé à la recherche prétendument omise par la troisième branche du moyen, a ainsi pu déduire de ses constatations que le chauffeur ne réalisait pas des prestations dans un lien de subordination à l'égard de la société Uber.
+
+12. Le moyen, inopérant en sa deuxième branche, n'est donc pas fondé.
+
+PAR CES MOTIFS, la Cour :
+
+REJETTE le pourvoi ;
+
+Condamne M. [G] aux dépens ;
+
+En application de l'article 700 du code de procédure civile, rejette les demandes ;
+
+Ainsi fait et jugé par la Cour de cassation, chambre sociale, et prononcé publiquement le neuf juillet deux mille vingt-cinq par mise à disposition de l'arrêt au greffe de la Cour, les parties ayant été préalablement avisées dans les conditions prévues au deuxième alinéa de l'article 450 du code de procédure civile.

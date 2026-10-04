@@ -1,0 +1,95 @@
+[
+ {
+  "juridiction_pays": "France - Cour de cassation (Ch. sociale)",
+  "date": "2020-06-24",
+  "reference": "n° 18-26.088 (arrêt n° 486 F-D) - Take Eat Easy",
+  "statut_juge": "Salariat (cassation pour défaut de caractérisation par la cour d'appel)",
+  "faits_determinants_salariat": [
+   "Géolocalisation en temps réel et suivi du comportement du livreur",
+   "Système de strikes jusqu'à désactivation du compte",
+   "Livraisons proposées et réattribuées automatiquement via l'application en cas de non-validation"
+  ],
+  "faits_determinants_independance": [
+   "Liberté de choisir ses shifts",
+   "Vélo et matériel personnels"
+  ],
+  "fait_pivot_censure": "La géolocalisation permettait le suivi en temps réel de la position et du comportement du coursier, combinée à un pouvoir de sanction",
+  "fichier_source_brute": "01_France/2020-06-24_Cass_Soc_18-26.088_TakeEatEasy.txt"
+ },
+ {
+  "juridiction_pays": "France - Cour de cassation (Ch. sociale)",
+  "date": "2020-06-24",
+  "reference": "n° 19-13.476 (arrêt n° 489 F-D) - Take Eat Easy",
+  "statut_juge": "Salariat (cassation)",
+  "faits_determinants_salariat": [
+   "Géolocalisation, comptabilisation des kilomètres, surveillance des horaires",
+   "Strikes jusqu'à désactivation et désinscription des shifts"
+  ],
+  "faits_determinants_independance": [
+   "Liberté de choisir les shifts et absence d'exclusivité (jugées insuffisantes par la Cour)"
+  ],
+  "fait_pivot_censure": "La cour d'appel aurait dû déduire du système de géolocalisation et du pouvoir de sanction l'existence d'un pouvoir de direction et de contrôle caractérisant la subordination",
+  "fichier_source_brute": "01_France/2020-06-24_Cass_Soc_19-13.476_TakeEatEasy.txt"
+ },
+ {
+  "juridiction_pays": "France - Cour de cassation (Ch. sociale)",
+  "date": "2023-03-15",
+  "reference": "n° 21-17.316 (arrêt n° 241 FS-D) - Bolt",
+  "statut_juge": "Salariat (rejet du pourvoi de Bolt)",
+  "faits_determinants_salariat": [
+   "Attribution de la clientèle par Bolt, itinéraire le moins coûteux imposé, tarifs calculés par GPS, consignes sur le comportement avec les clients",
+   "Résiliation à l'entière discrétion de Bolt, blocage immédiat en cas de soupçon de fraude, compte définitivement désactivé après plaintes clients et note moyenne faible"
+  ],
+  "faits_determinants_independance": [
+   "Absence formelle d'exclusivité invoquée par Bolt"
+  ],
+  "fait_pivot_censure": "Attribution de la clientèle, absence de choix réel des itinéraires et tarifs, interdiction de développer une clientèle personnelle et désactivation fondée sur annulations/évaluations",
+  "fichier_source_brute": "01_France/2023-03-15_Cass_Soc_21-17.316_Bolt.txt"
+ },
+ {
+  "juridiction_pays": "France - Cour de cassation (Ch. sociale)",
+  "date": "2025-03-05",
+  "reference": "n° 23-18.431 (arrêt n° 224 F-D) - Uber",
+  "statut_juge": "Salariat (cassation)",
+  "faits_determinants_salariat": [
+   "Interdiction de solliciter les passagers pour constituer une clientèle propre, prix déterminé unilatéralement par algorithme, géolocalisation permanente",
+   "Déconnexion après refus de 80% ou plus des courses ou 3 refus consécutifs, avertissements liés au comportement, désactivation liée à la notation"
+  ],
+  "faits_determinants_independance": [
+   "Choix du chauffeur de recourir à la plateforme invoqué par la cour d'appel comme justifiant l'acceptation des règles"
+  ],
+  "fait_pivot_censure": "Combinaison du contrôle de la clientèle, de la géolocalisation, de la maîtrise tarifaire et de la déconnexion liée aux refus de courses ; la justification commerciale ne neutralise pas un pouvoir effectivement exercé",
+  "fichier_source_brute": "01_France/2025-03-05_Cass_Soc_23-18.431_Uber.txt"
+ },
+ {
+  "juridiction_pays": "France - Cour de cassation (Ch. sociale)",
+  "date": "2025-07-09",
+  "reference": "n° 24-13.504 (arrêt n° 746 F-D) - Uber",
+  "statut_juge": "Indépendant (rejet du pourvoi, absence de lien de subordination confirmée)",
+  "faits_determinants_salariat": [
+   "Déconnexion après trois refus consécutifs (mais réversible immédiatement)"
+  ],
+  "faits_determinants_independance": [
+   "Absence de directives pendant la course, 15 secondes pour accepter/refuser, reconnexion quasi immédiate après déconnexion",
+   "Absence d'exclusivité, multi-apping effectif, catégorie 'chauffeur favori' permettant clientèle personnelle",
+   "Absence de preuve d'ajustements tarifaires caractérisant une direction (un seul ajustement à la baisse contre plusieurs à la hausse)"
+  ],
+  "fait_pivot_censure": "Absence de directives pendant la course, combinée à la faculté de refuser, de se reconnecter immédiatement et de développer une activité concurrente ou personnelle",
+  "fichier_source_brute": "01_France/2025-07-09_Cass_Soc_24-13.504_Uber.txt"
+ },
+ {
+  "juridiction_pays": "France - Cour de cassation (Ch. sociale)",
+  "date": "2025-07-09",
+  "reference": "n° 24-13.513 (arrêt n° 747 F-D) - Uber",
+  "statut_juge": "Indépendant (rejet du pourvoi)",
+  "faits_determinants_salariat": [
+   "Déconnexion après trois refus, réversible rapidement"
+  ],
+  "faits_determinants_independance": [
+   "Choix du véhicule, des périodes de travail, du secteur géographique et du temps de connexion",
+   "Travail pour d'autres applications et hors plateforme, catégorie 'chauffeur favori'"
+  ],
+  "fait_pivot_censure": "Preuve concrète d'une liberté d'organisation et absence de directives pendant la réalisation de la prestation",
+  "fichier_source_brute": "01_France/2025-07-09_Cass_Soc_24-13.513_Uber.txt"
+ }
+]
