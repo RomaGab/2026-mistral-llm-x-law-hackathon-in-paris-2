@@ -1,4 +1,4 @@
-# Mistral Law Dashboard
+# pivot
 
 Next.js App Router frontend with React, strict TypeScript, ESLint, and plain CSS.
 The intake screen contains a prompt composer with PDF/TXT/DOCX selection, drag and

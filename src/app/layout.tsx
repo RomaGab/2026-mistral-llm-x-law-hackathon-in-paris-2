@@ -11,8 +11,8 @@ const inter = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Distinguo — New case",
-  description: "Ask your legal question and gather your case documents with Distinguo.",
+  title: "pivot — New case",
+  description: "Ask your legal question and gather your case documents with pivot.",
 };
 
 export default function RootLayout({

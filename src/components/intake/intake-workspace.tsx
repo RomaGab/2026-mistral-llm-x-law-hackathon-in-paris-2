@@ -166,11 +166,11 @@ export function IntakeWorkspace() {
       }}
     >
       <header className={styles.header}>
-        <div className={styles.brand} aria-label="Distinguo">
-          <svg className={styles.brandMark} width="28" height="28" viewBox="0 0 28 28" fill="currentColor" aria-hidden="true">
-            <path d="M4 4h12v4H8v12h8v4H4V4Zm12 4h4v4h-4V8Zm4 4h4v8h-4v-8Zm-4 8h4v4h-4v-4Z" />
+        <div className={styles.brand} aria-label="pivot">
+          <svg className={styles.brandMark} width="32" height="32" viewBox="0 0 28 28" fill="currentColor" aria-hidden="true">
+            <path d="M4 4h12v4H8v8h8v4H8v4H4V4Zm12 4h4v8h-4V8Z" />
           </svg>
-          <span className={styles.brandName}>distinguo<span>.</span></span>
+          <span className={styles.brandName}>pivot<span>.</span></span>
         </div>
       </header>
 

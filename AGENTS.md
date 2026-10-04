@@ -2,6 +2,8 @@
 
 ## Goal and scope
 
+The app is named `pivot` (lowercase).
+
 Develop the visuals and frontend interactions for a Next.js + React + TypeScript
 dashboard during an eight-hour hackathon. The user is responsible for the visual
 part of the project.
@@ -16,7 +18,7 @@ Use the supplied mockup as the initial visual reference:
 - A balance indicator between opposing conclusions.
 - A matrix comparing facts across cases or documents, with a visible legend.
 - Editable case facts, including highlighted pivotal facts.
-- Match the inspected Mistral Studio UI: Inter, workspace `#fbfbf8`, white surfaces, text `#201f1c`, orange `#fa500f`, and thin translucent borders. The intake has the Distinguo logo, a short heading and supporting line above a minimal prompt composer with attachment controls. Omit the sidebar, avatar, logo tagline, and stepper. The supplied dashboard screenshot establishes behavior and panel structure.
+- Match the inspected Mistral Studio UI: Inter, workspace `#fbfbf8`, white surfaces, text `#201f1c`, orange `#fa500f`, and thin translucent borders. The intake has the pivot logo, a short heading and supporting line above a minimal prompt composer with attachment controls. Omit the sidebar, avatar, logo tagline, and stepper. The supplied dashboard screenshot establishes behavior and panel structure.
 
 The sample facts, cases, score, and interval are fixture data, not fixed product results.
 
@@ -33,7 +35,7 @@ The sample facts, cases, score, and interval are fixture data, not fixed product
 - The scaffold uses Next.js App Router, React, strict TypeScript, ESLint, and npm. Follow the installed versions in `package.json` and `package-lock.json`.
 - Commands: `npm run dev`, `npm run lint`, `npm run typecheck`, `npm run build`, and `npm start` after building.
 - Use plain CSS with shared design tokens in `src/app/globals.css` and CSS Modules for component styles as needed.
-- Use Feather icons from `react-icons/fi` for interface controls; keep the custom Distinguo brand mark.
+- Use Feather icons from `react-icons/fi` for interface controls; keep the custom pivot brand mark.
 - Start with React state and props; add a state library only for a concrete need.
 - Initial layout: routes in `src/app`, shared UI in `src/components/ui`, dashboard components in `src/components/dashboard`, view models in `src/types/dashboard.ts`, and fixtures in `src/mocks/dashboard.ts`.
 - Reuse equivalent existing folders rather than reorganizing the project to match this suggestion.
