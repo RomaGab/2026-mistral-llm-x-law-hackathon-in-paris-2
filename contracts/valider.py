@@ -11,14 +11,19 @@ import sys
 from pathlib import Path
 
 from jsonschema import Draft202012Validator
+from jsonschema.exceptions import best_match
 
 SCHEMA = json.loads((Path(__file__).parent / "dossier.schema.json").read_text(encoding="utf-8"))
 TOL = 0.011  # tolérance d'arrondi (probabilités à 2 décimales)
+EPS = 1e-9   # seuils (pivot, sensible) : comparés sur les valeurs arrondies
 
 
 def erreurs_dossier(d: dict) -> list[str]:
-    errs = [f"schéma : {'/'.join(map(str, e.absolute_path)) or '(racine)'} — {e.message}"
-            for e in Draft202012Validator(SCHEMA).iter_errors(d)]
+    errs = []
+    for e in Draft202012Validator(SCHEMA).iter_errors(d):
+        e = best_match(e.context) if e.context else e  # oneOf : on remonte à l'erreur précise
+        chemin = "/".join(map(str, e.absolute_path)) or "(racine)"
+        errs.append(f"schéma : {chemin} — {e.message[:200]}")
     if errs:
         return errs  # inutile de vérifier la cohérence d'un dossier mal formé
 
@@ -99,26 +104,89 @@ def erreurs_dossier(d: dict) -> list[str]:
         if abs(exc["probabilite"] - (1 - maj["probabilite"])) > TOL:
             errs.append("exception.probabilite doit valoir 1 - majeure.probabilite")
         ref = exc["decision_reference"]
-        if ref is not None and issue_de.get(ref) != exc["issue"]:
-            errs.append("exception.decision_reference doit avoir l'issue de l'exception")
-        for c in exc["conditions"]:
-            if c["facteur"] not in S:
-                errs.append(f"exception.conditions : {c['facteur']} hors grille")
+        if ref is not None and (issue_de.get(ref) != exc["issue"] or not lignes.get(ref, {}).get("retenue")):
+            errs.append("exception.decision_reference doit être une décision retenue, de l'issue de l'exception")
+    # ---- analyse par facteur (v1.2)
+    params = d["parametres"]
+    seuil_s = params.get("seuil_sensibilite", 0.10)
+    marge = params.get("marge_pivot", 0.15)
+    issue = r["prediction"]["issue"]
+    imp = {f["id"]: f["importance"] for f in d["grille"]["facteurs"]}
+    exclues = [x["id"] for x in r["decisions"] if not x["retenue"]]
+    af = r["facteurs"]
 
-    impacts = r["impacts"] + ([r["fait_pivot"]] if r["fait_pivot"] else [])
-    for im in impacts:
-        w = f"impact {im['facteur']}={im['valeur']}"
-        if im["facteur"] not in S:
-            errs.append(f"{w} : hors grille")
-        if abs(im["delta"] - (im["probabilite_si"] - p)) > TOL:
-            errs.append(f"{w} : delta doit valoir probabilite_si - probabilite")
-        if im["bascule"] != ((im["probabilite_si"] > 0.5) != r["prediction"]["issue"]):
-            errs.append(f"{w} : bascule incohérente")
-    deltas = [abs(im["delta"]) for im in r["impacts"]]
-    if deltas != sorted(deltas, reverse=True):
-        errs.append("impacts : à trier par |delta| décroissant")
-    if r["fait_pivot"] is not None and (not r["impacts"] or r["fait_pivot"] != r["impacts"][0]):
-        errs.append("fait_pivot doit être le premier élément de impacts")
+    def franchit(q):
+        return (q > 0.5) != issue and abs(q - 0.5) >= marge - EPS
+
+    if set(af) != S:
+        errs.append("resultat.facteurs : doit couvrir exactement les facteurs de la grille")
+    ecart = {}
+    for f in ids:
+        if f not in af:
+            continue
+        a, v, w = af[f], cas["facteurs"].get(f), f"resultat.facteurs[{f}]"
+        pv, pf = a["probabilite_si_vrai"], a["probabilite_si_faux"]
+        ecart[f] = max(abs(pv - p), abs(pf - p))
+        for liste in ("ecartees_si_vrai", "ecartees_si_faux"):
+            if set(a[liste]) - set(dec_ids):
+                errs.append(f"{w}.{liste} : décisions inconnues {sorted(set(a[liste]) - set(dec_ids))}")
+        if a["type"] != ("a_documenter" if v is None else "levier"):
+            errs.append(f"{w}.type : a_documenter si le fait vaut null, levier sinon")
+        if v is None and a["contribution"] != 0:
+            errs.append(f"{w}.contribution : doit valoir 0 pour un fait inconnu")
+        if v is not None:
+            cote = "vrai" if v else "faux"
+            if abs(a[f"probabilite_si_{cote}"] - p) > TOL:
+                errs.append(f"{w}.probabilite_si_{cote} : doit valoir prediction.probabilite (c'est la valeur actuelle)")
+            if sorted(a[f"ecartees_si_{cote}"]) != sorted(exclues):
+                errs.append(f"{w}.ecartees_si_{cote} : doit être la liste actuelle des décisions écartées")
+        if imp.get(f) == 0:
+            if a["niveau"] != "neutralise" or a["est_pivot"] or a["contribution"] != 0 or ecart[f] > TOL:
+                errs.append(f"{w} : facteur neutralisé (niveau neutralise, pas pivot, contribution 0, sans effet sur P)")
+            continue
+        attendu_pivot = franchit(pv) or franchit(pf)
+        if a["est_pivot"] != attendu_pivot:
+            errs.append(f"{w}.est_pivot : pivot si une inversion fait passer P de l'autre côté de 0,5 avec une marge de {marge}")
+        if a["niveau"] == "neutralise" or (a["niveau"] == "pivot") != a["est_pivot"]:
+            errs.append(f"{w}.niveau : incohérent avec est_pivot / importance")
+        elif a["niveau"] == "sensible" and ecart[f] < seuil_s - EPS:
+            errs.append(f"{w}.niveau : sensible exige un écart de P d'au moins {seuil_s}")
+        elif a["niveau"] == "faible" and ecart[f] >= seuil_s - EPS:
+            errs.append(f"{w}.niveau : faible exige un écart de P inférieur à {seuil_s}")
+
+    pivots = r["pivots"]
+    attendus = [f for f in ids if f in af and af[f]["est_pivot"]]
+    if sorted(pivots) != sorted(attendus):
+        errs.append("pivots : doit lister exactement les facteurs avec est_pivot = true")
+    elif [ecart[f] for f in pivots] != sorted((ecart[f] for f in pivots), reverse=True):
+        errs.append("pivots : à trier du plus influent au moins influent")
+
+    if pivots and r["pivots_combines"]:
+        errs.append("pivots_combines : doit être vide quand il existe des pivots simples")
+    for c in r["pivots_combines"]:
+        a_, b_ = c["facteurs"]
+        if a_ == b_ or a_ not in S or b_ not in S or imp.get(a_) == 0 or imp.get(b_) == 0:
+            errs.append(f"pivots_combines {c['facteurs']} : deux facteurs distincts et non neutralisés attendus")
+        if not franchit(c["probabilite_si"]):
+            errs.append(f"pivots_combines {c['facteurs']} : la combinaison doit faire basculer franchement")
+
+    seuil_exc = params.get("seuil_exception", 0.15)
+    exception_attendue = bool(pivots or r["pivots_combines"] or (1 - maj["probabilite"]) >= seuil_exc - EPS)
+    if (exc is not None) != exception_attendue:
+        errs.append("exception : présente si et seulement s'il y a des pivots, des pivots combinés, "
+                    f"ou si l'issue minoritaire atteint seuil_exception ({seuil_exc})")
+
+    if exc is not None:
+        for c in exc["conditions"]:
+            f = c["facteur"]
+            if f not in af:
+                errs.append(f"exception.conditions : {f} hors grille")
+                continue
+            q = af[f]["probabilite_si_vrai" if c["valeur"] else "probabilite_si_faux"]
+            if abs(c["probabilite_si"] - q) > TOL:
+                errs.append(f"exception.conditions[{f}] : probabilite_si différente de resultat.facteurs")
+            if (c["probabilite_si"] > p) != exc["issue"]:
+                errs.append(f"exception.conditions[{f}] : doit rapprocher de l'issue de l'exception")
     return errs
 
 

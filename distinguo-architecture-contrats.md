@@ -3,7 +3,9 @@
 *But : que le front, le back et le calculateur avancent en parallèle sans s'attendre.*
 *Règle d'or : **le dossier `contracts/` fait foi**. Toute modification d'un format est annoncée à toute l'équipe avant d'être codée.*
 
-> **Version 1.1 — ce qui change :** un **format unique, le « dossier »**, remplace la requête et le résultat séparés. Le back envoie un dossier au calculateur, qui le renvoie complété. L'issue à prédire devient un booléen (`true` = requalification). Ajout de la grille complète, du schéma JSON, d'un validateur et d'exemples prêts à l'emploi dans `contracts/`.
+> **Version 1.2 — ce qui change :** le résultat donne maintenant **l'analyse de chaque facteur** (`resultat.facteurs`) : est-il pivot (`est_pivot`), son niveau, s'il est à documenter ou un levier, ce que deviendrait P s'il valait vrai ou faux, et quelles décisions seraient alors écartées. **Plusieurs facteurs peuvent être pivots** (`resultat.pivots`), et si aucun ne l'est seul, on cherche les paires (`resultat.pivots_combines`). Les champs `impacts` et `fait_pivot` de la v1.1 sont supprimés. Personne ne les avait encore codés, donc ce n'est pas une v2.0, mais c'est un changement incompatible.
+>
+> *Version 1.1 :* format unique, le « dossier ». Issue booléenne. Grille, schéma, validateur et exemples dans `contracts/`.
 
 ---
 
@@ -40,8 +42,10 @@
 4. **L'issue est un booléen :** `true` = requalification (salariat), `false` = indépendance. Le front affiche les libellés de la grille (`si_vrai` / `si_faux`), jamais `true` ou `false`.
 5. **Deux relectures humaines :** l'avocat confirme les faits du cas ; le juriste relit chaque décision extraite avant qu'elle ne serve (`validee: true`).
 6. **Traçabilité :** chaque fait extrait garde l'extrait du texte qui le justifie et un niveau de confiance.
-7. **Recalcul instantané :** cocher un fait relance seulement le calculateur, sans LLM. Moins d'une seconde.
-8. **Contrôle automatique :** tout dossier peut être vérifié par `contracts/valider.py`, qui contrôle le format **et** la cohérence.
+7. **Recalcul instantané :** changer un fait relance seulement le calculateur, sans LLM. Moins d'une seconde.
+8. **Des cases à trois états dans le front :** oui / non / inconnu. Une case à deux états ne peut pas représenter un fait inconnu, qui est le point de départ de la démo.
+9. **Arrondis :** le calculateur arrondit toutes les probabilités à 2 décimales **d'abord**, puis calcule les drapeaux (issue, incertain, pivot, niveau) sur les valeurs arrondies. Sinon, le front et le validateur verraient des incohérences à 0,50 près.
+10. **Contrôle automatique :** tout dossier peut être vérifié par `contracts/valider.py`, qui contrôle le format **et** la cohérence.
 
 ---
 
@@ -82,7 +86,7 @@ Un dossier a six blocs. Le schéma exact est dans `contracts/dossier.schema.json
 ### Forme générale
 ```json
 {
-  "meta":       { "version_format": "1.0", "dossier_id": "cas_7f3a9c21", "simulation": false },
+  "meta":       { "version_format": "1.2", "dossier_id": "cas_7f3a9c21", "simulation": false },
   "grille":     { "version": "1.0", "question": "…", "issue": { "libelle": "…", "si_vrai": "Salariat", "si_faux": "Indépendance" }, "facteurs": [ … ] },
   "cas":        { "id": "cas_7f3a9c21", "description": "…", "ressort": "CA Paris",
                   "facteurs": { "geolocalisation_suivi": true, "sanction_deconnexion": null, "…": "…" },
@@ -138,7 +142,9 @@ La grille contient 18 facteurs (15 actifs, 3 neutralisés). Le juriste doit la v
 | `modele` | `logistique_bayesienne` (principal) ou `vote_pondere` (comparaison) |
 | `niveau_intervalle` | 0,8 par défaut |
 | `date_reference` | Date utilisée pour l'ancienneté des décisions. Le calculateur ne lit jamais l'horloge. |
-| `seuil_exception` | 0,15 par défaut |
+| `seuil_exception` | 0,15 par défaut. Probabilité minimale de l'issue minoritaire pour afficher une exception même sans pivot. |
+| `seuil_sensibilite` | 0,10 par défaut. Écart de P à partir duquel un facteur est « sensible ». |
+| `marge_pivot` | 0,15 par défaut. Pour être pivot, un fait inversé doit faire passer P de l'autre côté de 0,5 **et** à au moins cette distance de 0,5. |
 
 ### Résultat (rempli par le calculateur)
 **Convention : toutes les probabilités désignent P(issue = `true`), sauf `majeure.probabilite` et `exception.probabilite`.**
@@ -149,13 +155,38 @@ La grille contient 18 facteurs (15 actifs, 3 neutralisés). Le juriste doit la v
 | `prediction.intervalle` | Intervalle au niveau demandé. Il contient toujours la probabilité. |
 | `prediction.issue` | `probabilite > 0,5` |
 | `prediction.incertain` | `true` si l'intervalle contient 0,5. Le front affiche alors « incertain ». |
-| `majeure` | L'issue prédite, sa probabilité (= max(p, 1 − p)) et les décisions **retenues** qui la soutiennent |
-| `exception` | L'issue inverse, sa probabilité (= 1 − majeure), les faits qui y mènent (`conditions`) et la décision retenue la plus proche de ce camp. `null` s'il n'y a pas d'exception crédible. |
-| `impacts` | Pour chaque fait non neutralisé : ce que deviendrait P si on l'inversait (un fait `null` est testé à `true` **et** à `false`). Trié par effet décroissant. |
-| `fait_pivot` | Le premier élément de `impacts` |
-| `impacts[].bascule` | `true` si l'issue prédite changerait |
+| `majeure` | L'issue prédite, sa probabilité (= max(p, 1 − p)) et les décisions **retenues** qui la soutiennent, de la plus forte à la plus faible |
+| `exception` | L'issue inverse, sa probabilité (= 1 − majeure), jusqu'à 3 faits qui en rapprochent le plus (`conditions`), et la décision retenue la plus proche de ce camp. Présente si et seulement s'il y a des pivots, des pivots combinés, ou si l'issue minoritaire atteint `seuil_exception`. |
+| `pivots` | Identifiants des facteurs pivots, du plus influent au moins influent. Peut être vide. |
+| `pivots_combines` | Si `pivots` est vide : jusqu'à 5 **paires** de faits qui font basculer ensemble (ex. géolocalisation **et** sanction). Vide sinon. |
+| `facteurs` | **L'analyse de chaque facteur de la grille**, détaillée ci-dessous |
 | `decisions[]` | Une ligne par décision du dossier, **dans le même ordre** : retenue ou non, motif d'exclusion, proximité (0 à 1), poids utilisé, détail du poids, alignement fait par fait (`identique` · `oppose` · `inconnu`) |
 | `avertissements` | Messages à afficher tels quels (corpus déséquilibré, réforme en cours…) |
+
+#### `resultat.facteurs` : une entrée par facteur, pour l'affichage ligne par ligne
+```json
+"sanction_deconnexion": {
+  "est_pivot": true,
+  "niveau": "pivot",
+  "type": "a_documenter",
+  "probabilite_si_vrai": 0.72,
+  "probabilite_si_faux": 0.24,
+  "contribution": 0.0,
+  "ecartees_si_vrai": ["exemple-ca-paris-1", "exemple-ca-lyon-1"],
+  "ecartees_si_faux": ["exemple-cass-1", "exemple-cass-2", "exemple-ca-lyon-1"]
+}
+```
+
+| Champ | Sens | Usage dans le front |
+|---|---|---|
+| `est_pivot` | Changer ce fait fait basculer l'issue **franchement** (au-delà de `marge_pivot`) | Badge « PIVOT » |
+| `niveau` | `pivot` · `sensible` (fait bouger P d'au moins `seuil_sensibilite`) · `faible` · `neutralise` (importance 0) | Couleur de la ligne |
+| `type` | `a_documenter` si le fait du cas est inconnu ; `levier` s'il est connu | « À demander au client » / « Si le client changeait ce point… » |
+| `probabilite_si_vrai` / `_si_faux` | P(issue vraie) si ce fait valait vrai / faux. Pour un fait connu, la valeur actuelle redonne P. | Au survol : « avec : 72 % · sans : 24 % » |
+| `contribution` | Poids actuel du fait dans le score (> 0 : vers la requalification). 0 si inconnu ou neutralisé. | Barre d'explication |
+| `ecartees_si_vrai` / `_si_faux` | **Liste complète** des décisions écartées si ce fait valait vrai / faux | Comparée à la liste actuelle : « si oui, CA Paris 2021 ne s'applique plus » |
+
+**Un fait connu ne se teste que dans un sens** (on l'inverse). Un fait inconnu se teste dans les deux. Un facteur est pivot si l'un des tests franchit 0,5 avec la marge.
 
 ---
 
@@ -173,8 +204,11 @@ Elles sont toutes vérifiées par `contracts/valider.py`. Un dossier qui en viol
 - `resultat.decisions` reprend les décisions dans le même ordre.
 - Une décision est écartée si et seulement si elle a un motif d'exclusion.
 - La majeure ne cite que des décisions retenues, de la bonne issue.
-- Probabilité, intervalle, issue, incertitude, majeure, exception, `delta` et `bascule` sont cohérents entre eux.
-- `fait_pivot` est le premier des `impacts`.
+- Probabilité, intervalle, issue, incertitude, majeure et exception sont cohérents entre eux.
+- `resultat.facteurs` couvre exactement la grille. Pour chaque facteur, `est_pivot`, `niveau` et `type` correspondent aux probabilités et à la valeur du cas.
+- Un facteur neutralisé n'est jamais pivot et n'a aucun effet.
+- `pivots` liste exactement les facteurs pivots, triés. `pivots_combines` est vide s'il existe des pivots simples.
+- Les conditions de l'exception reprennent les probabilités de `resultat.facteurs`.
 
 **Vérifier un dossier :**
 ```
@@ -222,7 +256,7 @@ uv run --with jsonschema python contracts/valider.py mon_dossier.json
    - poids d'observation : le poids de chaque décision ;
    - intervalle : tiré de l'incertitude du modèle.
 4. **Modèle de comparaison, le vote pondéré :** mêmes entrées, même sortie. Les deux sont comparés en retirant chaque décision tour à tour, et on garde le meilleur.
-5. **Fait pivot, impacts et exception :** chaque fait est inversé un par un et on mesure l'effet sur P.
+5. **Analyse des facteurs :** chaque fait est testé à vrai et à faux. On recalcule les exclusions puis P, et on en déduit pivot, niveau, contribution et décisions écartées. Si aucun fait seul n'est pivot, on teste les paires (environ 100 calculs, instantané). L'exception reprend les faits qui rapprochent le plus de l'issue minoritaire.
 6. **Proximité et alignement :** comparaison fait par fait du cas avec chaque décision, pour la matrice et pour désigner la décision de référence de l'exception.
 
 ---
@@ -237,10 +271,11 @@ Tout est déjà dans `contracts/` :
 | `dossier.schema.json` | Le format exact du dossier |
 | `valider.py` | Vérifier n'importe quel dossier |
 | `exemples/dossier_entree.json` | Ce que le back envoie au calculateur (5 décisions **fictives**) |
-| `exemples/dossier_complet.json` | Ce que le calculateur renvoie : statut incertain, majeure « indépendance », exception « salariat si sanction » |
-| `exemples/dossier_apres_bascule.json` | La même chose après avoir coché « sanction » : la majeure bascule vers le salariat |
+| `exemples/dossier_complet.json` | Ce que le calculateur renvoie : P = 0,47, indépendance, incertain, 5 pivots (dont la sanction), 1 décision écartée |
+| `exemples/dossier_apres_bascule.json` | La même chose avec « sanction » à oui : P = 0,72, bascule vers le salariat, 2 pivots (sanction, géolocalisation), une 2e décision écartée |
+| `generer_exemples.py` | Régénère les exemples avec un **modèle jouet**, puis les valide. Ce n'est pas le calculateur. |
 
-Les décisions et les probabilités des exemples sont **fictives et illustratives**. Elles servent à développer, pas à la démo.
+Les décisions sont **fictives** et les chiffres viennent d'un modèle jouet. Ils sont cohérents entre eux, mais n'ont aucune valeur juridique. Ils servent à développer, pas à la démo.
 
 - **Front :** branché sur les fichiers d'exemple, sans back. Les deux fichiers complets suffisent pour coder la balance, la matrice et la bascule.
 - **Back :** un faux calculateur qui renvoie `dossier_complet.json`, remplacé par le vrai à l'intégration. Il valide chaque dossier qu'il construit.
@@ -262,7 +297,7 @@ Les décisions et les probabilités des exemples sont **fictives et illustrative
 ```
 - Une branche par personne, fusion sur `main` à chaque jalon.
 - Personne ne modifie le dossier d'un autre sans le prévenir.
-- **Changer un format :** proposer la modification de `contracts/` à toute l'équipe, mettre à jour schéma, exemples et validateur ensemble, puis augmenter la version (ajout d'un champ optionnel : 1.1 ; changement incompatible : 2.0).
+- **Changer un format :** proposer la modification de `contracts/` à toute l'équipe, mettre à jour schéma, exemples et validateur ensemble, puis augmenter la version (ajout d'un champ optionnel : version mineure suivante, 1.3 ; changement incompatible : 2.0). Régénérer les exemples avec `generer_exemples.py`.
 
 ---
 
@@ -288,3 +323,4 @@ Un point de 5 minutes à chaque jalon : ce qui marche, ce qui bloque, ce qui cha
 - [ ] Fichiers JSON ou SQLite pour le stockage côté back ?
 - [ ] Le serveur MCP est-il dans la démo, ou seulement mentionné dans le pitch ?
 - [ ] Le juriste valide-t-il la grille telle quelle (facteurs, orientations, importances) ?
+- [ ] **Calculateur — largeur des intervalles.** Avec une quinzaine de décisions, l'intervalle à 80 % est très large : dans les exemples, même après la bascule (P = 0,72), le résultat reste « incertain ». Il faut choisir : a priori plus fort, intervalle plus étroit (ex. 60 %), ou assumer « salariat probable mais incertain » dans la démo.

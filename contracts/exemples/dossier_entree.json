@@ -1,6 +1,6 @@
 {
   "meta": {
-    "version_format": "1.0",
+    "version_format": "1.2",
     "dossier_id": "cas_exemple1",
     "genere_le": "2026-10-04T14:00:00+02:00",
     "simulation": false
@@ -162,8 +162,8 @@
   },
   "cas": {
     "id": "cas_exemple1",
-    "question": "Mon client peut-il obtenir la requalification de sa relation avec la plateforme ?",
-    "description": "[FICTIF] Livreur à vélo. Il choisit ses créneaux, l'application le géolocalise pendant les courses, le prix de chaque course est fixé par la plateforme, il travaille aussi pour une autre application et il est micro-entrepreneur.",
+    "question": "Notre modèle de livraison résiste-t-il au risque de requalification ?",
+    "description": "[FICTIF] Plateforme de livraison. Les livreurs choisissent leurs créneaux, l'application les géolocalise pendant les courses, le prix de chaque course est fixé par la plateforme, ils peuvent travailler pour d'autres applications, peuvent confier une course à un autre livreur inscrit et sont micro-entrepreneurs.",
     "ressort": "CA Paris",
     "documents": [],
     "facteurs": {
@@ -175,7 +175,7 @@
       "clientele_attribuee": null,
       "execution_dirigee": null,
       "multi_plateformes": true,
-      "remplacement_possible": null,
+      "remplacement_possible": true,
       "info_masquee": null,
       "evaluation_performance": null,
       "equipement_marque": null,
@@ -188,7 +188,7 @@
     },
     "preuves": {
       "geolocalisation_suivi": {
-        "extrait": "l'application le géolocalise pendant les courses",
+        "extrait": "l'application les géolocalise pendant les courses",
         "confiance": 1.0,
         "source": "extraction"
       },
@@ -198,17 +198,22 @@
         "source": "extraction"
       },
       "multi_plateformes": {
-        "extrait": "il travaille aussi pour une autre application",
+        "extrait": "ils peuvent travailler pour d'autres applications",
         "confiance": 0.8,
         "source": "extraction"
       },
+      "remplacement_possible": {
+        "extrait": "peuvent confier une course à un autre livreur inscrit",
+        "confiance": 0.7,
+        "source": "extraction"
+      },
       "liberte_horaires": {
-        "extrait": "Il choisit ses créneaux",
+        "extrait": "Les livreurs choisissent leurs créneaux",
         "confiance": 1.0,
         "source": "extraction"
       },
       "immatriculation": {
-        "extrait": "il est micro-entrepreneur",
+        "extrait": "sont micro-entrepreneurs",
         "confiance": 1.0,
         "source": "extraction"
       },
@@ -640,7 +645,9 @@
     "modele": "logistique_bayesienne",
     "niveau_intervalle": 0.8,
     "date_reference": "2026-10-04",
-    "seuil_exception": 0.15
+    "seuil_exception": 0.15,
+    "seuil_sensibilite": 0.1,
+    "marge_pivot": 0.15
   },
   "resultat": null
 }

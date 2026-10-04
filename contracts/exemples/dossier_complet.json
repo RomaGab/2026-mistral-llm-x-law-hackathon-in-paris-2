@@ -1,6 +1,6 @@
 {
   "meta": {
-    "version_format": "1.0",
+    "version_format": "1.2",
     "dossier_id": "cas_exemple1",
     "genere_le": "2026-10-04T14:00:00+02:00",
     "simulation": false
@@ -162,8 +162,8 @@
   },
   "cas": {
     "id": "cas_exemple1",
-    "question": "Mon client peut-il obtenir la requalification de sa relation avec la plateforme ?",
-    "description": "[FICTIF] Livreur à vélo. Il choisit ses créneaux, l'application le géolocalise pendant les courses, le prix de chaque course est fixé par la plateforme, il travaille aussi pour une autre application et il est micro-entrepreneur.",
+    "question": "Notre modèle de livraison résiste-t-il au risque de requalification ?",
+    "description": "[FICTIF] Plateforme de livraison. Les livreurs choisissent leurs créneaux, l'application les géolocalise pendant les courses, le prix de chaque course est fixé par la plateforme, ils peuvent travailler pour d'autres applications, peuvent confier une course à un autre livreur inscrit et sont micro-entrepreneurs.",
     "ressort": "CA Paris",
     "documents": [],
     "facteurs": {
@@ -175,7 +175,7 @@
       "clientele_attribuee": null,
       "execution_dirigee": null,
       "multi_plateformes": true,
-      "remplacement_possible": null,
+      "remplacement_possible": true,
       "info_masquee": null,
       "evaluation_performance": null,
       "equipement_marque": null,
@@ -188,7 +188,7 @@
     },
     "preuves": {
       "geolocalisation_suivi": {
-        "extrait": "l'application le géolocalise pendant les courses",
+        "extrait": "l'application les géolocalise pendant les courses",
         "confiance": 1.0,
         "source": "extraction"
       },
@@ -198,17 +198,22 @@
         "source": "extraction"
       },
       "multi_plateformes": {
-        "extrait": "il travaille aussi pour une autre application",
+        "extrait": "ils peuvent travailler pour d'autres applications",
         "confiance": 0.8,
         "source": "extraction"
       },
+      "remplacement_possible": {
+        "extrait": "peuvent confier une course à un autre livreur inscrit",
+        "confiance": 0.7,
+        "source": "extraction"
+      },
       "liberte_horaires": {
-        "extrait": "Il choisit ses créneaux",
+        "extrait": "Les livreurs choisissent leurs créneaux",
         "confiance": 1.0,
         "source": "extraction"
       },
       "immatriculation": {
-        "extrait": "il est micro-entrepreneur",
+        "extrait": "sont micro-entrepreneurs",
         "confiance": 1.0,
         "source": "extraction"
       },
@@ -640,23 +645,25 @@
     "modele": "logistique_bayesienne",
     "niveau_intervalle": 0.8,
     "date_reference": "2026-10-04",
-    "seuil_exception": 0.15
+    "seuil_exception": 0.15,
+    "seuil_sensibilite": 0.1,
+    "marge_pivot": 0.15
   },
   "resultat": {
     "modele": "logistique_bayesienne",
-    "version_calculateur": "0.0.0-exemple",
+    "version_calculateur": "0.0.0-exemple-jouet",
     "prediction": {
-      "probabilite": 0.38,
+      "probabilite": 0.47,
       "intervalle": [
-        0.2,
-        0.6
+        0.16,
+        0.81
       ],
       "issue": false,
       "incertain": true
     },
     "majeure": {
       "issue": false,
-      "probabilite": 0.62,
+      "probabilite": 0.53,
       "decisions": [
         "exemple-ca-paris-1",
         "exemple-ca-paris-2"
@@ -664,60 +671,292 @@
     },
     "exception": {
       "issue": true,
-      "probabilite": 0.38,
+      "probabilite": 0.47,
       "conditions": [
+        {
+          "facteur": "multi_plateformes",
+          "valeur": false,
+          "probabilite_si": 0.73
+        },
+        {
+          "facteur": "remplacement_possible",
+          "valeur": false,
+          "probabilite_si": 0.73
+        },
         {
           "facteur": "sanction_deconnexion",
           "valeur": true,
-          "probabilite_si": 0.81
+          "probabilite_si": 0.72
         }
       ],
       "decision_reference": "exemple-cass-1"
     },
-    "fait_pivot": {
-      "facteur": "sanction_deconnexion",
-      "valeur": true,
-      "probabilite_si": 0.81,
-      "delta": 0.43,
-      "bascule": true
-    },
-    "impacts": [
-      {
-        "facteur": "sanction_deconnexion",
-        "valeur": true,
-        "probabilite_si": 0.81,
-        "delta": 0.43,
-        "bascule": true
-      },
-      {
-        "facteur": "service_organise",
-        "valeur": true,
-        "probabilite_si": 0.66,
-        "delta": 0.28,
-        "bascule": true
-      },
-      {
-        "facteur": "sanction_deconnexion",
-        "valeur": false,
-        "probabilite_si": 0.22,
-        "delta": -0.16,
-        "bascule": false
-      },
-      {
-        "facteur": "geolocalisation_suivi",
-        "valeur": false,
-        "probabilite_si": 0.27,
-        "delta": -0.11,
-        "bascule": false
-      },
-      {
-        "facteur": "multi_plateformes",
-        "valeur": false,
-        "probabilite_si": 0.45,
-        "delta": 0.07,
-        "bascule": false
-      }
+    "pivots": [
+      "multi_plateformes",
+      "remplacement_possible",
+      "sanction_deconnexion",
+      "service_organise",
+      "penalites_bonus"
     ],
+    "pivots_combines": [],
+    "facteurs": {
+      "service_organise": {
+        "est_pivot": true,
+        "niveau": "pivot",
+        "type": "a_documenter",
+        "probabilite_si_vrai": 0.71,
+        "probabilite_si_faux": 0.24,
+        "contribution": 0.0,
+        "ecartees_si_vrai": [
+          "exemple-ca-lyon-1"
+        ],
+        "ecartees_si_faux": [
+          "exemple-cass-2",
+          "exemple-ca-lyon-1"
+        ]
+      },
+      "geolocalisation_suivi": {
+        "est_pivot": false,
+        "niveau": "sensible",
+        "type": "levier",
+        "probabilite_si_vrai": 0.47,
+        "probabilite_si_faux": 0.11,
+        "contribution": 0.96,
+        "ecartees_si_vrai": [
+          "exemple-ca-lyon-1"
+        ],
+        "ecartees_si_faux": [
+          "exemple-cass-1"
+        ]
+      },
+      "sanction_deconnexion": {
+        "est_pivot": true,
+        "niveau": "pivot",
+        "type": "a_documenter",
+        "probabilite_si_vrai": 0.72,
+        "probabilite_si_faux": 0.24,
+        "contribution": 0.0,
+        "ecartees_si_vrai": [
+          "exemple-ca-paris-1",
+          "exemple-ca-lyon-1"
+        ],
+        "ecartees_si_faux": [
+          "exemple-cass-1",
+          "exemple-cass-2",
+          "exemple-ca-lyon-1"
+        ]
+      },
+      "penalites_bonus": {
+        "est_pivot": true,
+        "niveau": "pivot",
+        "type": "a_documenter",
+        "probabilite_si_vrai": 0.71,
+        "probabilite_si_faux": 0.24,
+        "contribution": 0.0,
+        "ecartees_si_vrai": [
+          "exemple-ca-lyon-1"
+        ],
+        "ecartees_si_faux": [
+          "exemple-ca-lyon-1"
+        ]
+      },
+      "tarif_impose": {
+        "est_pivot": false,
+        "niveau": "sensible",
+        "type": "levier",
+        "probabilite_si_vrai": 0.47,
+        "probabilite_si_faux": 0.24,
+        "contribution": 0.53,
+        "ecartees_si_vrai": [
+          "exemple-ca-lyon-1"
+        ],
+        "ecartees_si_faux": [
+          "exemple-ca-lyon-1"
+        ]
+      },
+      "clientele_attribuee": {
+        "est_pivot": false,
+        "niveau": "sensible",
+        "type": "a_documenter",
+        "probabilite_si_vrai": 0.6,
+        "probabilite_si_faux": 0.35,
+        "contribution": 0.0,
+        "ecartees_si_vrai": [
+          "exemple-ca-lyon-1"
+        ],
+        "ecartees_si_faux": [
+          "exemple-ca-lyon-1"
+        ]
+      },
+      "execution_dirigee": {
+        "est_pivot": false,
+        "niveau": "sensible",
+        "type": "a_documenter",
+        "probabilite_si_vrai": 0.6,
+        "probabilite_si_faux": 0.35,
+        "contribution": 0.0,
+        "ecartees_si_vrai": [
+          "exemple-ca-lyon-1"
+        ],
+        "ecartees_si_faux": [
+          "exemple-ca-lyon-1"
+        ]
+      },
+      "multi_plateformes": {
+        "est_pivot": true,
+        "niveau": "pivot",
+        "type": "levier",
+        "probabilite_si_vrai": 0.47,
+        "probabilite_si_faux": 0.73,
+        "contribution": -0.55,
+        "ecartees_si_vrai": [
+          "exemple-ca-lyon-1"
+        ],
+        "ecartees_si_faux": [
+          "exemple-ca-lyon-1"
+        ]
+      },
+      "remplacement_possible": {
+        "est_pivot": true,
+        "niveau": "pivot",
+        "type": "levier",
+        "probabilite_si_vrai": 0.47,
+        "probabilite_si_faux": 0.73,
+        "contribution": -0.55,
+        "ecartees_si_vrai": [
+          "exemple-ca-lyon-1"
+        ],
+        "ecartees_si_faux": [
+          "exemple-ca-lyon-1"
+        ]
+      },
+      "info_masquee": {
+        "est_pivot": false,
+        "niveau": "faible",
+        "type": "a_documenter",
+        "probabilite_si_vrai": 0.52,
+        "probabilite_si_faux": 0.42,
+        "contribution": 0.0,
+        "ecartees_si_vrai": [
+          "exemple-ca-lyon-1"
+        ],
+        "ecartees_si_faux": [
+          "exemple-ca-lyon-1"
+        ]
+      },
+      "evaluation_performance": {
+        "est_pivot": false,
+        "niveau": "faible",
+        "type": "a_documenter",
+        "probabilite_si_vrai": 0.52,
+        "probabilite_si_faux": 0.42,
+        "contribution": 0.0,
+        "ecartees_si_vrai": [
+          "exemple-ca-lyon-1"
+        ],
+        "ecartees_si_faux": [
+          "exemple-ca-lyon-1"
+        ]
+      },
+      "equipement_marque": {
+        "est_pivot": false,
+        "niveau": "faible",
+        "type": "a_documenter",
+        "probabilite_si_vrai": 0.52,
+        "probabilite_si_faux": 0.42,
+        "contribution": 0.0,
+        "ecartees_si_vrai": [
+          "exemple-ca-lyon-1"
+        ],
+        "ecartees_si_faux": [
+          "exemple-ca-lyon-1"
+        ]
+      },
+      "liberte_horaires": {
+        "est_pivot": false,
+        "niveau": "sensible",
+        "type": "levier",
+        "probabilite_si_vrai": 0.47,
+        "probabilite_si_faux": 0.59,
+        "contribution": -0.24,
+        "ecartees_si_vrai": [
+          "exemple-ca-lyon-1"
+        ],
+        "ecartees_si_faux": [
+          "exemple-ca-lyon-1"
+        ]
+      },
+      "moyens_propres": {
+        "est_pivot": false,
+        "niveau": "faible",
+        "type": "a_documenter",
+        "probabilite_si_vrai": 0.42,
+        "probabilite_si_faux": 0.52,
+        "contribution": 0.0,
+        "ecartees_si_vrai": [
+          "exemple-ca-lyon-1"
+        ],
+        "ecartees_si_faux": [
+          "exemple-ca-lyon-1"
+        ]
+      },
+      "immatriculation": {
+        "est_pivot": false,
+        "niveau": "sensible",
+        "type": "levier",
+        "probabilite_si_vrai": 0.47,
+        "probabilite_si_faux": 0.59,
+        "contribution": -0.24,
+        "ecartees_si_vrai": [
+          "exemple-ca-lyon-1"
+        ],
+        "ecartees_si_faux": [
+          "exemple-ca-lyon-1"
+        ]
+      },
+      "charte_sociale": {
+        "est_pivot": false,
+        "niveau": "neutralise",
+        "type": "a_documenter",
+        "probabilite_si_vrai": 0.47,
+        "probabilite_si_faux": 0.47,
+        "contribution": 0.0,
+        "ecartees_si_vrai": [
+          "exemple-ca-lyon-1"
+        ],
+        "ecartees_si_faux": [
+          "exemple-ca-lyon-1"
+        ]
+      },
+      "qualification_contractuelle": {
+        "est_pivot": false,
+        "niveau": "neutralise",
+        "type": "a_documenter",
+        "probabilite_si_vrai": 0.47,
+        "probabilite_si_faux": 0.47,
+        "contribution": 0.0,
+        "ecartees_si_vrai": [
+          "exemple-ca-lyon-1"
+        ],
+        "ecartees_si_faux": [
+          "exemple-ca-lyon-1"
+        ]
+      },
+      "dependance_economique": {
+        "est_pivot": false,
+        "niveau": "neutralise",
+        "type": "a_documenter",
+        "probabilite_si_vrai": 0.47,
+        "probabilite_si_faux": 0.47,
+        "contribution": 0.0,
+        "ecartees_si_vrai": [
+          "exemple-ca-lyon-1"
+        ],
+        "ecartees_si_faux": [
+          "exemple-ca-lyon-1"
+        ]
+      }
+    },
     "decisions": [
       {
         "id": "exemple-cass-1",
@@ -789,7 +1028,7 @@
         "id": "exemple-ca-paris-1",
         "retenue": true,
         "motif_exclusion": null,
-        "proximite": 0.66,
+        "proximite": 0.69,
         "poids": 0.55,
         "detail_poids": {
           "autorite": 0.5,
@@ -806,7 +1045,7 @@
           "clientele_attribuee": "inconnu",
           "execution_dirigee": "inconnu",
           "multi_plateformes": "identique",
-          "remplacement_possible": "inconnu",
+          "remplacement_possible": "identique",
           "info_masquee": "inconnu",
           "evaluation_performance": "inconnu",
           "equipement_marque": "inconnu",
@@ -855,7 +1094,7 @@
         "id": "exemple-ca-paris-2",
         "retenue": true,
         "motif_exclusion": null,
-        "proximite": 0.59,
+        "proximite": 0.62,
         "poids": 0.57,
         "detail_poids": {
           "autorite": 0.5,
@@ -872,7 +1111,7 @@
           "clientele_attribuee": "inconnu",
           "execution_dirigee": "inconnu",
           "multi_plateformes": "identique",
-          "remplacement_possible": "inconnu",
+          "remplacement_possible": "identique",
           "info_masquee": "inconnu",
           "evaluation_performance": "inconnu",
           "equipement_marque": "inconnu",
@@ -886,7 +1125,7 @@
       }
     ],
     "avertissements": [
-      "Exemple : probabilités illustratives, non calculées.",
+      "Exemple généré par un modèle jouet (contracts/generer_exemples.py) : chiffres cohérents mais sans valeur juridique.",
       "Directive (UE) 2024/2831 : présomption légale de salariat — vérifier la transposition."
     ]
   }
