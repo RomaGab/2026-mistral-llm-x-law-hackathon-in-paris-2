@@ -5,13 +5,12 @@ import { englishExcerpt, englishExclusionReason } from "@/lib/dashboard/source-c
 import type { DashboardDetail, DashboardDossier, FactorDefinition } from "@/types/dashboard";
 import styles from "./dashboard.module.css";
 
-export function EvidencePanel({ detail, dossier, original, closing, preserveFocus, preview, anchor, onClose, onExited }: {
+export function EvidencePanel({ detail, dossier, original, closing, preserveFocus, anchor, onClose, onExited }: {
   detail: DashboardDetail;
   dossier: DashboardDossier;
   original: DashboardDossier;
   closing: boolean;
   preserveFocus: boolean;
-  preview: boolean;
   anchor: HTMLElement | null;
   onClose: () => void;
   onExited: () => void;
@@ -58,6 +57,18 @@ export function EvidencePanel({ detail, dossier, original, closing, preserveFocu
     return () => dialog?.close();
   }, []);
 
+  // A click anywhere else closes the panel; clicks on another cell switch to it instead.
+  useEffect(() => {
+    function closeOnOutsideClick(event: PointerEvent) {
+      const target = event.target as Node;
+      if (dialogRef.current?.contains(target)) return;
+      if (target instanceof Element && target.closest('[aria-haspopup="dialog"]')) return;
+      onClose();
+    }
+    document.addEventListener("pointerdown", closeOnOutsideClick);
+    return () => document.removeEventListener("pointerdown", closeOnOutsideClick);
+  }, [onClose]);
+
   // Desktop: sit beside the inspected cell (right, or left when there is no room) and follow scrolling.
   useLayoutEffect(() => {
     const dialog = dialogRef.current;
@@ -98,7 +109,7 @@ export function EvidencePanel({ detail, dossier, original, closing, preserveFocu
   }, [detail, preserveFocus]);
 
   return (
-    <dialog ref={dialogRef} id="case-details" className={styles.evidencePanel} data-closing={closing} data-preserve-focus={preserveFocus} aria-labelledby="evidence-title" data-preview={preview} onAnimationEnd={(event) => {
+    <dialog ref={dialogRef} id="case-details" className={styles.evidencePanel} data-closing={closing} data-preserve-focus={preserveFocus} aria-labelledby="evidence-title" onAnimationEnd={(event) => {
       if (event.target === event.currentTarget && !event.nativeEvent.pseudoElement && closing) onExited();
     }} onCancel={(event) => {
       event.preventDefault();
