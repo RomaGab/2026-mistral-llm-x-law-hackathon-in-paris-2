@@ -1,0 +1,117 @@
+.field {
+  position: relative;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  background: var(--color-surface);
+  box-shadow: 0 1px 3px #00000008;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.field:focus-within {
+  border-color: #928f86;
+  box-shadow: 0 0 0 3px #201f1c08;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 14px 14px;
+}
+
+.attachButton,
+.removeButton {
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--color-subtle);
+  cursor: pointer;
+}
+
+.attachButton { width: 36px; height: 36px; }
+.removeButton { width: 28px; height: 28px; }
+
+.attachButton:hover,
+.removeButton:hover {
+  background: var(--color-control);
+  color: var(--color-text);
+}
+
+.attachButton:focus-visible,
+.removeButton:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+.fileList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0 22px 8px;
+}
+
+.fileRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  max-width: 100%;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 8px;
+}
+
+.fileType {
+  display: grid;
+  flex: 0 0 auto;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border-radius: 4px;
+  background: var(--color-control);
+  color: var(--color-subtle);
+  font-size: 9px;
+  font-weight: 600;
+}
+
+.fileDetails { display: grid; min-width: 0; }
+.fileName { max-width: 240px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 12px; }
+.fileSize { color: var(--color-subtle); font-size: 10px; }
+
+.dragging { border-color: var(--color-accent); }
+
+.dropOverlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  border-radius: inherit;
+  background: #fff0e9ed;
+  color: var(--color-accent);
+  pointer-events: none;
+}
+
+.errors { color: var(--color-danger); font-size: 12px; }
+.errors:empty { display: none; }
+.errors ul { margin: 0; padding: 0 24px 16px 36px; }
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .field { transition: none; }
+}

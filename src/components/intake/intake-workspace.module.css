@@ -1,0 +1,241 @@
+.shell {
+  min-height: 100svh;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  height: 76px;
+  padding: 0 32px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.brandMark,
+.brandName > span {
+  color: var(--color-accent);
+}
+
+.brandName {
+  font-size: 23px;
+  font-weight: 650;
+  letter-spacing: -1px;
+}
+
+.content {
+  display: grid;
+  min-height: calc(100svh - 76px);
+  align-items: center;
+  padding: 24px 24px 16vh;
+}
+
+.composer {
+  width: 100%;
+  max-width: 760px;
+  margin-inline: auto;
+}
+
+.form {
+  margin: 0;
+}
+
+.intro {
+  margin-bottom: 28px;
+}
+
+.intro h1 {
+  margin: 0 0 10px;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32px;
+  letter-spacing: -0.6px;
+}
+
+.intro p {
+  margin: 0;
+  color: var(--color-subtle);
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.textarea {
+  display: block;
+  width: 100%;
+  min-height: 142px;
+  max-height: min(42svh, 360px);
+  resize: none;
+  overflow-y: auto;
+  border: 0;
+  border-radius: 12px 12px 0 0;
+  padding: 22px 24px 12px;
+  outline: none;
+  background: transparent;
+  color: var(--color-text);
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.textarea::placeholder {
+  color: var(--color-muted);
+  opacity: 1;
+}
+
+.textarea::-webkit-scrollbar { width: 6px; }
+.textarea::-webkit-scrollbar-track { background: transparent; }
+.textarea::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background: var(--color-muted);
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  .textarea {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-muted) transparent;
+  }
+}
+
+.submitButton {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background: var(--color-button);
+  color: white;
+  cursor: pointer;
+}
+
+.submitButton:hover:not(:disabled) {
+  background: var(--color-text);
+}
+
+.submitButton:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+.submitButton:disabled {
+  background: var(--color-control);
+  color: var(--color-muted);
+  cursor: default;
+}
+
+.feedback {
+  margin-top: 12px;
+  color: var(--color-subtle);
+  font-size: 12px;
+  text-align: center;
+}
+
+.feedback:empty {
+  display: none;
+}
+
+.confirmation {
+  width: min(520px, calc(100% - 32px));
+  max-height: calc(100svh - 32px);
+  padding: 24px;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  background: var(--color-surface);
+  color: var(--color-text);
+  box-shadow: 0 20px 60px #201f1c26;
+}
+
+.confirmation::backdrop {
+  background: #201f1c55;
+  backdrop-filter: blur(2px);
+}
+
+.dialogHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.dialogIcon,
+.closeButton {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+}
+
+.dialogIcon {
+  background: var(--color-control);
+  color: var(--color-subtle);
+}
+
+.closeButton {
+  border: 0;
+  background: transparent;
+  color: var(--color-subtle);
+  cursor: pointer;
+}
+
+.closeButton:hover {
+  background: var(--color-control);
+}
+
+.confirmation h2 {
+  margin: 0 0 10px;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -0.4px;
+}
+
+.confirmation p {
+  margin: 0;
+  color: var(--color-subtle);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.dialogActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.secondaryButton,
+.continueButton {
+  min-height: 40px;
+  padding: 10px 14px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.secondaryButton {
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+.secondaryButton:hover { background: var(--color-control); }
+.continueButton { background: var(--color-button); color: white; }
+.continueButton:hover { background: var(--color-text); }
+
+.dialogActions button:focus-visible,
+.closeButton:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+@media (max-width: 600px) {
+  .header { height: 64px; padding-inline: 20px; }
+  .content { min-height: calc(100svh - 64px); padding: 20px 16px 12vh; }
+  .textarea { padding: 18px 18px 10px; }
+  .dialogActions { flex-direction: column; }
+}

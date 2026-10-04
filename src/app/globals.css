@@ -1,0 +1,66 @@
+:root {
+  color-scheme: light;
+  /* Mistral Studio computed styles, inspected in Safari. */
+  --color-background: #fbfbf8;
+  --color-surface: #ffffff;
+  --color-text: #201f1c;
+  --color-muted: #928f86;
+  --color-subtle: #615f57;
+  --color-border: #0000001a;
+  --color-accent: #fa500f;
+  --color-accent-soft: #fff0e9;
+  --color-button: #1a1a1e;
+  --color-control: #f0efeb;
+  --color-danger: #ad3028;
+  --font-sans: var(--font-inter), Arial, Helvetica, sans-serif;
+  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+button,
+input,
+textarea,
+summary {
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  background: #ffe0cd;
+  color: var(--color-text);
+}
+
+.skip-link {
+  position: fixed;
+  z-index: 100;
+  top: 8px;
+  left: 8px;
+  transform: translateY(-150%);
+  border: 1px solid var(--color-text);
+  border-radius: 4px;
+  padding: 10px 16px;
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}

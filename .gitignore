@@ -1,3 +1,50 @@
+# JavaScript dependencies
+node_modules/
+
+# Next.js and build output
+/.next/
+/out/
+/build/
+/dist/
+next-env.d.ts
+*.tsbuildinfo
+
+# Test output
+/coverage/
+
+# Local lint cache
+.eslintcache
+
+# Local environment files (keep templates shareable)
+.env*
+!.env.example
+!.env.sample
+!.env.template
+
+# Deployment metadata
+.vercel/
+
+# Local application and package manager logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-debug.log*
+
+# Python caches and virtual environments
 __pycache__/
 *.pyc
-.env
+*.pyo
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Operating system and editor temporary files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
