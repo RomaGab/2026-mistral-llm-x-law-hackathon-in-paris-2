@@ -1,0 +1,878 @@
+{
+  "meta": {
+    "version_format": "1.0",
+    "dossier_id": "cas_exemple1",
+    "genere_le": "2026-10-04T14:00:00+02:00",
+    "simulation": true
+  },
+  "grille": {
+    "version": "1.0",
+    "question": "Le travailleur de plateforme est-il lié par un contrat de travail ?",
+    "issue": {
+      "libelle": "Requalification en contrat de travail",
+      "si_vrai": "Salariat",
+      "si_faux": "Indépendance"
+    },
+    "facteurs": [
+      {
+        "id": "service_organise",
+        "libelle": "Service organisé par la plateforme",
+        "question": "Les conditions de la prestation sont-elles entièrement fixées par la plateforme ?",
+        "groupe": "service_organise",
+        "oriente": true,
+        "importance": 1.0
+      },
+      {
+        "id": "geolocalisation_suivi",
+        "libelle": "Géolocalisation en temps réel",
+        "question": "La plateforme suit-elle la position du travailleur en temps réel ?",
+        "groupe": "controle",
+        "oriente": true,
+        "importance": 1.0
+      },
+      {
+        "id": "sanction_deconnexion",
+        "libelle": "Sanction par déconnexion ou désactivation",
+        "question": "La plateforme peut-elle déconnecter ou désactiver le travailleur en cas de refus, d'annulation ou de mauvaise note ?",
+        "groupe": "sanction",
+        "oriente": true,
+        "importance": 1.0
+      },
+      {
+        "id": "penalites_bonus",
+        "libelle": "Pénalités ou bonus/malus",
+        "question": "Existe-t-il un système de pénalités ou de bonus/malus lié au comportement du travailleur ?",
+        "groupe": "sanction",
+        "oriente": true,
+        "importance": 1.0
+      },
+      {
+        "id": "tarif_impose",
+        "libelle": "Tarif fixé unilatéralement",
+        "question": "Le prix de la prestation est-il fixé unilatéralement par la plateforme ?",
+        "groupe": "direction",
+        "oriente": true,
+        "importance": 0.5
+      },
+      {
+        "id": "clientele_attribuee",
+        "libelle": "Pas de clientèle propre",
+        "question": "Le travailleur est-il empêché de constituer sa propre clientèle ?",
+        "groupe": "direction",
+        "oriente": true,
+        "importance": 0.5
+      },
+      {
+        "id": "execution_dirigee",
+        "libelle": "Modalités d'exécution imposées",
+        "question": "La plateforme impose-t-elle les modalités d'exécution (itinéraire, process, délais) ?",
+        "groupe": "direction",
+        "oriente": true,
+        "importance": 0.5
+      },
+      {
+        "id": "multi_plateformes",
+        "libelle": "Liberté de travailler pour des concurrents",
+        "question": "Le travailleur peut-il travailler pour d'autres plateformes ou des concurrents ?",
+        "groupe": "independance",
+        "oriente": false,
+        "importance": 0.5
+      },
+      {
+        "id": "remplacement_possible",
+        "libelle": "Faculté de se faire remplacer",
+        "question": "Le travailleur peut-il se faire remplacer ou sous-traiter la prestation ?",
+        "groupe": "independance",
+        "oriente": false,
+        "importance": 0.5
+      },
+      {
+        "id": "info_masquee",
+        "libelle": "Mission inconnue avant acceptation",
+        "question": "La destination ou le contenu de la mission sont-ils inconnus avant acceptation ?",
+        "groupe": "direction",
+        "oriente": true,
+        "importance": 0.2
+      },
+      {
+        "id": "evaluation_performance",
+        "libelle": "Notation ou statistiques de performance",
+        "question": "La plateforme exploite-t-elle une notation ou des statistiques de performance du travailleur ?",
+        "groupe": "controle",
+        "oriente": true,
+        "importance": 0.2
+      },
+      {
+        "id": "equipement_marque",
+        "libelle": "Équipement aux couleurs de la plateforme",
+        "question": "Une tenue ou du matériel aux couleurs de la plateforme sont-ils imposés ?",
+        "groupe": "service_organise",
+        "oriente": true,
+        "importance": 0.2
+      },
+      {
+        "id": "liberte_horaires",
+        "libelle": "Liberté de choisir ses horaires",
+        "question": "Le travailleur choisit-il librement quand il se connecte et ses jours de travail ?",
+        "groupe": "independance",
+        "oriente": false,
+        "importance": 0.2
+      },
+      {
+        "id": "moyens_propres",
+        "libelle": "Moyens propres",
+        "question": "Le travailleur utilise-t-il ses propres moyens (véhicule, frais à sa charge) ?",
+        "groupe": "independance",
+        "oriente": false,
+        "importance": 0.2
+      },
+      {
+        "id": "immatriculation",
+        "libelle": "Immatriculation (présomption L. 8221-6)",
+        "question": "Le travailleur est-il immatriculé (micro-entrepreneur, RCS, répertoire des métiers) ?",
+        "groupe": "independance",
+        "oriente": false,
+        "importance": 0.2
+      },
+      {
+        "id": "charte_sociale",
+        "libelle": "Charte sociale (L. 7342-9)",
+        "question": "Existe-t-il une charte de responsabilité sociale de la plateforme ?",
+        "groupe": "neutre",
+        "oriente": null,
+        "importance": 0.0
+      },
+      {
+        "id": "qualification_contractuelle",
+        "libelle": "Qualification donnée par le contrat",
+        "question": "Le contrat qualifie-t-il la relation de prestation indépendante ?",
+        "groupe": "neutre",
+        "oriente": null,
+        "importance": 0.0
+      },
+      {
+        "id": "dependance_economique",
+        "libelle": "Dépendance économique",
+        "question": "Les revenus du travailleur proviennent-ils majoritairement de la plateforme ?",
+        "groupe": "neutre",
+        "oriente": null,
+        "importance": 0.0
+      }
+    ]
+  },
+  "cas": {
+    "id": "cas_exemple1",
+    "question": "Mon client peut-il obtenir la requalification de sa relation avec la plateforme ?",
+    "description": "[FICTIF] Livreur à vélo. Il choisit ses créneaux, l'application le géolocalise pendant les courses, le prix de chaque course est fixé par la plateforme, il travaille aussi pour une autre application et il est micro-entrepreneur.",
+    "ressort": "CA Paris",
+    "documents": [],
+    "facteurs": {
+      "service_organise": null,
+      "geolocalisation_suivi": true,
+      "sanction_deconnexion": true,
+      "penalites_bonus": null,
+      "tarif_impose": true,
+      "clientele_attribuee": null,
+      "execution_dirigee": null,
+      "multi_plateformes": true,
+      "remplacement_possible": null,
+      "info_masquee": null,
+      "evaluation_performance": null,
+      "equipement_marque": null,
+      "liberte_horaires": true,
+      "moyens_propres": null,
+      "immatriculation": true,
+      "charte_sociale": null,
+      "qualification_contractuelle": null,
+      "dependance_economique": null
+    },
+    "preuves": {
+      "geolocalisation_suivi": {
+        "extrait": "l'application le géolocalise pendant les courses",
+        "confiance": 1.0,
+        "source": "extraction"
+      },
+      "tarif_impose": {
+        "extrait": "le prix de chaque course est fixé par la plateforme",
+        "confiance": 1.0,
+        "source": "extraction"
+      },
+      "multi_plateformes": {
+        "extrait": "il travaille aussi pour une autre application",
+        "confiance": 0.8,
+        "source": "extraction"
+      },
+      "liberte_horaires": {
+        "extrait": "Il choisit ses créneaux",
+        "confiance": 1.0,
+        "source": "extraction"
+      },
+      "immatriculation": {
+        "extrait": "il est micro-entrepreneur",
+        "confiance": 1.0,
+        "source": "extraction"
+      },
+      "sanction_deconnexion": {
+        "extrait": "il a été désactivé après trois refus",
+        "confiance": 1.0,
+        "source": "utilisateur"
+      }
+    },
+    "a_confirmer": [
+      "service_organise",
+      "penalites_bonus"
+    ]
+  },
+  "decisions": [
+    {
+      "id": "exemple-cass-1",
+      "intitule": "[FICTIF] Cass. soc., 2018",
+      "juridiction": "Cour de cassation, chambre sociale",
+      "formation": "cass",
+      "ressort": null,
+      "date": "2018-11-28",
+      "numero": null,
+      "publication": "B",
+      "dispositif": "cassation",
+      "issue": true,
+      "textes": [
+        "C. trav., art. L. 1221-1",
+        "C. trav., art. L. 8221-6"
+      ],
+      "remise_en_cause": null,
+      "url": null,
+      "validee": true,
+      "facteurs": {
+        "service_organise": true,
+        "geolocalisation_suivi": true,
+        "sanction_deconnexion": true,
+        "penalites_bonus": true,
+        "tarif_impose": true,
+        "clientele_attribuee": true,
+        "execution_dirigee": true,
+        "multi_plateformes": null,
+        "remplacement_possible": null,
+        "info_masquee": null,
+        "evaluation_performance": null,
+        "equipement_marque": null,
+        "liberte_horaires": true,
+        "moyens_propres": null,
+        "immatriculation": true,
+        "charte_sociale": null,
+        "qualification_contractuelle": null,
+        "dependance_economique": null
+      },
+      "determinants": [
+        "geolocalisation_suivi",
+        "sanction_deconnexion"
+      ],
+      "preuves": {
+        "service_organise": {
+          "extrait": "[FICTIF] extrait de la motivation",
+          "confiance": 1.0,
+          "source": "juriste"
+        },
+        "geolocalisation_suivi": {
+          "extrait": "[FICTIF] extrait de la motivation",
+          "confiance": 1.0,
+          "source": "juriste"
+        },
+        "sanction_deconnexion": {
+          "extrait": "[FICTIF] extrait de la motivation",
+          "confiance": 1.0,
+          "source": "juriste"
+        },
+        "penalites_bonus": {
+          "extrait": "[FICTIF] extrait de la motivation",
+          "confiance": 1.0,
+          "source": "juriste"
+        },
+        "tarif_impose": {
+          "extrait": "[FICTIF] extrait de la motivation",
+          "confiance": 1.0,
+          "source": "juriste"
+        },
+        "clientele_attribuee": {
+          "extrait": "[FICTIF] extrait de la motivation",
+          "confiance": 1.0,
+          "source": "juriste"
+        },
+        "execution_dirigee": {
+          "extrait": "[FICTIF] extrait de la motivation",
+          "confiance": 1.0,
+          "source": "juriste"
+        },
+        "liberte_horaires": {
+          "extrait": "[FICTIF] extrait de la motivation",
+          "confiance": 1.0,
+          "source": "juriste"
+        },
+        "immatriculation": {
+          "extrait": "[FICTIF] extrait de la motivation",
+          "confiance": 1.0,
+          "source": "juriste"
+        }
+      }
+    },
+    {
+      "id": "exemple-cass-2",
+      "intitule": "[FICTIF] Cass. soc., 2020",
+      "juridiction": "Cour de cassation, chambre sociale",
+      "formation": "cass",
+      "ressort": null,
+      "date": "2020-03-04",
+      "numero": null,
+      "publication": "B",
+      "dispositif": "rejet",
+      "issue": true,
+      "textes": [
+        "C. trav., art. L. 1221-1",
+        "C. trav., art. L. 8221-6"
+      ],
+      "remise_en_cause": null,
+      "url": null,
+      "validee": true,
+      "facteurs": {
+        "service_organise": true,
+        "geolocalisation_suivi": null,
+        "sanction_deconnexion": true,
+        "penalites_bonus": null,
+        "tarif_impose": true,
+        "clientele_attribuee": true,
+        "execution_dirigee": true,
+        "multi_plateformes": null,
+        "remplacement_possible": null,
+        "info_masquee": true,
+        "evaluation_performance": null,
+        "equipement_marque": null,
+        "liberte_horaires": true,
+        "moyens_propres": null,
+        "immatriculation": true,
+        "charte_sociale": null,
+        "qualification_contractuelle": null,
+        "dependance_economique": null
+      },
+      "determinants": [
+        "service_organise",
+        "sanction_deconnexion"
+      ],
+      "preuves": {
+        "service_organise": {
+          "extrait": "[FICTIF] extrait de la motivation",
+          "confiance": 1.0,
+          "source": "juriste"
+        },
+        "sanction_deconnexion": {
+          "extrait": "[FICTIF] extrait de la motivation",
+          "confiance": 1.0,
+          "source": "juriste"
+        },
+        "tarif_impose": {
+          "extrait": "[FICTIF] extrait de la motivation",
+          "confiance": 1.0,
+          "source": "juriste"
+        },
+        "clientele_attribuee": {
+          "extrait": "[FICTIF] extrait de la motivation",
+          "confiance": 1.0,
+          "source": "juriste"
+        },
+        "execution_dirigee": {
+          "extrait": "[FICTIF] extrait de la motivation",
+          "confiance": 1.0,
+          "source": "juriste"
+        },
+        "info_masquee": {
+          "extrait": "[FICTIF] extrait de la motivation",
+          "confiance": 1.0,
+          "source": "juriste"
+        },
+        "liberte_horaires": {
+          "extrait": "[FICTIF] extrait de la motivation",
+          "confiance": 1.0,
+          "source": "juriste"
+        },
+        "immatriculation": {
+          "extrait": "[FICTIF] extrait de la motivation",
+          "confiance": 1.0,
+          "source": "juriste"
+        }
+      }
+    },
+    {
+      "id": "exemple-ca-paris-1",
+      "intitule": "[FICTIF] CA Paris, 2021",
+      "juridiction": "Cour d'appel de Paris",
+      "formation": "ca",
+      "ressort": "CA Paris",
+      "date": "2021-06-15",
+      "numero": null,
+      "publication": "na",
+      "dispositif": "confirmation",
+      "issue": false,
+      "textes": [
+        "C. trav., art. L. 1221-1",
+        "C. trav., art. L. 8221-6"
+      ],
+      "remise_en_cause": null,
+      "url": null,
+      "validee": true,
+      "facteurs": {
+        "service_organise": null,
+        "geolocalisation_suivi": true,
+        "sanction_deconnexion": false,
+        "penalites_bonus": false,
+        "tarif_impose": true,
+        "clientele_attribuee": null,
+        "execution_dirigee": null,
+        "multi_plateformes": true,
+        "remplacement_possible": true,
+        "info_masquee": null,
+        "evaluation_performance": null,
+        "equipement_marque": null,
+        "liberte_horaires": true,
+        "moyens_propres": true,
+        "immatriculation": true,
+        "charte_sociale": null,
+        "qualification_contractuelle": null,
+        "dependance_economique": null
+      },
+      "determinants": [
+        "sanction_deconnexion"
+      ],
+      "preuves": {
+        "geolocalisation_suivi": {
+          "extrait": "[FICTIF] extrait de la motivation",
+          "confiance": 1.0,
+          "source": "juriste"
+        },
+        "sanction_deconnexion": {
+          "extrait": "[FICTIF] extrait de la motivation",
+          "confiance": 1.0,
+          "source": "juriste"
+        },
+        "penalites_bonus": {
+          "extrait": "[FICTIF] extrait de la motivation",
+          "confiance": 1.0,
+          "source": "juriste"
+        },
+        "tarif_impose": {
+          "extrait": "[FICTIF] extrait de la motivation",
+          "confiance": 1.0,
+          "source": "juriste"
+        },
+        "multi_plateformes": {
+          "extrait": "[FICTIF] extrait de la motivation",
+          "confiance": 1.0,
+          "source": "juriste"
+        },
+        "remplacement_possible": {
+          "extrait": "[FICTIF] extrait de la motivation",
+          "confiance": 1.0,
+          "source": "juriste"
+        },
+        "liberte_horaires": {
+          "extrait": "[FICTIF] extrait de la motivation",
+          "confiance": 1.0,
+          "source": "juriste"
+        },
+        "moyens_propres": {
+          "extrait": "[FICTIF] extrait de la motivation",
+          "confiance": 1.0,
+          "source": "juriste"
+        },
+        "immatriculation": {
+          "extrait": "[FICTIF] extrait de la motivation",
+          "confiance": 1.0,
+          "source": "juriste"
+        }
+      }
+    },
+    {
+      "id": "exemple-ca-lyon-1",
+      "intitule": "[FICTIF] CA Lyon, 2022",
+      "juridiction": "Cour d'appel de Lyon",
+      "formation": "ca",
+      "ressort": "CA Lyon",
+      "date": "2022-01-20",
+      "numero": null,
+      "publication": "na",
+      "dispositif": "infirmation",
+      "issue": false,
+      "textes": [
+        "C. trav., art. L. 1221-1",
+        "C. trav., art. L. 8221-6"
+      ],
+      "remise_en_cause": null,
+      "url": null,
+      "validee": true,
+      "facteurs": {
+        "service_organise": null,
+        "geolocalisation_suivi": false,
+        "sanction_deconnexion": false,
+        "penalites_bonus": null,
+        "tarif_impose": null,
+        "clientele_attribuee": null,
+        "execution_dirigee": null,
+        "multi_plateformes": true,
+        "remplacement_possible": null,
+        "info_masquee": null,
+        "evaluation_performance": null,
+        "equipement_marque": null,
+        "liberte_horaires": true,
+        "moyens_propres": true,
+        "immatriculation": true,
+        "charte_sociale": null,
+        "qualification_contractuelle": null,
+        "dependance_economique": null
+      },
+      "determinants": [
+        "geolocalisation_suivi"
+      ],
+      "preuves": {
+        "geolocalisation_suivi": {
+          "extrait": "[FICTIF] extrait de la motivation",
+          "confiance": 1.0,
+          "source": "juriste"
+        },
+        "sanction_deconnexion": {
+          "extrait": "[FICTIF] extrait de la motivation",
+          "confiance": 1.0,
+          "source": "juriste"
+        },
+        "multi_plateformes": {
+          "extrait": "[FICTIF] extrait de la motivation",
+          "confiance": 1.0,
+          "source": "juriste"
+        },
+        "liberte_horaires": {
+          "extrait": "[FICTIF] extrait de la motivation",
+          "confiance": 1.0,
+          "source": "juriste"
+        },
+        "moyens_propres": {
+          "extrait": "[FICTIF] extrait de la motivation",
+          "confiance": 1.0,
+          "source": "juriste"
+        },
+        "immatriculation": {
+          "extrait": "[FICTIF] extrait de la motivation",
+          "confiance": 1.0,
+          "source": "juriste"
+        }
+      }
+    },
+    {
+      "id": "exemple-ca-paris-2",
+      "intitule": "[FICTIF] CA Paris, 2023",
+      "juridiction": "Cour d'appel de Paris",
+      "formation": "ca",
+      "ressort": "CA Paris",
+      "date": "2023-09-12",
+      "numero": null,
+      "publication": "na",
+      "dispositif": "confirmation",
+      "issue": false,
+      "textes": [
+        "C. trav., art. L. 1221-1",
+        "C. trav., art. L. 8221-6"
+      ],
+      "remise_en_cause": null,
+      "url": null,
+      "validee": true,
+      "facteurs": {
+        "service_organise": null,
+        "geolocalisation_suivi": true,
+        "sanction_deconnexion": null,
+        "penalites_bonus": null,
+        "tarif_impose": false,
+        "clientele_attribuee": null,
+        "execution_dirigee": null,
+        "multi_plateformes": true,
+        "remplacement_possible": true,
+        "info_masquee": null,
+        "evaluation_performance": null,
+        "equipement_marque": null,
+        "liberte_horaires": true,
+        "moyens_propres": null,
+        "immatriculation": true,
+        "charte_sociale": null,
+        "qualification_contractuelle": null,
+        "dependance_economique": null
+      },
+      "determinants": [],
+      "preuves": {
+        "geolocalisation_suivi": {
+          "extrait": "[FICTIF] extrait de la motivation",
+          "confiance": 1.0,
+          "source": "juriste"
+        },
+        "tarif_impose": {
+          "extrait": "[FICTIF] extrait de la motivation",
+          "confiance": 1.0,
+          "source": "juriste"
+        },
+        "multi_plateformes": {
+          "extrait": "[FICTIF] extrait de la motivation",
+          "confiance": 1.0,
+          "source": "juriste"
+        },
+        "remplacement_possible": {
+          "extrait": "[FICTIF] extrait de la motivation",
+          "confiance": 1.0,
+          "source": "juriste"
+        },
+        "liberte_horaires": {
+          "extrait": "[FICTIF] extrait de la motivation",
+          "confiance": 1.0,
+          "source": "juriste"
+        },
+        "immatriculation": {
+          "extrait": "[FICTIF] extrait de la motivation",
+          "confiance": 1.0,
+          "source": "juriste"
+        }
+      }
+    }
+  ],
+  "parametres": {
+    "modele": "logistique_bayesienne",
+    "niveau_intervalle": 0.8,
+    "date_reference": "2026-10-04",
+    "seuil_exception": 0.15
+  },
+  "resultat": {
+    "modele": "logistique_bayesienne",
+    "version_calculateur": "0.0.0-exemple",
+    "prediction": {
+      "probabilite": 0.81,
+      "intervalle": [
+        0.64,
+        0.92
+      ],
+      "issue": true,
+      "incertain": false
+    },
+    "majeure": {
+      "issue": true,
+      "probabilite": 0.81,
+      "decisions": [
+        "exemple-cass-1",
+        "exemple-cass-2"
+      ]
+    },
+    "exception": {
+      "issue": false,
+      "probabilite": 0.19,
+      "conditions": [
+        {
+          "facteur": "geolocalisation_suivi",
+          "valeur": false,
+          "probabilite_si": 0.58
+        }
+      ],
+      "decision_reference": "exemple-ca-paris-2"
+    },
+    "fait_pivot": {
+      "facteur": "sanction_deconnexion",
+      "valeur": false,
+      "probabilite_si": 0.38,
+      "delta": -0.43,
+      "bascule": true
+    },
+    "impacts": [
+      {
+        "facteur": "sanction_deconnexion",
+        "valeur": false,
+        "probabilite_si": 0.38,
+        "delta": -0.43,
+        "bascule": true
+      },
+      {
+        "facteur": "geolocalisation_suivi",
+        "valeur": false,
+        "probabilite_si": 0.58,
+        "delta": -0.23,
+        "bascule": false
+      },
+      {
+        "facteur": "service_organise",
+        "valeur": true,
+        "probabilite_si": 0.9,
+        "delta": 0.09,
+        "bascule": false
+      }
+    ],
+    "decisions": [
+      {
+        "id": "exemple-cass-1",
+        "retenue": true,
+        "motif_exclusion": null,
+        "proximite": 0.69,
+        "poids": 0.8,
+        "detail_poids": {
+          "autorite": 0.85,
+          "portee": 0.8,
+          "actualite": 0.46,
+          "geographie": 1.0
+        },
+        "alignement": {
+          "service_organise": "inconnu",
+          "geolocalisation_suivi": "identique",
+          "sanction_deconnexion": "identique",
+          "penalites_bonus": "inconnu",
+          "tarif_impose": "identique",
+          "clientele_attribuee": "inconnu",
+          "execution_dirigee": "inconnu",
+          "multi_plateformes": "inconnu",
+          "remplacement_possible": "inconnu",
+          "info_masquee": "inconnu",
+          "evaluation_performance": "inconnu",
+          "equipement_marque": "inconnu",
+          "liberte_horaires": "identique",
+          "moyens_propres": "inconnu",
+          "immatriculation": "identique",
+          "charte_sociale": "inconnu",
+          "qualification_contractuelle": "inconnu",
+          "dependance_economique": "inconnu"
+        }
+      },
+      {
+        "id": "exemple-cass-2",
+        "retenue": true,
+        "motif_exclusion": null,
+        "proximite": 0.62,
+        "poids": 0.81,
+        "detail_poids": {
+          "autorite": 0.85,
+          "portee": 0.8,
+          "actualite": 0.52,
+          "geographie": 1.0
+        },
+        "alignement": {
+          "service_organise": "inconnu",
+          "geolocalisation_suivi": "inconnu",
+          "sanction_deconnexion": "identique",
+          "penalites_bonus": "inconnu",
+          "tarif_impose": "identique",
+          "clientele_attribuee": "inconnu",
+          "execution_dirigee": "inconnu",
+          "multi_plateformes": "inconnu",
+          "remplacement_possible": "inconnu",
+          "info_masquee": "inconnu",
+          "evaluation_performance": "inconnu",
+          "equipement_marque": "inconnu",
+          "liberte_horaires": "identique",
+          "moyens_propres": "inconnu",
+          "immatriculation": "identique",
+          "charte_sociale": "inconnu",
+          "qualification_contractuelle": "inconnu",
+          "dependance_economique": "inconnu"
+        }
+      },
+      {
+        "id": "exemple-ca-paris-1",
+        "retenue": false,
+        "motif_exclusion": "Fait déterminant divergent : Sanction par déconnexion ou désactivation",
+        "proximite": 0.59,
+        "poids": 0.0,
+        "detail_poids": {
+          "autorite": 0.5,
+          "portee": 0.3,
+          "actualite": 0.59,
+          "geographie": 1.0
+        },
+        "alignement": {
+          "service_organise": "inconnu",
+          "geolocalisation_suivi": "identique",
+          "sanction_deconnexion": "oppose",
+          "penalites_bonus": "inconnu",
+          "tarif_impose": "identique",
+          "clientele_attribuee": "inconnu",
+          "execution_dirigee": "inconnu",
+          "multi_plateformes": "identique",
+          "remplacement_possible": "inconnu",
+          "info_masquee": "inconnu",
+          "evaluation_performance": "inconnu",
+          "equipement_marque": "inconnu",
+          "liberte_horaires": "identique",
+          "moyens_propres": "inconnu",
+          "immatriculation": "identique",
+          "charte_sociale": "inconnu",
+          "qualification_contractuelle": "inconnu",
+          "dependance_economique": "inconnu"
+        }
+      },
+      {
+        "id": "exemple-ca-lyon-1",
+        "retenue": false,
+        "motif_exclusion": "Fait déterminant divergent : Géolocalisation en temps réel",
+        "proximite": 0.43,
+        "poids": 0.0,
+        "detail_poids": {
+          "autorite": 0.5,
+          "portee": 0.3,
+          "actualite": 0.62,
+          "geographie": 0.5
+        },
+        "alignement": {
+          "service_organise": "inconnu",
+          "geolocalisation_suivi": "oppose",
+          "sanction_deconnexion": "oppose",
+          "penalites_bonus": "inconnu",
+          "tarif_impose": "inconnu",
+          "clientele_attribuee": "inconnu",
+          "execution_dirigee": "inconnu",
+          "multi_plateformes": "identique",
+          "remplacement_possible": "inconnu",
+          "info_masquee": "inconnu",
+          "evaluation_performance": "inconnu",
+          "equipement_marque": "inconnu",
+          "liberte_horaires": "identique",
+          "moyens_propres": "inconnu",
+          "immatriculation": "identique",
+          "charte_sociale": "inconnu",
+          "qualification_contractuelle": "inconnu",
+          "dependance_economique": "inconnu"
+        }
+      },
+      {
+        "id": "exemple-ca-paris-2",
+        "retenue": true,
+        "motif_exclusion": null,
+        "proximite": 0.59,
+        "poids": 0.57,
+        "detail_poids": {
+          "autorite": 0.5,
+          "portee": 0.3,
+          "actualite": 0.74,
+          "geographie": 1.0
+        },
+        "alignement": {
+          "service_organise": "inconnu",
+          "geolocalisation_suivi": "identique",
+          "sanction_deconnexion": "inconnu",
+          "penalites_bonus": "inconnu",
+          "tarif_impose": "oppose",
+          "clientele_attribuee": "inconnu",
+          "execution_dirigee": "inconnu",
+          "multi_plateformes": "identique",
+          "remplacement_possible": "inconnu",
+          "info_masquee": "inconnu",
+          "evaluation_performance": "inconnu",
+          "equipement_marque": "inconnu",
+          "liberte_horaires": "identique",
+          "moyens_propres": "inconnu",
+          "immatriculation": "identique",
+          "charte_sociale": "inconnu",
+          "qualification_contractuelle": "inconnu",
+          "dependance_economique": "inconnu"
+        }
+      }
+    ],
+    "avertissements": [
+      "Exemple : probabilités illustratives, non calculées.",
+      "Directive (UE) 2024/2831 : présomption légale de salariat — vérifier la transposition."
+    ]
+  }
+}

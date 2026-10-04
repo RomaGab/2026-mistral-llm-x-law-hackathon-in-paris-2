@@ -1,0 +1,246 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/RomaGab/2026-mistral-llm-x-law-hackathon-in-paris-2/contracts/dossier.schema.json",
+  "title": "Distinguo — Dossier",
+  "description": "Format unique échangé entre le front, le back et le calculateur. Le calculateur reçoit un dossier avec resultat = null et le renvoie avec resultat rempli. Version 1.0.",
+  "type": "object",
+  "required": ["meta", "grille", "cas", "decisions", "parametres", "resultat"],
+  "additionalProperties": false,
+  "properties": {
+    "meta": { "$ref": "#/$defs/meta" },
+    "grille": { "$ref": "#/$defs/grille" },
+    "cas": { "$ref": "#/$defs/cas" },
+    "decisions": { "type": "array", "items": { "$ref": "#/$defs/decision" } },
+    "parametres": { "$ref": "#/$defs/parametres" },
+    "resultat": { "oneOf": [{ "type": "null" }, { "$ref": "#/$defs/resultat" }] }
+  },
+
+  "$defs": {
+    "id_facteur": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+    "valeur": { "description": "true = présent, false = absent, null = inconnu", "type": ["boolean", "null"] },
+    "probabilite": { "type": "number", "minimum": 0, "maximum": 1 },
+    "date": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" },
+
+    "facteurs": {
+      "description": "Dictionnaire {id_facteur: true|false|null}. Doit contenir exactement les identifiants de la grille (règle vérifiée hors schéma).",
+      "type": "object",
+      "propertyNames": { "$ref": "#/$defs/id_facteur" },
+      "additionalProperties": { "$ref": "#/$defs/valeur" }
+    },
+
+    "preuve": {
+      "type": "object",
+      "required": ["extrait", "confiance", "source"],
+      "additionalProperties": false,
+      "properties": {
+        "extrait": { "type": ["string", "null"] },
+        "confiance": { "$ref": "#/$defs/probabilite" },
+        "source": { "enum": ["extraction", "utilisateur", "juriste"] }
+      }
+    },
+
+    "preuves": {
+      "type": "object",
+      "propertyNames": { "$ref": "#/$defs/id_facteur" },
+      "additionalProperties": { "$ref": "#/$defs/preuve" }
+    },
+
+    "meta": {
+      "type": "object",
+      "required": ["version_format", "dossier_id", "simulation"],
+      "additionalProperties": false,
+      "properties": {
+        "version_format": { "type": "string", "pattern": "^1\\.[0-9]+$" },
+        "dossier_id": { "type": "string" },
+        "genere_le": { "type": "string" },
+        "simulation": { "type": "boolean", "description": "true si les faits du cas ont été modifiés pour simuler, sans être enregistrés" }
+      }
+    },
+
+    "grille": {
+      "type": "object",
+      "required": ["version", "question", "issue", "facteurs"],
+      "additionalProperties": false,
+      "properties": {
+        "version": { "type": "string" },
+        "question": { "type": "string" },
+        "issue": {
+          "type": "object",
+          "required": ["libelle", "si_vrai", "si_faux"],
+          "additionalProperties": false,
+          "properties": {
+            "libelle": { "type": "string" },
+            "si_vrai": { "type": "string" },
+            "si_faux": { "type": "string" }
+          }
+        },
+        "facteurs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["id", "libelle", "question", "groupe", "oriente", "importance"],
+            "additionalProperties": false,
+            "properties": {
+              "id": { "$ref": "#/$defs/id_facteur" },
+              "libelle": { "type": "string" },
+              "question": { "type": "string" },
+              "groupe": { "type": "string" },
+              "oriente": { "description": "true = pousse vers l'issue vraie quand présent ; false = vers l'issue fausse ; null = neutralisé", "type": ["boolean", "null"] },
+              "importance": { "type": "number", "minimum": 0, "maximum": 1 }
+            }
+          }
+        }
+      }
+    },
+
+    "cas": {
+      "type": "object",
+      "required": ["id", "description", "ressort", "facteurs"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "question": { "type": "string" },
+        "description": { "type": "string" },
+        "ressort": { "type": ["string", "null"] },
+        "documents": { "type": "array", "items": { "type": "string" } },
+        "facteurs": { "$ref": "#/$defs/facteurs" },
+        "preuves": { "$ref": "#/$defs/preuves" },
+        "a_confirmer": { "type": "array", "items": { "$ref": "#/$defs/id_facteur" } }
+      }
+    },
+
+    "decision": {
+      "type": "object",
+      "required": ["id", "intitule", "juridiction", "formation", "ressort", "date", "publication", "issue", "validee", "facteurs", "determinants"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "intitule": { "type": "string", "description": "Libellé court affiché par le front, ex. « Cass. soc., 4 mars 2020 »" },
+        "juridiction": { "type": "string" },
+        "formation": { "enum": ["ass_pleniere", "ch_mixte", "cass", "ca", "premiere_instance"] },
+        "ressort": { "type": ["string", "null"], "description": "null pour la Cour de cassation (portée nationale)" },
+        "date": { "$ref": "#/$defs/date" },
+        "numero": { "type": ["string", "null"] },
+        "publication": { "enum": ["R", "B", "inedit", "na"] },
+        "dispositif": { "enum": ["cassation", "rejet", "confirmation", "infirmation", "autre", null] },
+        "issue": { "type": "boolean", "description": "Issue AU FOND (pas le dispositif) : true = requalification retenue" },
+        "textes": { "type": "array", "items": { "type": "string" } },
+        "remise_en_cause": { "type": ["string", "null"] },
+        "url": { "type": ["string", "null"] },
+        "validee": { "type": "boolean" },
+        "facteurs": { "$ref": "#/$defs/facteurs" },
+        "determinants": { "type": "array", "items": { "$ref": "#/$defs/id_facteur" }, "uniqueItems": true },
+        "preuves": { "$ref": "#/$defs/preuves" }
+      }
+    },
+
+    "parametres": {
+      "type": "object",
+      "required": ["modele", "niveau_intervalle", "date_reference"],
+      "additionalProperties": true,
+      "properties": {
+        "modele": { "enum": ["logistique_bayesienne", "vote_pondere"] },
+        "niveau_intervalle": { "type": "number", "exclusiveMinimum": 0, "exclusiveMaximum": 1 },
+        "date_reference": { "$ref": "#/$defs/date" },
+        "seuil_exception": { "$ref": "#/$defs/probabilite" }
+      }
+    },
+
+    "impact": {
+      "type": "object",
+      "required": ["facteur", "valeur", "probabilite_si", "delta", "bascule"],
+      "additionalProperties": false,
+      "properties": {
+        "facteur": { "$ref": "#/$defs/id_facteur" },
+        "valeur": { "type": "boolean", "description": "Valeur testée pour ce fait" },
+        "probabilite_si": { "$ref": "#/$defs/probabilite", "description": "P(issue vraie) si le fait prend cette valeur" },
+        "delta": { "type": "number", "minimum": -1, "maximum": 1, "description": "probabilite_si - prediction.probabilite" },
+        "bascule": { "type": "boolean", "description": "true si l'issue prédite change (P franchit 0,5)" }
+      }
+    },
+
+    "resultat": {
+      "type": "object",
+      "required": ["modele", "version_calculateur", "prediction", "majeure", "exception", "fait_pivot", "impacts", "decisions", "avertissements"],
+      "additionalProperties": false,
+      "properties": {
+        "modele": { "enum": ["logistique_bayesienne", "vote_pondere"] },
+        "version_calculateur": { "type": "string" },
+        "prediction": {
+          "type": "object",
+          "required": ["probabilite", "intervalle", "issue", "incertain"],
+          "additionalProperties": false,
+          "properties": {
+            "probabilite": { "$ref": "#/$defs/probabilite", "description": "P(issue vraie)" },
+            "intervalle": { "type": "array", "items": { "$ref": "#/$defs/probabilite" }, "minItems": 2, "maxItems": 2 },
+            "issue": { "type": "boolean", "description": "probabilite > 0,5" },
+            "incertain": { "type": "boolean", "description": "true si l'intervalle contient 0,5" }
+          }
+        },
+        "majeure": {
+          "type": "object",
+          "required": ["issue", "probabilite", "decisions"],
+          "additionalProperties": false,
+          "properties": {
+            "issue": { "type": "boolean" },
+            "probabilite": { "$ref": "#/$defs/probabilite", "description": "Probabilité de l'issue majeure (≥ 0,5)" },
+            "decisions": { "type": "array", "items": { "type": "string" }, "description": "Décisions retenues qui soutiennent la majeure" }
+          }
+        },
+        "exception": {
+          "oneOf": [
+            { "type": "null" },
+            {
+              "type": "object",
+              "required": ["issue", "probabilite", "conditions", "decision_reference"],
+              "additionalProperties": false,
+              "properties": {
+                "issue": { "type": "boolean" },
+                "probabilite": { "$ref": "#/$defs/probabilite", "description": "Probabilité de l'issue minoritaire (= 1 - majeure.probabilite)" },
+                "conditions": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": ["facteur", "valeur", "probabilite_si"],
+                    "additionalProperties": false,
+                    "properties": {
+                      "facteur": { "$ref": "#/$defs/id_facteur" },
+                      "valeur": { "type": "boolean" },
+                      "probabilite_si": { "$ref": "#/$defs/probabilite" }
+                    }
+                  }
+                },
+                "decision_reference": { "type": ["string", "null"] }
+              }
+            }
+          ]
+        },
+        "fait_pivot": { "oneOf": [{ "type": "null" }, { "$ref": "#/$defs/impact" }] },
+        "impacts": { "type": "array", "items": { "$ref": "#/$defs/impact" } },
+        "decisions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "retenue", "motif_exclusion", "proximite", "poids", "detail_poids", "alignement"],
+            "additionalProperties": false,
+            "properties": {
+              "id": { "type": "string" },
+              "retenue": { "type": "boolean" },
+              "motif_exclusion": { "type": ["string", "null"] },
+              "proximite": { "$ref": "#/$defs/probabilite" },
+              "poids": { "type": "number", "minimum": 0 },
+              "detail_poids": { "type": "object", "additionalProperties": { "type": "number" } },
+              "alignement": {
+                "type": "object",
+                "propertyNames": { "$ref": "#/$defs/id_facteur" },
+                "additionalProperties": { "enum": ["identique", "oppose", "inconnu"] }
+              }
+            }
+          }
+        },
+        "avertissements": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}

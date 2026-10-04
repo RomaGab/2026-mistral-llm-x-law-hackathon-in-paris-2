@@ -1,0 +1,155 @@
+{
+  "version": "1.0",
+  "question": "Le travailleur de plateforme est-il lié par un contrat de travail ?",
+  "issue": {
+    "libelle": "Requalification en contrat de travail",
+    "si_vrai": "Salariat",
+    "si_faux": "Indépendance"
+  },
+  "facteurs": [
+    {
+      "id": "service_organise",
+      "libelle": "Service organisé par la plateforme",
+      "question": "Les conditions de la prestation sont-elles entièrement fixées par la plateforme ?",
+      "groupe": "service_organise",
+      "oriente": true,
+      "importance": 1.0
+    },
+    {
+      "id": "geolocalisation_suivi",
+      "libelle": "Géolocalisation en temps réel",
+      "question": "La plateforme suit-elle la position du travailleur en temps réel ?",
+      "groupe": "controle",
+      "oriente": true,
+      "importance": 1.0
+    },
+    {
+      "id": "sanction_deconnexion",
+      "libelle": "Sanction par déconnexion ou désactivation",
+      "question": "La plateforme peut-elle déconnecter ou désactiver le travailleur en cas de refus, d'annulation ou de mauvaise note ?",
+      "groupe": "sanction",
+      "oriente": true,
+      "importance": 1.0
+    },
+    {
+      "id": "penalites_bonus",
+      "libelle": "Pénalités ou bonus/malus",
+      "question": "Existe-t-il un système de pénalités ou de bonus/malus lié au comportement du travailleur ?",
+      "groupe": "sanction",
+      "oriente": true,
+      "importance": 1.0
+    },
+    {
+      "id": "tarif_impose",
+      "libelle": "Tarif fixé unilatéralement",
+      "question": "Le prix de la prestation est-il fixé unilatéralement par la plateforme ?",
+      "groupe": "direction",
+      "oriente": true,
+      "importance": 0.5
+    },
+    {
+      "id": "clientele_attribuee",
+      "libelle": "Pas de clientèle propre",
+      "question": "Le travailleur est-il empêché de constituer sa propre clientèle ?",
+      "groupe": "direction",
+      "oriente": true,
+      "importance": 0.5
+    },
+    {
+      "id": "execution_dirigee",
+      "libelle": "Modalités d'exécution imposées",
+      "question": "La plateforme impose-t-elle les modalités d'exécution (itinéraire, process, délais) ?",
+      "groupe": "direction",
+      "oriente": true,
+      "importance": 0.5
+    },
+    {
+      "id": "multi_plateformes",
+      "libelle": "Liberté de travailler pour des concurrents",
+      "question": "Le travailleur peut-il travailler pour d'autres plateformes ou des concurrents ?",
+      "groupe": "independance",
+      "oriente": false,
+      "importance": 0.5
+    },
+    {
+      "id": "remplacement_possible",
+      "libelle": "Faculté de se faire remplacer",
+      "question": "Le travailleur peut-il se faire remplacer ou sous-traiter la prestation ?",
+      "groupe": "independance",
+      "oriente": false,
+      "importance": 0.5
+    },
+    {
+      "id": "info_masquee",
+      "libelle": "Mission inconnue avant acceptation",
+      "question": "La destination ou le contenu de la mission sont-ils inconnus avant acceptation ?",
+      "groupe": "direction",
+      "oriente": true,
+      "importance": 0.2
+    },
+    {
+      "id": "evaluation_performance",
+      "libelle": "Notation ou statistiques de performance",
+      "question": "La plateforme exploite-t-elle une notation ou des statistiques de performance du travailleur ?",
+      "groupe": "controle",
+      "oriente": true,
+      "importance": 0.2
+    },
+    {
+      "id": "equipement_marque",
+      "libelle": "Équipement aux couleurs de la plateforme",
+      "question": "Une tenue ou du matériel aux couleurs de la plateforme sont-ils imposés ?",
+      "groupe": "service_organise",
+      "oriente": true,
+      "importance": 0.2
+    },
+    {
+      "id": "liberte_horaires",
+      "libelle": "Liberté de choisir ses horaires",
+      "question": "Le travailleur choisit-il librement quand il se connecte et ses jours de travail ?",
+      "groupe": "independance",
+      "oriente": false,
+      "importance": 0.2
+    },
+    {
+      "id": "moyens_propres",
+      "libelle": "Moyens propres",
+      "question": "Le travailleur utilise-t-il ses propres moyens (véhicule, frais à sa charge) ?",
+      "groupe": "independance",
+      "oriente": false,
+      "importance": 0.2
+    },
+    {
+      "id": "immatriculation",
+      "libelle": "Immatriculation (présomption L. 8221-6)",
+      "question": "Le travailleur est-il immatriculé (micro-entrepreneur, RCS, répertoire des métiers) ?",
+      "groupe": "independance",
+      "oriente": false,
+      "importance": 0.2
+    },
+    {
+      "id": "charte_sociale",
+      "libelle": "Charte sociale (L. 7342-9)",
+      "question": "Existe-t-il une charte de responsabilité sociale de la plateforme ?",
+      "groupe": "neutre",
+      "oriente": null,
+      "importance": 0.0
+    },
+    {
+      "id": "qualification_contractuelle",
+      "libelle": "Qualification donnée par le contrat",
+      "question": "Le contrat qualifie-t-il la relation de prestation indépendante ?",
+      "groupe": "neutre",
+      "oriente": null,
+      "importance": 0.0
+    },
+    {
+      "id": "dependance_economique",
+      "libelle": "Dépendance économique",
+      "question": "Les revenus du travailleur proviennent-ils majoritairement de la plateforme ?",
+      "groupe": "neutre",
+      "oriente": null,
+      "importance": 0.0
+    }
+  ]
+}
