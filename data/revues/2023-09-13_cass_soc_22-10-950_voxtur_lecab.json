@@ -1,0 +1,27 @@
+{
+  "id": "2023-09-13_cass_soc_22-10-950_voxtur_lecab",
+  "verdict": "valider_apres_corrections",
+  "issue": true,
+  "corrections_facteurs": {
+    "clientele_attribuee": true,
+    "remplacement_possible": null,
+    "info_masquee": null,
+    "moyens_propres": null,
+    "qualification_contractuelle": true,
+    "dependance_economique": null
+  },
+  "determinants": [
+    "execution_dirigee",
+    "sanction_deconnexion",
+    "clientele_attribuee"
+  ],
+  "remise_en_cause": null,
+  "justification": "Arrêt réel (F-D, rejet), vérifié sur Légifrance (JURITEXT000048085974) : les §7 à 13 de la réponse de la Cour sont identiques au texte local. Ce dernier résume en revanche l'énoncé du moyen sous forme de liste. Issue true juste : la Cour juge que « la cour d'appel a ainsi pu déduire de ses constatations que le chauffeur réalisait des prestations dans le cadre d'un service organisé et dans un lien de subordination » (§12). Ce n'est PAS la suite sur renvoi de l'arrêt du 13 avril 2022 : autre chauffeur (contrat du 30 mars 2015) et autre arrêt d'appel (Paris, 27 oct. 2021). Les deux solutions s'articulent par les faits. Ici, la cour d'appel a constaté ce qui manquait en 2022 : des instructions assorties de « sanctions prévues en cas de désaffection ou retard de course » (§10), des « déconnexions du chauffeur durant vingt minutes en cas de refus de course » et une exclusivité de fait (§11). Ces faits sont les vrais déterminants ; la fiche citait service_organise, qui est en réalité la conclusion. Corrections. clientele_attribuee passe à true : sa liberté « ne se confondait pas avec la liberté du travailleur indépendant […] au profit d'une clientèle qui lui était propre » (§11). Valeur incohérente dans la fiche : false alors que l'extrait citait l'exclusivité. qualification_contractuelle passe à true : un « contrat de prestation » a été requalifié. remplacement_possible, info_masquee, moyens_propres et dependance_economique passent à null : aucun fait. L'exclusivité ne dit rien de la part des revenus, et le véhicule est loué à la plateforme. Maintenus : tarif_impose (§10) ; evaluation_performance (§11) ; multi_plateformes=false (exclusivité) ; liberte_horaires=true, liberté reconnue mais jugée indifférente (§11) ; geolocalisation_suivi, penalites_bonus et equipement_marque (« standard Le Cab ») et immatriculation (présomption L. 8221-6 visée au §7), qui reposent sur les éléments retenus par la cour d'appel tels que résumés au moyen, base plus faible. Champ « textes » de la fiche à nettoyer (doublon L. 8221-6, jurisprudence citée comme texte).",
+  "sources": [
+    "https://www.legifrance.gouv.fr/juri/id/JURITEXT000048085974",
+    "https://www.legifrance.gouv.fr/juri/id/JURITEXT000049510002",
+    "https://www.legifrance.gouv.fr/juri/id/JURITEXT000045652580",
+    "https://cms.law/fr/fra/legal-updates/requalification-en-contrat-de-travail-de-la-relation-entre-chauffeurs-de-vtc-et-plateforme-la-cour-de-cassation-dit-non-pour-cette-fois"
+  ],
+  "confiance": "haute"
+}

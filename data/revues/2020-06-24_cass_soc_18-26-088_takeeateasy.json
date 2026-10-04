@@ -1,0 +1,29 @@
+{
+  "id": "2020-06-24_cass_soc_18-26-088_takeeateasy",
+  "verdict": "valider_apres_corrections",
+  "issue": true,
+  "corrections_facteurs": {
+    "service_organise": null,
+    "tarif_impose": null,
+    "clientele_attribuee": null,
+    "execution_dirigee": null,
+    "remplacement_possible": null,
+    "info_masquee": null,
+    "charte_sociale": null,
+    "qualification_contractuelle": true,
+    "dependance_economique": null
+  },
+  "determinants": [
+    "geolocalisation_suivi",
+    "sanction_deconnexion",
+    "penalites_bonus"
+  ],
+  "remise_en_cause": null,
+  "justification": "Cassation (F-D, inédit) qui reprend la solution Take Eat Easy de 2018 : §8 « il résultait de ses constatations l'existence d'un pouvoir de direction, de contrôle de l'exécution de la prestation au moyen d'un système de géolocalisation permettant le suivi en temps réel ... de la position et du comportement du coursier, ainsi que d'un pouvoir de sanction » ; issue true juste. Déterminants : géolocalisation + pouvoir de sanction (strikes : perte de bonus à 2, désactivation et désinscription des shifts à 4, §6). evaluation_performance retiré des déterminants (la Cour ne s'appuie pas sur une notation ; maintenu true à titre secondaire : fiches de statistiques et recalcul quotidien de la vitesse du coursier relevés par la cour d'appel). Corrections : tarif_impose null (la cour d'appel parle d'une rémunération « définie d'un commun accord », l'extrait de la fiche contredit sa propre valeur) ; service_organise et execution_dirigee null (les constatations contraires de la cour d'appel — trajet libre, pas de détermination unilatérale — sont incompatibles avec le « pouvoir de direction » retenu par la Cour) ; clientele_attribuee, remplacement_possible, info_masquee, charte_sociale, dependance_economique null (textes muets ou ne répondant pas à la question) ; qualification_contractuelle true (contrat de prestation de services, activité « en qualité d'entrepreneur indépendant »). liberte_horaires true, multi_plateformes true, moyens_propres true, immatriculation true, equipement_marque true (courriel rendant OBLIGATOIRE le sac « branding Take Eat Easy ») sont des constatations de la cour d'appel jugées inopérantes par la Cour.",
+  "sources": [
+    "https://www.courdecassation.fr/decision/5fca4c5d0d5dd16eb7db0fee",
+    "https://apps.eurofound.europa.eu/platformeconomydb/french-cour-de-cassation-recognises-link-of-subordination-for-take-eat-easy-worker-103845",
+    "https://www.lepetitjuriste.fr/take-eat-easy-voie-de-requalification-ouverte-cour-de-cassation/"
+  ],
+  "confiance": "haute"
+}

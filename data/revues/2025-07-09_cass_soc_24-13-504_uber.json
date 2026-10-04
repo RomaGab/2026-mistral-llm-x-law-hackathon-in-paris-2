@@ -1,0 +1,22 @@
+{
+  "id": "2025-07-09_cass_soc_24-13-504_uber",
+  "verdict": "valider_apres_corrections",
+  "issue": false,
+  "corrections_facteurs": {
+    "service_organise": false,
+    "sanction_deconnexion": false,
+    "evaluation_performance": null,
+    "moyens_propres": true
+  },
+  "determinants": ["execution_dirigee", "sanction_deconnexion", "multi_plateformes", "clientele_attribuee"],
+  "remise_en_cause": null,
+  "justification": "Issue false juste : la Cour rejette le pourvoi car la cour d'appel « a ainsi pu déduire de ses constatations que le chauffeur ne réalisait pas des prestations dans un lien de subordination » (§11). Corrections principales. sanction_deconnexion passe à false : la déconnexion après trois refus existe, mais la cour d'appel, approuvée, juge qu'elle « ne constitue pas une sanction » puisque le chauffeur « peut se reconnecter presque immédiatement, par un simple clic ». Elle ajoute que, conformément à L. 1326-2 du code des transports, aucune rupture liée à des refus n'est alléguée (§9). Ce fait est déterminant (la doctrine parle de refus « sans réelle conséquence »). service_organise passe à false. La cour d'appel concède certes que l'intéressé est « intégré dans un service organisé » (§7). Mais elle constate aussi que « la société ne contrôle ni ne dirige le chauffeur […] totalement indépendant dans la réalisation de sa prestation » (§8). Les conditions ne sont donc pas « entièrement fixées » par la plateforme, et l'indice du §6 n'est pas rempli. evaluation_performance passe à null : la désactivation pour une note inférieure à 4,5/5 n'apparaît que dans la présentation du moyen par le demandeur, et la Cour ne la reprend pas. moyens_propres passe à true : la cour d'appel retient la liberté de choisir son véhicule, en acquisition ou en location (motifs cités par la 3e branche). Valeurs maintenues : multi_plateformes true et clientele_attribuee false (« chauffeur favori ») au §7, execution_dirigee false et info_masquee false (prix, temps et distance affichés) aux §8 et 10, liberte_horaires true (absence de permanence de connexion, §9), tarif_impose true (fixation légale du prix, jugée non décisive). Arrêt F-D de rejet, rendu sous contrôle léger. Il ne constitue pas un revirement formel de l'arrêt du 5 mars 2025.",
+  "sources": [
+    "https://www.courdecassation.fr/decision/686e0206e0a6f0ca1546ef1c",
+    "https://www.labase-lextenso.fr/jp-commente/cc/2025-07/24-13-504-CC-09072025-24_13504",
+    "https://cms.law/fr/fra/news-information/uber-n-est-pas-un-employeur",
+    "https://www.leclubdesjuristes.com/societe/travailleur-independant-ou-salarie-le-revirement-de-la-cour-dans-laffaire-uber-de-2025-11663/",
+    "https://www.lemag-juridique.com/focus/articles/social-uber-echappe-requalification-pas-lien-subordination-pour-chauffeur-independant-10616.htm"
+  ],
+  "confiance": "haute"
+}

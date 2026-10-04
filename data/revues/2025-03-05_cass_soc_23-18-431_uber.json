@@ -1,0 +1,24 @@
+{
+  "id": "2025-03-05_cass_soc_23-18-431_uber",
+  "verdict": "valider_apres_corrections",
+  "issue": true,
+  "corrections_facteurs": {
+    "service_organise": null,
+    "remplacement_possible": null,
+    "info_masquee": null,
+    "liberte_horaires": null,
+    "moyens_propres": null,
+    "qualification_contractuelle": true
+  },
+  "determinants": ["clientele_attribuee", "execution_dirigee", "sanction_deconnexion"],
+  "remise_en_cause": null,
+  "justification": "Issue juste : la Cour casse au visa de L. 8221-6 car « il résultait de ses constatations l'existence d'un pouvoir de direction, de contrôle de l'exécution de la prestation ainsi que d'un pouvoir de sanction » (§10). Les constatations sur lesquelles elle s'appuie sont celles des §6 à 9 : interdiction de solliciter les passagers, donc pas de clientèle propre (§6) ; « les itinéraires sont déterminés électroniquement par la plateforme », avec un surcoût imputé au chauffeur qui s'en écarte (§7-8) ; déconnexion du chauffeur qui refuse « au moins 80 % des courses proposées ou trois courses d'affilée » (§9). Les déterminants deviennent donc clientele_attribuee, execution_dirigee et sanction_deconnexion. La géolocalisation, citée par la cour d'appel dans le moyen (5e branche), reste vraie mais la Cour ne la reprend pas dans sa motivation propre. Corrections : service_organise passe à null, car le §5 n'énonce que le principe abstrait du service organisé et aucun fait n'est constaté. remplacement_possible, info_masquee, liberte_horaires et moyens_propres passent à null : le texte est muet. qualification_contractuelle passe à true : le contrat est un « contrat de prestation de service », qui qualifie la relation d'indépendante. La réponse de la grille avait été inversée. Les valeurs suivantes sont maintenues : immatriculation (enregistrement au répertoire Sirene, §1), tarif_impose (prix fixé par algorithme, constaté par la cour d'appel), penalites_bonus (surcoût d'itinéraire imputé au chauffeur, et non le système de notation cité à tort comme extrait) et evaluation_performance (rupture possible en fonction des évaluations des clients). Arrêt F-D, l'un des deux arrêts « jumeaux » du 5 mars 2025 (avec n° 23-18.430). Les arrêts de rejet du 9 juillet 2025 ne constituent pas un revirement formel : ils portent sur d'autres faits, postérieurs à la LOM, et sur l'appréciation des juges du fond.",
+  "sources": [
+    "https://www.courdecassation.fr/decision/67c7f7a6d80e40890638ebb5",
+    "https://www.labase-lextenso.fr/jp-commente/cc/2025-03/23-18-431-CC-05032025-23_18431",
+    "https://www.labase-lextenso.fr/bulletin-joly-travail/2025-n5/requalification-de-chauffeurs-uber-en-salaries-une-derniere-pour-la-route-BJT204r1",
+    "https://cms.law/fr/fra/news-information/uber-n-est-pas-un-employeur",
+    "https://www.leclubdesjuristes.com/societe/travailleur-independant-ou-salarie-le-revirement-de-la-cour-dans-laffaire-uber-de-2025-11663/"
+  ],
+  "confiance": "haute"
+}

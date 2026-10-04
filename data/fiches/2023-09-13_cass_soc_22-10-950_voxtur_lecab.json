@@ -10,36 +10,35 @@
   "dispositif": "rejet",
   "issue": true,
   "textes": [
-    "L. 8221-6 du code du travail",
-    "Art. L. 8221-6 du code du travail (présomption d'indépendance)",
-    "Jurisprudence constante sur le lien de subordination (Cass. soc., 13 nov. 1996, n° 94-13187)"
+    "C. trav., art. L. 8221-6"
   ],
   "remise_en_cause": null,
   "url": null,
-  "validee": false,
+  "validee": true,
   "facteurs": {
     "service_organise": true,
     "geolocalisation_suivi": true,
     "sanction_deconnexion": true,
     "penalites_bonus": true,
     "tarif_impose": true,
-    "clientele_attribuee": false,
+    "clientele_attribuee": true,
     "execution_dirigee": true,
     "multi_plateformes": false,
-    "remplacement_possible": false,
-    "info_masquee": false,
+    "remplacement_possible": null,
+    "info_masquee": null,
     "evaluation_performance": true,
     "equipement_marque": true,
     "liberte_horaires": true,
-    "moyens_propres": true,
+    "moyens_propres": null,
     "immatriculation": true,
     "charte_sociale": null,
-    "qualification_contractuelle": false,
-    "dependance_economique": true
+    "qualification_contractuelle": true,
+    "dependance_economique": null
   },
   "determinants": [
-    "service_organise",
-    "sanction_deconnexion"
+    "execution_dirigee",
+    "sanction_deconnexion",
+    "clientele_attribuee"
   ],
   "preuves": {
     "service_organise": {

@@ -10,12 +10,11 @@
   "dispositif": "cassation",
   "issue": true,
   "textes": [
-    "Art. L. 8221-1 du code du travail (ancien art. L. 122-4-1)",
-    "Art. L. 8221-5 du code du travail (ancien art. L. 122-4-2)"
+    "C. trav., art. L. 8221-6, II"
   ],
   "remise_en_cause": null,
   "url": null,
-  "validee": false,
+  "validee": true,
   "facteurs": {
     "service_organise": null,
     "geolocalisation_suivi": true,
@@ -24,14 +23,14 @@
     "tarif_impose": null,
     "clientele_attribuee": null,
     "execution_dirigee": null,
-    "multi_plateformes": null,
+    "multi_plateformes": true,
     "remplacement_possible": null,
     "info_masquee": null,
     "evaluation_performance": true,
     "equipement_marque": null,
     "liberte_horaires": true,
     "moyens_propres": true,
-    "immatriculation": null,
+    "immatriculation": true,
     "charte_sociale": null,
     "qualification_contractuelle": true,
     "dependance_economique": null
@@ -39,7 +38,7 @@
   "determinants": [
     "geolocalisation_suivi",
     "sanction_deconnexion",
-    "evaluation_performance"
+    "penalites_bonus"
   ],
   "preuves": {
     "geolocalisation_suivi": {

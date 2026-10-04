@@ -46,6 +46,8 @@ Vérification commune à chaque tâche : `uv run pytest` vert, et aucun dossier 
 > **Corpus (16h45) :** 12 arrêts de cassation extraits dans `data/fiches/` (9 salariat, 3 indépendance), dont 6 venant du fichier Legora (`dataset-legora/legora_2026-10-04/`, textes officiels de courdecassation.fr). Tous en `validee: false`.
 > **À trancher par le juriste avant de valider** : dans les deux arrêts Uber du 9 juillet 2025 (24-13.504 et 24-13.513), Mistral a codé `sanction_deconnexion: true` (la déconnexion après trois refus existe) et `service_organise: true`. La Cour juge au contraire que le chauffeur peut refuser « sans réelle conséquence » : coder `sanction_deconnexion: false`, l'ajouter aux `determinants`, et revoir `service_organise`. Avec cette correction, le cas de démo passe de 51 % à 76 % quand la sanction est confirmée, et ces deux arrêts sont écartés.
 
+> **Validation (≈17h30) :** les 12 fiches ont été relues et validées par **3 agents IA indépendants** (profil juriste en droit des plateformes, texte officiel + recherches internet), **pas par un juriste humain**. Revues, justifications et sources : `data/revues/`. Toutes « à valider après corrections » (78 corrections au total). À faire relire par le juriste si possible, en priorité : Take Eat Easy 2018 (le texte du dépôt est un extrait reconstitué, remplacer par JURITEXT000037787075), Voxtur 2022 (issue au fond discutable, confiance moyenne), Transopco 2025 (chambre commerciale, autorité moindre mais traitée comme un arrêt de cassation).
+
 ### Checkpoint J1
 - [ ] `uv run pytest` est vert.
 - [ ] Une vraie décision extraite, puis validée, donne un dossier valide.

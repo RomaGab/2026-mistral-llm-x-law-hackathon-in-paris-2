@@ -1,0 +1,23 @@
+{
+  "id": "2025-07-09_cass_soc_24-13-513_uber",
+  "verdict": "valider_apres_corrections",
+  "issue": false,
+  "corrections_facteurs": {
+    "service_organise": false,
+    "sanction_deconnexion": false,
+    "penalites_bonus": null,
+    "evaluation_performance": null,
+    "moyens_propres": true
+  },
+  "determinants": ["execution_dirigee", "sanction_deconnexion", "multi_plateformes", "clientele_attribuee"],
+  "remise_en_cause": null,
+  "justification": "Arrêt jumeau du n° 24-13.504, au texte quasi identique ; issue false juste (rejet, §11). sanction_deconnexion passe à false. La déconnexion après trois refus « ne constitue pas une sanction » : le chauffeur se reconnecte « presque immédiatement, par un simple clic ». Aucune « suspension ou rupture » liée aux refus n'est alléguée, au regard de L. 1326-2 du code des transports, « l'intéressé étant toujours actif sur la plateforme » (§9). C'est un motif déterminant que la Cour approuve. service_organise passe à false. L'intégration « dans un service organisé » est concédée (§7), mais la cour d'appel constate que la société « ne contrôle ni ne dirige le chauffeur » (§8) : les conditions ne sont pas entièrement fixées par la plateforme. penalites_bonus passe à null : la fiche indiquait true sans extrait. Le texte ne fait état que d'ajustements tarifaires (un seul à la baisse, en octobre 2019, contre trois à la hausse selon Uber), jugés impropres à caractériser un indice de subordination (§10). Ce n'est pas un système de pénalités établi. evaluation_performance passe à null : la note de 4,5/5 n'apparaît que dans la présentation du moyen. moyens_propres passe à true : la cour d'appel retient le libre choix du véhicule, en acquisition ou en location (3e branche). Valeurs maintenues : multi_plateformes true, clientele_attribuee false (« chauffeur favori »), execution_dirigee false, info_masquee false, liberte_horaires true, tarif_impose true (fait constaté, non décisif), qualification_contractuelle true. Arrêt F-D de rejet, rendu sous contrôle léger ; ce n'est pas un revirement formel.",
+  "sources": [
+    "https://www.courdecassation.fr/decision/686e0205e0a6f0ca1546ef1a",
+    "https://cms.law/fr/fra/news-information/uber-n-est-pas-un-employeur",
+    "https://www.leclubdesjuristes.com/societe/travailleur-independant-ou-salarie-le-revirement-de-la-cour-dans-laffaire-uber-de-2025-11663/",
+    "https://www.lemag-juridique.com/focus/articles/social-uber-echappe-requalification-pas-lien-subordination-pour-chauffeur-independant-10616.htm",
+    "https://publications.ut-capitole.fr/51183/1/BJT204z4.pdf"
+  ],
+  "confiance": "haute"
+}

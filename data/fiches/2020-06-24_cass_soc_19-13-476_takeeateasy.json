@@ -15,30 +15,31 @@
   ],
   "remise_en_cause": null,
   "url": null,
-  "validee": false,
+  "validee": true,
   "facteurs": {
-    "service_organise": false,
+    "service_organise": null,
     "geolocalisation_suivi": true,
     "sanction_deconnexion": true,
     "penalites_bonus": true,
-    "tarif_impose": true,
-    "clientele_attribuee": false,
-    "execution_dirigee": false,
+    "tarif_impose": null,
+    "clientele_attribuee": null,
+    "execution_dirigee": null,
     "multi_plateformes": true,
-    "remplacement_possible": false,
-    "info_masquee": false,
+    "remplacement_possible": null,
+    "info_masquee": null,
     "evaluation_performance": true,
-    "equipement_marque": true,
+    "equipement_marque": null,
     "liberte_horaires": true,
     "moyens_propres": true,
     "immatriculation": true,
     "charte_sociale": null,
-    "qualification_contractuelle": false,
+    "qualification_contractuelle": true,
     "dependance_economique": null
   },
   "determinants": [
     "geolocalisation_suivi",
-    "evaluation_performance"
+    "sanction_deconnexion",
+    "penalites_bonus"
   ],
   "preuves": {
     "service_organise": {

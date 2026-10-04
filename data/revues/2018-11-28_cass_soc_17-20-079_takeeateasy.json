@@ -1,0 +1,23 @@
+{
+  "id": "2018-11-28_cass_soc_17-20-079_takeeateasy",
+  "verdict": "valider_apres_corrections",
+  "issue": true,
+  "corrections_facteurs": {
+    "multi_plateformes": true,
+    "immatriculation": true
+  },
+  "determinants": [
+    "geolocalisation_suivi",
+    "sanction_deconnexion",
+    "penalites_bonus"
+  ],
+  "remise_en_cause": null,
+  "justification": "Issue true juste : cassation pour défaut de tirer les conséquences légales des constatations ; la Cour juge que la géolocalisation en temps réel (position + kilomètres) et le pouvoir de sanction (strikes : perte de bonus à 2, convocation à 3, désactivation du compte à 4) caractérisent un lien de subordination (« ce dont il résultait l'existence d'un pouvoir de direction et de contrôle »). Déterminants corrigés : evaluation_performance retiré (la Cour ne s'appuie que sur la géolocalisation et le pouvoir de sanction ; les strikes relèvent de la sanction, non de la notation) et remplacé par penalites_bonus (système bonus/strikes = forme du pouvoir de sanction). evaluation_performance reste true à titre secondaire (bonus « KM » lié au dépassement de la moyenne kilométrique des coursiers, relevé par l'arrêt). Ajouts tirés du texte intégral officiel (Légifrance) : absence d'exclusivité constatée par la cour d'appel (multi_plateformes true) et immatriculation en auto-entrepreneur (immatriculation true, d'où le visa de L. 8221-6 II). liberte_horaires et moyens_propres true sont des constatations de la cour d'appel non démenties, jugées inopérantes. ATTENTION : data/decisions/<id>.txt n'est qu'un extrait reconstitué (section « ELEMENTS FACTUELS » non officielle, ex. « retard ») qui ne permet pas à lui seul d'établir liberte_horaires/moyens_propres ; il faut le remplacer par le texte intégral. Le champ « textes » de la fiche est faux : le visa est l'art. L. 8221-6 II C. trav. (et non L. 8221-1/L. 8221-5, « anciens L. 122-4-1/2 »).",
+  "sources": [
+    "https://www.legifrance.gouv.fr/juri/id/JURITEXT000037787075",
+    "https://www.lepetitjuriste.fr/take-eat-easy-voie-de-requalification-ouverte-cour-de-cassation/",
+    "https://cms.law/fr/fra/a-la-une/en-voiture-ou-a-velo-quel-statut-pour-les-travailleurs-des-plateformes-numeriques",
+    "https://www.droit-technologie.org/wp-content/uploads/2020/03/notice-explicative-de-la-Cour-de-cassation-1.pdf"
+  ],
+  "confiance": "moyenne"
+}

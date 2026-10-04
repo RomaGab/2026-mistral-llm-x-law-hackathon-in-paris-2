@@ -17,7 +17,7 @@
   ],
   "remise_en_cause": null,
   "url": null,
-  "validee": false,
+  "validee": true,
   "facteurs": {
     "service_organise": true,
     "geolocalisation_suivi": true,
@@ -26,21 +26,22 @@
     "tarif_impose": true,
     "clientele_attribuee": true,
     "execution_dirigee": true,
-    "multi_plateformes": false,
-    "remplacement_possible": false,
+    "multi_plateformes": null,
+    "remplacement_possible": null,
     "info_masquee": true,
     "evaluation_performance": true,
-    "equipement_marque": false,
-    "liberte_horaires": false,
-    "moyens_propres": true,
+    "equipement_marque": null,
+    "liberte_horaires": true,
+    "moyens_propres": null,
     "immatriculation": true,
-    "charte_sociale": true,
-    "qualification_contractuelle": false,
-    "dependance_economique": true
+    "charte_sociale": null,
+    "qualification_contractuelle": true,
+    "dependance_economique": null
   },
   "determinants": [
     "service_organise",
-    "geolocalisation_suivi",
+    "tarif_impose",
+    "execution_dirigee",
     "sanction_deconnexion"
   ],
   "preuves": {

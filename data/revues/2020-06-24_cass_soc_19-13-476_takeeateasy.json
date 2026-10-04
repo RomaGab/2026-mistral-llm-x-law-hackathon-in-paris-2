@@ -1,0 +1,28 @@
+{
+  "id": "2020-06-24_cass_soc_19-13-476_takeeateasy",
+  "verdict": "valider_apres_corrections",
+  "issue": true,
+  "corrections_facteurs": {
+    "service_organise": null,
+    "tarif_impose": null,
+    "clientele_attribuee": null,
+    "execution_dirigee": null,
+    "remplacement_possible": null,
+    "info_masquee": null,
+    "equipement_marque": null,
+    "qualification_contractuelle": true
+  },
+  "determinants": [
+    "geolocalisation_suivi",
+    "sanction_deconnexion",
+    "penalites_bonus"
+  ],
+  "remise_en_cause": null,
+  "justification": "Cassation (F-D) rédigée à l'identique de l'arrêt 18-26.088 : §8 pouvoir de direction et de contrôle via la géolocalisation (position et comportement du coursier) et pouvoir de sanction ; issue true juste. Déterminants corrigés : sanction_deconnexion ajouté (§6 : cumul de quatre strikes = « désactivation du compte et la désinscription des shifts réservés » — la fiche le laissait sans extrait alors que c'est le cœur du pouvoir de sanction) et penalites_bonus (perte de bonus à deux strikes) ; evaluation_performance retiré (maintenu true à titre secondaire : bonus « KM » lié au dépassement de la moyenne kilométrique des coursiers). Corrections : tarif_impose null (« selon le bon vouloir de la société » est l'argument du coursier ; la cour d'appel retient une rémunération « définie d'un commun accord ») ; clientele_attribuee null (la clause de non-exclusivité répond à multi_plateformes, pas à la clientèle) ; equipement_marque null (tenue aux couleurs de l'entreprise seulement alléguée, 4e branche du moyen) ; service_organise et execution_dirigee null (motif de la cour d'appel contredit par le « pouvoir de direction » retenu par la Cour) ; remplacement_possible, info_masquee null (muets) ; qualification_contractuelle true (art. 1.4 : le contrat « n'établit ... aucun lien de subordination »). liberte_horaires, multi_plateformes, moyens_propres, immatriculation true : constatations de la cour d'appel jugées inopérantes.",
+  "sources": [
+    "https://www.courdecassation.fr/decision/5fca4c5d0d5dd16eb7db0ff1",
+    "https://apps.eurofound.europa.eu/platformeconomydb/french-cour-de-cassation-recognises-link-of-subordination-for-take-eat-easy-worker-103845",
+    "https://www.leclubdesjuristes.com/archives-cdj/coursiers-des-plateformes-numeriques-comment-interpreter-larret-de-la-cour-de-cassation-2284/"
+  ],
+  "confiance": "haute"
+}

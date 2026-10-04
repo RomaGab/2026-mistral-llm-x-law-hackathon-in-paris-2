@@ -1,0 +1,30 @@
+{
+  "id": "2022-04-13_cass_soc_20-14-870_voxtur_lecab",
+  "verdict": "valider_apres_corrections",
+  "issue": false,
+  "corrections_facteurs": {
+    "service_organise": false,
+    "sanction_deconnexion": false,
+    "remplacement_possible": null,
+    "info_masquee": null,
+    "liberte_horaires": null,
+    "moyens_propres": null,
+    "qualification_contractuelle": true
+  },
+  "determinants": [
+    "service_organise",
+    "execution_dirigee",
+    "sanction_deconnexion"
+  ],
+  "remise_en_cause": null,
+  "justification": "Arrêt FS-B de cassation pour manque de base légale, avec renvoi. La Cour ne statue pas elle-même au fond. Elle juge que les constatations de la cour d'appel (véhicule imposé, GPS en temps réel, prix fixé et modulé unilatéralement, notation pouvant entraîner la résiliation, §8-9) sont des « motifs insuffisants à caractériser l'exercice d'un travail au sein d'un service organisé selon des conditions déterminées unilatéralement […] sans constater […] des directives sur les modalités d'exécution du travail, […] le pouvoir d'en contrôler le respect et d'en sanctionner l'inobservation » (§10). Comme précédent, ce faisceau d'indices ne suffit donc pas : issue false est maintenue (la doctrine, CMS ou Dalloz Étudiant, y voit un refus de requalification « pour cette fois »). Les suites ne remettent pas l'arrêt en cause. Les arrêts Voxtur du 13 sept. 2023 (n° 22-10.950) et du 24 avril 2024 (n° 22-17.995) concernent d'autres chauffeurs : la Cour y rejette les pourvois parce que les juges du fond avaient cette fois constaté des instructions assorties de sanctions, une déconnexion de 20 minutes après un refus et une exclusivité de fait. Corrections. service_organise et sanction_deconnexion passent à false : l'extrait « service organisé » et le pouvoir de sanction par la notation sont des motifs de la cour d'appel censurés au §10. La clause de résiliation pour mauvaise note existe, mais la Cour refuse d'y voir un pouvoir de sanction. remplacement_possible et info_masquee passent à null : la sous-traitance n'apparaît que dans le moyen de la plateforme, et rien n'est dit sur la destination. liberte_horaires passe à null : la clause de liberté n'est invoquée que par la partie, et la cour d'appel la juge « plus théorique que réelle » ; la Cour ne tranche pas. moyens_propres passe à null : véhicule loué à Voxtur selon le moyen, carburant remboursé par la cour d'appel, donc ambigu. qualification_contractuelle passe à true : contrat d'adhésion de « prestataire adhérent », chauffeur auto-entrepreneur. Valeurs maintenues : tarif_impose, geolocalisation_suivi, evaluation_performance, equipement_marque (modèle unique choisi pour la « visibilité à la marque LeCab ») et immatriculation (auto-entrepreneur) sont constatés et non contestés, mais jugés insuffisants ; penalites_bonus (commission dégressive selon les « points de courses ») et multi_plateformes / clientele_attribuee=false (absence d'exclusivité admise par la cour d'appel) ont une base plus fragile. Réserve : l'issue au fond après renvoi n'a pas été trouvée.",
+  "sources": [
+    "https://www.legifrance.gouv.fr/juri/id/JURITEXT000045652580",
+    "https://cms.law/fr/fra/legal-updates/requalification-en-contrat-de-travail-de-la-relation-entre-chauffeurs-de-vtc-et-plateforme-la-cour-de-cassation-dit-non-pour-cette-fois",
+    "https://actu.dalloz-etudiant.fr/a-la-une/article/la-qualification-du-contrat-des-chauffeurs-vtc-toujours-en-question/h/2177fdcfe62a18a8bedeb31b07c05bf0.html",
+    "https://derriennic.com/lien-de-subordination-et-vtc-chauffeur-le-cab-la-subordination-nest-pas-acquise/",
+    "https://www.legifrance.gouv.fr/juri/id/JURITEXT000048085974",
+    "https://www.legifrance.gouv.fr/juri/id/JURITEXT000049510002"
+  ],
+  "confiance": "moyenne"
+}

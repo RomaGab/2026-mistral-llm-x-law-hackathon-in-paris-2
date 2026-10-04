@@ -17,22 +17,22 @@
   ],
   "remise_en_cause": null,
   "url": null,
-  "validee": false,
+  "validee": true,
   "facteurs": {
-    "service_organise": true,
+    "service_organise": false,
     "geolocalisation_suivi": true,
-    "sanction_deconnexion": true,
-    "penalites_bonus": true,
+    "sanction_deconnexion": false,
+    "penalites_bonus": null,
     "tarif_impose": true,
     "clientele_attribuee": false,
     "execution_dirigee": false,
     "multi_plateformes": true,
     "remplacement_possible": null,
     "info_masquee": false,
-    "evaluation_performance": true,
+    "evaluation_performance": null,
     "equipement_marque": null,
     "liberte_horaires": true,
-    "moyens_propres": null,
+    "moyens_propres": true,
     "immatriculation": null,
     "charte_sociale": null,
     "qualification_contractuelle": true,
@@ -40,7 +40,9 @@
   },
   "determinants": [
     "execution_dirigee",
-    "multi_plateformes"
+    "sanction_deconnexion",
+    "multi_plateformes",
+    "clientele_attribuee"
   ],
   "preuves": {
     "service_organise": {

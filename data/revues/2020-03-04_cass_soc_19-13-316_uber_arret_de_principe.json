@@ -1,0 +1,30 @@
+{
+  "id": "2020-03-04_cass_soc_19-13-316_uber_arret_de_principe",
+  "verdict": "valider_apres_corrections",
+  "issue": true,
+  "corrections_facteurs": {
+    "liberte_horaires": true,
+    "multi_plateformes": null,
+    "remplacement_possible": null,
+    "equipement_marque": null,
+    "moyens_propres": null,
+    "charte_sociale": null,
+    "qualification_contractuelle": true,
+    "dependance_economique": null
+  },
+  "determinants": [
+    "service_organise",
+    "tarif_impose",
+    "execution_dirigee",
+    "sanction_deconnexion"
+  ],
+  "remise_en_cause": null,
+  "justification": "Rejet du pourvoi d'Uber : la Cour approuve la cour d'appel d'avoir jugé le statut d'indépendant fictif (§15) ; issue true juste. Déterminants : la Cour (§§10-14, et sa note explicative) s'appuie sur le service « créé et entièrement organisé » par Uber, l'absence de liberté tarifaire, l'itinéraire imposé avec corrections tarifaires (directives), la destination parfois inconnue et les déconnexions temporaires après trois refus / perte d'accès au compte. La géolocalisation n'apparaît PAS dans la réponse de la Cour ni dans la note explicative : elle reste true (constatation de la cour d'appel, art. 2.8 du contrat) mais est retirée des déterminants. Corrections : liberte_horaires true (§11 : le chauffeur peut choisir ses jours et heures, ce qui « n'exclut pas en soi » la subordination ; la note souligne l'absence d'obligation de connexion) ; qualification_contractuelle true (contrat de « partenariat » qualifiant la relation de commerciale, statut d'indépendant jugé fictif) ; charte_sociale null (la « charte de la communauté Uber » n'est pas une charte L. 7342-9) ; dependance_economique null (critère expressément refusé par la note explicative ; l'argument Hinter est jugé inopérant, 12e branche) ; multi_plateformes, remplacement_possible, equipement_marque, moyens_propres null (non constatés, ou seulement allégués par les parties ; l'extrait sur l'interdiction de prendre d'autres passagers ne concerne pas le remplacement).",
+  "sources": [
+    "https://www.droit-technologie.org/wp-content/uploads/2020/03/notice-explicative-de-la-Cour-de-cassation-1.pdf",
+    "https://www.labase-lextenso.fr/jp-commente/cc/2020-03/19-13-316-CC-04032020-19_13316",
+    "https://www.lemag-juridique.com/fiches-pratiques/categories/social-12192/articles/cour-cassation-confirme-statut-salarie-pour-chauffeur-uber-593.htm",
+    "https://www.leclubdesjuristes.com/opinion/affaire-uber-un-jugement-aussi-etonnant-que-confus-4548/"
+  ],
+  "confiance": "haute"
+}

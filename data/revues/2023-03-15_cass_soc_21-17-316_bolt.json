@@ -1,0 +1,25 @@
+{
+  "id": "2023-03-15_cass_soc_21-17-316_bolt",
+  "verdict": "valider_apres_corrections",
+  "issue": true,
+  "corrections_facteurs": {
+    "multi_plateformes": null,
+    "moyens_propres": null,
+    "immatriculation": true,
+    "qualification_contractuelle": true,
+    "dependance_economique": null
+  },
+  "determinants": [
+    "service_organise",
+    "execution_dirigee",
+    "sanction_deconnexion"
+  ],
+  "remise_en_cause": null,
+  "justification": "Issue true juste. Rejet (FS-D) du pourvoi de Bolt. Le dispositif porte formellement sur la compétence du conseil de prud'hommes, mais la Cour approuve au fond la cour d'appel d'avoir déduit « un faisceau suffisant d'indices » de subordination : Bolt avait « adressé des directives, en avait contrôlé l'exécution et avait exercé un pouvoir de sanction » (§14). Facteurs bien établis et approuvés. service_organise : intégration à un service organisé où la seule clientèle est celle attribuée (§8). clientele_attribuee : interdiction de contacter les passagers et de transporter d'autres passagers (§10). info_masquee : destination inconnue (§8, 11). execution_dirigee : itinéraire le moins coûteux, pas d'arrêts, consignes de comportement (§8, 11-12). tarif_impose : tarif fixé par avance, ajustement (§11). liberte_horaires=false : Bolt peut suspendre l'accès « à son entière discrétion » (§9). sanction_deconnexion et evaluation_performance : blocages pour annulations et pour une « note moyenne trop faible », puis suspension définitive (§13). Déterminants : la liste de la fiche était vide ; je retiens les trois piliers du §14 (service organisé, directives, sanctions). Corrections. multi_plateformes passe à null : seule Bolt invoque la liberté de se connecter à des concurrents (1re et 3e branches), et ni la cour d'appel ni la Cour ne statuent. moyens_propres et dependance_economique passent à null : aucun fait dans l'arrêt. immatriculation passe à true : la Cour vise le renversement de « la présomption simple de non salariat de l'article L. 8221-6 I » (§14), qui suppose l'immatriculation. qualification_contractuelle passe à true : « conditions générales pour les partenaires chauffeurs » (§1). Maintenus : geolocalisation_suivi (calcul par GPS au §11 et « contrôlé et géolocalisé » dans les motifs adoptés, mais la branche est jugée inopérante, donc ce n'est pas un déterminant) et penalites_bonus (ajustement du tarif, valeur discutable).",
+  "sources": [
+    "https://www.courdecassation.fr/decision/641173e3f6c989fb02435759",
+    "https://www.leclubdesjuristes.com/societe/travailleur-independant-ou-salarie-le-revirement-de-la-cour-dans-laffaire-uber-de-2025-11663/",
+    "https://www.labase-lextenso.fr/gazette-du-palais/2025-n27/chronique-de-jurisprudence-de-droit-des-transports-GPL480x1/PDF-revue"
+  ],
+  "confiance": "haute"
+}

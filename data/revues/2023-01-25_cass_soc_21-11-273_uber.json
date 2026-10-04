@@ -1,0 +1,28 @@
+{
+  "id": "2023-01-25_cass_soc_21-11-273_uber",
+  "verdict": "valider_apres_corrections",
+  "issue": true,
+  "corrections_facteurs": {
+    "clientele_attribuee": null,
+    "multi_plateformes": true,
+    "remplacement_possible": null,
+    "equipement_marque": false,
+    "moyens_propres": null,
+    "charte_sociale": null,
+    "qualification_contractuelle": true
+  },
+  "determinants": [
+    "execution_dirigee",
+    "tarif_impose",
+    "sanction_deconnexion"
+  ],
+  "remise_en_cause": null,
+  "justification": "Issue true juste. Il s'agit d'une cassation pour violation de la loi, pas d'un simple manque de base légale : « il résultait de ses constatations l'existence d'un pouvoir de direction, de contrôle de l'exécution de la prestation ainsi que d'un pouvoir de sanction […], éléments caractérisant un lien de subordination » (§11). Le renvoi devant la cour d'appel de Grenoble n'a donc lieu que pour en tirer les conséquences. Déterminants ajoutés (la liste de la fiche était vide) : execution_dirigee (itinéraire défini par le logiciel, pause de 6 h après 10 h de conduite, attente de 10 minutes, trajet direct sans arrêt, §7) ; tarif_impose (tarif fixé par algorithme « sur lequel le chauffeur n'a aucune prise », ajusté en cas d'itinéraire inefficace, §8) ; sanction_deconnexion (mise hors ligne après trois refus, compte désactivé du 14 mars au 1er avril 2016 pour taux d'annulation, clause 2.4, §9-10). Corrections. equipement_marque passe à false : le chauffeur s'engage au contraire à NE PAS afficher de logo ni porter de tenue aux couleurs d'Uber (§7). qualification_contractuelle passe à true : « formulaire d'enregistrement de partenariat », chauffeur enregistré au répertoire Sirene « en tant qu'indépendant » (§1). charte_sociale passe à null : la « Charte de la communauté Uber » n'est pas la charte de l'art. L. 7342-9, postérieure aux faits. clientele_attribuee passe à null : l'extrait « aucune clientèle propre » vient du moyen du chauffeur. multi_plateformes passe à true : la cour d'appel a retenu l'absence d'exclusivité et la liberté de travailler pour une autre plateforme (motifs repris par la 2e branche), ce que la Cour ne remet pas en cause. remplacement_possible et moyens_propres passent à null : aucun fait. Maintenus : liberte_horaires, info_masquee, geolocalisation_suivi et immatriculation, constatés par la cour d'appel, et penalites_bonus (ajustement tarifaire pour un itinéraire inefficace, interprétation discutable). Arrêt F-D. L'arrêt Uber du 9 juillet 2025 (n° 24-13.504), qui conclut à l'indépendance, est une appréciation d'espèce sur des pratiques postérieures et non un revirement formel.",
+  "sources": [
+    "https://www.politis.fr/articles/2023/01/exclu-politis-la-cour-de-cassation-donne-de-nouveau-raison-a-un-chauffeur-contre-uber/",
+    "https://apps.eurofound.europa.eu/platformeconomydb/lyon-court-of-appeal-uber-driver-is-an-independent-contractor-103844",
+    "https://www.leclubdesjuristes.com/societe/travailleur-independant-ou-salarie-le-revirement-de-la-cour-dans-laffaire-uber-de-2025-11663/",
+    "https://www.legifrance.gouv.fr/juri/id/JURITEXT000051931825"
+  ],
+  "confiance": "haute"
+}

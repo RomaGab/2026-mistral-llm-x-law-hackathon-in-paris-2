@@ -1,0 +1,23 @@
+{
+  "id": "2025-06-25_cass_com_23-22-430_transopco_viacab",
+  "verdict": "valider_apres_corrections",
+  "issue": true,
+  "corrections_facteurs": {
+    "multi_plateformes": null,
+    "info_masquee": null,
+    "equipement_marque": null,
+    "liberte_horaires": true,
+    "charte_sociale": null,
+    "qualification_contractuelle": true
+  },
+  "determinants": ["service_organise", "execution_dirigee", "geolocalisation_suivi", "sanction_deconnexion"],
+  "remise_en_cause": null,
+  "justification": "Arrêt de la chambre commerciale rendu sur une action en concurrence déloyale ; les chauffeurs n'y sont pas parties. La Cour examine néanmoins pleinement le lien de subordination : elle reprend la formule Société générale et le critère du service organisé (§13-14), puis approuve la cour d'appel d'avoir déduit « l'existence d'un pouvoir de direction, de contrôle et de sanction […] caractérisant l'existence d'un lien de subordination, de nature à renverser la présomption d'indépendance » (§19). L'arrêt est publié (FS-B) et son sommaire porte sur ce point. Je le retiens donc comme précédent, mais d'autorité moindre : contrôle léger (« a pu déduire »), pas d'effet de chose jugée sur les contrats individuels. Issue true confirmée. Les facteurs suivants sont justes : tarif, bonus par créneaux et pénalités de retard (§15-16), procédure stricte et ordre de course « sans détour » contrôlé par géolocalisation (§16), résiliation pour note moyenne inférieure à 4/5 (§17), interdiction de démarcher la clientèle (§18). Les déterminants retiennent en plus execution_dirigee, au cœur du §16, et service_organise, que la Cour fait ressortir par les « contraintes collectives imposées à la communauté de chauffeurs » (§19). Corrections : liberte_horaires passe à true, car « les chauffeurs n'ont pas d'obligation de connexion » (§15). multi_plateformes passe à null : seule Transopco l'invoque (art. 3.1.3) et le juge ne le constate pas. equipement_marque passe à null : l'« image de marque » ne désigne ni une tenue ni du matériel. charte_sociale passe à null : une « charte qualité » n'est pas une charte L. 7342-9. info_masquee passe à null : le texte est muet. qualification_contractuelle passe à true : il s'agit d'un « contrat de partenariat » avec des chauffeurs présentés comme indépendants. Réserve : le fichier de décision du dépôt est condensé (le moyen y est résumé). Le renvoi à « L. 8226-1 » doit être lu comme L. 8221-6. La métadonnée publication « inedit » est inexacte (FS-B).",
+  "sources": [
+    "https://www.labase-lextenso.fr/jp-commente/cc/2025-06/23-22-430-CC-25062025-23_22430",
+    "https://www.concurrences.com/en/document/pourvoi_n-23-22-430_25_06_2025-1",
+    "https://www.lemondedudroit.fr/decryptages/379-actualite-juridique/99743-maraude-electronique-et-non-salariat-double-sortie-de-route-des-vtc-2.html",
+    "https://www.labase-lextenso.fr/gazette-du-palais/2025-n27/bis-repetita-maraude-electronique-interdite-et-non-respect-de-la-legislation-du-travail-GPL480y2"
+  ],
+  "confiance": "moyenne"
+}
